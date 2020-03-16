@@ -1,0 +1,192 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href=styles.css>
+
+      <title>Foodies | Edit Recipe Post</title>
+
+      <style>
+
+      </style>
+    
+    </head>
+    
+    <body>
+        <!-- COPY THIS FOR THE NAVIGATION BAR OF ALL PAGES -->
+        <div id ="navigation_bar">
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="Homepage.html">
+                    <img src="images/foodies_navbar.jpg" width="150" height="30" class="d-inline-block align-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <div class="dropdown">
+                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="images/profilepic/ted.jpg" class="rounded-circle" width="20" height="20" class="d-inline-block align-top" alt="">
+                          Ted
+                        </button>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" id="accProfile" href="AccountProfile.html">Account Profile</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" data-toggle="modal" data-target="#log_out">Log Out</a>
+                        </div>
+                      </div>
+                    </li>
+  
+                    <li class="nav-item">
+                      <button id="create" class="btn btn-light" type="button" onclick="location.href='CreateRecipePost.html';">Create Recipe Post</button>
+                    </li>
+                    
+                  </ul>
+  
+                  <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location.href='SearchPage.html';">Search Page</button>
+  
+                </div>
+  
+            </nav>
+          </div>
+  
+          <!-- Modal -->
+          <div class="modal fade" id="log_out" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog" style="margin-top: 60px;" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">Log Out</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+  
+                      <div class="modal-body">
+                        Are you sure you want to log out?
+                      </div>
+                      
+                      <div class="modal-footer">
+                        <button id="logout"type="button" class="btn btn-primary"  onclick="location.href='index.html';">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      </div>
+                      
+                  </div> 
+              </div>        
+          </div>
+        
+        <!-- END OF NAVIGATION BAR -->
+
+        <div class="d-flex flex-column" id="content">
+            
+            <!-- PLACE THE DIVS HERE INSIDE THE CONTENT -->
+            <div>
+                <div class="container">
+                    <form action="RecipePost.html">
+                        <div class="form-row">
+                            <h2>Edit Recipe Post</h2>
+                        </div>
+                        <div class="form-row">
+                            
+                            <div class="col-md form-group">
+                                <label for="profilePic">Choose A profile Pic</label>
+                                <input type="file" class="form-control-file" accept="image/*" id="profilePic" onchange="readURL(this);">  
+                            </div>
+                            
+                            <div class="col form-group">
+                                <label for="bio">DESCRIPTION</label>
+                                <textarea class="form-control" id="description" rows="8"></textarea>
+                            </div>
+                            
+                            <div class="col form-group">
+                                <label for="bio">INGREDIENTS</label>
+                                <textarea class="form-control" id="ingredients" rows="8"></textarea>
+                            </div>
+                            
+                            <div class="col form-group">
+                                <label for="bio">INSTRUCTIONS</label>
+                                <textarea class="form-control" id="instructions" rows="8"></textarea>
+                            </div>
+                            
+                        </div>
+                        <button class="btn btn-primary" onclick="return update()">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            function update(){
+                var desc = document.getElementById("bio").value
+                var ingred = document.getElementById("ingredients").value
+                var instruct = document.getElementById("instructions").value
+                var noerror = true;
+                
+                if (desc == ""){
+                    document.getElementById("validFirst").textContent ='Please provide a brief description of your recipe'
+                    document.getElementById("validFirst").style.color = "red";
+                    noerror = false;
+                }
+                else
+                    document.getElementById("validFirst").style.color = "white";
+                    
+                if(ingred == ""){
+                    document.getElementById("validLast").textContent ='Please list down the ingredients used'
+                    document.getElementById("validLast").style.color = "red";
+                    noerror = false; 
+                }
+                else
+                    document.getElementById("validLast").style.color = "white";
+
+                if(instruct == ""){
+                    document.getElementById("validUser").textContent ='Please list the steps in creating the recipe'
+                    document.getElementById("validUser").style.color = "red";
+                    noerror = false;
+                    
+                if (noerror == "true")
+                {
+                    alert("Profile Updated!");    
+                }
+
+            }
+                
+            function preview(input) {
+        
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#previewPic').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    }       
+        </script>
+
+        <!-- PLACE THIS CODE AT THE END OF BODY FOR BOOTSTRAP -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+        <script src="guest.js"></script>
+        <script>
+          $(document).ready(function(){
+            
+            if (localStorage.getItem('isGuest') == 0){
+              $('#accProfile').addClass("disabled")
+              $('#create').hide()
+            }
+            else{
+              $('#accProfile').addClass("enabled")
+              $('#create').show()
+            }
+
+            $('#logout').click(function(){
+              sessionStorage.clear();
+            })
+          });
+        </script>
+    </body>
+</html>
