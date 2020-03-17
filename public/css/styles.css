@@ -1,0 +1,55 @@
+#navigation_bar {
+    height: 60px;
+}
+
+#content {
+    margin: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* - - - - - - - - - - FOR POST PREVIEW - - - - - - - - - - */
+    #post_preview-container {
+        align-content: center;
+        max-width: 800px;
+        margin-bottom: 30px;
+    }
+
+    #post_preview-row0 {
+        max-height: 400px;
+        overflow: hidden;
+    }
+
+    #post_preview-row1  {
+        margin-bottom: 15px;
+    }
+
+    #post_preview-row2 {
+        margin-bottom: 15px;
+    }
+
+    #post_preview-row3 {
+        margin-bottom: -15px;
+    }
+
+/* - - - - - - - - - - FOR PROFILE - - - - - - - - - - */    
+    #profile-container {
+        width: 800px;
+        margin-bottom: 30px;
+        padding: 20px;
+        flex: 1 1 0px;
+    }
+    
+    #profile-col1 {
+        padding-right: 15px;
+        flex: 0 0 200px;
+        max-height: 200px;
+        overflow: hidden;
+    }
+
+    #profile-col2 {
+        flex: 1 1 0px;
+    }
