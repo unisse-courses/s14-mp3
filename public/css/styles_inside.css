@@ -1,0 +1,198 @@
+#navigation_bar {
+    height: 60px;
+}
+
+.inside {
+    /*
+    background-color: #FFF5B2;
+    */
+}
+
+.content {
+    margin: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* - - - - - - - - - - FOR THE POST PREVIEW CONTAINERS - - - - - - - - - - */
+    .post_preview-container {
+        align-content: center;
+        max-width: 800px;
+        margin-bottom: 30px;
+    }
+
+    .post_preview-row0 {
+        max-height: 400px;
+        overflow: hidden;
+    }
+
+    .post_preview-below_image {
+    }
+
+    .post_preview-row1  {
+        margin-bottom: 15px;
+    }
+
+    .post_preview-row2 {
+        margin-bottom: 15px;
+    }
+
+    .post_preview-row3 {
+        margin-bottom: -15px;
+    }
+
+
+/* - - - - - - - - - - FOR THE RECIPE POST PAGE - - - - - - - - - - */
+    .post-container {
+        align-content: center;
+        max-width: 1200px;;
+        margin-bottom: 30px;
+    }
+
+    .post-row0 {
+        padding-top:20px;
+        padding-bottom:20px;
+        text-align: center;
+        align-items: center;
+        margin: auto;
+    }
+
+    .post-header_mid {
+        width: 100%;
+    }
+
+    #upvote-icon {
+        height: 20px;
+        width: 20px;
+    }
+
+    #downvote-icon {
+        height: 20px;
+        width: 20px;
+    }
+
+    .post-stamps {
+        font-size: 16px;
+    }
+
+    .sides {
+        width: 250px;
+    }
+
+    .post-image_div {
+        max-height: 500px;
+        overflow: hidden;
+    }
+
+    .post-row1 {
+    }
+
+    .post-row2 {
+        padding-top:30px;
+    }
+
+    .post-ingredients {
+        width: 30%;
+        padding-right: 20px;
+    }
+
+    .post-instructions {
+        width: 70%;
+        padding-left: 20px;
+    }
+
+    .post-row3 {
+        padding-top:20px;
+        padding-bottom:20px;
+        text-align: justify
+    }
+
+    .post-comment-section {
+        padding-bottom: 10px;
+    }
+
+    .post-comments-list {
+        padding-bottom: 50px;
+        width:100%;
+    }
+
+    .post-comment-thread {
+        background-color: wheat;
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+
+    .comment-body {
+    }
+
+    .post-reply-thread {
+        background-color: lightgray;
+        margin-bottom: 10px;
+        padding: 20px;
+        margin-left: 60px;
+    }
+
+    .comment-icon {
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+    }
+
+
+
+/* - - - - - - - - - - FOR THE ACCOUNT PROFILE PAGE - - - - - - - - - - */    
+    .profile-container {
+        width: 800px;
+        margin-bottom: 30px;
+        padding: 20px;
+        flex: 1 1 0px;
+    }
+
+    .profile-row {
+    }
+
+    .profile-col1 {
+        padding-right: 15px;
+        flex: 0 0 200px;
+        max-height: 200px;
+        overflow: hidden;
+    }
+
+    #profile-col2 {
+        flex: 1 1 0px;
+    }
+
+    .profile-col2_row1 {
+    }
+
+    .profile-col2_row1a {
+    }
+
+    .profile-col2_row1b {
+    }
+
+    .profile-col2_row2 {
+    }
+
+    #delete_account-btn {
+        width: 800px;
+    }
+
+
+/* - - - - - - - - - - SEARCH PAGE - - - - - - - - - - */    
+    .search_bar {
+        margin-bottom: 50px;
+    }
+
+
+/* - - - - - - - - - - FOR EDITING ACCOUNT PROFILE - - - - - - - - - - */
+    .warning {
+        color: white;
+    }
+
+    .form_container {
+        width: 50%;
+    }

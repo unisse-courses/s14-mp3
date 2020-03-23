@@ -1,21 +1,15 @@
 <html>
     <head>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-      <link rel="stylesheet" href=styles.css>
+      <link rel="stylesheet" href=styles_inside.css>
 
-      <title>Foodies | Search Page</title>
-      
-      <style>
-
-        #search_bar {
-            margin-bottom: 50px;
-        }
-
-      </style>
+      <!--
+        <title>Foodies | Search Page</title>
+      -->
 
     </head>
 
-    <body>
+    <body class="inside">
 
         <!-- COPY THIS FOR THE NAVIGATION BAR OF ALL PAGES -->
         <div id ="navigation_bar">
@@ -31,8 +25,8 @@
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
                     <div class="dropdown">
-                      <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="images/profilepic/ted.jpg" class="rounded-circle" width="20" height="20" class="d-inline-block align-top" alt="">
+                      <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbar-dropdown">
+                        <img src="images/profilepic/ted.jpg" class="rounded-circle" width="20" height="20" class="d-inline-block align-top" alt="" id="navbar-icon">
                         Ted
                       </button>
                       <div class="dropdown-menu">
@@ -82,8 +76,8 @@
       
         <!-- END OF NAVIGATION BAR -->
 
-        <div class="d-flex flex-column" id="content">
-            <div class="input-group" id="search_bar">
+        <div class="d-flex flex-column content">
+            <div class="input-group search_bar">
                 <div class="input-group-prepend">
                     <select class="custom-select" id="inputGroupSelect02">
                     <option selected>Search by...</option>
@@ -98,59 +92,56 @@
                     <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
                 </div>
             </div> 
-            
-            <div class="d-flex flex-column" id="content">
-              <div class="card" id="post_preview-container">
-                <div class="full-width-container" id="post_preview-row0">
-                  <img class="img-fluid" src="images/recipe/recipe1.png" alt="Card image cap" id="post_preview-image">
+              
+            <div class="card post_preview-container">
+              <div class="full-width-container post_preview-row0">
+                <img class="img-fluid" src="images/recipe/recipe1.png" alt="Card image cap" id="post_preview-image">
+              </div>
+  
+              <div class="d-flex flex-column card-body post_preview-below_image">
+                <div class="d-flex flex-column post_preview-row1">
+                  <h3 class="card-title">Pancakes</h3>
+                  <p class="card-subtitle"><span class="badge badge-light">By Ted Mosby | @prof_Brosby</span></p>
                 </div>
-    
-                <div class="d-flex flex-column card-body" id="post_preview-below_image">
-                  <div class="d-flex flex-column" id="post_preview-row1">
-                    <h3 class="card-title">Pancakes</h3>
-                    <p class="card-subtitle"><a href="AccountProfile.html" class="badge badge-light">By Ted Mosby | @prof_Brosby</a></p>
-                  </div>
-    
-                  <div class="d-flex flex-column" id="post_preview-row2">
-                    <p class="card-text">A pancake is a flat cake, often thin and round, prepared from a starch-based batter that may contain eggs, milk and butter and cooked on a hot surface such as a griddle or frying pan, often frying with oil or butter.
+  
+                <div class="d-flex flex-column post_preview-row2">
+                  <p class="card-text">A pancake is a flat cake, often thin and round, prepared from a starch-based batter that may contain eggs, milk and butter and cooked on a hot surface such as a griddle or frying pan, often frying with oil or butter.
                     <br>
-                    <a href="RecipePost.html" >Continue reading...</a></p>
-                  </div>
-    
-                  <div class="d-flex justify-content-between flex-wrap" id="post_preview-row3">
-                    <p class="card-text"><small class="text-muted">10 UPVOTES</small></p>
-                    <p class="card-text"><small class="text-muted">02/28/2020 10:00 AM</small></p>
-                  </div>
-    
+                  <a href="RecipePost.html" class="stretched-link" >Continue reading...</a></p>
                 </div>
-    
+  
+                <div class="d-flex justify-content-between flex-wrap post_preview-row3">
+                  <p class="card-text"><small class="text-muted">10 UPVOTES</small></p>
+                  <p class="card-text"><small class="text-muted">02/28/2020 10:00 AM</small></p>
+                </div>
+  
+              </div>
+  
             </div>
 
-            </div>
-
-            <div class="card" id="profile-container">
-              <div class="d-flex flex-row card-body" id="profile-row">
-                  <div class="full-width-container" id="profile-col1">
+            <div class="card profile-container">
+              <div class="d-flex flex-row card-body profile-row">
+                  <div class="full-width-container profile-col1">
                       <img class="img-fluid" id="profile-picture"src="images/profilepic/ted.jpg" class="img-fluid">
                   </div>
 
-                  <div id="profile-col2">
-                      <div class="d-flex flex-row justify-content-between" id="profile-col2_row1">
-                          <div id="profile-col2_row1a">
+                  <div class="profile-col2">
+                      <div class="d-flex flex-row justify-content-between profile-col2_row1">
+                          <div class="profile-col2_row1a">
                               <h2>Ted Mosby</h2>
                               <p>@prof_Brosby</p>
                           </div>
 
                       </div>
 
-                      <div id="profile-col2_row2">
+                      <div class="profile-col2_row2">
                           <p align="justify"> 
                             Somewhere out there, there is a yellow umbrella for everyone. You must be patient.   
                           </p>
                       </div>
                   </div>
               </div>
-          </div>
+            </div>
 
         </div>
 
@@ -158,16 +149,18 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="guest.js"></script>
+
         <script>
           $(document).ready(function(){
             
-            $('#post_preview-container').hide();
-            $('#profile-container').hide();
+            $('.post_preview-container').hide();
+            $('.profile-container').hide();
 
             if (localStorage.getItem('isGuest') == 0){
               $('#accProfile').addClass("disabled")
               $('#create').hide()
+
+              $('#navbar-dropdown').html("Guest User")
               
             }
             else{
@@ -183,30 +176,30 @@
             {
                 var name = "Account Name"
                 var post = "Recipe Post"
-                var searchThing= $('#search_bar option:selected').text()
+                var searchThing= $('.search_bar option:selected').text()
                 var searchString = $('#searching').val()
                 
                 
                 if(searchString == "") {
                   return false;
                 }
-                if($('search_bar option:selected').text() == "Search by..."){
+                if($('.search_bar option:selected').text() == "Search by..."){
                   return false;
                 }
                 
                 if(name.localeCompare(searchThing) == 0)
                 {
                   
-                  $('#post_preview-container').hide();
-                  $('#profile-container').show();
+                  $('.post_preview-container').hide();
+                  $('.profile-container').show();
                   
                 }
                 
                 if(post.localeCompare(searchThing) == 0)
                 {
                   
-                  $('#profile-container').hide();
-                  $('#post_preview-container').show();
+                  $('.profile-container').hide();
+                  $('.post_preview-container').show();
                   
                 }
           
