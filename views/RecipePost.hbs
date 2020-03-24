@@ -1,86 +1,18 @@
 <html>
     <head>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-      <link rel="stylesheet" href=styles_inside.css>
-      
-      <!--
-        <title>Foodies | Recipe Post</title>  
-      -->
-
+      <link rel="stylesheet" href="css/styles_inside.css">
     </head>
 
     <body>
-        <!-- COPY THIS FOR THE NAVIGATION BAR OF ALL PAGES -->
-        <div id ="navigation_bar">
-          <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-              <a class="navbar-brand" href="Homepage.html">
-                  <img src="images/foodies_navbar.jpg" width="150" height="30" class="d-inline-block align-top">
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-            
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item">
-                    <div class="dropdown">
-                      <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbar-dropdown">
-                        <img src="images/profilepic/ted.jpg" class="rounded-circle" width="20" height="20" class="d-inline-block align-top" alt="" id="navbar-icon">
-                        Ted
-                      </button>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" id="accProfile" href="AccountProfile.html">Account Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" data-toggle="modal" data-target="#log_out">Log Out</a>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="nav-item">
-                    <button id="create" class="btn btn-light" type="button" onclick="location.href='CreateRecipePost.html';">Create Recipe Post</button>
-                  </li>
-                  
-                </ul>
-
-                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location.href='SearchPage.html';">Search Page</button>
-
-              </div>
-
-          </nav>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="log_out" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog" style="margin-top: 60px;" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Log Out</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                      Are you sure you want to log out?
-                    </div>
-                    
-                    <div class="modal-footer">
-                      <button id="logout"type="button" class="btn btn-primary"  onclick="location.href='index.html';">Yes</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    </div>
-                    
-                </div> 
-            </div>        
-        </div>
-      
-        <!-- END OF NAVIGATION BAR -->
+        {{>navbar}}
 
         <div class="d-flex flex-column content">
           <div class="container post-container" >
       
             <div class="d-flex align-items-end post-row0">
                 <div class="post-header_left">
-                  <a href="AccountProfile.html" id="title_username-badge"><span class="badge badge-light post-stamps sides">By Ted Mosby | @prof_Brosby</span></a>
+                  <a href="account-profile" id="title_username-badge"><span class="badge badge-light post-stamps sides">By Ted Mosby | @prof_Brosby</span></a>
                 </div>
 
                 <div class="post-header_mid">
@@ -88,7 +20,7 @@
 
                   <span class="badge badge-light" id="votes">
                     <a href="#"><img class="img-fluid" src="images/upvote.png" id="upvote-icon"></a>
-                    <span class="post-stamps">10</span>
+                    <span id="voteCount" class="post-stamps">0</span>
                     <a href="#"><img class="img-fluid" src="images/downvote.png" id="downvote-icon"></a>
                   </span>
                   
@@ -228,7 +160,7 @@
                   <img class="align-self-start mr-3 comment-icon" src="images/profilepic/ted.jpg">
                   
                   <div class="media-body comment-body">
-                    <span class><a href="AccountProfile.html" class="badge badge-light">By Ted Mosby | @prof_Brosby</a></span>
+                    <span class><a href="account-profile" class="badge badge-light">By Ted Mosby | @prof_Brosby</a></span>
                     <small class="text-muted">02/28/2020 11:39 AM</small> <br>
                       <span>
                        I love pancakes!
@@ -246,7 +178,7 @@
                       <img class="align-self-start mr-3 comment-icon" src="images/profilepic/ted.jpg">
                       
                       <div class="media-body comment-body">
-                        <span class><a href="AccountProfile.html" class="badge badge-light">By Ted Mosby | @prof_Brosby</a></span>
+                        <span class><a href="account-profile" class="badge badge-light">By Ted Mosby | @prof_Brosby</a></span>
                         <small class="text-muted">02/28/2020 11:39 AM</small> <br>
                           <span>
                            I love pancakes!
@@ -264,7 +196,7 @@
 
               </ul>
               
-              <button type="button" class="btn btn-outline-success btn-lg btn-block" id="edit_post-btn" onclick="location.href='EditRecipePost.html';">Edit Recipe Post</button>
+              <button type="button" class="btn btn-outline-success btn-lg btn-block" id="edit_post-btn">Edit Recipe Post</button>
  
               <button type="button" class="btn btn-outline-danger btn-lg btn-block" id="delete_post-btn" data-toggle="modal" data-target="#delete_post-modal">Delete Recipe Post</button>
                
@@ -286,7 +218,7 @@
                       </div>
                                      
                       <div class="modal-footer">
-                        <button id="delete" type="button" class="btn btn-danger"  onclick="location.href='Homepage.html';">Delete Post</button>
+                        <button id="delete" type="button" class="btn btn-danger">Delete Post</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                       </div>
                                      
@@ -298,51 +230,5 @@
         
           </div>
         </div>
-
-        <!-- PLACE THIS CODE AT THE END OF BODY FOR BOOTSTRAP -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        
-        <script>
-          $(document).ready(function(){
-            
-            if (localStorage.getItem('isGuest') == 0){
-              $('#accProfile').addClass("disabled")
-              $('#create').hide()
-              $('#upvote-icon').hide()
-              $('#downvote-icon').hide()
-              $('#edit_post-btn').hide()
-              $('#delete_post-btn').hide()
-              $('.post-comments-list').hide()
-              
-              $('#navbar-dropdown').html("Guest User")
-            }
-            else{
-              $('#accProfile').addClass("enabled")
-              $('#create').show()
-              $('#upvote-icon').show()
-              $('#downvote-icon').show()
-              $('#edit_post-btn').show()
-              $('#delete_post-btn').show()
-              
-              $('#post-comments-list').show()
-            }
-            
-            $('#logout').click(function(){
-              sessionStorage.clear();
-            })
-
-
-            document.getElementById('upvote-icon').addEventListener('click', function (e) {
-              console.log("plus 1 vote")
-            });
-
-            document.getElementById('downvote-icon').addEventListener('click', function (e) {
-                console.log("minus 1 vote")
-            });
-
-          });
-        </script>
     </body>
 </html>

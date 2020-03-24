@@ -4,18 +4,32 @@
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         
         <!-- CSS LINK (styles_outside OR styles_inside) -->
-            {{styles}}
-            <!-- <link rel="stylesheet" href=styles.css> -->
+            <!-- use this when we fix the hbs code
+                {{styles}}
+            -->
+
+            <!-- temporary; use this if its class inside (after login)
+                <link rel="stylesheet" href="css/styles_inside.css">
+            -->
+            <link rel="stylesheet" href="css/styles_outside.css">
 
         <!-- FAVICON -->
             <link rel="icon" href="images/foodies_favicon.jpg" type="image/gif" sizes="16x16">
 
         <!-- TITLE -->
-            <title>Foodies {{title}}</title>
+            <title>Foodies | {{title}}</title>
     </head>
 
     <!-- BODY TYPE (outside OR inside) -->
-    <body class="{{body_type}}">
+    
+    <!-- use this when we fix the hbs code
+        <body class="{{body_type}}">
+    -->
+
+    <!-- temporary; use this if its class inside (after login)
+    <body class="inside">
+    -->
+    <body class="outside">
         <!-- MAIN BODY -->
             {{{body}}}
 
@@ -23,6 +37,7 @@
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        
         <!-- Below is our main script file -->    
             <script src="script/scripts.js"></script>
     </body>

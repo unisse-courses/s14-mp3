@@ -1,78 +1,11 @@
 <html>
     <head>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-      <link rel="stylesheet" href=styles_inside.css>
-
-      <!--
-        <title>Foodies | Account Profile</title>
-      -->    
+      <link rel="stylesheet" href="css/styles_inside.css">  
     </head>
 
     <body class="inside">
-        <!-- COPY THIS FOR THE NAVIGATION BAR OF ALL PAGES -->
-        <div id ="navigation_bar">
-          <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-              <a class="navbar-brand" href="Homepage.html">
-                  <img src="images/foodies_navbar.jpg" width="150" height="30" class="d-inline-block align-top">
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-            
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item">
-                    <div class="dropdown">
-                      <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbar-dropdown">
-                        <img src="images/profilepic/ted.jpg" class="rounded-circle" width="20" height="20" class="d-inline-block align-top" alt="" id="navbar-icon">
-                        Ted
-                      </button>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" id="accProfile" href="AccountProfile.html">Account Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" data-toggle="modal" data-target="#log_out">Log Out</a>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="nav-item">
-                    <button id="create" class="btn btn-light" type="button" onclick="location.href='CreateRecipePost.html';">Create Recipe Post</button>
-                  </li>
-                  
-                </ul>
-
-                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location.href='SearchPage.html';">Search Page</button>
-
-              </div>
-
-          </nav>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="log_out" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog" style="margin-top: 60px;" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Log Out</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                      Are you sure you want to log out?
-                    </div>
-                    
-                    <div class="modal-footer">
-                      <button id="logout"type="button" class="btn btn-primary"  onclick="location.href='index.html';">Yes</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    </div>
-                    
-                </div> 
-            </div>        
-        </div>
-      
-        <!-- END OF NAVIGATION BAR -->
+        {{>navbar}}
 
         <div class="d-flex flex-column content">
             
@@ -90,7 +23,7 @@
                             </div>
 
                             <div class="profile-col2_row1b">
-                                <button id="edit" class="btn btn-outline-secondary my-2 my-sm-0" onclick="location.href='EditAccountProfile.html';">Edit Account</button>
+                                <button id="editAccount" class="btn btn-outline-secondary my-2 my-sm-0">Edit Account</button>
                             </div>
 
                         </div>
@@ -118,11 +51,11 @@
                 <div class="d-flex flex-column post_preview-row2">
                   <p class="card-text">A pancake is a flat cake, often thin and round, prepared from a starch-based batter that may contain eggs, milk and butter and cooked on a hot surface such as a griddle or frying pan, often frying with oil or butter.
                     <br>
-                  <a href="RecipePost.html" class="stretched-link" >Continue reading...</a></p>
+                  <a href="recipe-post" class="stretched-link" >Continue reading...</a></p>
                 </div>
   
                 <div class="d-flex justify-content-between flex-wrap post_preview-row3">
-                  <p class="card-text"><small class="text-muted">10 UPVOTES</small></p>
+                  <p class="card-text"><small class="text-muted">0 UPVOTES</small></p>
                   <p class="card-text"><small class="text-muted">02/28/2020 10:00 AM</small></p>
                 </div>
   
@@ -149,7 +82,7 @@
                         </div>
                         
                         <div class="modal-footer">
-                        <button id="delete" type="button" class="btn btn-danger"  onclick="location.href='index.html';">Delete Account</button>
+                        <button id="deleteAccount" type="button" class="btn btn-danger">Delete Account</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
                         
@@ -158,38 +91,5 @@
             </div>
 
         </div>
-
-        <!-- PLACE THIS CODE AT THE END OF BODY FOR BOOTSTRAP -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
- 
-        <script>
-          $(document).ready(function(){
-            
-            if (localStorage.getItem('isGuest') == 0){
-              $('#accProfile').addClass("disabled")
-              $('#create').hide()
-              $('#edit').hide()
-              $('#delete_account-btn').hide()
-
-              $('#navbar-dropdown').html("Guest User")
-            }
-            else{
-              $('#accProfile').addClass("enabled")
-              $('#create').show()
-              $('#edit').show()
-              $('#delete_account-btn').show()
-            }
-
-            $('#logout').click(function(){
-              sessionStorage.clear();
-            })
-
-            $('#delete').click(function(){
-              sessionStorage.clear();
-            })
-          });
-        </script>
     </body>
 </html>
