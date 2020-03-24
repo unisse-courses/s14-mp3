@@ -1,17 +1,15 @@
 <html>
     <head>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-      <link rel="stylesheet" href=styles.css>
+      <link rel="stylesheet" href=styles_inside.css>
 
-      <title>Foodies | Edit Account Profile</title>
-      
-      <style>
-
-      </style>
+      <!--
+        <title>Foodies | Edit Account Profile</title>
+      -->      
 
     </head>
 
-    <body>
+    <body class="inside">
         <!-- COPY THIS FOR THE NAVIGATION BAR OF ALL PAGES -->
         <div id ="navigation_bar">
             <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
@@ -26,8 +24,8 @@
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                       <div class="dropdown">
-                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <img src="images/profilepic/ted.jpg" class="rounded-circle" width="20" height="20" class="d-inline-block align-top" alt="">
+                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbar-dropdown">
+                          <img src="images/profilepic/ted.jpg" class="rounded-circle" width="20" height="20" class="d-inline-block align-top" alt="" id="navbar-icon">
                           Ted
                         </button>
                         <div class="dropdown-menu">
@@ -75,119 +73,110 @@
               </div>        
           </div>
         
-        <!-- END OF NAVIGATION BAR -->
+          <!-- END OF NAVIGATION BAR -->
 
-        <div class="d-flex flex-column" id="content">
+        <div class="d-flex flex-column content">
             
             <!-- PLACE THE DIVS HERE INSIDE THE CONTENT -->
-            <div>
-                <div class="container">
+                <div class="form_container">
                     <form action="AccountProfile.html">
                         <div class="form-row">
-                            <h2>Edit Profile </h2>
+                            <h2>Edit Account Profile</h2>
                         </div>
+    
                         <div class="form-row">
-                        <div class="col-md mb-3">
                             <label for="validationCustom01">First name</label>
                             <input type="text" class="form-control" id="firstName" placeholder="e.g. Cardo" >
-                            <label id="validFirst" class="warning"></label>
+                            <label id="validFirst" class="warning">hi</label>
                         </div>
-                        </div>
+    
                         <div class="form-row">
-                        <div class="col-md mb-3">
                             <label for="lastName">Last name</label>
                             <input type="text" class="form-control" id="lastName" placeholder="e.g. Dalisay" >
                             <label id="validLast"class="warning">hi</label>
                         </div>
-                        </div>
+    
                         <div class="form-row">
-                        <div class="col-md mb-3">
                             <label for="userName">Username</label>
                             <input type="text" class="form-control" id="userName" placeholder="e.g. The Next 15 Years" >
-                            <label id="validUser"class="warning"></label>
+                            <label id="validUser"class="warning">hi</label>
                         </div>
-                        </div>
+    
                         <div class="form-row">
-                            <div class="col-md mb-3">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="" >
-                                <small id="assure" class="form-text text-muted">
-                                    Never share your password with anyone!                                                                                                                                                                                                                                                                                                                           
-                                </small>
-                                <label id="validPass"class="warning"></label>
-                            </div>
-                            </div>
-                        <div class="form-row">
-                            <div class="col-md form-group">
-                                <label for="profilePic">Choose A profile Pic</label>
-                                <input type="file" class="form-control-file" accept="image/*" id="profilePic" onchange="readURL(this);">  
-                            </div>
+                            <label for="password">Password</label>
+                                
+                            <input type="password" class="form-control" id="password" placeholder="" >
+                                
+                            <label id="validPass"class="warning">hi</label>
                         </div>
-                        
+    
                         <div class="form-row">
-                            <div class="col form-group">
-                                <label for="bio">Short Bio</label>
-                                <textarea class="form-control" id="bio" rows="3"></textarea>
-                                <small id="assure" class="form-text text-muted">
-                                    Don't worry you can leave this blank :^)                                                                                                                                                                                                                                                                                                                            
-                                </small>
-                            </div>
+                            <label for="profilePic">Choose a Profile Picture</label>
+                            <input type="file" class="form-control-file" accept="image/*" id="profilePic" onchange="readURL(this);">  
                         </div>
+                            
+                        <div class="form-row">
+                            <label for="bio"><br>Short Bio</label>
+                            <textarea class="form-control" id="bio" rows="3"></textarea>
+                            <small id="assure" class="form-text text-muted">
+                                Don't worry you can leave this blank :^)                                                                                                                                                                                                                                                                                                                            
+                            </small>
+                        </div>
+                        <br>
                         
                         <button class="btn btn-primary" onclick="return update()">Update</button>
                         
                     </form>
                 </div>
             </div>
-        </div>
         
         <script>
             function update(){
-                var first = document.getElementById("firstName").value
-                var last = document.getElementById("lastName").value
-                var user = document.getElementById("userName").value
-                var pass = document.getElementById("password").value
+                var first = document.getElementById("firstName").value;
+                var last = document.getElementById("lastName").value;
+                var user = document.getElementById("userName").value;
+                var pass = document.getElementById("password").value;
                 //var pic = document.getElementById("profilePic").value
-                var bio = document.getElementById("bio").value
-                var noerror = true;
+                var bio = document.getElementById("bio").value;
                 
                 if (first == ""){
-                    document.getElementById("validFirst").textContent ='Missing first name'
+                    document.getElementById("validFirst").textContent ='Missing first name';
                     document.getElementById("validFirst").style.color = "red";
-                    noerror = false;
+                    return false;
                 }
-                else
+                else {
                     document.getElementById("validFirst").style.color = "white";
+                }
                     
                 if(last == ""){
-                    document.getElementById("validLast").textContent ='Missing last name'
+                    document.getElementById("validLast").textContent ='Missing last name';
+                    return false;
                     document.getElementById("validLast").style.color = "red";
-                    noerror = false; 
                 }
-                else
+                else {
                     document.getElementById("validLast").style.color = "white";
+                }
 
                 if(user == ""){
-                    document.getElementById("validUser").textContent ='Please input your password'
+                    document.getElementById("validUser").textContent ='Please input your password';
                     document.getElementById("validUser").style.color = "red";
-                    noerror = false;
+                    return false;
                     
                 }
-                else
+                else{
                     document.getElementById("validUser").style.color = "white";
+                }
 
                 if(pass == ""){
-                    document.getElementById("validPass").textContent ='Please input your password'
+                    document.getElementById("validPass").textContent ='Please input your password';
                     document.getElementById("validPass").style.color = "red";
-                    noerror = false;
+                    return false;
                 }
-                else
+                else {
                     document.getElementById("validPass").style.color = "white";
-                
-                if (noerror == "true")
-                {
-                    alert("Profile Updated!");    
                 }
+                
+                alert("Account Profile is updated!");
 
             }
         </script>
