@@ -3,15 +3,12 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href=styles_outside.css>
         
-        <!--
-            <title>Foodies | User Login</title>
-        -->
     </head>
 
     <body class="text-center outside">
         <div class="parent">
             <div class="container">
-                <form class="form-signin" action="Homepage.html"> 
+                <form class="form-signin" action="home"> 
                     <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
                     
                     <label for="inputUser" class="sr-only">Username</label>
@@ -26,38 +23,12 @@
                         </label>
                     </div>
 
-                    <label id="warning1" class="warning1">blank</label>
-                    <button onclick="return login()"class="btn btn-lg btn-primary btn-block">Log in</button>
+                    <label id="warning1" class="warning1"></label>
+                    <button id="loginButton" class="btn btn-lg btn-primary btn-block">Log in</button>
                     
                 </form>
             </div>
         </div>
-        
-        <!-- PLACE THIS CODE AT THE END OF BODY FOR BOOTSTRAP -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        
-        <script>
-            function login(){
-                var user = document.getElementById("inputUser").value
-                var pass = document.getElementById("inputPassword").value
-
-                if (user == ""){
-                    document.getElementById("warning1").textContent ='Please input your username'
-                    document.getElementById("warning1").style.color = "red";
-                    return false
-                }
-                    
-                if(pass == ""){
-                    document.getElementById("warning1").textContent ='Please input your password'
-                    document.getElementById("warning1").style.color = "red";
-                    return false;
-                }
-                
-                localStorage.setItem('isGuest', 1);
-            }
-        </script>
 
     </body>
 </html>
