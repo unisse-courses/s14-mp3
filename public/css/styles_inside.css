@@ -196,3 +196,63 @@
     .form_container {
         width: 50%;
     }
+
+/* - - - - - - - - - - FOR EDITING/CREATING RECIPE POST - - - - - - - - - - */
+    .ingdiv {
+        padding-right: 40px;
+    }
+
+    .insdiv {
+    }
+
+    .form-row {
+        margin-bottom: 10px;
+    }
+
+    .list_container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .listgroup {
+        padding-inline-start: 0px;
+    }
+
+    .list_item {
+        position: relative;
+        padding-left: 10px;
+        margin-bottom: 5px;
+        list-style-position:inside;
+    }
+
+    .list_item:hover {
+        background: lightgray;
+    }
+
+    .close1 {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .close1:hover {
+        background-color: red;
+        color: white;
+    }
+
+    .close2 {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .close2:hover {
+        background-color:red;
+        color: white;
+    }
+

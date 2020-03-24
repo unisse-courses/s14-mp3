@@ -1,15 +1,11 @@
 <html>
     <head>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-      <link rel="stylesheet" href=styles_outside.css>
+      <link rel="stylesheet" href=styles_inside.css>
 
       <!--
         <title>Foodies | Edit Recipe Post</title>
       -->
-      
-      <style>
-
-      </style>
     
     </head>
     
@@ -79,45 +75,69 @@
       
         <!-- END OF NAVIGATION BAR -->
 
-        <div class="d-flex flex-column" id="content">
-            
-            <!-- PLACE THE DIVS HERE INSIDE THE CONTENT -->
-            <div>
-                <div class="container">
-                    <form action="RecipePost.html">
-                        <div class="form-row">
-                            <h2>Edit Recipe Post</h2>
+        <div class="d-flex flex-column content">
+                <form action="RecipePost.html" class="main-form">
+                    <div class="form-row">
+                        <h2>Edit Recipe Post</h2>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="recipePic">Choose a Thumbnail for your Post</label>
+                        <input type="file" class="form-control-file" accept="image/*" id="thumbnail" onchange="readURL(this);">  
+                        <label id="lThumb" class="warning">hi</label>
+                    </div>
+                            
+                    <div class="form-row">
+                        <label>Description</label>
+                        <textarea class="form-control" id="description"></textarea>
+                        <label id="lDesc" class="warning">hi</label>
+                    </div>
+                            
+                    <div class="form-row">
+                        <div class="form-col ingdiv">
+                            <label>Ingredients</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="ulinput">
+
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-sm add-btn" type="button" onclick="addIngredient()">
+                                        Add Ingredient
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="list_container">
+                                <ul class="listgroup" id="ulist"></ul>
+                            </div>
+
+                            <label id="lIngred" class="warning">hi</label>
                         </div>
-                        <div class="form-row">
-                            
-                            <div class="col-md form-group">
-                                <label for="profilePic">Choose A profile Pic</label>
-                                <input type="file" class="form-control-file" accept="image/*" id="profilePic" onchange="readURL(this);">  
+
+                        <div class="form-col insdiv">
+                            <div class="form-row">
+                                <label>Instructions</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="olinput">
+        
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary btn-sm add-btn" type="button" onclick="addInstruction()">
+                                            Add Instruction
+                                        </button>
+                                    </div>
+                                </div> 
+        
+                                <div class="list_container">
+                                    <ol class="listgroup" id="olist"></ol>
+                                </div>
+        
+                                <label id="lInst" class="warning">hi</label>
                             </div>
-                            
-                            <div class="col form-group">
-                                <label>DESCRIPTION</label>
-                                <textarea class="form-control" id="description" rows="8"></textarea>
-                            </div>
-                            
-                            <div class="col form-group">
-                                <label>INGREDIENTS</label>
-                                <textarea class="form-control" id="ingredients" rows="8"></textarea>
-                            </div>
-                            
-                            <div class="col form-group">
-                                <label>INSTRUCTIONS</label>
-                                <textarea class="form-control" id="instructions" rows="8"></textarea>
-                            </div>
-                            
                         </div>
-                        
-                        <label id="warning"></label>
-                        <br>
-                        <button class="btn btn-primary" onclick="return update()">Update</button>
-                    </form>
-                </div>
-            </div>
+
+                    </div>
+                    <br>
+                    <button class="btn btn-primary" onclick="return update()">Save</button>
+                </form>
         </div>
         
         <script>
@@ -173,6 +193,109 @@
 
                 reader.readAsDataURL(input.files[0]);
             }
+
+            var i;
+
+            // initializing array of ingredients
+                var ulist = document.getElementsByTagName("UL")[1];
+                var arrIngredients = ulist.getElementsByTagName("LI");
+
+                for (i = 0; i < arrIngredients.length; i++) {
+                    var span = document.createElement("SPAN");
+                    var txt = document.createTextNode("\u00D7");
+                    span.className = "close1";
+                    span.appendChild(txt);
+                    arrIngredients[i].appendChild(span);
+                }
+
+                var close1 = document.getElementsByClassName("close1");
+                var i;
+                for (i = 0; i < close1.length; i++) {
+                    close1[i].onclick = function() {
+                        var div = this.parentElement;
+                        div.remove();
+                    }
+                }
+
+            // initializing array of instructions
+                var olist = document.getElementsByTagName("OL")[0];
+                var arrInstructions = olist.getElementsByTagName("LI");
+
+                for (i = 0; i < arrInstructions.length; i++) {
+                    var span = document.createElement("SPAN");
+                    var txt = document.createTextNode("\u00D7");
+                    span.className = "close2";
+                    span.appendChild(txt);
+                    arrInstructions[i].appendChild(span);
+                }
+
+                var close2 = document.getElementsByClassName("close2");
+                var i;
+                for (i = 0; i < close2.length; i++) {
+                    close2[i].onclick = function() {
+                        var div = this.parentElement;
+                        div.remove();
+                    }
+                }
+
+            function addIngredient() {
+                var li = document.createElement("li");
+                var inputValue = document.getElementById("ulinput").value;
+                var t = document.createTextNode(inputValue);
+                li.appendChild(t);
+                if (inputValue === '') {
+                    alert("You must write something!");
+                } else {
+                    document.getElementById("ulist").appendChild(li);
+                }
+                document.getElementById("ulinput").value = "";
+
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close1";
+                span.appendChild(txt);
+                li.appendChild(span);
+                li.className = "list_item";
+
+
+                //this one is to place the function remove on the newly added list item
+                for (i = 0; i < close1.length; i++) {
+                    close1[i].onclick = function() {
+                        var div = this.parentElement;
+                        div.remove();
+                    }
+                }
+            }
+
+            function addInstruction() {
+                var li = document.createElement("li");
+                var inputValue = document.getElementById("olinput").value;
+                var t = document.createTextNode(inputValue);
+                li.appendChild(t);
+                if (inputValue === '') {
+                    alert("You must write something!");
+                } else {
+                    document.getElementById("olist").appendChild(li);
+                }
+                document.getElementById("olinput").value = "";
+
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close2";
+                span.appendChild(txt);
+                li.appendChild(span);
+                li.className = "list_item";
+
+
+                //this one is to place the function remove on the newly added list item
+                for (i = 0; i < close2.length; i++) {
+                    close2[i].onclick = function() {
+                        var div = this.parentElement;
+                        div.remove();
+                    }
+                }
+
+            }
         }
            
         </script>
@@ -181,8 +304,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    
-        <script src="guest.js"></script>
+
         <script>
           $(document).ready(function(){
             
