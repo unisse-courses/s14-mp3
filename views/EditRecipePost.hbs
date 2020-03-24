@@ -141,186 +141,166 @@
         </div>
         
         <script>
-            function update(){
-                var desc = document.getElementById("description").value;
-                var ingred = document.getElementById("ingredients").value;
-                var instruct = document.getElementById("instructions").value;
-                
-                if (desc == ""){
-                    document.getElementById("warning").textContent ='Please provide a brief description of your recipe';
-                    document.getElementById("warning").style.color = "red";
-                    return false;
-                }
-                else {
-                    document.getElementById("warning").style.color = "white";
-                    document.getElementById("warning").textContent ='';
-                }
+                function update(){
+                    var thumb = document.getElementById("thumbnail").value;
+                    var desc = document.getElementById("description").value;
+                    var ingred = document.getElementById("ingredients").value;
+                    var instruct = document.getElementById("instructions").value;
+
+                    if (thumb == ""){
+                        document.getElementById("warning").textContent ='Please provide a brief description of your recipe';
+                        document.getElementById("warning").style.color = "red";
+                        return false;
+                    }
+                    else {
+                        document.getElementById("warning").style.color = "white";
+                        document.getElementById("warning").textContent ='';
+                    }
                     
-                if(ingred == ""){
-                    document.getElementById("warning").textContent ='Please list down the ingredients used';
-                    document.getElementById("warning").style.color = "red";
+                    if (desc == ""){
+                        document.getElementById("warning").textContent ='Please provide a brief description of your recipe';
+                        document.getElementById("warning").style.color = "red";
+                        return false;
+                    }
+                    else {
+                        document.getElementById("warning").style.color = "white";
+                        document.getElementById("warning").textContent ='';
+                    }
+                        
+                    if(ingred == ""){
+                        document.getElementById("warning").textContent ='Please list down the ingredients used';
+                        document.getElementById("warning").style.color = "red";
 
-                    return false;
+                        return false;
+                    }
+                    else {
+                        document.getElementById("warning").style.color = "white";
+                        document.getElementById("warning").textContent ='';
+                    }
+
+                    if(instruct == ""){
+                        document.getElementById("warning").textContent ='Please list the steps in creating the recipe';
+                        document.getElementById("warning").style.color = "red";
+
+                        return false;
+                    }
+                    else {
+                        document.getElementById("warning").style.color = "white";
+                        document.getElementById("warning").textContent ='';
+                    }
+                    
+                    alert("Recipe Post Updated!"); 
+
                 }
-                else {
-                    document.getElementById("warning").style.color = "white";
-                    document.getElementById("warning").textContent ='';
-                }
 
-                if(instruct == ""){
-                    document.getElementById("warning").textContent ='Please list the steps in creating the recipe';
-                    document.getElementById("warning").style.color = "red";
+                var i;
 
-                    return false;
-                }
-                else {
-                    document.getElementById("warning").style.color = "white";
-                    document.getElementById("warning").textContent ='';
-                }
-                
-                alert("Recipe Post Updated!"); 
+                // initializing array of ingredients
+                    var ulist = document.getElementsByTagName("UL")[1];
+                    var arrIngredients = ulist.getElementsByTagName("LI");
 
-            }
-                
-            function preview(input) {
-        
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+                    for (i = 0; i < arrIngredients.length; i++) {
+                        var span = document.createElement("SPAN");
+                        var txt = document.createTextNode("\u00D7");
+                        span.className = "close1";
+                        span.appendChild(txt);
+                        arrIngredients[i].appendChild(span);
+                    }
 
-                reader.onload = function (e) {
-                    $('#previewPic').attr('src', e.target.result);
-                };
+                    var close1 = document.getElementsByClassName("close1");
+                    var i;
+                    for (i = 0; i < close1.length; i++) {
+                        close1[i].onclick = function() {
+                            var div = this.parentElement;
+                            div.remove();
+                        }
+                    }
 
-                reader.readAsDataURL(input.files[0]);
-            }
+                // initializing array of instructions
+                    var olist = document.getElementsByTagName("OL")[0];
+                    var arrInstructions = olist.getElementsByTagName("LI");
 
-            var i;
+                    for (i = 0; i < arrInstructions.length; i++) {
+                        var span = document.createElement("SPAN");
+                        var txt = document.createTextNode("\u00D7");
+                        span.className = "close2";
+                        span.appendChild(txt);
+                        arrInstructions[i].appendChild(span);
+                    }
 
-            // initializing array of ingredients
-                var ulist = document.getElementsByTagName("UL")[1];
-                var arrIngredients = ulist.getElementsByTagName("LI");
+                    var close2 = document.getElementsByClassName("close2");
+                    var i;
+                    for (i = 0; i < close2.length; i++) {
+                        close2[i].onclick = function() {
+                            var div = this.parentElement;
+                            div.remove();
+                        }
+                    }
 
-                for (i = 0; i < arrIngredients.length; i++) {
+                function addIngredient() {
+                    var li = document.createElement("li");
+                    var inputValue = document.getElementById("ulinput").value;
+                    var t = document.createTextNode(inputValue);
+                    li.appendChild(t);
+                    if (inputValue === '') {
+                        alert("You must write something!");
+                    } else {
+                        document.getElementById("ulist").appendChild(li);
+                    }
+                    document.getElementById("ulinput").value = "";
+
                     var span = document.createElement("SPAN");
                     var txt = document.createTextNode("\u00D7");
                     span.className = "close1";
                     span.appendChild(txt);
-                    arrIngredients[i].appendChild(span);
-                }
-
-                var close1 = document.getElementsByClassName("close1");
-                var i;
-                for (i = 0; i < close1.length; i++) {
-                    close1[i].onclick = function() {
-                        var div = this.parentElement;
-                        div.remove();
+                    li.appendChild(span);
+                    li.className = "list_item";
+                
+                
+                    //this one is to place the function remove on the newly added list item
+                    for (i = 0; i < close1.length; i++) {
+                        close1[i].onclick = function() {
+                            var div = this.parentElement;
+                            div.remove();
+                        }
                     }
                 }
 
-            // initializing array of instructions
-                var olist = document.getElementsByTagName("OL")[0];
-                var arrInstructions = olist.getElementsByTagName("LI");
+                function addInstruction() {
+                    var li = document.createElement("li");
+                    var inputValue = document.getElementById("olinput").value;
+                    var t = document.createTextNode(inputValue);
+                    li.appendChild(t);
+                    if (inputValue === '') {
+                        alert("You must write something!");
+                    } else {
+                        document.getElementById("olist").appendChild(li);
+                    }
+                    document.getElementById("olinput").value = "";
 
-                for (i = 0; i < arrInstructions.length; i++) {
                     var span = document.createElement("SPAN");
                     var txt = document.createTextNode("\u00D7");
                     span.className = "close2";
                     span.appendChild(txt);
-                    arrInstructions[i].appendChild(span);
-                }
-
-                var close2 = document.getElementsByClassName("close2");
-                var i;
-                for (i = 0; i < close2.length; i++) {
-                    close2[i].onclick = function() {
-                        var div = this.parentElement;
-                        div.remove();
+                    li.appendChild(span);
+                    li.className = "list_item";
+                
+                
+                    //this one is to place the function remove on the newly added list item
+                    for (i = 0; i < close2.length; i++) {
+                        close2[i].onclick = function() {
+                            var div = this.parentElement;
+                            div.remove();
+                        }
                     }
+
                 }
-
-            function addIngredient() {
-                var li = document.createElement("li");
-                var inputValue = document.getElementById("ulinput").value;
-                var t = document.createTextNode(inputValue);
-                li.appendChild(t);
-                if (inputValue === '') {
-                    alert("You must write something!");
-                } else {
-                    document.getElementById("ulist").appendChild(li);
-                }
-                document.getElementById("ulinput").value = "";
-
-                var span = document.createElement("SPAN");
-                var txt = document.createTextNode("\u00D7");
-                span.className = "close1";
-                span.appendChild(txt);
-                li.appendChild(span);
-                li.className = "list_item";
-
-
-                //this one is to place the function remove on the newly added list item
-                for (i = 0; i < close1.length; i++) {
-                    close1[i].onclick = function() {
-                        var div = this.parentElement;
-                        div.remove();
-                    }
-                }
-            }
-
-            function addInstruction() {
-                var li = document.createElement("li");
-                var inputValue = document.getElementById("olinput").value;
-                var t = document.createTextNode(inputValue);
-                li.appendChild(t);
-                if (inputValue === '') {
-                    alert("You must write something!");
-                } else {
-                    document.getElementById("olist").appendChild(li);
-                }
-                document.getElementById("olinput").value = "";
-
-                var span = document.createElement("SPAN");
-                var txt = document.createTextNode("\u00D7");
-                span.className = "close2";
-                span.appendChild(txt);
-                li.appendChild(span);
-                li.className = "list_item";
-
-
-                //this one is to place the function remove on the newly added list item
-                for (i = 0; i < close2.length; i++) {
-                    close2[i].onclick = function() {
-                        var div = this.parentElement;
-                        div.remove();
-                    }
-                }
-
-            }
-        }
-           
         </script>
 
         <!-- PLACE THIS CODE AT THE END OF BODY FOR BOOTSTRAP -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-        <script>
-          $(document).ready(function(){
-            
-            if (localStorage.getItem('isGuest') == 0){
-              $('#accProfile').addClass("disabled")
-              $('#create').hide()
-            }
-            else{
-              $('#accProfile').addClass("enabled")
-              $('#create').show()
-            }
-
-            $('#logout').click(function(){
-              sessionStorage.clear();
-            })
-          });
-        </script>
+    
     </body>
 </html>
