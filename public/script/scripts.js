@@ -45,7 +45,7 @@ $(document).ready(function () {
     });
 
 
-/* -------------------------------------------------- UserLogin.hbs -------------------------------------------------- */
+/* -------------------------------------------------- CreateAccount.hbs -------------------------------------------------- */
 
     $("#createAccount").click(function () { 
         var first = document.getElementById("firstName").value
@@ -96,6 +96,7 @@ $(document).ready(function () {
             $('#previewPic').attr('src', e.target.result);
         }
         reader.readAsDataURL(file.files[0]); 
+        console.log("preview shown")
         }
     }
       
@@ -410,7 +411,7 @@ $("#updateAccount").click(function () {
     
 });
 
-function showPreview(file) {
+function showEditPreview(file) {
     if (file.files && file.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
@@ -421,7 +422,7 @@ function showPreview(file) {
 }
   
 $("#EDITprofilePic").change(function() {
-    showPreview(this);
+    showEditPreview(this);
 });
 
 
