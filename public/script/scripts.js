@@ -86,8 +86,21 @@ $(document).ready(function () {
                 }
                 else
                     document.getElementById("validPass").style.color = "#F1F7ED";
-        
+
+                var user = {
+                    firstname: first,
+                    lastname: last,
+                    username: user,
+                    password: pass,
+                    bio: bio
+                };
+
+                $.post('addAccount', user, function(data,status) {
+                    console.log(data);
+                });
+                
     });
+
 
     function showPreview(file) {
         if (file.files && file.files[0]) {
@@ -225,15 +238,22 @@ $("#postRecipe").click(function () {
 //adding an ingredient to the list
 $("#addIngredient").click(function () { 
     var li = document.createElement("li");
-    var inputValue = document.getElementById("ulinput").value;
-    var t = document.createTextNode(inputValue);
+    var inputValue1 = document.getElementById("ulinput1").value;
+    var inputValue2 = document.getElementById("ulinput2").value;
+    var inputValue3 = document.getElementById("ulinput3").value;
+
+    var inputALL = inputValue1 + " " + inputValue2 + " " + inputValue3;
+
+    var t = document.createTextNode(inputALL);
     li.appendChild(t);
-    if (inputValue === '') {
+    if (inputValue1 === '' && inputValue2 === '' && inputValue3 === '') {
         alert("You must write something!");
     } else {
         document.getElementById("ulist").appendChild(li);
     }
-    document.getElementById("ulinput").value = "";
+    document.getElementById("ulinput1").value = "";
+    document.getElementById("ulinput2").value = "";
+    document.getElementById("ulinput3").value = "";
 
     var span = document.createElement("SPAN");
     var txt = document.createTextNode("\u00D7");
@@ -516,15 +536,23 @@ $("#EDITprofilePic").change(function() {
 
     $("#EDITingredient").click(function () { 
         var li = document.createElement("li");
-                var inputValue = document.getElementById("EDITulinput").value;
-                var t = document.createTextNode(inputValue);
+                var inputValue1 = document.getElementById("EDITulinput1").value;
+                var inputValue2 = document.getElementById("EDITulinput2").value;
+                var inputValue3 = document.getElementById("EDITulinput3").value;
+            
+                var inputALL = inputValue1 + inputValue2 + inputValue3;
+            
+                var t = document.createTextNode(inputALL);
+
                 li.appendChild(t);
-                if (inputValue === '') {
+                if (inputValue1 === '' && inputValue2 === '' && inputValue3 === '') {
                     alert("You must write something!");
                 } else {
                     document.getElementById("EDITulist").appendChild(li);
                 }
-                document.getElementById("EDITulinput").value = "";
+                document.getElementById("EDITulinput1").value = "";
+                document.getElementById("EDITulinput2").value = "";
+                document.getElementById("EDITulinput3").value = "";
 
                 var span = document.createElement("SPAN");
                 var txt = document.createTextNode("\u00D7");

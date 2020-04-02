@@ -27,44 +27,87 @@
 
   app.set('view engine', 'hbs');
 
+  // Configuration for handling API endpoint data
+  app.use(bodyParser.json()); // support json encoded bodies
+  app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+
 // GLOBAL VARIABLES
     /*
-    sam:    i commented this bit for now bc im thinking of placing these in the helpers
-            pero sa helpers it would be 1 getter per variable (getFirstName, getLastName, etc)
+      var currUser = {
+          firstname: fname,
+          lastname: lname,
+          username: uname,
+          password: pass,
+          bio: biog,
+          profilepic: dp
+      }
 
-            also i havent watched the ajax vid from the time this has been pushed to github, so ill give updates
-            na lang sa gc if ever the next lessons can help
-
-    // will change these values into the db connection things once we know how
-    var fname = "Ted";
-    var lname = "Mosby";
-    var uname = "@prof_Brosby";
-    var pass = "himym";
-    var biog = "Somewhere out there, there is a yellow umbrella for everyone. You must be patient.";
-    var dp = "/images/profilepic/ted.jpg";
-
-    var currUser = {
-        firstname: fname,
-        lastname: lname,
-        username: uname,
-        password: pass,
-        bio: biog,
-        profilepic: dp
-    }
-
-    // var lastUser | we can use this for the last person who logged in ?
+      // var lastUser | we can use this for the last person who logged in ?
     */
+
+    var users = [
+      {
+        firstname: 'Ted',
+        lastname: 'Mosby',
+        username: '@prof_Brosby',
+        password: 'himym',
+        bio: 'Somewhere out there, there is a yellow umbrella for everyone. You must be patient.',
+        profilepic: '/images/profilepic/ted.jpg'
+      },
+      {
+        // copy ontop
+      }
+    ];
+
+    var posts = [ 
+      {
+        // data from lucidcharts
+      },
+      {
+        // copy ontop
+      }
+    ];
+
+    var ingredients = [ 
+      {
+        // data from lucidcharts
+      },
+      {
+        // copy ontop
+      }
+    ];
+
+    var comments = [ 
+      {
+        // data from lucidcharts
+      },
+      {
+        // copy ontop
+      }
+    ];
 
 /* -------------------------------------------------- ROUTES -------------------------------------------------- */
 
   // INDEX
     app.get('/', function(req, res) {
-        res.render('index'); // sam: wala namang ibang variables needed since no user info here
+        res.render('index', {
+          // for main.hbs
+            styles: "css/styles_outside.css",
+            tab_title: "Index",
+            body_class: "outside"
+        });
     });
 
   // USER LOGIN
     app.get('/log-in', function(req, res) {
         res.render('UserLogin', {
+          // for main.hbs
+            styles: "css/styles_outside.css",
+            tab_title: "Log-In",
+            body_class: "outside"
+          
+          // for this page (!!!deal with this after mongoose!!!)
             /* sam:
                 possible variables to transfer:
 
@@ -80,6 +123,12 @@
   // HOMEPAGE
     app.get('/home', function(req, res) {
         res.render('Homepage', {
+          // for main.hbs
+            styles: "css/styles_inside.css",
+            tab_title: "Homepage",
+            body_class: "inside"
+          
+          // for this page
             /* sam:
                 possible variables to transfer:
 
@@ -100,6 +149,12 @@
   // ACCOUNT PROFILE
     app.get('/account-profile', function(req, res) {
       res.render('AccountProfile', {
+        // for main.hbs
+          styles: "css/styles_inside.css",
+          tab_title: "Account Profile",
+          body_class: "inside"
+        
+        // for this page
             /* sam:
                 possible variables to transfer:
 
@@ -120,6 +175,12 @@
   // CREATE ACCOUNT PROFILE
     app.get('/create-account', function(req, res) {
       res.render('CreateAccount', {
+        // for main.hbs
+          styles: "css/styles_outside.css",
+          tab_title: "Create Account",
+          body_class: "outside"
+        
+        // for this page
             /* sam:
                 possible variables to transfer:
                 - wala ata since nagaaccept pa lang ng info (?)
@@ -130,6 +191,12 @@
   // EDIT ACCOUNT PROFILE
     app.get('/edit-account', function(req, res) {
         res.render('EditAccountProfile', {
+          // for main.hbs
+            styles: "css/styles_inside.css",
+            tab_title: "Edit Account",
+            body_class: "inside"
+          
+          // for this page
             /* sam:
                 possible variables to transfer:
                 - firstname
@@ -144,6 +211,12 @@
   // CREATE RECIPE POST
     app.get('/create-recipe', function(req, res) {
         res.render('CreateRecipePost', {
+          // for main.hbs
+            styles: "css/styles_inside.css",
+            tab_title: "Create Post",
+            body_class: "inside"
+          
+          // for this page
             /* sam:
                 possible variables to transfer:
                 - title
@@ -157,6 +230,12 @@
   // EDIT RECIPE POST
     app.get('/edit-recipe', function(req, res) {
         res.render('EditRecipePost', {
+          // for main.hbs
+            styles: "css/styles_inside.css",
+            tab_title: "Edit Post",
+            body_class: "inside"
+          
+          // for this page
             /* sam:
                 possible variables to transfer:
                 - title
@@ -172,6 +251,12 @@
   // RECIPE POST
     app.get('/recipe-post', function(req, res) {
         res.render('RecipePost', {
+          // for main.hbs
+            styles: "css/styles_inside.css",
+            tab_title: "Recipe Post",
+            body_class: "inside"
+          
+          // for this page
             /* sam:
                 possible variables to transfer:
                 - title
@@ -196,12 +281,88 @@
   // SEARCH PAGE
     app.get('/search', function(req, res) {
         res.render('SearchPage', {
+          // for main.hbs
+            styles: "css/styles_inside.css",
+            tab_title: "Search Page",
+            body_class: "inside"
+          
+          // for this page
             /* sam:
                 possible variables to transfer:
                 - im actually not sure if it needs any ??
             */
         })
     });
+
+/* -------------------------------------------------- FEATURES -------------------------------------------------- */
+  // CREATE ACCOUNT
+    // POST
+    app.post('/addAccount', function(req, res) {
+      var account = {
+        // replace with info
+      }
+    
+      users.push(account);
+    
+      res.status(200).send(account);
+    });
+
+  // USER LOGIN FEATURE
+    // POST
+    app.post('/loginAccount', function(req, res) {
+      var info = {
+        // replace with info
+      }
+    
+      users.push(account);
+    
+      res.status(200).send(account);
+    });
+
+  
+  // VIEW ACCOUNT PROFILE
+
+  
+  // EDIT ACCOUNT PROFILE
+
+  
+  // DELETE ACCOUNT PROFILE
+
+  
+  // CREATE RECIPE POST
+
+  
+  // VIEW RECIPE POST
+
+  
+  // UPDATE RECIPE POST
+
+  
+  // DELETE RECIPE POST
+
+  
+  // POST COMMENT
+
+  
+  // VIEW COMMENT
+
+  
+  // UPDATE COMMENT
+
+  
+  // DELETE COMMENT
+
+  
+  // SEARCH RECIPE POST
+
+  
+  // SEARCH ACCOUNT NAME
+
+  
+  // UPVOTE/DOWNVOTE
+
+
+
 
 /* -------------------------------------------------- divider lang po -------------------------------------------------- */
 

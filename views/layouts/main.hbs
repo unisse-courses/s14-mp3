@@ -4,32 +4,18 @@
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         
         <!-- CSS LINK (styles_outside OR styles_inside) -->
-            <!-- use this when we fix the hbs code
-                {{styles}}
-            -->
-
-            <!-- temporary; use this if its class inside (after login)
-                <link rel="stylesheet" href="css/styles_inside.css">
-            -->
-            <link rel="stylesheet" href="css/styles_outside.css">
+            <link rel="stylesheet" href="{{styles}}">
 
         <!-- FAVICON -->
             <link rel="icon" href="images/foodies_favicon.jpg" type="image/gif" sizes="16x16">
 
         <!-- TITLE -->
-            <title>Foodies | {{title}}</title>
+            <title>Foodies | {{tab_title}}</title>
     </head>
 
     <!-- BODY TYPE (outside OR inside) -->
-    
-    <!-- use this when we fix the hbs code
-        <body class="{{body_type}}">
-    -->
 
-    <!-- temporary; use this if its class inside (after login)
-    <body class="inside">
-    -->
-    <body class="outside">
+    <body class={{body_class}}>
         <!-- MAIN BODY -->
             {{{body}}}
 
