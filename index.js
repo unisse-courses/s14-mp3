@@ -4,10 +4,18 @@
   const exphbs = require('express-handlebars');
   const handlebars = require('handlebars');
   const bodyParser = require('body-parser');
+  const mongodb = require('mongodb');
 
 // EXPRESS APP
   const app = express();
   const port = 3000; // sam: bc thats whats in the specs
+
+// DATABASE CREATION
+const mongoClient = mongodb.MongoClient;
+const databaseURL = "mongodb://localhost:27017/";
+const dbname = "foodiesdb";
+
+const options = { useUnifiedTopology: true };
 
 // ENGINE SET-UP
   app.engine( 'hbs', exphbs({
@@ -87,6 +95,24 @@
         // copy ontop
       }
     ];
+
+    const collectionName = "reciPeeps";
+    mongoClient.connect(databaseURL, options, function(err, client) {
+      /**
+        Only do database manipulation inside of the connection
+        When a connection is made, it will try to make the database
+        automatically. The collection(like a table) needs to be made.
+      **/
+      if (err) throw err;
+      const dbo = client.db(dbname);
+    
+      //Will create a collection if it has not yet been made
+      dbo.createCollection(collectionName, function(err, res) {
+        if (err) throw err;
+        console.log("Collection created!");
+        client.close();
+      });
+    });
 
 /* -------------------------------------------------- ROUTES -------------------------------------------------- */
 
@@ -299,17 +325,34 @@
   // CREATE ACCOUNT
     // POST
     app.post('/addAccount', function(req, res) {
+      console.log(req.body);
       var user = {
-        firstname:  req.body.first,
-        lastname:   req.body.last,
-        username:   req.body.user,
-        password:   req.body.pass,
+        firstname:  req.body.firstname,
+        lastname:   req.body.lastnamse,
+        username:   req.body.username,
+        password:   req.body.password,
         bio:        req.body.bio
       };
     
-      users.push(account);
+      mongoClient.connect(databaseURL, options, function(err, client) {
+        if(err) throw err;
+        // Connect to the same database
+        const dbo = client.db(dbname);
     
-      res.status(200).send(account);
+        // More stuff to go here ...
+    
+        dbo.collection(collectionName).insertOne(user, function(err, res) {
+          if (err) throw err;
+      
+          console.log(res);
+          console.log("Insert Successful!");
+      
+          client.close();
+        });
+      });
+    
+      const result = { success: true, message: "User created!" };
+      res.send(result);
     });
 
   // USER LOGIN FEATURE

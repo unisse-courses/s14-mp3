@@ -94,8 +94,14 @@ $(document).ready(function () {
             password: pass,
             bio: bio
         };
+
+        console.log(first, last, user, pass, bio);
+
         $.post('addAccount', user, function(data,status) {
             console.log(data);
+            if(data.success){
+                alert("You may now login")
+            }
         });
     });
 
