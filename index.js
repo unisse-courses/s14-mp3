@@ -3,6 +3,7 @@
   const path = require('path');
   const exphbs = require('express-handlebars');
   const handlebars = require('handlebars');
+  const bodyParser = require('body-parser');
 
 // EXPRESS APP
   const app = express();
@@ -298,9 +299,13 @@
   // CREATE ACCOUNT
     // POST
     app.post('/addAccount', function(req, res) {
-      var account = {
-        // replace with info
-      }
+      var user = {
+        firstname:  req.body.first,
+        lastname:   req.body.last,
+        username:   req.body.user,
+        password:   req.body.pass,
+        bio:        req.body.bio
+      };
     
       users.push(account);
     

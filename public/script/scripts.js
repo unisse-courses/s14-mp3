@@ -49,56 +49,54 @@ $(document).ready(function () {
 
     $("#createAccount").click(function () { 
         var first = document.getElementById("firstName").value
-                var last = document.getElementById("lastName").value
-                var user = document.getElementById("userName").value
-                var pass = document.getElementById("password").value
-                //var pic = document.getElementById("profilePic").value
-                var bio = document.getElementById("bio").value
+        var last = document.getElementById("lastName").value
+        var user = document.getElementById("userName").value
+        var pass = document.getElementById("password").value
+        //var pic = document.getElementById("profilePic").value
+        var bio = document.getElementById("bio").value
 
-                if (first == ""){
-                    document.getElementById("validFirst").textContent ='Missing first name'
-                    document.getElementById("validFirst").style.color = "red";
-                    return false
-                }
-                else
-                    document.getElementById("validFirst").style.color = "#F1F7ED";
+        if (first == ""){
+             document.getElementById("validFirst").textContent ='Missing first name'
+            document.getElementById("validFirst").style.color = "red";
+            return false
+        }
+        else
+            document.getElementById("validFirst").style.color = "#F1F7ED";
                     
-                if(last == ""){
-                    document.getElementById("validLast").textContent ='Missing last name'
-                    document.getElementById("validLast").style.color = "red";
-                    return false;
-                }
-                else
-                    document.getElementById("validLast").style.color = "#F1F7ED";
+        if(last == ""){
+            document.getElementById("validLast").textContent ='Missing last name'
+            document.getElementById("validLast").style.color = "red";
+            return false;
+        }
+        else
+            document.getElementById("validLast").style.color = "#F1F7ED";
 
-                if(user == ""){
-                    document.getElementById("validUser").textContent ='Please input your password'
-                    document.getElementById("validUser").style.color = "red";
-                    return false;
-                }
-                else
-                    document.getElementById("validUser").style.color = "#F1F7ED";
+        if(user == ""){
+            document.getElementById("validUser").textContent ='Please input your password'
+            document.getElementById("validUser").style.color = "red";
+            return false;
+        }
+        else
+            document.getElementById("validUser").style.color = "#F1F7ED";
 
-                if(pass == ""){
-                    document.getElementById("validPass").textContent ='Please input your password'
-                    document.getElementById("validPass").style.color = "red";
-                    return false;
-                }
-                else
-                    document.getElementById("validPass").style.color = "#F1F7ED";
+        if(pass == ""){
+            document.getElementById("validPass").textContent ='Please input your password'
+            document.getElementById("validPass").style.color = "red";
+            return false;
+        }
+        else
+            document.getElementById("validPass").style.color = "#F1F7ED";
 
-                var user = {
-                    firstname: first,
-                    lastname: last,
-                    username: user,
-                    password: pass,
-                    bio: bio
-                };
-
-                $.post('addAccount', user, function(data,status) {
-                    console.log(data);
-                });
-                
+        var user = {
+            firstname: first,
+            lastname: last,
+            username: user,
+            password: pass,
+            bio: bio
+        };
+        $.post('addAccount', user, function(data,status) {
+            console.log(data);
+        });
     });
 
 
