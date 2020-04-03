@@ -802,8 +802,7 @@ const options = { useUnifiedTopology: true };
       //insert code here to get data from db
       
       var data = posts[0];
-
-
+            
         res.render('RecipePost', {
           // for main.hbs
             styles: "css/styles_inside.css",

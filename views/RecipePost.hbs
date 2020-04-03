@@ -52,46 +52,14 @@
                       </tr>
                     </thead>
                     <tbody>
+
+                      {{#each ingredients}}  
                       <tr>
-                        <td>10 ounces flour</td>
+                        <td>{{ingredients.quantity}} {{ingredients.unit}} {{ingredients.name}}</td>
                       </tr>
 
-                      <tr>
-                        <td>3 Tbsp sugar</td>
-                      </tr>
+                      {{/each}}
 
-                      <tr>
-                        <td>4 tsp baking powder</td>
-                      </tr>
-
-                      <tr>
-                        <td>One half tsp baking soda</td>
-                      </tr>
-
-                      <tr>
-                        <td>1 tsp salt</td>
-                      </tr>
-
-                      <tr>
-                        <td>2 large eggs</td>
-                      </tr>
-
-                      <tr>
-                        <td>One fourth cup vegetable oil, plus more for the pan</td>
-                      </tr>
-
-                      <tr>
-                        <td>1- and one-half cups whole milk</td>
-                      </tr>
-
-                      <tr>
-                        <td>One half tsp vanilla extract (optional)</td>
-                      </tr>
-
-                      <tr>
-                        <td>Butter and syrup for serving</td>
-                      </tr>
-                      
                     </tbody>
                   </table>
                 </div>
@@ -104,41 +72,16 @@
                       </tr>
                     </thead>
                     <tbody>
+
+                      {{#each instructions}}
                       <tr>
-                        <th scope="row">1</th>
-                        <td>In one bowl, combine dry ingredients: flour, sugar, baking powder, baking soda, and salt. Whisk to combine.</td>
+                        <th scope="row"> </th>
+                        <td>{{instructions}}</td>
                       </tr>
 
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>In another bowl, combine eggs, vegetable oil, and whole milk. Optional: you can also add ½ teaspoon of vanilla extract here. Whisk to combine.</td>
-                      </tr>
+                    
+                      {{/each}}
 
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Combine the two bowls and mix together gently with a rubber spatula. The batter should still be lumpy with a few dry streaks of flour. Don’t overmix the pancakes!</td>
-                      </tr>
-
-                      <tr>
-                        <th scope="row">4</th>
-                        <td>Cover the batter and let it rest at room temperature for 10 minutes.</td>
-                      </tr>
-
-                      <tr>
-                        <th scope="row">5</th>
-                        <td>Heat 1 teaspoon of vegetable oil in a nonstick skillet.</td>
-                      </tr>
-
-                      <tr>
-                        <th scope="row">6</th>
-                        <td>Ladle one scoop of batter into the skillet and cook for a few minutes. Once bubbles appear on the surface and around the edge of the pancake, cook and flip for a few minutes more.</td>
-                      </tr>
-
-                      <tr>
-                        <th scope="row">7</th>
-                        <td>Stack your pancakes up and serve with syrup and butter if desired. Enjoy!</td>
-                      </tr>
-                        
                     </tbody>
                   </table>
                 </div>
@@ -225,5 +168,3 @@
         
           </div>
         </div>
-    </body>
-</html>
