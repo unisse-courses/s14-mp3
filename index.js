@@ -53,7 +53,9 @@ const options = { useUnifiedTopology: true };
       // var lastUser | we can use this for the last person who logged in ?
     */
 
-/* -------------------------------------------------- ALL THE DUMMY DATA -------------------------------------------------- */    
+/* -------------------------------------------------- ALL THE DUMMY DATA -------------------------------------------------- */
+  // TODO: AFTER doing the AJAX, we place the dummy data in .json files (data folder -> json files)
+
   // ARRAY OF USERS (TOTAL: 5)  
     var users = [
       // DUMMY USER 1
@@ -631,26 +633,6 @@ const options = { useUnifiedTopology: true };
       
     ];
 
-/* -------------------------------------------------- END OF DUMMY DATA -------------------------------------------------- */
-
-    const collectionName = "reciPeeps";
-    mongoClient.connect(databaseURL, options, function(err, client) {
-      /**
-        Only do database manipulation inside of the connection
-        When a connection is made, it will try to make the database
-        automatically. The collection(like a table) needs to be made.
-      **/
-      if (err) throw err;
-      const dbo = client.db(dbname);
-    
-      //Will create a collection if it has not yet been made
-      dbo.createCollection(collectionName, function(err, res) {
-        if (err) throw err;
-        console.log("Collection created!");
-        client.close();
-      });
-    });
-
 /* -------------------------------------------------- ROUTES -------------------------------------------------- */
 
   // INDEX
@@ -903,10 +885,6 @@ const options = { useUnifiedTopology: true };
     
       res.status(200).send(account);
     });
-
-  
-  // VIEW ACCOUNT PROFILE
-
   
   // EDIT ACCOUNT PROFILE
 
@@ -915,9 +893,6 @@ const options = { useUnifiedTopology: true };
 
   
   // CREATE RECIPE POST
-
-  
-  // VIEW RECIPE POST
 
   
   // UPDATE RECIPE POST
@@ -930,6 +905,7 @@ const options = { useUnifiedTopology: true };
 
   
   // VIEW COMMENT
+    // i think we still need this as a feature since we'll get the comments for it to be seen in a recipe post (??) not sure
 
   
   // UPDATE COMMENT
