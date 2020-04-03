@@ -7,22 +7,22 @@
       
             <div class="d-flex align-items-end post-row0">
                 <div class="post-header_left">
-                  <a href="account-profile" id="title_username-badge"><span class="badge badge-light post-stamps sides">By Ted Mosby | @prof_Brosby</span></a>
+                  <a href="account-profile" id="title_username-badge"><span class="badge badge-light post-stamps sides">By {{firstname}} {{lastname}} | {{username}}</span></a>
                 </div>
 
                 <div class="post-header_mid">
-                  <h1 class="display-3">Pancakes</h1>
+                  <h1 class="display-3">{{title}}</h1>
 
                   <span class="badge badge-light" id="votes">
                     <a href="#"><img class="img-fluid" src="images/upvote.png" id="upvote-icon"></a>
-                    <span id="voteCount" class="post-stamps">0</span>
+                    <span id="voteCount" class="post-stamps">{{upvote_score}}</span>
                     <a href="#"><img class="img-fluid" src="images/downvote.png" id="downvote-icon"></a>
                   </span>
                   
                 </div>
 
                 <div class="post-header_right">
-                  <span class="badge badge-light post-stamps sides">02/28/2020 10:00 AM</span>
+                  <span class="badge badge-light post-stamps sides">{{date_posted}} {{time_posted}}</span>
                 </div>
                   
             </div>
@@ -30,12 +30,12 @@
             <div class="row justify-content-md-center post-row1">
               <div class="card">
                 <div class="card post-image_div" >
-                  <img class="card-img-top img-fluid" src="images/recipe/recipe1.png" id="post-image" alt="Card image cap">
+                  <img class="card-img-top img-fluid" src="{{picture}}" id="post-image" alt="Card image cap">
                 </div>  
 
                 <div class="card-body">
                   <p class="card-text">
-                    A pancake is a flat cake, often thin and round, prepared from a starch-based batter that may contain eggs, milk and butter and cooked on a hot surface such as a griddle or frying pan, often frying with oil or butter.
+                    {{description}}
                   </p>
                 </div>
                 
