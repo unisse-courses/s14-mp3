@@ -310,16 +310,6 @@ $("#addInstruction").click(function () {
 
     if (window.location.href.includes("recipe-post")){
 
-        function addIngredientRow(ingredients) {
-            alert("test");
-        }
-
-        function addIngstructionRow(ingredients) {
-            alert("test");
-        }
-
-
-
         if (localStorage.getItem('isGuest') == 0){
             $('#accProfile').addClass("disabled")
             $('#create').hide()
@@ -330,10 +320,6 @@ $("#addInstruction").click(function () {
             $('.post-comments-list').hide()
             
             $('#navbar-dropdown').html("Guest User")
-            
-            //add comments here
-
-
         }
         else{
             $('#accProfile').addClass("enabled")
@@ -346,27 +332,73 @@ $("#addInstruction").click(function () {
             $('#post-comments-list').show()
         }
 
-        
-
         document.getElementById('upvote-icon').addEventListener('click', function () {
-
+            // TODO: code to increase score
 
             console.log("plus 1 vote")
         });
 
         document.getElementById('downvote-icon').addEventListener('click', function () {
+            // TODO: code to decrease score
+            
             console.log("minus 1 vote")
         });
         }
 
         $("#delete").click(function () { 
             location.href='home'
-            
         });
 
         $("#edit_post-btn").click(function () { 
             location.href='edit-recipe'
-        
+        });
+
+        // FEATURE FOR ADDING A COMMENT
+            function appendComment(item, parentDiv) {
+                // TODO
+            }
+
+            /*
+            // GET STUDENTS INFO
+            $.get('getStudents', function(data, status) { // if function is successful
+                var studentListContainer = $('#studentList');
+
+                data.forEach((item, i) => {
+                    addStudentDiv(item, studentListContainer);
+                });
+
+            });
+
+            // POST CALLED
+            $('#addStudent').click(function() {
+                var name = $('#name').val();
+                var idnum = $('#idnum').val();
+
+                // this gets the input where the attribute name is 'gender'
+                // :checked checks if the item is selected or not
+                var gender = $("input[name='gender']:checked").val();
+
+                var newStudent = {
+                    name: name,
+                    id: idnum,
+                    gender: gender
+                };
+
+                $.post('addStudent', newStudent, function(data,status) {
+                    console.log(data);
+
+                    var studentListContainer = $('#studentList');
+                    addStudentDiv(data, studentListContainer)
+                });
+            });
+            */
+
+        // FEATURE FOR ADDING A REPLY
+            function appendReply(item, parentDiv) {
+                // TODO
+            }
+
+
     });
 
 /* -------------------------------------------------- AccountProfile.hbs -------------------------------------------------- */

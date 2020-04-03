@@ -909,16 +909,29 @@
 
   
   // POST COMMENT
+    app.post('/addCommentRow', function(req, res) {
+      var comment = { // TODO: havent updated the info below; its still from the students example
+        name: req.body.name,
+        id: req.body.id,
+        img: `img/${req.body.gender}.png`
+      }
+    
+      students.push(student);
+    
+      res.status(200).send(student);
+    })
 
   
   // VIEW COMMENT
-    // i think we still need this as a feature since we'll get the comments for it to be seen in a recipe post (??) not sure
-
+    app.get('/getCommentRow', function(req, res) { // TODO: update to comments ?
+      res.status(200).send(students);
+    });
   
   // UPDATE COMMENT
-
+    // TODO: sam will make the button
   
   // DELETE COMMENT
+      // TODO: not sure how for ajax
 
   
   // SEARCH RECIPE POST
