@@ -4,17 +4,13 @@
   const exphbs = require('express-handlebars');
   const handlebars = require('handlebars');
   const bodyParser = require('body-parser');
-  const mongodb = require('mongodb');
+
 // EXPRESS APP
   const app = express();
   const port = 3000; // sam: bc thats whats in the specs
 
-// DATABASE CREATION
-const mongoClient = mongodb.MongoClient;
-const databaseURL = "mongodb://localhost:27017/";
-const dbname = "foodiesdb";
-
-const options = { useUnifiedTopology: true };
+// IMPORTING THE MODEL
+  // [SAMPLE CODE] const studentModel = require('./models/student'); 
 
 // ENGINE SET-UP
   app.engine( 'hbs', exphbs({
@@ -30,6 +26,11 @@ const options = { useUnifiedTopology: true };
             - getFirstName (for the dropdown)
             - getProfilePic (for the icon)
         */
+        
+        incremented: function(index) {
+            index++;
+            return index;
+        }
     }
   }));
 

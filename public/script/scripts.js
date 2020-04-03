@@ -310,8 +310,11 @@ $("#addInstruction").click(function () {
 
     if (window.location.href.includes("recipe-post")){
 
-        function addIngredients(ingredients)
-        {
+        function addIngredientRow(ingredients) {
+            alert("test");
+        }
+
+        function addIngstructionRow(ingredients) {
             alert("test");
         }
 
@@ -347,7 +350,7 @@ $("#addInstruction").click(function () {
 
         document.getElementById('upvote-icon').addEventListener('click', function () {
 
-            
+
             console.log("plus 1 vote")
         });
 

@@ -55,9 +55,8 @@
 
                       {{#each ingredients}}  
                       <tr>
-                        <td>{{ingredients.quantity}} {{ingredients.unit}} {{ingredients.name}}</td>
+                        <td>{{this.quantity}} {{this.unit}} {{this.name}}</td>
                       </tr>
-
                       {{/each}}
 
                     </tbody>
@@ -75,11 +74,9 @@
 
                       {{#each instructions}}
                       <tr>
-                        <th scope="row"> </th>
-                        <td>{{instructions}}</td>
+                        <th scope="row">{{incremented @index}}</th>
+                        <td>{{this}}</td>
                       </tr>
-
-                    
                       {{/each}}
 
                     </tbody>
