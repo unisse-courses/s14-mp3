@@ -309,16 +309,27 @@ $("#addInstruction").click(function () {
 //to follow: Actual Data stuff from database lol 
 
     if (window.location.href.includes("recipe-post")){
+
+        function addIngredients(ingredients)
+        {
+            alert("test");
+        }
+
+
+
         if (localStorage.getItem('isGuest') == 0){
-        $('#accProfile').addClass("disabled")
-        $('#create').hide()
-        $('#upvote-icon').hide()
-        $('#downvote-icon').hide()
-        $('#edit_post-btn').hide()
-        $('#delete_post-btn').hide()
-        $('.post-comments-list').hide()
-        
-        $('#navbar-dropdown').html("Guest User")
+            $('#accProfile').addClass("disabled")
+            $('#create').hide()
+            $('#upvote-icon').hide()
+            $('#downvote-icon').hide()
+            $('#edit_post-btn').hide()
+            $('#delete_post-btn').hide()
+            $('.post-comments-list').hide()
+            
+            $('#navbar-dropdown').html("Guest User")
+            
+            //add comments here
+
 
         }
         else{
@@ -332,11 +343,7 @@ $("#addInstruction").click(function () {
             $('#post-comments-list').show()
         }
 
-        // INGREDIENTS THING
-
-        // INSTRUCTIONS THING
-
-        // COMMENTS THING
+        
 
         document.getElementById('upvote-icon').addEventListener('click', function () {
             console.log("plus 1 vote")
