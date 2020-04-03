@@ -339,6 +339,8 @@ $("#addInstruction").click(function () {
         // COMMENTS THING
 
         document.getElementById('upvote-icon').addEventListener('click', function () {
+
+            
             console.log("plus 1 vote")
         });
 
