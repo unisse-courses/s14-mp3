@@ -640,7 +640,7 @@
     ];
 
 /* -------------------------------------------------- ROUTES -------------------------------------------------- */
-
+  
   // INDEX
     app.get('/', function(req, res) {
         res.render('index', {
@@ -650,6 +650,11 @@
             body_class: "outside"
         });
     });
+
+  //TEMP DATA
+  app.get('/getUsers', function(req, res) {
+    res.status(200).send(users);
+  });
 
   // USER LOGIN
     app.get('/log-in', function(req, res) {
