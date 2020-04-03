@@ -308,50 +308,58 @@ $("#addInstruction").click(function () {
 /* -------------------------------------------------- RecipePost.hbs -------------------------------------------------- */
 //to follow: Actual Data stuff from database lol 
 
-if (window.location.href.includes("recipe-post")){
-    if (localStorage.getItem('isGuest') == 0){
-    $('#accProfile').addClass("disabled")
-    $('#create').hide()
-    $('#upvote-icon').hide()
-    $('#downvote-icon').hide()
-    $('#edit_post-btn').hide()
-    $('#delete_post-btn').hide()
-    $('.post-comments-list').hide()
-    
-    $('#navbar-dropdown').html("Guest User")
-  }
-  else{
-    $('#accProfile').addClass("enabled")
-    $('#create').show()
-    $('#upvote-icon').show()
-    $('#downvote-icon').show()
-    $('#edit_post-btn').show()
-    $('#delete_post-btn').show()
-    
-    $('#post-comments-list').show()
-  }
-  
-  document.getElementById('upvote-icon').addEventListener('click', function () {
-    console.log("plus 1 vote")
-  });
+    if (window.location.href.includes("recipe-post")){
+        if (localStorage.getItem('isGuest') == 0){
+        $('#accProfile').addClass("disabled")
+        $('#create').hide()
+        $('#upvote-icon').hide()
+        $('#downvote-icon').hide()
+        $('#edit_post-btn').hide()
+        $('#delete_post-btn').hide()
+        $('.post-comments-list').hide()
+        
+        $('#navbar-dropdown').html("Guest User")
 
-  document.getElementById('downvote-icon').addEventListener('click', function () {
-      console.log("minus 1 vote")
-  });
-}
+        }
+        else{
+            $('#accProfile').addClass("enabled")
+            $('#create').show()
+            $('#upvote-icon').show()
+            $('#downvote-icon').show()
+            $('#edit_post-btn').show()
+            $('#delete_post-btn').show()
+            
+            $('#post-comments-list').show()
+        }
 
-    $("#delete").click(function () { 
-        location.href='home'
+        // INGREDIENTS THING
+
+        // INSTRUCTIONS THING
+
+        // COMMENTS THING
+
+        document.getElementById('upvote-icon').addEventListener('click', function () {
+            console.log("plus 1 vote")
+        });
+
+        document.getElementById('downvote-icon').addEventListener('click', function () {
+            console.log("minus 1 vote")
+        });
+        }
+
+        $("#delete").click(function () { 
+            location.href='home'
+            
+        });
+
+        $("#edit_post-btn").click(function () { 
+            location.href='edit-recipe'
         
     });
 
-    $("#edit_post-btn").click(function () { 
-        location.href='edit-recipe'
-        
-    });
 /* -------------------------------------------------- AccountProfile.hbs -------------------------------------------------- */
 
-if (window.location.href.includes("recipe-post"))
+if (window.location.href.includes("account-profile"))
 {
     if (localStorage.getItem('isGuest') == 0){
         $('#accProfile').addClass("disabled")

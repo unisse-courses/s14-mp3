@@ -124,6 +124,7 @@ const options = { useUnifiedTopology: true };
         dateposted: 'February 28, 2020',
         timeposted: '10:00 AM',
         recipe_picture: '/images/recipe/recipe1.png',
+        description: 'A pancake is a flat cake, often thin and round, prepared from a starch-based batter that may contain eggs, milk and butter and cooked on a hot surface such as a griddle or frying pan, often frying with oil or butter.',
         ingredients: [
           {
             name: 'flour',
@@ -223,6 +224,7 @@ const options = { useUnifiedTopology: true };
         dateposted: 'March 6, 2020',
         timeposted: '1:27 AM',
         recipe_picture: '/images/recipe/recipe2.png',
+        description: 'Ube Roll is made out of rolled ube.',
         ingredients: [
           {
             name: 'powdered ube',
@@ -324,6 +326,7 @@ const options = { useUnifiedTopology: true };
         dateposted: 'March 8, 2020',
         timeposted: '9:00 AM',
         recipe_picture: '/images/recipe/recipe3.png',
+        description: 'Hot Cocoa is made out of cocoa powder and toasty water',
         ingredients: [
           {
             name: 'Whole milk',
@@ -460,6 +463,7 @@ const options = { useUnifiedTopology: true };
         dateposted: 'March 6, 2020',
         timeposted: '11:27 AM',
         recipe_picture: '/images/recipe/recipe4.png',
+        description: 'Onigiri is a rice meal molded into a triangle shape that is wrapped in seaweed',
         ingredients: [
           {
             name: 'Water',
@@ -559,6 +563,7 @@ const options = { useUnifiedTopology: true };
         dateposted: 'March 6, 2020',
         timeposted: '1:43 PM',
         recipe_picture: '/images/recipe/recipe5.png',
+        description: 'Takoyaki is usually made with squid.',
         ingredients: [
           {
             name: 'All-purpose flour',
@@ -813,8 +818,7 @@ const options = { useUnifiedTopology: true };
             firstname: data.user.firstname,
             lastname: data.user.lastname,
             picture: data.recipe_picture,
-
-            description: "",
+            description: data.description,
             ingredients: data.ingredients,
             instructions: data.instructions,
             
