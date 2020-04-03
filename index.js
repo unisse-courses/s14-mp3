@@ -653,8 +653,9 @@ const options = { useUnifiedTopology: true };
             tab_title: "Log-In",
             body_class: "outside"
           
-          // for this page (!!!deal with this after mongoose!!!)
-            /* sam:
+          // for this page 
+            /* TODO: AFTER PHASE 2 SUBMISSION PA
+                sam:
                 possible variables to transfer:
 
                 lastUser: currUser.username,
@@ -725,13 +726,9 @@ const options = { useUnifiedTopology: true };
           styles: "css/styles_outside.css",
           tab_title: "Create Account",
           body_class: "outside"
-        
-        // for this page
-            /* sam:
-                possible variables to transfer:
-                - wala ata since nagaaccept pa lang ng info (?)
-            */
       })
+
+      // FEATURE: '/addAccount'
     });
 
   // EDIT ACCOUNT PROFILE
@@ -852,7 +849,8 @@ const options = { useUnifiedTopology: true };
         password:   req.body.password,
         bio:        req.body.bio
       };
-    
+      
+      /* TODO: After AJAX, Make into mongoose format
       mongoClient.connect(databaseURL, options, function(err, client) {
         if(err) throw err;
         // Connect to the same database
@@ -869,10 +867,12 @@ const options = { useUnifiedTopology: true };
           client.close();
         });
       });
+      */
     
       const result = { success: true, message: "User created!" };
       res.send(result);
     });
+    
 
   // USER LOGIN FEATURE
     // POST
