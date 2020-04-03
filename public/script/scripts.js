@@ -19,7 +19,7 @@ $(document).ready(function () {
         
     });
 
-
+    
 /* -------------------------------------------------- UserLogin.hbs -------------------------------------------------- */
     $("#loginButton").click(function () { 
         var user = document.getElementById("inputUser").value
@@ -41,6 +41,7 @@ $(document).ready(function () {
                 
             localStorage.setItem('isGuest', 1);
             
+            alert()
         
     });
 

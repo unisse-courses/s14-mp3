@@ -5,7 +5,6 @@
   const handlebars = require('handlebars');
   const bodyParser = require('body-parser');
   const mongodb = require('mongodb');
-
 // EXPRESS APP
   const app = express();
   const port = 3000; // sam: bc thats whats in the specs
@@ -39,7 +38,6 @@ const options = { useUnifiedTopology: true };
   // Configuration for handling API endpoint data
   app.use(bodyParser.json()); // support json encoded bodies
   app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
 
 // GLOBAL VARIABLES
     /*
@@ -867,7 +865,7 @@ const options = { useUnifiedTopology: true };
       console.log(req.body);
       var user = {
         firstname:  req.body.firstname,
-        lastname:   req.body.lastnamse,
+        lastname:   req.body.lastname,
         username:   req.body.username,
         password:   req.body.password,
         bio:        req.body.bio
