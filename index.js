@@ -796,31 +796,34 @@ const options = { useUnifiedTopology: true };
 
   // RECIPE POST
     app.get('/recipe-post', function(req, res) {
+
+      //insert code here to get data from db
+      
+      var data = posts[0];
+
+
         res.render('RecipePost', {
           // for main.hbs
             styles: "css/styles_inside.css",
             tab_title: "Recipe Post",
-            body_class: "inside"
-          
-          // for this page
-            /* sam:
-                possible variables to transfer:
-                - title
-                - upvotes score
-                - date posted
-                - time posted
-                - username
-                - first name
-                - lastname
+            body_class: "inside",
+            
+            title: data.title,
+            upvote_score: data.upvotes,
+            date_posted: data.dateposted,
+            time_posted: data.timeposted,
+            username: data.user.username,
+            firstname: data.user.firstname,
+            lastname: data.user.lastname,
+            picture: data.recipe_picture,
 
-                - description of post
-                - table of ingredients
-                - table of instructions
+            description: "",
+            ingredients: data.ingredients,
+            instructions: data.instructions,
+            
+            comment_count: data.comments.length,
+            comments: data.comments
 
-                - comment count
-                - comments
-                - replies
-            */
         })
     });
 
