@@ -353,49 +353,92 @@ $("#addInstruction").click(function () {
         });
 
         // FEATURE FOR ADDING A COMMENT
-            function appendComment(item, parentDiv) {
-                // TODO
-            }
+        function appendComment(item, parentDiv) {
+            var user = item.user;    
 
-            /*
-            // GET STUDENTS INFO
-            $.get('getStudents', function(data, status) { // if function is successful
-                var studentListContainer = $('#studentList');
+            //everthing not modal
+            var list = document.createElement('li');
+            var profileImg = document.createElement('img');
+            var bigDiv = document.createElement('div');
+                
+            var person = document.createElement('span');
+            var time = document.createElement('small');
+            var anchor = document.createElement('a');
+            var horizontal = document.createElement('br');
+            var laman = document.createElement('span');
 
-                data.forEach((item, i) => {
-                    addStudentDiv(item, studentListContainer);
-                });
+            var smallDiv = document.createElement('div');
+            var replyButton = document.createElement('button');
+                
+            $(list).addClass("media post-comment-thread");
 
+            $(profileImg).addClass("align-self-start mr-3 comment-icon");
+            $(profileImg).attr("src", user.profilepic);
+
+            $(bigDiv).addClass("media-body comment-body");
+
+            $(anchor).attr("href", "account-profile");
+            $(anchor).addClass("badge badge-light");
+
+            $(time).addClass("text-muted");
+
+            $(smallDiv).addClass("d-flex flex-row justify-content-end");
+            $(replyButton).addClass("btn btn-outline-secondary");
+            $(replyButton).attr("type", "button");
+            $(replyButton).attr("data-toggle", "modal");
+            $(replyButton).attr("data-target", "#reply");
+
+            $(anchor).text("By " + user.firstname + " " + user.lastname + " | " + user.username);
+
+            $(time).text(' ' + item.date + " " + item.time);
+
+            $(laman).text(item.content);
+
+            $(replyButton).text("Reply");
+                
+            smallDiv.append(replyButton);
+
+            person.append(anchor);
+
+            bigDiv.append(person);
+            bigDiv.append(time);
+            bigDiv.append(horizontal);
+            bigDiv.append(laman);
+            bigDiv.append(smallDiv);
+
+
+            list.append(profileImg);
+            list.append(bigDiv);
+
+            parentDiv.append(list);
+
+
+            //something to come
+
+        }
+
+
+        $.get("getCommentRow", function (data, status) {
+
+            console.log(data);
+            console.log(status);
+            
+
+
+            var containerUL = $("#commentList");
+
+            data.forEach((item, i) => {
+                appendComment(item, containerUL);
             });
+        });
 
-            // POST CALLED
-            $('#addStudent').click(function() {
-                var name = $('#name').val();
-                var idnum = $('#idnum').val();
 
-                // this gets the input where the attribute name is 'gender'
-                // :checked checks if the item is selected or not
-                var gender = $("input[name='gender']:checked").val();
 
-                var newStudent = {
-                    name: name,
-                    id: idnum,
-                    gender: gender
-                };
-
-                $.post('addStudent', newStudent, function(data,status) {
-                    console.log(data);
-
-                    var studentListContainer = $('#studentList');
-                    addStudentDiv(data, studentListContainer)
-                });
-            });
-            */
 
         // FEATURE FOR ADDING A REPLY
-            function appendReply(item, parentDiv) {
-                // TODO
-            }
+        function appendReply(item, parentDiv) {
+            // TODO
+        }
 
 
     };

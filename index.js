@@ -924,7 +924,8 @@
   
   // VIEW COMMENT
     app.get('/getCommentRow', function(req, res) { // TODO: update to comments ?
-      res.status(200).send(students);
+    
+      res.status(200).send(posts[0].comments);
     });
   
   // UPDATE COMMENT
