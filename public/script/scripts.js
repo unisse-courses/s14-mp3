@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     $('#logout').click(function(){
         sessionStorage.clear();
-      })
+    });
 /* -------------------------------------------------- index.hbs -------------------------------------------------- */
 
     $("#noAccount").click(function () { 
@@ -343,7 +343,6 @@ $("#addInstruction").click(function () {
             
             console.log("minus 1 vote")
         });
-        }
 
         $("#delete").click(function () { 
             location.href='home'
@@ -399,7 +398,7 @@ $("#addInstruction").click(function () {
             }
 
 
-    });
+    };
 
 /* -------------------------------------------------- AccountProfile.hbs -------------------------------------------------- */
 
