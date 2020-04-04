@@ -40,9 +40,17 @@ $(document).ready(function () {
             }
                 
             localStorage.setItem('isGuest', 1);
-            
-            alert()
         
+        var account = {
+            username: user,
+            password: pass,
+        }
+
+        $.post('loginAccount', account, function(data,status) {
+            console.log(data);
+        });
+
+
     });
 
 
@@ -53,7 +61,7 @@ $(document).ready(function () {
         var last = document.getElementById("lastName").value
         var user = document.getElementById("userName").value
         var pass = document.getElementById("password").value
-        //var pic = document.getElementById("profilePic").value
+        var pic = document.getElementById("profilePic").value
         var bio = document.getElementById("bio").value
 
         if (first == ""){
@@ -93,6 +101,7 @@ $(document).ready(function () {
             lastname: last,
             username: user,
             password: pass,
+            profilepic: pic,
             bio: bio
         };
 
@@ -100,9 +109,6 @@ $(document).ready(function () {
 
         $.post('addAccount', user, function(data,status) {
             console.log(data);
-            if(data.success){
-                alert("You may now login")
-            }
         });
     });
 
@@ -352,93 +358,186 @@ $("#addInstruction").click(function () {
             location.href='edit-recipe'
         });
 
-        // FEATURE FOR ADDING A COMMENT
         function appendComment(item, parentDiv) {
-            var user = item.user;    
+            // We declared a different variable since the object 'user' was NESTED
+            // the variable 'post' from the dummy data is represented by 'item'
+            var user = item.user; 
 
-            //everthing not modal
-            var list = document.createElement('li');
-            var profileImg = document.createElement('img');
-            var bigDiv = document.createElement('div');
+            // STEP 1: Create a variable for each tag used (we did ours in order of the original html code)
+                var list = document.createElement('li');
+                var profileImg = document.createElement('img');
+                var bigDiv = document.createElement('div');
+                    
+                var person = document.createElement('span');
+                var time = document.createElement('small');
+                var anchor = document.createElement('a');
+                var horizontal = document.createElement('br');
+                var laman = document.createElement('span');
+
+                var smallDiv = document.createElement('div');
+                var replyButton = document.createElement('button');
+
+            // STEP 2: Add the attributes and classes in each tag (we did it by order rin so its not confusing)
+                $(list).addClass("media post-comment-thread");
+
+                $(profileImg).addClass("align-self-start mr-3 comment-icon");
+                $(profileImg).attr("src", user.profilepic);
+
+                $(bigDiv).addClass("media-body comment-body");
+
+                $(anchor).attr("href", "account-profile");
+                $(anchor).addClass("badge badge-light");
+
+                $(time).addClass("text-muted");
+
+                $(smallDiv).addClass("d-flex flex-row justify-content-end");
+                $(replyButton).addClass("btn btn-outline-secondary");
+                $(replyButton).attr("type", "button");
+                $(replyButton).attr("data-toggle", "modal");
+                $(replyButton).attr("data-target", "#reply");
+
+            // STEP 3: We went through each tag that has TEXT inside the tag
+                $(anchor).text("By " + user.firstname + " " + user.lastname + " | " + user.username);
+
+                $(time).text(' ' + item.date + " " + item.time);
+
+                $(laman).text(item.content);
+
+                $(replyButton).text("Reply");
+
+            // STEP 4: We append from the INNERMOST to the OUTERMOST container 
+                smallDiv.append(replyButton);
+
+                person.append(anchor);
+
+                bigDiv.append(person);
+                bigDiv.append(time);
+                bigDiv.append(horizontal);
+                bigDiv.append(laman);
+                bigDiv.append(smallDiv);
                 
-            var person = document.createElement('span');
-            var time = document.createElement('small');
-            var anchor = document.createElement('a');
-            var horizontal = document.createElement('br');
-            var laman = document.createElement('span');
+                // LIST is the BIGGEST div
+                list.append(profileImg);
+                list.append(bigDiv);
 
-            var smallDiv = document.createElement('div');
-            var replyButton = document.createElement('button');
-                
-            $(list).addClass("media post-comment-thread");
+            // STEP 5: Append the BIGGEST div to the PARENT DIV (which is the parameter of this function)
+                parentDiv.append(list);
+        }
+        
+        function appendReply(item, parentDiv) {
+            // We declared a different variable since the object 'user' was NESTED
+            // the variable 'post' from the dummy data is represented by 'item'
+            var reply = item.replies[0];
+            var user = reply.user;
 
-            $(profileImg).addClass("align-self-start mr-3 comment-icon");
-            $(profileImg).attr("src", user.profilepic);
+            // STEP 1: Create a variable for each tag used (we did ours in order of the original html code)
+                var bigUL = document.createElement('ul');
+                var list = document.createElement('li');
+                var profileImg = document.createElement('img');
+                var bigDiv = document.createElement('div');
+                    
+                var person = document.createElement('span');
+                var time = document.createElement('small');
+                var anchor = document.createElement('a');
+                var horizontal = document.createElement('br');
+                var laman = document.createElement('span');
 
-            $(bigDiv).addClass("media-body comment-body");
+            // STEP 2: Add the attributes and classes in each tag (we did it by order rin so its not confusing)
+                $(bigUL).attr("id","post-replies-list");
+                $(list).addClass("media post-reply-thread");
 
-            $(anchor).attr("href", "account-profile");
-            $(anchor).addClass("badge badge-light");
+                $(profileImg).addClass("align-self-start mr-3 comment-icon");
+                $(profileImg).attr("src", user.profilepic);
 
-            $(time).addClass("text-muted");
+                $(bigDiv).addClass("media-body comment-body");
 
-            $(smallDiv).addClass("d-flex flex-row justify-content-end");
-            $(replyButton).addClass("btn btn-outline-secondary");
-            $(replyButton).attr("type", "button");
-            $(replyButton).attr("data-toggle", "modal");
-            $(replyButton).attr("data-target", "#reply");
+                $(anchor).attr("href", "account-profile");
+                $(anchor).addClass("badge badge-light");
 
-            $(anchor).text("By " + user.firstname + " " + user.lastname + " | " + user.username);
+                $(time).addClass("text-muted");
 
-            $(time).text(' ' + item.date + " " + item.time);
+            // STEP 3: We went through each tag that has TEXT inside the tag
+                $(anchor).text("By " + user.firstname + " " + user.lastname + " | " + user.username);
 
-            $(laman).text(item.content);
+                $(time).text(' ' + reply.date + " " + reply.time);
 
-            $(replyButton).text("Reply");
-                
-            smallDiv.append(replyButton);
+                $(laman).text(reply.content);
 
-            person.append(anchor);
+            // STEP 4: We append from the INNERMOST to the OUTERMOST container 
+                person.append(anchor);
 
-            bigDiv.append(person);
-            bigDiv.append(time);
-            bigDiv.append(horizontal);
-            bigDiv.append(laman);
-            bigDiv.append(smallDiv);
+                bigDiv.append(person);
+                bigDiv.append(time);
+                bigDiv.append(horizontal);
+                bigDiv.append(laman);
 
+                list.append(profileImg);
+                list.append(bigDiv);
 
-            list.append(profileImg);
-            list.append(bigDiv);
+                // bigUL is the BIGGEST div
+                bigUL.append(list);
 
-            parentDiv.append(list);
-
-
-            //something to come
-
+            // STEP 5: Append the BIGGEST div to the PARENT DIV (which is the parameter of this function)
+                parentDiv.append(bigUL);
         }
 
-
-        $.get("getCommentRow", function (data, status) {
-
-            console.log(data);
-            console.log(status);
+        $.get("getCommentRow", function (data, status) { // This function GETS the existing comments from the DUMMY DATA
+            // We just place these in console to make sure there are no errors
+                console.log(data);
+                console.log(status);
             
+            // This variable is the DIV that we want to populate
+                var commentsContainer = $("#commentList");
 
-
-            var containerUL = $("#commentList");
-
-            data.forEach((item, i) => {
-                appendComment(item, containerUL);
-            });
+            
+            // This is a loop that appends ALL the existing COMMENTS of the DUMMY DATA
+                data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
+                    appendComment(item, commentsContainer);
+                });
+                
+            // This is a loop that appends ALL the existing REPLIES of the DUMMY DATA
+                data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
+                    appendReply(item, commentsContainer);
+                });
         });
 
+        $('#addCommentRow').click(function() {  //TODO: NOT YET DONE
+            var content = $('#reply-input').val();
+            var idnum = $('#idnum').val();
+    
+            // this gets the input where the attribute name is 'gender'
+            // :checked checks if the item is selected or not
+            var gender = $("input[name='gender']:checked").val();
+    
+            var newStudent = {
+                name: name,
+                id: idnum,
+                gender: gender
+            };
 
-
-
-        // FEATURE FOR ADDING A REPLY
-        function appendReply(item, parentDiv) {
-            // TODO
-        }
+            var comment = {
+                name: name
+                img: `/images/${req.body.gender}.png`,
+        
+                user: {
+                  firstname: 'Marshall',
+                  lastname: 'Eriksen',
+                  username: '@bigFudge',
+                  profilepic: '/images/profilepic/marsh.jpg'
+                },
+                content:'I love Pancakes!',
+                date: 'February 28, 2020',
+                time: '11:39 AM',
+              }
+    
+            $.post('addStudent', newStudent, function(data,status) {
+                console.log(data);
+    
+                var studentListContainer = $('#studentList');
+                addStudentDiv(data, studentListContainer)
+            });
+    
+        });
 
 
     };

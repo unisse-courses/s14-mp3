@@ -41,18 +41,18 @@
   app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // GLOBAL VARIABLES
-    /*
+    
       var currUser = {
-          firstname: fname,
-          lastname: lname,
-          username: uname,
-          password: pass,
-          bio: biog,
-          profilepic: dp
+          firstname: 'CurrUser',
+          lastname: 'LN',
+          username: 'current',
+          password: 'blank',
+          bio: 'blank'
+          //profilepic: dp
       }
 
       // var lastUser | we can use this for the last person who logged in ?
-    */
+    
 
 /* -------------------------------------------------- ALL THE DUMMY DATA -------------------------------------------------- */
   // TODO: AFTER doing the AJAX, we place the dummy data in .json files (data folder -> json files)
@@ -854,6 +854,7 @@
         lastname:   req.body.lastname,
         username:   req.body.username,
         password:   req.body.password,
+        // profilepic: `${req.body.filename}.png`,
         bio:        req.body.bio
       };
       
@@ -884,11 +885,12 @@
   // USER LOGIN FEATURE
     // POST
     app.post('/loginAccount', function(req, res) {
-      var info = {
-        // replace with info
+      console.log(req.body);
+
+      var account = {
+        username:  req.body.username,
+        password:   req.body.password,
       }
-    
-      users.push(account);
     
       res.status(200).send(account);
     });
@@ -913,23 +915,29 @@
       var comment = { // TODO: havent updated the info below; its still from the students example
         name: req.body.name,
         id: req.body.id,
-        img: `img/${req.body.gender}.png`
+        img: `/images/${req.body.gender}.png`,
+
+        user: {
+          firstname: 'Marshall',
+          lastname: 'Eriksen',
+          username: '@bigFudge',
+          profilepic: '/images/profilepic/marsh.jpg'
+        },
+        content:'I love Pancakes!',
+        date: 'February 28, 2020',
+        time: '11:39 AM',
       }
     
-      students.push(student);
+      posts[0].comments.push(comment);
     
-      res.status(200).send(student);
+      res.status(200).send(posts[0].comments);
     })
 
   
   // VIEW COMMENT
-    app.get('/getCommentRow', function(req, res) { // TODO: update to comments ?
-    
+    app.get('/getCommentRow', function(req, res) {
       res.status(200).send(posts[0].comments);
     });
-  
-  // UPDATE COMMENT
-    // TODO: sam will make the button
   
   // DELETE COMMENT
       // TODO: not sure how for ajax

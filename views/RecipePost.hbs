@@ -102,26 +102,39 @@
               </div>
 
               <ul id="commentList" class="post-comments-list">
-                
-
-                  <ul id="post-replies-list">
-                    <li class="media post-reply-thread">
-                      <img class="align-self-start mr-3 comment-icon" src="images/profilepic/ted.jpg">
-                      
-                      <div class="media-body comment-body">
-                        <span class><a href="account-profile" class="badge badge-light">By Ted Mosby | @prof_Brosby</a></span>
-                        <small class="text-muted">02/28/2020 11:39 AM</small> <br>
-                          <span>
-                           I love pancakes!
-                          </span>
-                      </div>
-                    </li>
-
-                  </ul>
-
-                
+                <!-- Comments & Replies will be loaded by 'getCommentRow' in scripts.js-->
 
               </ul>
+
+              <!-- Modal for REPLY BUTTON -->
+                <div class="modal fade" id="reply" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog" style="margin-top: 60px;" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">New Reply</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+
+                      <div class="modal-body">
+                          <form>
+                              <div class="form-group">
+                                  <label for="reply-label" class="col-form-label">Please input your reply:</label>
+                                  <input type="text" class="form-control" id="reply-input">
+                              </div>
+                          </form>
+                      </div>
+
+                      <div class="modal-footer">
+                          <button id="reply-btn" type="button" class="btn btn-primary">Reply</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      </div>
+
+                    </div> 
+                  </div>        
+                </div>
+
               
               <button type="button" class="btn btn-outline-success btn-lg btn-block" id="edit_post-btn">Edit Recipe Post</button>
  
