@@ -129,20 +129,28 @@ $(document).ready(function() {
     });
 
 /* -------------------------------------------------- Homepage.hbs -------------------------------------------------- */
+    if(window.location.href.includes('homepage')){
+        if (localStorage.getItem('isGuest') == 0){
+            $('#accProfile').addClass("disabled")
+            $('#create').hide()
+            $('#navbar-dropdown').html("Guest User")
+        }
+        else{
+            $('#accProfile').addClass("enabled")
+            $('#create').show()
+        }
+    
+        $('#logout').click(function(){
+            sessionStorage.clear();
+        })
 
-    if (localStorage.getItem('isGuest') == 0){
-        $('#accProfile').addClass("disabled")
-        $('#create').hide()
-        $('#navbar-dropdown').html("Guest User")
-    }
-    else{
-        $('#accProfile').addClass("enabled")
-        $('#create').show()
-    }
+        $.get("posts", function (data, status) {
+            console.log(data);
+            console.log(status);
+        });
 
-    $('#logout').click(function(){
-        sessionStorage.clear();
-    })
+    }
+    
 
 /* -------------------------------------------------- CreateRecipePost.hbs -------------------------------------------------- */
     if (window.location.href.includes("create-recipe")){
@@ -513,7 +521,7 @@ $("#postRecipe").click(function () {
         $('#addComment-btn').click(function() {  
             var content = $("#olinput").val();
             console.log(content);
-            var replies = [0]
+            var replies = [{}];
             /*
             the sample comment below is just dummy for now
 

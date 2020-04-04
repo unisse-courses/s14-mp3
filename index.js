@@ -682,11 +682,15 @@
 
   // HOMEPAGE
     app.get('/home', function(req, res) {
+
+      var data = posts
+
         res.render('Homepage', {
           // for main.hbs
             styles: "css/styles_inside.css",
             tab_title: "Homepage",
-            body_class: "inside"
+            body_class: "inside",
+            posts: data
           
           // for this page
             /* sam:
