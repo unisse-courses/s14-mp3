@@ -53,7 +53,7 @@ const options = { useNewUrlParser: true,
 
 mongoose.connect(databaseURL, options);
 
-const AuthorSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
     {
         firstname:  {type: String, required: true, max: 100},
         lastname:   {type: String, required: true, max: 100},
@@ -68,4 +68,4 @@ const AuthorSchema = new mongoose.Schema(
     }
     );
 
-module.exports = mongoose.model('reciPeeps', AuthorSchema);
+module.exports = mongoose.model('user', userSchema);

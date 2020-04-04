@@ -10,7 +10,9 @@
   const port = 3000; // sam: bc thats whats in the specs
 
 // IMPORTING THE MODEL
-  // [SAMPLE CODE] const studentModel = require('./models/student'); 
+  // [SAMPLE CODE] const studentModel = require('./models/student');
+  const User = require('./models/users');
+
 
 // ENGINE SET-UP
   app.engine( 'hbs', exphbs({
@@ -859,31 +861,35 @@
         lastname:   req.body.lastname,
         username:   req.body.username,
         password:   req.body.password,
-        // profilepic: `${req.body.filename}.png`,
+        profilepic: `${req.body.filename}.png`,
         bio:        req.body.bio
       };
-      
-      /* TODO: After AJAX, Make into mongoose format
-      mongoClient.connect(databaseURL, options, function(err, client) {
-        if(err) throw err;
-        // Connect to the same database
-        const dbo = client.db(dbname);
+
+      user.save(function(err, user) {
+        var result;
     
-        // More stuff to go here ...
+        /** == README == **
+          Added error handling! Check out the object printed out in the console.
+          (Try clicking Add Student when the name or id is blank)
+        **/
+        if (err) {
+          console.log(err.errors);
     
-        dbo.collection(collectionName).insertOne(user, function(err, res) {
-          if (err) throw err;
-      
-          console.log(res);
-          console.log("Insert Successful!");
-      
-          client.close();
-        });
+          result = { success: false, message: "User was not created!" }
+          res.send(result);
+          // throw err; // This is commented so that the server won't be killed.
+        } else {
+          console.log("Successfully added student!");
+          console.log(student); // Check out the logs and see there's a new __v attribute!
+    
+          // Let's create a custom response that the student was created successfully
+          result = { success: true, message: "User created!" }
+    
+          // Sending the result as is to handle it the "AJAX-way".
+          res.send(result);
+        }
+    
       });
-      */
-    
-      const result = { success: true, message: "User created!" };
-      res.send(result);
     });
     
 
