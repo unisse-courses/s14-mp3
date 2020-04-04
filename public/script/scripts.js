@@ -354,6 +354,29 @@ $("#postRecipe").click(function () {
 
         document.getElementById('upvote-icon').addEventListener('click', function () {
             // TODO: code to increase score
+            
+            var person = $("#title_username-badge").text();
+            var strings = person.split(" ");
+
+            var first = strings[0];
+            var last = strings[1];
+            var username = strings[2];
+
+            var dataStuff = {
+                num:        $("#voteCount").text(),
+                firstname:  first,
+                lastname:   last,
+                username:   username
+            }
+            
+
+            $.post("upvote", dataStuff, function (data, status) {
+                    
+                var num = parseInt(dataStuff.num);
+                num++;
+
+                $("#voteCount").text(num.toString());
+            });
 
             console.log("plus 1 vote")
         });
@@ -361,6 +384,29 @@ $("#postRecipe").click(function () {
         document.getElementById('downvote-icon').addEventListener('click', function () {
             // TODO: code to decrease score
             
+            var person = $("#title_username-badge").text();
+            var strings = person.split(" ");
+
+            var first = strings[0];
+            var last = strings[1];
+            var username = strings[3];
+
+            var dataStuff = {
+                num:        $("#voteCount").text(),
+                firstname:  first,
+                lastname:   last,
+                username:   username
+            }
+            
+
+            $.post("downvote", dataStuff, function (data, status) {
+                   
+                var num = parseInt(dataStuff.num);
+                num++;
+
+                $("#voteCount").text(num.toString());
+                
+            });
             console.log("minus 1 vote")
         });
 

@@ -888,7 +888,7 @@
 
   // USER LOGIN FEATURE
     // POST
-    app.post('/loginAccount', function(req, res) {
+  app.post('/loginAccount', function(req, res) {
       console.log(req.body);
 
       var account = {
@@ -1036,8 +1036,35 @@
   
   // UPVOTE/DOWNVOTE
 
+  app.post('/upvote', function(req, res) {
+    var num =     req.body.num;
+    var first =   req.body.firstname;
+    var last =    req.body.lastname;
+    var usrname = req.body.username;
+
+    
+    postModel.findOneAndUpdate( {'user.firstname': first}, function(err, user) {
+      if (err) throw err;
+      console.log(user);
+      res.send(user);
+    });
+    
+
+  });
 
 
+  app.post('/downvote', function(req, res) {
+    var num =     req.body.num;
+    var first =   req.body.firstname;
+    var last =    req.body.lastname;
+    var usrname = req.body.username;
+
+    postModel.findOneAndUpdate( {'user.firstname': first}, function(err, user) {
+      if (err) throw err;
+      console.log(user);
+      res.send(user);
+    });
+  })
 
 /* -------------------------------------------------- divider lang po -------------------------------------------------- */
 
