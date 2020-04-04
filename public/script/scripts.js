@@ -96,19 +96,20 @@ $(document).ready(function() {
         else
             document.getElementById("validPass").style.color = "#F1F7ED";
 
-        var user = {
+        var person = {
             firstname: first,
             lastname: last,
             username: user,
             password: pass,
-            profilepic: pic,
+            //profilepic: pic,
             bio: bio
         };
 
         console.log(first, last, user, pass, bio);
 
-        $.post('addAccount', user, function(data,status) {
+        $.post('addAccount', person, function(data,status) {
             console.log(data);
+            console.log("Hi");
         });
     });
 

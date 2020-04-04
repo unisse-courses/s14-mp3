@@ -1,23 +1,27 @@
-// TODO: Mongoose Code AFTER doing all the AJAX per page
+const mongoose = require('mongoose');
 
-/*
-    code we can use as a basis (authors.js file in ms. unisse's github foler "node-mongoose-reference"):
+const databaseURL = 'mongodb://localhost:27017/foodiesdb';
 
-    const mongoose = require('mongoose');
-    const databaseURL = 'mongodb://localhost:27017/librarydb';
-
-    const options = { useNewUrlParser: true,
+const options = { useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false };
+    useFindAndModify: false 
+};
 
-    mongoose.connect(databaseURL, options);
 
-    const AuthorSchema = new mongoose.Schema(
+mongoose.connect(databaseURL, options);
+
+const postSchema = new mongoose.Schema( // TO BE UPDATED AFTER COMMENTS
     {
-        first_name: {type: String, required: true, max: 100},
-        family_name: {type: String, required: true, max: 100},
-        date_of_birth: {type: Date},
-        date_of_death: {type: Date},
+        title: {type: String, required: true, max: 100},
+        user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
+        upvotes: {type: String, required: true, max: 100},
+        dateposted: {type: String, required: true, max: 100},
+        timeposted: {type: String, required: true, max: 100},
+        recipe_picture: {type: String, required: true, max: 100},
+        description: {type: String, required: true, max: 100},
+        ingredients: [{type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient', required: true}],
+        instructions: [{type: String, required: true, max: 100}],
+        comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment', required: true}]
     },
     {
         toObject: { virtuals: true },
@@ -25,18 +29,4 @@
     }
     );
 
-    AuthorSchema.virtual('full_name')
-    .get(function() {
-        return this.family_name + ', ' + this.first_name;
-    })
-    .set(function(value) {
-        var splitName = value.split(', ');
-
-        this.family_name = splitName[0]
-        this.first_name = splitName[1]
-    });
-
-
-    module.exports = mongoose.model('Author', AuthorSchema);
-    
-*/
+module.exports = mongoose.model('Post', postSchema);

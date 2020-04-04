@@ -11,7 +11,10 @@
 
 // IMPORTING THE MODEL
   // [SAMPLE CODE] const studentModel = require('./models/student');
-  const User = require('./models/users');
+  const userModel = require('./models/users');
+  const postModel = require('./models/posts');
+  const ingredientsModel = require('./models/ingredients');
+  const commentsModel = require('./models/ingredients');
 
 
 // ENGINE SET-UP
@@ -21,14 +24,6 @@
     layoutsDir: path.join(__dirname, '/views/layouts'),
     partialsDir: path.join(__dirname, '/views/partials'),
     helpers: {
-        /*
-            ideas so far
-
-            helpers that can be used for the navbar partial:
-            - getFirstName (for the dropdown)
-            - getProfilePic (for the icon)
-        */
-        
         incremented: function(index) {
             index++;
             return index;
@@ -860,16 +855,17 @@
     // POST
     app.post('/addAccount', function(req, res) {
       console.log(req.body);
-      var user = {
+
+      var user_person = new userModel({
         firstname:  req.body.firstname,
         lastname:   req.body.lastname,
         username:   req.body.username,
         password:   req.body.password,
         profilepic: `${req.body.filename}.png`,
         bio:        req.body.bio
-      };
+      });
 
-      user.save(function(err, user) {
+      user_person.save(function(err, user) {
         var result;
     
         /** == README == **
@@ -882,9 +878,9 @@
           result = { success: false, message: "User was not created!" }
           res.send(result);
           // throw err; // This is commented so that the server won't be killed.
-        } else {
-          console.log("Successfully added student!");
-          console.log(student); // Check out the logs and see there's a new __v attribute!
+        }
+        else {
+          console.log(user); // Check out the logs and see there's a new __v attribute!
     
           // Let's create a custom response that the student was created successfully
           result = { success: true, message: "User created!" }
