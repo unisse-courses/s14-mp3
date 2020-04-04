@@ -770,15 +770,8 @@
             styles: "css/styles_inside.css",
             tab_title: "Create Post",
             body_class: "inside"
-          
-          // for this page
-            /* sam:
-                possible variables to transfer:
-                - title
-                - description of post
-                - table of ingredients
-                - table of instructions
-            */
+
+            // FEATURE: '/addPost'
         })
     });
 
@@ -910,7 +903,45 @@
 
   
   // DELETE ACCOUNT PROFILE
+    // POST
+    app.post('/addPost', function(req, res) {
+      console.log(req.body);
 
+      var user_person = new userModel({
+        firstname:  req.body.firstname,
+        lastname:   req.body.lastname,
+        username:   req.body.username,
+        password:   req.body.password,
+        profilepic: `${req.body.filename}.png`,
+        bio:        req.body.bio
+      });
+
+      user_person.save(function(err, user) {
+        var result;
+    
+        /** == README == **
+          Added error handling! Check out the object printed out in the console.
+          (Try clicking Add Student when the name or id is blank)
+        **/
+        if (err) {
+          console.log(err.errors);
+    
+          result = { success: false, message: "User was not created!" }
+          res.send(result);
+          // throw err; // This is commented so that the server won't be killed.
+        }
+        else {
+          console.log(user); // Check out the logs and see there's a new __v attribute!
+    
+          // Let's create a custom response that the student was created successfully
+          result = { success: true, message: "User created!" }
+    
+          // Sending the result as is to handle it the "AJAX-way".
+          res.send(result);
+        }
+    
+      });
+    });
   
   // CREATE RECIPE POST
 

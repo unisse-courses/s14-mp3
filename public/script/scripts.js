@@ -109,7 +109,6 @@ $(document).ready(function() {
 
         $.post('addAccount', person, function(data,status) {
             console.log(data);
-            console.log("Hi");
         });
     });
 
@@ -252,8 +251,14 @@ $("#postRecipe").click(function () {
         document.getElementById("warning").style.color = "white";
         document.getElementById("warning").value ='';
     }
-      
-    console.log("Recipe Post Created!"); 
+    
+    var new_post {
+        
+    };
+
+    $.post('addPost', new_post, function(data,status) {
+        console.log(data);
+    });
       
   });
 //adding an ingredient to the list

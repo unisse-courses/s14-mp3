@@ -14,7 +14,7 @@ const postSchema = new mongoose.Schema( // TO BE UPDATED AFTER COMMENTS
     {
         title: {type: String, required: true, max: 100},
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
-        upvotes: {type: String, required: true, max: 100},
+        upvotes: {type:Number, required: true, default:0},
         dateposted: {type: String, required: true, max: 100},
         timeposted: {type: String, required: true, max: 100},
         recipe_picture: {type: String, required: true, max: 100},
