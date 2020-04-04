@@ -949,10 +949,56 @@
 
   
   // SEARCH RECIPE POST
+  app.post('/find-post', function(req, res) {
+    var searchingFor = req.body;
+    var results;
+    var found;
+    //call database
 
+
+    //if post found return success and post details will be attached and send back
+
+    if(found){
+      results = {
+        success: true,
+        post: found
+      }
+    }
+    //else, only return success false
+    else
+    {
+      results = {
+        success: false,
+      }
+    }
+    res.send(results);
+  })
   
   // SEARCH ACCOUNT NAME
+  app.post('/find-account', function(req, res) {
+    var searchingFor = req.body;
+    var results;
+    var account;
+    //call database
 
+
+    //if post found return success and account details will be attached and send back
+
+    if(found){
+      results = {
+        success: true,
+        user: account
+      }
+    }
+    //else, only return success false
+    else
+    {
+      results = {
+        success: false,
+      }
+    }
+    res.send(results);
+  })
   
   // UPVOTE/DOWNVOTE
 
