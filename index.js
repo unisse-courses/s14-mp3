@@ -918,19 +918,16 @@
   // POST COMMENT
     app.post('/addCommentRow', function(req, res) {
       var comment = { // TODO: havent updated the info below; its still from the students example
-        name: req.body.name,
-        id: req.body.id,
-        img: `/images/${req.body.gender}.png`,
-
         user: {
-          firstname: 'Marshall',
-          lastname: 'Eriksen',
-          username: '@bigFudge',
-          profilepic: '/images/profilepic/marsh.jpg'
+          firstname:  req.body.user.firstname,
+          lastname:   req.body.user.lastname,
+          username:   req.body.user.username,
+          profilepic: req.body.user.profilepic
         },
-        content:'I love Pancakes!',
-        date: 'February 28, 2020',
-        time: '11:39 AM',
+        content:      req.body.content,
+        date:         req.body.date,
+        time:         req.body.time,
+        replies:      req.body.replies
       }
     
       posts[0].comments.push(comment);

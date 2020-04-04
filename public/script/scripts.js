@@ -419,7 +419,15 @@ $("#postRecipe").click(function () {
                 // LIST is the BIGGEST div
                 list.append(profileImg);
                 list.append(bigDiv);
-
+/*
+                if (item.replies.length != 0)
+                {
+                    for ( i = 0 ; i < item.replies.length ; i++)
+                    {
+                        appendReply(item.replies[i], list)
+                    }
+                }
+*/
             // STEP 5: Append the BIGGEST div to the PARENT DIV (which is the parameter of this function)
                 parentDiv.append(list);
         }
@@ -427,8 +435,8 @@ $("#postRecipe").click(function () {
         function appendReply(item, parentDiv) {
             // We declared a different variable since the object 'user' was NESTED
             // the variable 'post' from the dummy data is represented by 'item'
-            var reply = item.replies[0];
-            var user = reply.user;
+            var reply = item;
+            var user = item.user;
 
             // STEP 1: Create a variable for each tag used (we did ours in order of the original html code)
                 var bigUL = document.createElement('ul');
@@ -494,49 +502,47 @@ $("#postRecipe").click(function () {
                 data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
                     appendComment(item, commentsContainer);
                 });
-                
+            /*   
             // This is a loop that appends ALL the existing REPLIES of the DUMMY DATA
                 data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
                     appendReply(item, commentsContainer);
                 });
+            */
         });
 
-        $('#addCommentRow').click(function() {  //TODO: NOT YET DONE
-            var content = $('#reply-input').val();
-            var idnum = $('#idnum').val();
-    
-            // this gets the input where the attribute name is 'gender'
-            // :checked checks if the item is selected or not
-            var gender = $("input[name='gender']:checked").val();
-    
-            var newStudent = {
-                name: name,
-                id: idnum,
-                gender: gender
-            };
+        $('#addComment-btn').click(function() {  
+            var content = $("#olinput").val();
+            console.log(content);
+            var replies = [0]
+            /*
+            the sample comment below is just dummy for now
 
-            var comment = {
-                name: name,
-                img: '/images/${req.body.gender}.png',
+            */
+            if(content != "") // if comment field is not empty
+            {
+                var comment = {
+                
+                    user: {
+                      firstname:    'Marshall',
+                      lastname:     'Eriksen',
+                      username:     '@bigFudge',
+                      profilepic:   '/images/profilepic/marsh.jpg'
+                    },
+                    content:         content,
+                    date:            'February 28, 2020',
+                    time:            '11:39 AM',
+                    replies:         replies
+                  }
         
-                user: {
-                  firstname: 'Marshall',
-                  lastname: 'Eriksen',
-                  username: '@bigFudge',
-                  profilepic: '/images/profilepic/marsh.jpg'
-                },
-                content:'I love Pancakes!',
-                date: 'February 28, 2020',
-                time: '11:39 AM',
-              }
-    
-            $.post('addStudent', newStudent, function(data,status) {
-                console.log(data);
-    
-                var studentListContainer = $('#studentList');
-                addStudentDiv(data, studentListContainer)
-            });
-    
+                $.post('addCommentRow', comment, function(data,status) {
+                    console.log(data);
+                    var commentsContainer = $("#commentList");
+                    appendComment(comment, commentsContainer);
+                });
+            }
+            else{
+                //if empty does nothing or alerts that u need to fill in the comment 
+            }
         });
 
 
