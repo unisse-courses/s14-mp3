@@ -130,66 +130,66 @@ $(document).ready(function() {
 
 /* -------------------------------------------------- Homepage.hbs -------------------------------------------------- */
 
-if (localStorage.getItem('isGuest') == 0){
-    $('#accProfile').addClass("disabled")
-    $('#create').hide()
-    $('#navbar-dropdown').html("Guest User")
-  }
-  else{
-    $('#accProfile').addClass("enabled")
-    $('#create').show()
-  }
+    if (localStorage.getItem('isGuest') == 0){
+        $('#accProfile').addClass("disabled")
+        $('#create').hide()
+        $('#navbar-dropdown').html("Guest User")
+    }
+    else{
+        $('#accProfile').addClass("enabled")
+        $('#create').show()
+    }
 
-  $('#logout').click(function(){
-    sessionStorage.clear();
-  })
+    $('#logout').click(function(){
+        sessionStorage.clear();
+    })
 
 /* -------------------------------------------------- CreateRecipePost.hbs -------------------------------------------------- */
-if (window.location.href.includes("create-recipe")){
-    var i;
+    if (window.location.href.includes("create-recipe")){
+        var i;
 
-// initializing array of ingredients
-var ulist = document.getElementsByTagName("UL")[1];
-var arrIngredients = ulist.getElementsByTagName("LI");
-    
-for (i = 0; i < arrIngredients.length; i++) {
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close1";
-    span.appendChild(txt);
-    arrIngredients[i].appendChild(span);
-}
-
-var close1 = document.getElementsByClassName("close1");
-var i;
-for (i = 0; i < close1.length; i++) {
-    close1[i].onclick = function() {
-    var div = this.parentElement;
-    div.remove();
-    }
-}
-
-// initializing array of instructions
-    var olist = document.getElementsByTagName("OL")[0];
-    var arrInstructions = olist.getElementsByTagName("LI");
-
-    for (i = 0; i < arrInstructions.length; i++) {
+    // initializing array of ingredients
+    var ulist = document.getElementsByTagName("UL")[1];
+    var arrIngredients = ulist.getElementsByTagName("LI");
+        
+    for (i = 0; i < arrIngredients.length; i++) {
         var span = document.createElement("SPAN");
         var txt = document.createTextNode("\u00D7");
-        span.className = "close2";
+        span.className = "close1";
         span.appendChild(txt);
-        arrInstructions[i].appendChild(span);
+        arrIngredients[i].appendChild(span);
     }
 
-    var close2 = document.getElementsByClassName("close2");
+    var close1 = document.getElementsByClassName("close1");
     var i;
-    for (i = 0; i < close2.length; i++) {
-        close2[i].onclick = function() {
+    for (i = 0; i < close1.length; i++) {
+        close1[i].onclick = function() {
         var div = this.parentElement;
         div.remove();
         }
     }
-}
+
+    // initializing array of instructions
+        var olist = document.getElementsByTagName("OL")[0];
+        var arrInstructions = olist.getElementsByTagName("LI");
+
+        for (i = 0; i < arrInstructions.length; i++) {
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close2";
+            span.appendChild(txt);
+            arrInstructions[i].appendChild(span);
+        }
+
+        var close2 = document.getElementsByClassName("close2");
+        var i;
+        for (i = 0; i < close2.length; i++) {
+            close2[i].onclick = function() {
+            var div = this.parentElement;
+            div.remove();
+            }
+        }
+    }
 
 
 
@@ -248,67 +248,67 @@ $("#postRecipe").click(function () {
       
   });
 //adding an ingredient to the list
-$("#addIngredient").click(function () { 
-    var li = document.createElement("li");
-    var inputValue1 = document.getElementById("ulinput1").value;
-    var inputValue2 = document.getElementById("ulinput2").value;
-    var inputValue3 = document.getElementById("ulinput3").value;
+    $("#addIngredient").click(function () { 
+        var li = document.createElement("li");
+        var inputValue1 = document.getElementById("ulinput1").value;
+        var inputValue2 = document.getElementById("ulinput2").value;
+        var inputValue3 = document.getElementById("ulinput3").value;
 
-    var inputALL = inputValue1 + " " + inputValue2 + " " + inputValue3;
+        var inputALL = inputValue1 + " " + inputValue2 + " " + inputValue3;
 
-    var t = document.createTextNode(inputALL);
-    li.appendChild(t);
-    if (inputValue1 === '' && inputValue2 === '' && inputValue3 === '') {
-        alert("You must write something!");
-    } else {
-        document.getElementById("ulist").appendChild(li);
-    }
-    document.getElementById("ulinput1").value = "";
-    document.getElementById("ulinput2").value = "";
-    document.getElementById("ulinput3").value = "";
+        var t = document.createTextNode(inputALL);
+        li.appendChild(t);
+        if (inputValue1 === '' && inputValue2 === '' && inputValue3 === '') {
+            alert("You must write something!");
+        } else {
+            document.getElementById("ulist").appendChild(li);
+        }
+        document.getElementById("ulinput1").value = "";
+        document.getElementById("ulinput2").value = "";
+        document.getElementById("ulinput3").value = "";
 
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close1";
-    span.appendChild(txt);
-    li.appendChild(span);
-    li.className = "list_item";
-      
-    for (var i = 0; i < close1.length; i++) {
-        close1[i].onclick = function() {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close1";
+        span.appendChild(txt);
+        li.appendChild(span);
+        li.className = "list_item";
+        
+        for (var i = 0; i < close1.length; i++) {
+            close1[i].onclick = function() {
+                var div = this.parentElement;
+                div.remove();
+            }
+        }
+    });
+    //add instuction to the list
+    $("#addInstruction").click(function () { 
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("olinput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+            alert("You must write something!");
+        } else {
+        document.getElementById("olist").appendChild(li);
+        }
+        document.getElementById("olinput").value = "";
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close2";
+        span.appendChild(txt);
+        li.appendChild(span);
+        li.className = "list_item";
+                    
+                    
+        //this one is to place the function remove on the newly added list item
+        for (var i = 0; i < close2.length; i++) {
+            close2[i].onclick = function() {
             var div = this.parentElement;
             div.remove();
+            }
         }
-    }
-  });
-//add instuction to the list
-$("#addInstruction").click(function () { 
-    var li = document.createElement("li");
-    var inputValue = document.getElementById("olinput").value;
-    var t = document.createTextNode(inputValue);
-    li.appendChild(t);
-    if (inputValue === '') {
-        alert("You must write something!");
-    } else {
-    document.getElementById("olist").appendChild(li);
-    }
-    document.getElementById("olinput").value = "";
-
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close2";
-    span.appendChild(txt);
-    li.appendChild(span);
-    li.className = "list_item";
-                
-                
-    //this one is to place the function remove on the newly added list item
-    for (var i = 0; i < close2.length; i++) {
-        close2[i].onclick = function() {
-        var div = this.parentElement;
-        div.remove();
-        }
-    }
     
     });
 /* -------------------------------------------------- RecipePost.hbs -------------------------------------------------- */
@@ -419,7 +419,15 @@ $("#addInstruction").click(function () {
                 // LIST is the BIGGEST div
                 list.append(profileImg);
                 list.append(bigDiv);
-
+/*
+                if (item.replies.length != 0)
+                {
+                    for ( i = 0 ; i < item.replies.length ; i++)
+                    {
+                        appendReply(item.replies[i], list)
+                    }
+                }
+*/
             // STEP 5: Append the BIGGEST div to the PARENT DIV (which is the parameter of this function)
                 parentDiv.append(list);
         }
@@ -427,8 +435,8 @@ $("#addInstruction").click(function () {
         function appendReply(item, parentDiv) {
             // We declared a different variable since the object 'user' was NESTED
             // the variable 'post' from the dummy data is represented by 'item'
-            var reply = item.replies[0];
-            var user = reply.user;
+            var reply = item;
+            var user = item.user;
 
             // STEP 1: Create a variable for each tag used (we did ours in order of the original html code)
                 var bigUL = document.createElement('ul');
@@ -494,49 +502,47 @@ $("#addInstruction").click(function () {
                 data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
                     appendComment(item, commentsContainer);
                 });
-                
+            /*   
             // This is a loop that appends ALL the existing REPLIES of the DUMMY DATA
                 data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
                     appendReply(item, commentsContainer);
                 });
+            */
         });
 
-        $('#addCommentRow').click(function() {  //TODO: NOT YET DONE
-            var content = $('#reply-input').val();
-            var idnum = $('#idnum').val();
-    
-            // this gets the input where the attribute name is 'gender'
-            // :checked checks if the item is selected or not
-            var gender = $("input[name='gender']:checked").val();
-    
-            var newStudent = {
-                name: name,
-                id: idnum,
-                gender: gender
-            };
+        $('#addComment-btn').click(function() {  
+            var content = $("#olinput").val();
+            console.log(content);
+            var replies = [0]
+            /*
+            the sample comment below is just dummy for now
 
-            var comment = {
-                name: name
-                img: `/images/${req.body.gender}.png`,
+            */
+            if(content != "") // if comment field is not empty
+            {
+                var comment = {
+                
+                    user: {
+                      firstname:    'Marshall',
+                      lastname:     'Eriksen',
+                      username:     '@bigFudge',
+                      profilepic:   '/images/profilepic/marsh.jpg'
+                    },
+                    content:         content,
+                    date:            'February 28, 2020',
+                    time:            '11:39 AM',
+                    replies:         replies
+                  }
         
-                user: {
-                  firstname: 'Marshall',
-                  lastname: 'Eriksen',
-                  username: '@bigFudge',
-                  profilepic: '/images/profilepic/marsh.jpg'
-                },
-                content:'I love Pancakes!',
-                date: 'February 28, 2020',
-                time: '11:39 AM',
-              }
-    
-            $.post('addStudent', newStudent, function(data,status) {
-                console.log(data);
-    
-                var studentListContainer = $('#studentList');
-                addStudentDiv(data, studentListContainer)
-            });
-    
+                $.post('addCommentRow', comment, function(data,status) {
+                    console.log(data);
+                    var commentsContainer = $("#commentList");
+                    appendComment(comment, commentsContainer);
+                });
+            }
+            else{
+                //if empty does nothing or alerts that u need to fill in the comment 
+            }
         });
 
 
@@ -581,67 +587,67 @@ if (window.location.href.includes("account-profile"))
 
 /* -------------------------------------------------- EditAccountProfile.hbs -------------------------------------------------- */
 
-$("#updateAccount").click(function () { 
-    var first = document.getElementById("EDITfirstName").value;
-                var last = document.getElementById("EDITlastName").value;
-                var user = document.getElementById("EDITuserName").value;
-                var pass = document.getElementById("EDITpassword").value;
-                //var pic = document.getElementById("EDITprofilePic").value
-                var bio = document.getElementById("EDITbio").value;
-                
-                if (first == ""){
-                    document.getElementById("validFirst").textContent ='Missing first name';
-                    document.getElementById("validFirst").style.color = "red";
-                    return false;
-                }
-                else {
-                    document.getElementById("validFirst").style.color = "white";
-                }
+    $("#updateAccount").click(function () { 
+        var first = document.getElementById("EDITfirstName").value;
+        var last = document.getElementById("EDITlastName").value;
+        var user = document.getElementById("EDITuserName").value;
+        var pass = document.getElementById("EDITpassword").value;
+        //var pic = document.getElementById("EDITprofilePic").value
+        var bio = document.getElementById("EDITbio").value;
                     
-                if(last == ""){
-                    document.getElementById("validLast").style.color = "red";
-                    document.getElementById("validLast").textContent ='Missing last name';
-                    return false;
-                    
-                }
-                else {
-                    document.getElementById("validLast").style.color = "white";
-                }
+        if (first == ""){
+            document.getElementById("validFirst").textContent ='Missing first name';
+            document.getElementById("validFirst").style.color = "red";
+            return false;
+        }
+        else {
+            document.getElementById("validFirst").style.color = "white";
+        }
+                        
+        if(last == ""){
+            document.getElementById("validLast").style.color = "red";
+            document.getElementById("validLast").textContent ='Missing last name';
+            return false;
+                        
+        }
+        else {
+            document.getElementById("validLast").style.color = "white";
+        }
 
-                if(user == ""){
-                    document.getElementById("validUser").textContent ='Please input your password';
-                    document.getElementById("validUser").style.color = "red";
-                    return false;
-                    
-                }
-                else{
-                    document.getElementById("validUser").style.color = "white";
-                }
+        if(user == ""){
+            document.getElementById("validUser").textContent ='Please input your password';
+            document.getElementById("validUser").style.color = "red";
+            return false;
+                        
+        }
+        else{
+            document.getElementById("validUser").style.color = "white";
+        }
 
-                if(pass == ""){
-                    document.getElementById("validPass").textContent ='Please input your password';
-                    document.getElementById("validPass").style.color = "red";
-                    return false;
-                }
-                else {
-                    document.getElementById("validPass").style.color = "white";
-                }
+        if(pass == ""){
+            document.getElementById("validPass").textContent ='Please input your password';
+            document.getElementById("validPass").style.color = "red";
+            return false;
+        }
+        else {
+            document.getElementById("validPass").style.color = "white";
+        }
+        
+    });
+
+    function showEditPreview(file) {
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+            $('#EDITpreviewPic').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(file.files[0]); 
+        }
+    }
     
-});
-
-function showEditPreview(file) {
-    if (file.files && file.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-        $('#EDITpreviewPic').attr('src', e.target.result);
-    }
-    reader.readAsDataURL(file.files[0]); 
-    }
-}
-  
-$("#EDITprofilePic").change(function() {
-    showEditPreview(this);
-});
+    $("#EDITprofilePic").change(function() {
+        showEditPreview(this);
+    });
 
 
 /* -------------------------------------------------- EditRecipePost.hbs -------------------------------------------------- */
@@ -735,128 +741,155 @@ $("#EDITprofilePic").change(function() {
 
     $("#EDITingredient").click(function () { 
         var li = document.createElement("li");
-                var inputValue1 = document.getElementById("EDITulinput1").value;
-                var inputValue2 = document.getElementById("EDITulinput2").value;
-                var inputValue3 = document.getElementById("EDITulinput3").value;
+        var inputValue1 = document.getElementById("EDITulinput1").value;
+        var inputValue2 = document.getElementById("EDITulinput2").value;
+        var inputValue3 = document.getElementById("EDITulinput3").value;
             
-                var inputALL = inputValue1 + inputValue2 + inputValue3;
+        var inputALL = inputValue1 + inputValue2 + inputValue3;
             
-                var t = document.createTextNode(inputALL);
+        var t = document.createTextNode(inputALL);
 
-                li.appendChild(t);
-                if (inputValue1 === '' && inputValue2 === '' && inputValue3 === '') {
-                    alert("You must write something!");
-                } else {
-                    document.getElementById("EDITulist").appendChild(li);
-                }
-                document.getElementById("EDITulinput1").value = "";
-                document.getElementById("EDITulinput2").value = "";
-                document.getElementById("EDITulinput3").value = "";
+        li.appendChild(t);
+        if (inputValue1 === '' && inputValue2 === '' && inputValue3 === '') {
+            alert("You must write something!");
+        } else {
+            document.getElementById("EDITulist").appendChild(li);
+        }
+        document.getElementById("EDITulinput1").value = "";
+        document.getElementById("EDITulinput2").value = "";
+        document.getElementById("EDITulinput3").value = "";
 
-                var span = document.createElement("SPAN");
-                var txt = document.createTextNode("\u00D7");
-                span.className = "close1";
-                span.appendChild(txt);
-                li.appendChild(span);
-                li.className = "list_item";
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close1";
+        span.appendChild(txt);
+        li.appendChild(span);
+        li.className = "list_item";
 
 
-                //this one is to place the function remove on the newly added list item
-                for (i = 0; i < close1.length; i++) {
-                    close1[i].onclick = function() {
-                        var div = this.parentElement;
-                        div.remove();
-                    }
-                }
-        
+        //this one is to place the function remove on the newly added list item
+        for (i = 0; i < close1.length; i++) {
+            close1[i].onclick = function() {
+            var div = this.parentElement;
+            div.remove();
+            }
+        }
     });
 
     $("#EDITinstruction").click(function () { 
         var li = document.createElement("li");
-                var inputValue = document.getElementById("EDITolinput").value;
-                var t = document.createTextNode(inputValue);
-                li.appendChild(t);
-                if (inputValue === '') {
-                    alert("You must write something!");
-                } else {
-                    document.getElementById("EDITolist").appendChild(li);
-                }
-                document.getElementById("EDITolinput").value = "";
+        var inputValue = document.getElementById("EDITolinput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+            alert("You must write something!");
+        } else {
+            document.getElementById("EDITolist").appendChild(li);
+        }
+        document.getElementById("EDITolinput").value = "";
 
-                var span = document.createElement("SPAN");
-                var txt = document.createTextNode("\u00D7");
-                span.className = "close2";
-                span.appendChild(txt);
-                li.appendChild(span);
-                li.className = "list_item";
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close2";
+        span.appendChild(txt);
+        li.appendChild(span);
+        li.className = "list_item";
 
 
-                //this one is to place the function remove on the newly added list item
-                for (i = 0; i < close2.length; i++) {
-                    close2[i].onclick = function() {
-                        var div = this.parentElement;
-                        div.remove();
-                    }
-                }
-
-        
+        //this one is to place the function remove on the newly added list item
+        for (i = 0; i < close2.length; i++) {
+            close2[i].onclick = function() {
+            var div = this.parentElement;
+            div.remove();
+            }
+        }
     });
 
 /* -------------------------------------------------- SearchPage.hbs -------------------------------------------------- */
 
-if(window.location.href.includes("search")){
-    $('.post_preview-container').hide();
-    $('.profile-container').hide();
+    if(window.location.href.includes("search")){
+        $('.post_preview-container').hide();
+        $('.profile-container').hide();
 
-    if (localStorage.getItem('isGuest') == 0){
-        $('#accProfile').addClass("disabled")
-        $('#create').hide()
+        if (localStorage.getItem('isGuest') == 0){
+            $('#accProfile').addClass("disabled")
+            $('#create').hide()
 
-        $('#navbar-dropdown').html("Guest User")
-              
+            $('#navbar-dropdown').html("Guest User")   
+        }
+        else{
+            $('#accProfile').addClass("enabled")
+            $('#create').show()
+        }
+
+        $('#logout').click(function(){
+            sessionStorage.clear();
+        })
+
+        $('#button-addon2').click(function search()
+        {
+            var name = "Account Name"
+            var post = "Recipe Post"
+
+            var searchThing= $('.search_bar option:selected').text()
+            var searchString = $('#searching').val()
+            
+            
+            if(searchString == "") {
+            return false;
+            }
+            if($('.search_bar option:selected').text() == "Search by..."){
+            return false;
+            }
+            
+            if(name.localeCompare(searchThing) == 0)
+            {
+            
+            $('.post_preview-container').hide();
+            $('.profile-container').show();
+
+            $.post("find-post", searchString, function (data, status) {
+                    if(data.success){
+                        //build search stuff
+                        //createPostResults(data.post);
+                    }
+                    else{
+                        //post not found
+                        //may an alert will pop using saying that no post was found
+                    }
+                }
+            );
+            }
+            
+            if(post.localeCompare(searchThing) == 0)
+            {
+            
+                $('.profile-container').hide();
+                $('.post_preview-container').show();
+            
+                $.post("find-account", searchString, function (data, status) {
+                    if(data.success){
+                        //build search stuff
+                        //createAccountResults(data.user);
+                    }
+                    else{
+                        //post not found
+                        //may an alert will pop using saying that no account was found
+                    }
+                });
+            }
+    
+            console.log("searching for " + $('#searching').val())
+        })
+
+        function createPostResults(data, parentDiv){
+            //here we will build the search results for posts
+        }
+
+        function createAccountResults(data, parentDiv){
+            //here we will build the search results for accounts
+        }
+
     }
-    else{
-        $('#accProfile').addClass("enabled")
-        $('#create').show()
-        }
-
-    $('#logout').click(function(){
-        sessionStorage.clear();
-    })
-
-    $('#button-addon2').click(function search()
-    {
-        var name = "Account Name"
-        var post = "Recipe Post"
-        var searchThing= $('.search_bar option:selected').text()
-        var searchString = $('#searching').val()
-        
-        
-        if(searchString == "") {
-          return false;
-        }
-        if($('.search_bar option:selected').text() == "Search by..."){
-          return false;
-        }
-        
-        if(name.localeCompare(searchThing) == 0)
-        {
-          
-          $('.post_preview-container').hide();
-          $('.profile-container').show();
-          
-        }
-        
-        if(post.localeCompare(searchThing) == 0)
-        {
-          
-          $('.profile-container').hide();
-          $('.post_preview-container').show();
-          
-        }
-  
-        console.log("searching for " + $('#searching').val())
-    })
-}
 
 });

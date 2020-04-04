@@ -924,19 +924,16 @@
   // POST COMMENT
     app.post('/addCommentRow', function(req, res) {
       var comment = { // TODO: havent updated the info below; its still from the students example
-        name: req.body.name,
-        id: req.body.id,
-        img: `/images/${req.body.gender}.png`,
-
         user: {
-          firstname: 'Marshall',
-          lastname: 'Eriksen',
-          username: '@bigFudge',
-          profilepic: '/images/profilepic/marsh.jpg'
+          firstname:  req.body.user.firstname,
+          lastname:   req.body.user.lastname,
+          username:   req.body.user.username,
+          profilepic: req.body.user.profilepic
         },
-        content:'I love Pancakes!',
-        date: 'February 28, 2020',
-        time: '11:39 AM',
+        content:      req.body.content,
+        date:         req.body.date,
+        time:         req.body.time,
+        replies:      req.body.replies
       }
     
       posts[0].comments.push(comment);
@@ -955,10 +952,56 @@
 
   
   // SEARCH RECIPE POST
+  app.post('/find-post', function(req, res) {
+    var searchingFor = req.body;
+    var results;
+    var found;
+    //call database
 
+
+    //if post found return success and post details will be attached and send back
+
+    if(found){
+      results = {
+        success: true,
+        post: found
+      }
+    }
+    //else, only return success false
+    else
+    {
+      results = {
+        success: false,
+      }
+    }
+    res.send(results);
+  })
   
   // SEARCH ACCOUNT NAME
+  app.post('/find-account', function(req, res) {
+    var searchingFor = req.body;
+    var results;
+    var account;
+    //call database
 
+
+    //if post found return success and account details will be attached and send back
+
+    if(found){
+      results = {
+        success: true,
+        user: account
+      }
+    }
+    //else, only return success false
+    else
+    {
+      results = {
+        success: false,
+      }
+    }
+    res.send(results);
+  })
   
   // UPVOTE/DOWNVOTE
 
