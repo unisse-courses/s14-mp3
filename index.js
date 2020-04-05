@@ -1010,6 +1010,13 @@
     var found;
     //call database
 
+    /*
+      Below would potentially look for all the posts with that title
+      
+      Maybe what we can do is return back the results then we use JS to form the
+      format the results to be able to stick it in seachpage.hbs
+    */
+    var postResult = postModel.find({title: searchingFor})
 
     //if post found return success and post details will be attached and send back
 
@@ -1017,6 +1024,7 @@
       results = {
         success: true,
         post: found
+        //posts? : postResult
       }
     }
     //else, only return success false
@@ -1037,7 +1045,17 @@
     //call database
 
 
-    //if post found return success and account details will be attached and send back
+    /*
+      Below would potentially look for all the posts with that title
+      
+      Maybe what we can do is return back the results then we use JS to form the
+      format the results to be able to stick it in seachpage.hbs
+    */
+    var postResult = userModel.find({firstname: searchingFor ,  lastname: searchingFor})
+
+    /*
+      i honestly dont know if the .find() will work here
+    */
 
     if(found){
       results = {
