@@ -44,8 +44,8 @@
           lastname: 'LN',
           username: 'current',
           password: 'blank',
-          bio: 'blank'
-          //profilepic: dp
+          bio: 'blank',
+          profilepic: '/images/profilepic/ted.jpg'
       }
 
       // var lastUser | we can use this for the last person who logged in ?
@@ -920,18 +920,24 @@
   // DELETE ACCOUNT PROFILE
     // POST
     app.post('/addPost', function(req, res) {
+
       console.log(req.body);
 
-      var user_person = new userModel({
-        firstname:  req.body.firstname,
-        lastname:   req.body.lastname,
-        username:   req.body.username,
-        password:   req.body.password,
-        profilepic: `${req.body.filename}.png`,
-        bio:        req.body.bio
+      var new_post = new postModel({
+        title: req.body.title,
+        user: currUser,
+        upvotes: req.body.upvotes,
+        dateposted: req.body.dateposted,
+        timeposted: req.body.timeposted,
+        recipe_picture: `${req.body.recipe_picture}.png`,
+        description: req.body.description,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
       });
 
-      user_person.save(function(err, user) {
+
+
+      new_post.save(function(err, post) {
         var result;
     
         /** == README == **
@@ -946,7 +952,7 @@
           // throw err; // This is commented so that the server won't be killed.
         }
         else {
-          console.log(user); // Check out the logs and see there's a new __v attribute!
+          console.log(post); // Check out the logs and see there's a new __v attribute!
     
           // Let's create a custom response that the student was created successfully
           result = { success: true, message: "User created!" }
