@@ -14,8 +14,8 @@ const commentSchema = new mongoose.Schema(
     {
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
         content: {type: String, required: true, max: 100},
-        date: {type: String, required: true, max: 100},
-        time: {type: String, required: true, max: 100},
+        date: {type: String, required: true},
+        time: {type: String, required: true},
         replies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment', required: true}]
 
     },

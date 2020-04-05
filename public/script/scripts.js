@@ -156,122 +156,182 @@ $(document).ready(function() {
     if (window.location.href.includes("create-recipe")){
         var i;
 
-    // initializing array of ingredients
-    var ulist = document.getElementsByTagName("UL")[1];
-    var arrIngredients = ulist.getElementsByTagName("LI");
-        
-    for (i = 0; i < arrIngredients.length; i++) {
-        var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u00D7");
-        span.className = "close1";
-        span.appendChild(txt);
-        arrIngredients[i].appendChild(span);
-    }
-
-    var close1 = document.getElementsByClassName("close1");
-    var i;
-    for (i = 0; i < close1.length; i++) {
-        close1[i].onclick = function() {
-        var div = this.parentElement;
-        div.remove();
-        }
-    }
-
-    // initializing array of instructions
-        var olist = document.getElementsByTagName("OL")[0];
-        var arrInstructions = olist.getElementsByTagName("LI");
-
-        for (i = 0; i < arrInstructions.length; i++) {
-            var span = document.createElement("SPAN");
-            var txt = document.createTextNode("\u00D7");
-            span.className = "close2";
-            span.appendChild(txt);
-            arrInstructions[i].appendChild(span);
-        }
-
-        var close2 = document.getElementsByClassName("close2");
-        var i;
-        for (i = 0; i < close2.length; i++) {
-            close2[i].onclick = function() {
-            var div = this.parentElement;
-            div.remove();
+        // initializing array of ingredients
+            var ulist = document.getElementsByTagName("UL")[1];
+            var arrIngredients = ulist.getElementsByTagName("LI");
+                
+            for (i = 0; i < arrIngredients.length; i++) {
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close1";
+                span.appendChild(txt);
+                arrIngredients[i].appendChild(span);
             }
+
+            var close1 = document.getElementsByClassName("close1");
+            var i;
+            for (i = 0; i < close1.length; i++) {
+                close1[i].onclick = function() {
+                var div = this.parentElement;
+                div.remove();
+                }
+            }
+
+        // initializing array of instructions
+            var olist = document.getElementsByTagName("OL")[0];
+            var arrInstructions = olist.getElementsByTagName("LI");
+
+            for (i = 0; i < arrInstructions.length; i++) {
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close2";
+                span.appendChild(txt);
+                arrInstructions[i].appendChild(span);
+            }
+
+            var close2 = document.getElementsByClassName("close2");
+            var i;
+            for (i = 0; i < close2.length; i++) {
+                close2[i].onclick = function() {
+                var div = this.parentElement;
+                div.remove();
+                }
+            }
+    }
+
+
+
+
+    $("#postRecipe").click(function () { 
+        //var thumb = document.getElementById("thumbnail").value;
+        var name = document.getElementById("post_title").value;
+        var thumb = document.getElementById("thumbnail").value;
+        var desc = document.getElementById("description").value;
+        var ingred =  document.getElementById("ulist").getElementsByTagName("li").length;
+        var instruct =  document.getElementById("olist").getElementsByTagName("li").length;
+
+
+        if (name == ""){
+            document.getElementById("ltitle").textContent = 'Please provide a title for your recipe post';
+            document.getElementById("ltitle").style.color = "red";
+            return false;
         }
-    }
+        else {
+            document.getElementById("ltitle").style.color = "white";
+            document.getElementById("ltitle").value ='';
+        }
 
+        if (thumb == ""){
+            document.getElementById("lThumb").textContent ='Please provide a thumbnail for your recipe post';
+            document.getElementById("lThumb").style.color = "red";
+            return false;
+        }
+        else {
+            document.getElementById("lThumb").style.color = "white";
+            document.getElementById("lThumb").textContent ='';
+        }
 
+        if (desc == ""){
+            document.getElementById("lDesc").textContent ='Please provide a brief description of your recipe';
+            document.getElementById("lDesc").style.color = "red";
+            return false;
+        }
+        else {
+            document.getElementById("lDesc").style.color = "white";
+            document.getElementById("lDesc").value ='';
+        }
+            
+        if(ingred == "0"){
+            document.getElementById("lIngred").textContent ='Please provide the list of ingredients for your recipe';
+            document.getElementById("lIngred").style.color = "red";
+            return false;
+        }
+        else {
+            document.getElementById("lIngred").style.color = "white";
+            document.getElementById("lIngred").value ='';
+        }
 
+        if(instruct == "0"){
+            document.getElementById("lInst").textContent ='Please provide the list of instructions for your recipe';
+            document.getElementById("lInst").style.color = "red";
+            return false;
+        }
+        else {
+            document.getElementById("lInst").style.color = "white";
+            document.getElementById("lInst").value ='';
+        }
 
-$("#postRecipe").click(function () { 
-    //var thumb = document.getElementById("thumbnail").value;
-    var desc = document.getElementById("description").value;
-    var ingred = document.getElementById("ulist").value;
-    var instruct = document.getElementById("olist").value;
+        var today = new Date();
+            var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+            var time = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+            
+        var arrIngred = [];
 
-    
-    /*
-    if (thumb == ""){
-        document.getElementById("warning").textContent ='Please provide a brief description of your recipe';
-        document.getElementById("warning").style.color = "red";
-        return false;
-    }
-    else {
-        document.getElementById("warning").style.color = "white";
-        document.getElementById("warning").textContent ='';
-    }
-    */
-
-    if (desc == ""){
-        $(".warning").val('Please provide a brief description of your recipe');
-        $(".warning").css("color", "red");
-        return false;
-    }
-    else {
-        document.getElementById("warning").style.color = "white";
-        document.getElementById("warning").value ='';
-    }
-          
-    if(ingred == ""){
-        $(".warning").val('Please list down the ingredients used');
-        $(".warning").css("color", "red");
-        return false;
-    }
-    else {
-        document.getElementById("warning").style.color = "white";
-        document.getElementById("warning").value ='';
-    }
-
-    if(instruct == ""){
-        $(".warning").val('Please list the steps in creating the recipe');
-        $(".warning").css("color", "red");
+            var listArray = document.getElementById("ulist").getElementsByTagName("li");
         
-        return false;
-    }
-    else {
-        document.getElementById("warning").style.color = "white";
-        document.getElementById("warning").value ='';
-    }
-    
-    var new_post {
-        
-    };
+            listArray.forEach((item, i) => { 
+                var spanArray = listArray[i].getElementsByTagName("span")[0];
 
-    $.post('addPost', new_post, function(data,status) {
-        console.log(data);
+                spanArray.forEach((item, i) => {
+                    var temp_ingred = {
+                        name: item[0].innerHTML,
+                        quantity: item[1].innerHTML,
+                        unit: item[2].innerHTML
+                    }
+
+                    arrIngred.push(temp_ingred);
+                });
+            });
+
+
+
+        var arrInstruct =  document.getElementById("olist").getElementsByTagName("li");
+
+        var new_post = {
+            title: name,
+            upvotes: '0',
+            dateposted: date,
+            timeposted: time,
+            recipe_picture: thumb,
+            description: desc,
+            ingredients: arrIngred,
+            instructions: arrInstruct,
+        };
+
+        $.post('addPost', new_post, function(data,status) {
+            console.log(data);
+        });
+        
     });
-      
-  });
-//adding an ingredient to the list
+
+    //adding an ingredient to the list
     $("#addIngredient").click(function () { 
         var li = document.createElement("li");
-        var inputValue1 = document.getElementById("ulinput1").value;
-        var inputValue2 = document.getElementById("ulinput2").value;
-        var inputValue3 = document.getElementById("ulinput3").value;
+        var inputValue1 = document.getElementById("ulinput1").value + " ";
+        var inputValue2 = document.getElementById("ulinput2").value + " ";
+        var inputValue3 = document.getElementById("ulinput3").value + " ";
 
-        var inputALL = inputValue1 + " " + inputValue2 + " " + inputValue3;
+        // i made 1 span per input
+        var span1 = document.createElement("SPAN");
+        var span2 = document.createElement("SPAN");
+        var span3 = document.createElement("SPAN");
 
-        var t = document.createTextNode(inputALL);
-        li.appendChild(t);
+        var text1 = document.createTextNode(inputValue1);
+        var text2 = document.createTextNode(inputValue2);
+        var text3 = document.createTextNode(inputValue3);
+       
+        span1.appendChild(text1);
+        span2.appendChild(text2);
+        span3.appendChild(text3);
+
+        var bigspan = document.createElement("SPAN");
+
+        bigspan.appendChild(span1);
+        bigspan.appendChild(span2);
+        bigspan.appendChild(span3);
+
+        li.appendChild(bigspan);
+
         if (inputValue1 === '' && inputValue2 === '' && inputValue3 === '') {
             alert("You must write something!");
         } else {
@@ -284,6 +344,7 @@ $("#postRecipe").click(function () {
         var span = document.createElement("SPAN");
         var txt = document.createTextNode("\u00D7");
         span.className = "close1";
+
         span.appendChild(txt);
         li.appendChild(span);
         li.className = "list_item";
@@ -295,6 +356,7 @@ $("#postRecipe").click(function () {
             }
         }
     });
+
     //add instuction to the list
     $("#addInstruction").click(function () { 
         var li = document.createElement("li");
@@ -354,29 +416,6 @@ $("#postRecipe").click(function () {
 
         document.getElementById('upvote-icon').addEventListener('click', function () {
             // TODO: code to increase score
-            
-            var person = $("#title_username-badge").text();
-            var strings = person.split(" ");
-
-            var first = strings[0];
-            var last = strings[1];
-            var username = strings[2];
-
-            var dataStuff = {
-                num:        $("#voteCount").text(),
-                firstname:  first,
-                lastname:   last,
-                username:   username
-            }
-            
-
-            $.post("upvote", dataStuff, function (data, status) {
-                    
-                var num = parseInt(dataStuff.num);
-                num++;
-
-                $("#voteCount").text(num.toString());
-            });
 
             console.log("plus 1 vote")
         });
@@ -384,29 +423,6 @@ $("#postRecipe").click(function () {
         document.getElementById('downvote-icon').addEventListener('click', function () {
             // TODO: code to decrease score
             
-            var person = $("#title_username-badge").text();
-            var strings = person.split(" ");
-
-            var first = strings[0];
-            var last = strings[1];
-            var username = strings[3];
-
-            var dataStuff = {
-                num:        $("#voteCount").text(),
-                firstname:  first,
-                lastname:   last,
-                username:   username
-            }
-            
-
-            $.post("downvote", dataStuff, function (data, status) {
-                   
-                var num = parseInt(dataStuff.num);
-                num++;
-
-                $("#voteCount").text(num.toString());
-                
-            });
             console.log("minus 1 vote")
         });
 
