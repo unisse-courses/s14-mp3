@@ -679,6 +679,21 @@
     app.get('/home', function(req, res) {
 
       var data = posts
+      
+      /*
+        I found sample code on how we could get the top X posts
+        var below is supposed to sort the all the posts by ascending order ( 1 = ascending),
+        and limit the returned results to at most 5 posts
+
+        also var below doesnt do anything yet, naka display lang muna siya while we fix the other stuffs AHAHAHA
+      */
+
+      var topFive = postModel.find().sort({'upvotes': 1}).limit(5);
+
+      /*
+        we can prob send these first five using res.render() 
+        then kung if may change ng top 5 we can use a JS function to update the home page na lang
+      */
 
         res.render('Homepage', {
           // for main.hbs
