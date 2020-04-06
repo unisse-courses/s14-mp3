@@ -203,7 +203,6 @@ $(document).ready(function() {
 
 
     $("#postRecipe").click(function () { 
-        //var thumb = document.getElementById("thumbnail").value;
         var name = document.getElementById("post_title").value;
         var thumb = document.getElementById("thumbnail").value;
         var desc = document.getElementById("description").value;

@@ -920,9 +920,7 @@
         instructions: req.body.instructions,
       });
 
-
-
-      new_post.save(function(err, post) {
+      new_post.save(function(err, new_post) {
         var result;
     
         /** == README == **
@@ -937,7 +935,7 @@
           // throw err; // This is commented so that the server won't be killed.
         }
         else {
-          console.log(post); // Check out the logs and see there's a new __v attribute!
+          console.log(new_post); // Check out the logs and see there's a new __v attribute!
     
           // Let's create a custom response that the student was created successfully
           result = { success: true, message: "User created!" }
@@ -960,7 +958,7 @@
   
   // POST COMMENT
     app.post('/addCommentRow', function(req, res) {
-      var comment = { // TODO: havent updated the info below; its still from the students example
+      var comment = { 
         user: {
           firstname:  req.body.user.firstname,
           lastname:   req.body.user.lastname,
