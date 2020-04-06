@@ -3,6 +3,10 @@ $(document).ready(function() {
         return firstname + " " + lastname;
     };
 
+    function userwithatsign(username) {
+        return "@" + username;
+    };
+
     function addprofilediv(item, parentdiv) {
         var profrowdiv = document.createElement('div');
 
@@ -38,7 +42,7 @@ $(document).ready(function() {
 
         //elements
         $(profimage).addClass('img-fluid');
-        $(profimage).attr('src', item.profilepic);
+        $(profimage).attr('src', item.profpic);
         $(Hfirstname).text(item.firstname);
         $(Hlastname).text(item.lastname);
         $(Pusername).text(item.username);
@@ -51,7 +55,7 @@ $(document).ready(function() {
         
         Hname.append(fullname(Hfirstname.innerHTML, Hlastname.innerHTML));
         profcol2a.append(Hname);
-        profcol2a.append(Pusername);
+        profcol2a.append(userwithatsign(Pusername.innerHTML));
 
         rowbet.append(profcol2a);
         rowbet.append(profcol2b);
@@ -70,9 +74,9 @@ $(document).ready(function() {
     
     $.get('getUsers', function(data, status) {
         var Userlistcontainer = $('#profile-container');
-
+        var activeUser = localStorage.getItem("activeUser");
         data.forEach((item, i) => {
-            var result = item.username.localeCompare('@prof_Brosby');
+            var result = item.username.localeCompare(activeUser);
             console.log(result);
             if (result == 0)
             {

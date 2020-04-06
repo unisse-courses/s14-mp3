@@ -46,6 +46,8 @@ $(document).ready(function() {
             password: pass,
         }
 
+        localStorage.setItem("activeUser", user);
+
         $.post('loginAccount', account, function(data,status) {
             console.log(data);
         });
@@ -138,6 +140,7 @@ $(document).ready(function() {
         else{
             $('#accProfile').addClass("enabled")
             $('#create').show()
+
         }
     
         $('#logout').click(function(){

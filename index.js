@@ -648,9 +648,17 @@
         });
     });
 
-  //TEMP DATA
+  //ACCOUNT PROFILE
   app.get('/getUsers', function(req, res) {
-    res.status(200).send(users);
+    userModel.find({}).sort({username: 1}).exec(function(err, result) {
+      var userObjects = [];
+
+      result.forEach(function(doc) {
+        userObjects.push(doc.toObject());
+      });
+      console.log(userObjects);
+      res.status(200).send(userObjects);
+    });
   });
 
   // USER LOGIN
@@ -910,7 +918,7 @@
         username:  req.body.username,
         password:   req.body.password,
       }
-    
+      
       res.status(200).send(account);
     });
   
