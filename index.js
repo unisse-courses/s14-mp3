@@ -679,6 +679,21 @@
     app.get('/home', function(req, res) {
 
       var data = posts
+      
+      /*
+        I found sample code on how we could get the top X posts
+        var below is supposed to sort the all the posts by ascending order ( 1 = ascending),
+        and limit the returned results to at most 5 posts
+
+        also var below doesnt do anything yet, naka display lang muna siya while we fix the other stuffs AHAHAHA
+      */
+
+      var topFive = postModel.find().sort({'upvotes': 1}).limit(5);
+
+      /*
+        we can prob send these first five using res.render() 
+        then kung if may change ng top 5 we can use a JS function to update the home page na lang
+      */
 
         res.render('Homepage', {
           // for main.hbs
@@ -993,6 +1008,13 @@
     var found;
     //call database
 
+    /*
+      Below would potentially look for all the posts with that title
+      
+      Maybe what we can do is return back the results then we use JS to form the
+      format the results to be able to stick it in seachpage.hbs
+    */
+    var postResult = postModel.find({title: searchingFor})
 
     //if post found return success and post details will be attached and send back
 
@@ -1000,6 +1022,7 @@
       results = {
         success: true,
         post: found
+        //posts? : postResult
       }
     }
     //else, only return success false
@@ -1020,7 +1043,17 @@
     //call database
 
 
-    //if post found return success and account details will be attached and send back
+    /*
+      Below would potentially look for all the posts with that title
+      
+      Maybe what we can do is return back the results then we use JS to form the
+      format the results to be able to stick it in seachpage.hbs
+    */
+    var postResult = userModel.find({firstname: searchingFor ,  lastname: searchingFor})
+
+    /*
+      i honestly dont know if the .find() will work here
+    */
 
     if(found){
       results = {
