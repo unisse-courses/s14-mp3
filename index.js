@@ -39,14 +39,14 @@
 
 // GLOBAL VARIABLES
     
-      var currUser = {
+      var currUser = new userModel ({
           firstname: 'CurrUser',
           lastname: 'LN',
           username: 'current',
           password: 'blank',
           bio: 'blank',
           profilepic: '/images/profilepic/ted.jpg'
-      }
+      });
 
       // var lastUser | we can use this for the last person who logged in ?
     
@@ -955,6 +955,20 @@
 
       console.log(req.body);
 
+      // making ingredient objects
+        var bigContainer = [];
+        var i = 0;
+
+        for (i = 0 ; i < req.body.ingredients.length; i++){
+          var smthg = new ingredientsModel ({
+            name: req.body.ingredients[i].name,
+            quantitiy: req.body.ingredients[i].quantity,
+            amount: req.body.ingredients[i].amount,
+          });
+
+          bigContainer.push(smthg)
+        };
+
       var new_post = new postModel({
         title: req.body.title,
         user: currUser,
@@ -963,7 +977,7 @@
         timeposted: req.body.timeposted,
         recipe_picture: `${req.body.recipe_picture}.png`,
         description: req.body.description,
-        ingredients: req.body.ingredients,
+        ingredients: bigContainer,
         instructions: req.body.instructions,
       });
 
@@ -977,7 +991,7 @@
         if (err) {
           console.log(err.errors);
     
-          result = { success: false, message: "User was not created!" }
+          result = { success: false, message: "Recipe post was not created!" }
           res.send(result);
           // throw err; // This is commented so that the server won't be killed.
         }
@@ -985,7 +999,7 @@
           console.log(new_post); // Check out the logs and see there's a new __v attribute!
     
           // Let's create a custom response that the student was created successfully
-          result = { success: true, message: "User created!" }
+          result = { success: true, message: "Recipe post created!" }
     
           // Sending the result as is to handle it the "AJAX-way".
           res.send(result);

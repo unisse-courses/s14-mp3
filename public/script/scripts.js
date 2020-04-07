@@ -278,27 +278,33 @@ $(document).ready(function() {
             var time = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
             
         var arrIngred = [];
+            var listArray = document.getElementById("ulist").getElementsByTagName("li");   
+            var i=0;
+                
+            for (i = 0; i < listArray.length; i++) {
+                var spanArray = listArray[i].getElementsByTagName("span");
+                
+                var temp_ingred = {
+                    name: spanArray[0].getElementsByTagName("span")[0].innerHTML,
+                    quantity: spanArray[0].getElementsByTagName("span")[1].innerHTML,
+                    unit: spanArray[0].getElementsByTagName("span")[2].innerHTML
+                }
 
-            var listArray = document.getElementById("ulist").getElementsByTagName("li");
+                arrIngred.push(temp_ingred);
+            };
         
-            listArray.forEach((item, i) => { 
-                var spanArray = listArray[i].getElementsByTagName("span")[0];
-
-                spanArray.forEach((item, i) => {
-                    var temp_ingred = {
-                        name: item[0].innerHTML,
-                        quantity: item[1].innerHTML,
-                        unit: item[2].innerHTML
-                    }
-
-                    arrIngred.push(temp_ingred);
-                });
-            });
-
-
-
-        var arrInstruct =  document.getElementById("olist").getElementsByTagName("li");
-
+        var arrInstruct = [];
+            var listIN = document.getElementById("olist").getElementsByTagName("li");
+            
+            var i=0;
+            
+            for (i = 0; i < listIN.length; i++) {
+                var spanIN= listIN[i].getElementsByTagName("span");
+                var temp = spanIN[0].innerHTML
+                    
+                arrInstruct.push(temp)
+            };
+            
         var new_post = {
             title: name,
             upvotes: '0',
@@ -311,7 +317,7 @@ $(document).ready(function() {
         };
 
         $.post('addPost', new_post, function(data,status) {
-            console.log(data);
+            console.log(data.message);
         });
         
     });
@@ -373,8 +379,12 @@ $(document).ready(function() {
     $("#addInstruction").click(function () { 
         var li = document.createElement("li");
         var inputValue = document.getElementById("olinput").value;
-        var t = document.createTextNode(inputValue);
-        li.appendChild(t);
+        var spanContainer = document.createElement("SPAN");
+        var text = document.createTextNode(inputValue);
+
+        spanContainer.appendChild(text);
+
+        li.appendChild(spanContainer);
         if (inputValue === '') {
             alert("You must write something!");
         } else {
