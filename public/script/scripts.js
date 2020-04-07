@@ -49,7 +49,17 @@ $(document).ready(function() {
         localStorage.setItem("activeUser", user);
 
         $.post('loginAccount', account, function(data,status) {
-            console.log(data);
+            
+            if(data.success){
+                alert("Welcome " + data.returnData.username);
+                window.location.href = "home";
+            }
+            else{
+                document.getElementById("warning1").textContent = data.message;
+                document.getElementById("warning1").style.color = "red";
+                alert(data.message + "\n" + "You shall not pass");
+
+            }
         });
 
 

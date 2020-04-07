@@ -656,7 +656,7 @@
       result.forEach(function(doc) {
         userObjects.push(doc.toObject());
       });
-      console.log(userObjects);
+      //console.log(userObjects);
       res.status(200).send(userObjects);
     });
   });
@@ -913,13 +913,37 @@
     // POST
   app.post('/loginAccount', function(req, res) {
       console.log(req.body);
-
+      var result;
       var account = {
         username:  req.body.username,
         password:   req.body.password,
       }
       
-      res.status(200).send(account);
+
+      userModel.findOne({username: account.username}, function (err, accountResult){
+        
+        if(accountResult){
+          result = {
+            success: true,
+            message: account.username + " has logged in!",
+            returnData: accountResult
+          }
+
+          res.send(result);
+        }
+        else{
+          result = {
+            success: false,
+            message: "Invalid username or password"
+          }
+          res.send(result);
+        }
+        
+       
+      });
+
+
+      //res.status(200).send(account);
     });
   
   // EDIT ACCOUNT PROFILE
