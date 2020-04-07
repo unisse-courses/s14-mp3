@@ -1,0 +1,46 @@
+    [{
+    "firstname": "Ted",
+    "lastname": "Mosby",
+    "username": "@prof_Brosby",
+    "pasword": "himym",
+    "bio": "Somewhere out there, there is a yellow umbrella for everyone. You must be patient.",
+    "profilepic": "/images/profilepic/ted.jpg"
+    },
+    {
+    "firstname": "Barney",
+    "lastname": "Stinson",
+    "username": "@the_barnacle",
+    "pasword": "suitup69",
+    "bio": "Tonight is the night that we make everything Legen... wait for it... Dary. LEGENDARY!",
+    "profilepic": "/images/profilepic/barney.jpg"
+    },
+
+  
+    {
+    "firstname": "Robin",
+      "lastname": "Scherbatsky",
+    "username": "@robin_mnews",
+    "pasword": "metronews",
+    "bio": "If you have chemistry then you only need more thing, timing.",
+    "profilepic": "/images/profilepic/robin.jpg"
+  },
+
+  
+    {
+    "firstname": "Lily",
+    "lastname": "Aldrin",
+    "username": "@Lilypad",
+    "pasword": "marvin",
+    "bio": "You can\"t just skip to where you want to be.",
+    "profilepic": "/images/profilepic/lily.jpg"
+  },
+
+  
+    {
+    "firstname": "Marshall",
+    "lastname": "Eriksen",
+    "username": "@bigFudge",
+    "pasword": "daisy",
+    "bio": "ALL HAIL BEERCULES!",
+    "profilepic": "/images/profilepic/marsh.jpg"
+  }]
