@@ -1050,7 +1050,7 @@
   // SEARCH RECIPE POST
   app.post('/find-post', function(req, res) {
     var searchingFor = req.body;
-    var results;
+    var results = [];
     var found;
     //call database
 
@@ -1083,38 +1083,40 @@
   
   // SEARCH ACCOUNT NAME
   app.post('/find-account', function(req, res) {
-    var searchingFor = req.body;
+    var searchingFor = req.body.searchingFor;
     var results;
-    var account;
+    console.log(searchingFor + " yyyyyyyeeeet")
     //call database
-
-
     /*
       Below would potentially look for all the posts with that title
       
       Maybe what we can do is return back the results then we use JS to form the
       format the results to be able to stick it in seachpage.hbs
     */
-    var postResult = userModel.find({firstname: searchingFor ,  lastname: searchingFor})
+    userModel.find({username: searchingFor}, function(err, accounts){
+      console.log("this is in index");
+      console.log(accounts)
+      if(accounts){
+        results = {
+          success: true,
+          users: accounts
+        }
+      }
+      //else, only return success false
+      else
+      {
+        results = {
+          success: false,
+        }
+      }
+      res.send(results);
+    });
 
     /*
       i honestly dont know if the .find() will work here
     */
 
-    if(found){
-      results = {
-        success: true,
-        user: account
-      }
-    }
-    //else, only return success false
-    else
-    {
-      results = {
-        success: false,
-      }
-    }
-    res.send(results);
+    
   })
   
   // UPVOTE/DOWNVOTE

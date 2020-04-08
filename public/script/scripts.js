@@ -683,6 +683,79 @@ if (window.location.href.includes("account-profile"))
         
     });
 
+    function fullname(firstname, lastname) {
+        return firstname + " " + lastname;
+    };
+
+    function userwithatsign(username) {
+        return "@" + username;
+    };
+
+    function addprofilediv(item, parentdiv) {
+        var profrowdiv = document.createElement('div');
+
+        var profcol1 = document.createElement('div');
+        var profimage = document.createElement('img');
+
+        var profcol2 = document.createElement('div');
+
+        var rowbet = document.createElement('div');
+
+        var profcol2a = document.createElement('div');
+        var Hname = document.createElement('h2');
+        var Hfirstname = document.createElement('h2');
+        var Hlastname = document.createElement('h2');
+        var Pusername = document.createElement('p');
+
+        var profcol2b = document.createElement('div');
+        var Bbutton = document.createElement('button');
+        
+        var profcol2r2 = document.createElement('div');
+        var Pbio = document.createElement('p');
+
+        //containers
+        $(profrowdiv).addClass('d-flex flex-row card-body profile-row');
+        $(profcol1).addClass('full-width-container profile-col1');
+        $(profcol2).addClass('profile-col2');
+        $(rowbet).addClass('d-flex flex-row justify-content-between profile-col2_row1');
+        $(profcol2a).addClass('profile-col2_row1a');
+        $(profcol2b).addClass('profile-col2_row1b');
+        $(profcol2r2).addClass('profile-col2_row2');
+        $(Bbutton).addClass('btn btn-outline-secondary my-2 my-sm-0');
+        $(Bbutton).text('Edit Profile');
+
+        //elements
+        $(profimage).addClass('img-fluid');
+        $(profimage).attr('src', item.profpic);
+        $(Hfirstname).text(item.firstname);
+        $(Hlastname).text(item.lastname);
+        $(Pusername).text(item.username);
+        $(Pbio).text(item.bio);
+
+
+        profcol2r2.append(Pbio);
+
+        profcol2b.append(Bbutton);
+        
+        Hname.append(fullname(Hfirstname.innerHTML, Hlastname.innerHTML));
+        profcol2a.append(Hname);
+        profcol2a.append(userwithatsign(Pusername.innerHTML));
+
+        rowbet.append(profcol2a);
+        rowbet.append(profcol2b);
+
+        profcol2.append(rowbet);
+        profcol2.append(profcol2r2);
+
+        profcol1.append(profimage);
+
+        profrowdiv.append(profcol1);
+        profrowdiv.append(profcol2);
+
+        parentdiv.append(profrowdiv);
+
+    }
+
 /* -------------------------------------------------- EditAccountProfile.hbs -------------------------------------------------- */
 
     $("#updateAccount").click(function () { 
@@ -926,67 +999,68 @@ if (window.location.href.includes("account-profile"))
 
         $('#button-addon2').click(function search()
         {
-            var name = "Account Name"
-            var post = "Recipe Post"
+            var name = "Username"
+            var post = "Recipe Post Title"
 
             var searchThing= $('.search_bar option:selected').text()
             var searchString = $('#searching').val()
             
             
             if(searchString == "") {
-            return false;
+                console.log("Searching String is empty")
+                return false;
             }
             if($('.search_bar option:selected').text() == "Search by..."){
-            return false;
+                console.log("No valid option chosen")
+                return false;
             }
             
-            if(name.localeCompare(searchThing) == 0)
-            {
-            
-            $('.post_preview-container').hide();
-            $('.profile-container').show();
 
-            $.post("find-post", searchString, function (data, status) {
-                    if(data.success){
-                        //build search stuff
-                        //createPostResults(data.post);
+            
+            if(post == searchThing)
+            {
+                console.log("Searching for post " + searchString)
+                $.post("find-post", searchString, function (data, status) {
+                        if(data.success){
+                            //build search stuff
+                            //createPostResults(data.post);
+                        }
+                        else{
+                            //post not found
+                            //may an alert will pop using saying that no post was found
+                        }
                     }
-                    else{
-                        //post not found
-                        //may an alert will pop using saying that no post was found
-                    }
-                }
-            );
+                );
             }
             
-            if(post.localeCompare(searchThing) == 0)
+            var something = {
+                searchingFor: searchString
+            }
+
+            if(name == searchThing)
             {
-            
-                $('.profile-container').hide();
-                $('.post_preview-container').show();
-            
-                $.post("find-account", searchString, function (data, status) {
+                console.log("Searching for user " + searchString);
+                $.post("find-account", something, function (data, status) {
                     if(data.success){
-                        //build search stuff
-                        //createAccountResults(data.user);
+                        var parent = $("#searchList");
+
+                        data.users.forEach((item, i) => {
+                            addprofilediv(item, parent);
+                        });
                     }
                     else{
-                        //post not found
-                        //may an alert will pop using saying that no account was found
+                        $("searchList").text("Sorry no users were found")
                     }
                 });
             }
     
-            console.log("searching for " + $('#searching').val())
+            
         })
 
         function createPostResults(data, parentDiv){
             //here we will build the search results for posts
         }
 
-        function createAccountResults(data, parentDiv){
-            //here we will build the search results for accounts
-        }
 
     }
 
