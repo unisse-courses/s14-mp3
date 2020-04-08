@@ -1093,7 +1093,8 @@
       Maybe what we can do is return back the results then we use JS to form the
       format the results to be able to stick it in seachpage.hbs
     */
-    userModel.find({username: searchingFor}, function(err, accounts){
+    var pattern = "^" + searchingFor;
+    userModel.find({username: { $regex: pattern }}, function(err, accounts){
       console.log("this is in index");
       console.log(accounts)
       if(accounts){
