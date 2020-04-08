@@ -1015,7 +1015,9 @@ if (window.location.href.includes("account-profile"))
                 return false;
             }
             
-
+            if($("#searchList").children().length > 0){
+                $("#searchList").empty();
+            }
             
             if(post == searchThing)
             {
