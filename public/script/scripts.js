@@ -163,7 +163,107 @@ $(document).ready(function() {
         });
 
     }
-    
+    function createPostDiv(item, parentDiv){
+
+        var biggestdiv  = document.createElement('div');
+
+        var imageDiv    = document.createElement('div');
+        var image      = document.createElement('img');
+        
+        var bigdiv      = document.createElement('div');
+
+        var titlediv    = document.createElement('div');
+        var title       = document.createElement('h3')
+        var user        = document.createElement('p');
+        var userspan    = document.createElement('span');
+
+        var descDiv     = document.createElement('div');
+        var desc        = document.elementFromPoint('p');
+        var descBreak   = document.createElement('br')
+        var anchor      = document.createElement('a');
+
+        var whenPosted  = document.createElement('div');
+        var upvotes     = document.createElement('p');
+        var smupvotes   = document.createElement('small');
+        var timedate    = document.createElement('p');
+        var smtimedate  = document.createElement('small');
+
+        //classes
+        $(biggestdiv).addClass("card post_preview-container");
+
+        $(imageDiv).addClass("full-width-container post_preview-row0");
+        $(image).addClass("img-fluid");
+
+        $(bigdiv).addClass("d-flex flex-column card-body post_preview-below_image");
+
+        $(titlediv).addClass("d-flex flex-column post_preview-row1");
+        $(title).addClass("card-title");
+        $(user).addClass("card-subtitle");
+        $(userspan).addClass("badge badge-light");
+
+        $(descDiv).addClass("d-flex flex-column post_preview-row2");
+        $(desc).addClass("card-text");
+        //br
+        $(anchor).addClass("streched-link");
+
+        $(whenPosted).addClass("d-flex justify-content-between flex-wrap post_preview-row3");
+        $(upvotes).addClass("card-text");
+        $(smupvotes).addClass("text-muted");
+        $(timedate).addClass("card-text");
+        $(smtimedate).addClass("text-muted");
+
+        //all the text and data
+        $(image).attr("src", item.recipe_picture);
+
+        $(title).text(item.title);
+
+        $(userspan).text("By " + fullname(item.user.firstname, item.user.lastname) +" | " + userwithatsign(item.user.username));
+
+        $(desc).text(item.description);
+        
+        $(anchor).attr("href", "RecipePost");
+        $(anchor).text("Continue reading...");
+
+        $(smupvotes).text(item.upvotes + " UPVOTES");
+
+        $(smtimedate).text(item.date_posted + " " + item.time_posted);
+
+        //appending all the stuffs
+
+        imageDiv.append(image);
+
+        biggestdiv.append(imageDiv);
+
+        
+        user.append(userspan);
+
+        titlediv.append(title);
+        titlediv.append(user);
+
+        bigdiv.append(titlediv);
+
+
+        descDiv.append(desc);
+        descDiv.append(descBreak);
+        descDiv.append(anchor);
+
+
+        bigdiv.append(descDiv);
+
+        upvotes.append(smupvotes);
+        timedate.append(smtimedate);
+
+        whenPosted.append(upvotes);
+        whenPosted.append(timedate);
+
+        bigdiv.append(whenPosted);
+
+        biggestdiv.append(bigdiv);
+
+        parentDiv.append(biggestdiv);
+
+
+    }   
 
 /* -------------------------------------------------- CreateRecipePost.hbs -------------------------------------------------- */
     if (window.location.href.includes("create-recipe")){
@@ -1027,25 +1127,30 @@ if (window.location.href.includes("account-profile"))
                 $("#searchList").empty();
             }
             
-            if(post == searchThing)
-            {
-                console.log("Searching for post " + searchString)
-                $.post("find-post", searchString, function (data, status) {
-                        if(data.success){
-                            //build search stuff
-                            //createPostResults(data.post);
-                        }
-                        else{
-                            //post not found
-                            //may an alert will pop using saying that no post was found
-                        }
-                    }
-                );
-            }
-            
             var something = {
                 searchingFor: searchString
             }
+
+            if(post == searchThing)
+            {
+                console.log("Searching for post " + searchString);
+                $.post("find-post", something, function (data, status) {
+                    if(data.success){
+                        var parent = $("#searchList");
+
+                    data.posts.forEach((item, i) => {
+                        createPostDiv(item, parent);
+                    });
+                    }
+                    else{
+                        var text = document.createElement('p');
+                        $(text).text("Sorry no posts found");
+                        $("searchList").append(text)
+                    }
+                });
+            }
+            
+            
 
             if(name == searchThing)
             {
@@ -1059,18 +1164,16 @@ if (window.location.href.includes("account-profile"))
                         });
                     }
                     else{
-                        $("searchList").text("Sorry no users were found")
-                    }
+                        var text = document.createElement('p');
+                            $(text).text("Sorry no users found");
+                            $("searchList").append(text)
+                        }
+                       
                 });
             }
     
             
         })
-
-        function createPostResults(data, parentDiv){
-            //here we will build the search results for posts
-        }
-
 
     }
 

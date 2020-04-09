@@ -1049,40 +1049,6 @@ app.post('/loginAccount', function(req, res) {
 
 // SEARCH RECIPE POST
 app.post('/find-post', function(req, res) {
-  var searchingFor = req.body;
-  var results = [];
-  var found;
-  //call database
-
-  /*
-    Below would potentially look for all the posts with that title
-    
-    Maybe what we can do is return back the results then we use JS to form the
-    format the results to be able to stick it in seachpage.hbs
-  */
-  var postResult = postModel.find({title: searchingFor})
-
-  //if post found return success and post details will be attached and send back
-
-  if(found){
-    results = {
-      success: true,
-      post: found
-      //posts? : postResult
-    }
-  }
-  //else, only return success false
-  else
-  {
-    results = {
-      success: false,
-    }
-  }
-  res.send(results);
-})
-
-// SEARCH ACCOUNT NAME
-app.post('/find-account', function(req, res) {
   var searchingFor = req.body.searchingFor;
   var results;
   console.log(searchingFor + " yyyyyyyeeeet")
@@ -1094,10 +1060,43 @@ app.post('/find-account', function(req, res) {
     format the results to be able to stick it in seachpage.hbs
   */
   var pattern = "^" + searchingFor;
+  postModel.find({title: searchingFor}, function(err, searchResults){
+    console.log("this is in index");
+    console.log(searchResults)
+    if(searchResults){
+      results = {
+        success: true,
+        posts: searchResults
+      }
+    }
+    //else, only return success false
+    else
+    {
+      results = {
+        success: false,
+      }
+    }
+    res.send(results);
+  });
+})
+
+// SEARCH ACCOUNT NAME
+app.post('/find-account', function(req, res) {
+  var searchingFor = req.body.searchingFor;
+  var results;
+  console.log(searchingFor + " yyyyyyyeeeet")
+  //call database
+  /*
+    Below would potentially look for all the users with that username
+    
+    Maybe what we can do is return back the results then we use JS to form the
+    format the results to be able to stick it in seachpage.hbs
+  */
+  var pattern = "^" + searchingFor;
   userModel.find({username: searchingFor}, function(err, accounts){
     console.log("this is in index");
     console.log(accounts)
-    if(accounts != []){
+    if(accounts){
       results = {
         success: true,
         users: accounts
