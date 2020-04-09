@@ -693,7 +693,8 @@ if (window.location.href.includes("account-profile"))
 
     function addprofilediv(item, parentdiv) {
         var profrowdiv = document.createElement('div');
-
+        var biggerDiv = document.createElement('div');
+        var bigdiv = document.createElement('div');
         var profcol1 = document.createElement('div');
         var profimage = document.createElement('img');
 
@@ -708,12 +709,14 @@ if (window.location.href.includes("account-profile"))
         var Pusername = document.createElement('p');
 
         var profcol2b = document.createElement('div');
-        var Bbutton = document.createElement('button');
+        //var Bbutton = document.createElement('button');
         
         var profcol2r2 = document.createElement('div');
         var Pbio = document.createElement('p');
 
         //containers
+        $(biggerDiv).addClass("d-flex flex-column content");
+        $(bigdiv).addClass('card profile-container')
         $(profrowdiv).addClass('d-flex flex-row card-body profile-row');
         $(profcol1).addClass('full-width-container profile-col1');
         $(profcol2).addClass('profile-col2');
@@ -721,12 +724,13 @@ if (window.location.href.includes("account-profile"))
         $(profcol2a).addClass('profile-col2_row1a');
         $(profcol2b).addClass('profile-col2_row1b');
         $(profcol2r2).addClass('profile-col2_row2');
-        $(Bbutton).addClass('btn btn-outline-secondary my-2 my-sm-0');
-        $(Bbutton).text('Edit Profile');
+        //$(Bbutton).addClass('btn btn-outline-secondary my-2 my-sm-0');
+        //$(Bbutton).text('Edit Profile');
 
         //elements
         $(profimage).addClass('img-fluid');
-        $(profimage).attr('src', item.profpic);
+        if(item.profilepic != "")
+            $(profimage).attr('src', item.profilepic);
         $(Hfirstname).text(item.firstname);
         $(Hlastname).text(item.lastname);
         $(Pusername).text(item.username);
@@ -735,7 +739,7 @@ if (window.location.href.includes("account-profile"))
 
         profcol2r2.append(Pbio);
 
-        profcol2b.append(Bbutton);
+        //profcol2b.append(Bbutton);
         
         Hname.append(fullname(Hfirstname.innerHTML, Hlastname.innerHTML));
         profcol2a.append(Hname);
@@ -747,12 +751,15 @@ if (window.location.href.includes("account-profile"))
         profcol2.append(rowbet);
         profcol2.append(profcol2r2);
 
-        profcol1.append(profimage);
+        if(item.profilepic != "")
+            profcol1.append(profimage);
 
         profrowdiv.append(profcol1);
         profrowdiv.append(profcol2);
 
-        parentdiv.append(profrowdiv);
+        bigdiv.append(profrowdiv);
+        biggerDiv.append(bigdiv);
+        parentdiv.append(biggerDiv);
 
     }
 
@@ -1015,7 +1022,8 @@ if (window.location.href.includes("account-profile"))
                 return false;
             }
             
-            if($("#searchList").children().length > 0){
+            if ($("#searchList").children().length > 0)
+            {
                 $("#searchList").empty();
             }
             
