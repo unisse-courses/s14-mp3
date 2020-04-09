@@ -1139,7 +1139,7 @@ if (window.location.href.includes("account-profile"))
                         var parent = $("#searchList");
                         
                         data.posts.forEach((item, i) => {
-                            //console.log(item.user.firstname);
+                            console.log(item);
                             createPostDiv(item, parent);
                         });
                     }

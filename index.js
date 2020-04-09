@@ -1060,8 +1060,13 @@ app.post('/find-post', function(req, res) {
     format the results to be able to stick it in seachpage.hbs
   */
   var searchPattern = "^" + searchingFor;
-  postModel.find({title: {$regex: searchPattern}}, function(err, searchResults){
+  postModel.find({title: {$regex: searchPattern}}).populate('user').exec( function(err, searchResults){
     
+    /*
+      HERE SAM
+      console.log(searchResults[0].user.firstname)
+    */
+
     console.log(searchResults)
     if(searchResults){
       results = {
@@ -1093,7 +1098,7 @@ app.post('/find-account', function(req, res) {
     format the results to be able to stick it in seachpage.hbs
   */
   var pattern = "^" + searchingFor;
-  userModel.find({username: {$regex: pattern}}, function(err, accounts){
+  userModel.find({username: {$regex: pattern}}).exec( function(err, accounts){
     console.log("this is in index");
     console.log(accounts)
     if(accounts){
