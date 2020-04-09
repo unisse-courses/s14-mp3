@@ -1093,7 +1093,7 @@ app.post('/find-account', function(req, res) {
     format the results to be able to stick it in seachpage.hbs
   */
   var pattern = "^" + searchingFor;
-  userModel.find({username: searchingFor}, function(err, accounts){
+  userModel.find({username: {$regex: pattern}}, function(err, accounts){
     console.log("this is in index");
     console.log(accounts)
     if(accounts){

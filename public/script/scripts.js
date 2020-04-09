@@ -164,7 +164,7 @@ $(document).ready(function() {
 
     }
     function createPostDiv(item, parentDiv){
-
+        alert(item.title);
         var biggestdiv  = document.createElement('div');
 
         var imageDiv    = document.createElement('div');
@@ -178,7 +178,7 @@ $(document).ready(function() {
         var userspan    = document.createElement('span');
 
         var descDiv     = document.createElement('div');
-        var desc        = document.elementFromPoint('p');
+        var desc        = document.createElement('p');
         var descBreak   = document.createElement('br')
         var anchor      = document.createElement('a');
 
@@ -216,8 +216,8 @@ $(document).ready(function() {
         $(image).attr("src", item.recipe_picture);
 
         $(title).text(item.title);
-
-        $(userspan).text("By " + fullname(item.user.firstname, item.user.lastname) +" | " + userwithatsign(item.user.username));
+        //console.log(item.user.firstname);
+        //$(userspan).text("By " + fullname(item.user.firstname, item.user.lastname) +" | " + userwithatsign(item.user.username));
 
         $(desc).text(item.description);
         
@@ -226,7 +226,7 @@ $(document).ready(function() {
 
         $(smupvotes).text(item.upvotes + " UPVOTES");
 
-        $(smtimedate).text(item.date_posted + " " + item.time_posted);
+        $(smtimedate).text(item.dateposted + " " + item.timeposted);
 
         //appending all the stuffs
 
@@ -1137,10 +1137,11 @@ if (window.location.href.includes("account-profile"))
                 $.post("find-post", something, function (data, status) {
                     if(data.success){
                         var parent = $("#searchList");
-
-                    data.posts.forEach((item, i) => {
-                        createPostDiv(item, parent);
-                    });
+                        
+                        data.posts.forEach((item, i) => {
+                            //console.log(item.user.firstname);
+                            createPostDiv(item, parent);
+                        });
                     }
                     else{
                         var text = document.createElement('p');
