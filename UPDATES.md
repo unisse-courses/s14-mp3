@@ -8,8 +8,10 @@
   - [ ] Loading the Top 5 Most Recent Pages
 - [ ] Searchpage
   - [ ] Search Button -> Uses get function to look for post / account
-- [ ] Create Post
-  - [ ] Save Button -> Should add a new post in the db
+  - [ ] Should show all the deets + no errors for both post / account
+  - [ ] Shows partial results (example: u searched pan instead of "pancakes" but it still shows up)
+- [x] Create Post
+  - [x] Save Button -> Should add a new post in the db
 - [ ] Edit Post
   - [ ] Save Button -> Should update the post info in the db
   - [ ] Post info should be pre-loaded na
@@ -28,9 +30,14 @@
   - [ ] Save Button -> Should update the user info in the db
   - [ ] Account info should be pre-loaded na
 
+2. IN GENERAL
+- [ ] Each page AFTER LOGIN should have its own route ("/:id")
+  - [ ] Can see the current user's info in navbar
+  - [ ] Can see the current user's info after clicking their profile FROM Navbar
+
 THEN im not sure if need MVC agad but the last thing to do is:
 
-2. CSS THINGS (do this after all the db things)
+3. CSS THINGS (do this after all the db things)
   - fix logos
     - logos in index.hbs (guest icon & registered user account icon)
     - brand logo in navbar (fixed size so its not stretched)

@@ -10,11 +10,16 @@ const app = express();
 const port = 3000; // sam: bc thats whats in the specs
 
 // IMPORTING THE MODEL
-// [SAMPLE CODE] const studentModel = require('./models/student');
 const userModel = require('./models/users');
 const postModel = require('./models/posts');
 const ingredientsModel = require('./models/ingredients');
 const commentsModel = require('./models/ingredients');
+
+// IMPORTS FOR IMAGE UPLOADS
+var fs = require(‘fs’);
+var mongoose = require(‘mongoose’);
+var Schema = mongoose.Schema;
+var multer = require('multer');
 
 
 // ENGINE SET-UP
@@ -884,24 +889,18 @@ app.get('/getUsers', function(req, res) {
     user_person.save(function(err, user) {
       var result;
   
-      /** == README == **
-        Added error handling! Check out the object printed out in the console.
-        (Try clicking Add Student when the name or id is blank)
-      **/
       if (err) {
         console.log(err.errors);
   
         result = { success: false, message: "User was not created!" }
         res.send(result);
-        // throw err; // This is commented so that the server won't be killed.
       }
       else {
-        console.log(user); // Check out the logs and see there's a new __v attribute!
+        console.log("Successfully created a user");
+        console.log(user_person);
+        
+        result = { success: true, message: "User was created!" }
   
-        // Let's create a custom response that the student was created successfully
-        result = { success: true, message: "User created!" }
-  
-        // Sending the result as is to handle it the "AJAX-way".
         res.send(result);
       }
   
@@ -984,24 +983,18 @@ app.post('/loginAccount', function(req, res) {
     new_post.save(function(err, new_post) {
       var result;
   
-      /** == README == **
-        Added error handling! Check out the object printed out in the console.
-        (Try clicking Add Student when the name or id is blank)
-      **/
       if (err) {
         console.log(err.errors);
   
         result = { success: false, message: "Recipe post was not created!" }
         res.send(result);
-        // throw err; // This is commented so that the server won't be killed.
       }
       else {
-        console.log(new_post); // Check out the logs and see there's a new __v attribute!
-  
-        // Let's create a custom response that the student was created successfully
+        console.log("Successfully created a recipe post!");
+        console.log(new_post);
+        
         result = { success: true, message: "Recipe post created!" }
   
-        // Sending the result as is to handle it the "AJAX-way".
         res.send(result);
       }
   

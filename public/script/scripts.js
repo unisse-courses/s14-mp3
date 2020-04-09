@@ -417,7 +417,7 @@ $(document).ready(function() {
         };
 
         $.post('addPost', new_post, function(data,status) {
-            console.log(data.message);
+            console.log(data);
         });
         
     });
