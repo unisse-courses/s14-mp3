@@ -65,7 +65,7 @@ var currUser = new userModel ({
     {
       firstname: 'Ted',
       lastname: 'Mosby',
-      username: '@prof_Brosby',
+      username: 'prof_Brosby',
       password: 'himym',
       bio: 'Somewhere out there, there is a yellow umbrella for everyone. You must be patient.',
       profilepic: '/images/profilepic/ted.jpg'
@@ -75,7 +75,7 @@ var currUser = new userModel ({
     {
       firstname: 'Barney',
       lastname: 'Stinson',
-      username: '@the_barnacle',
+      username: 'the_barnacle',
       password: 'suitup69',
       bio: 'Tonight is the night that we make everything Legen... wait for it... Dary. LEGENDARY!',
       profilepic: '/images/profilepic/barney.jpg'
@@ -85,7 +85,7 @@ var currUser = new userModel ({
     {
       firstname: 'Robin',
       lastname: 'Scherbatsky',
-      username: '@robin_mnews',
+      username: 'robin_mnews',
       password: 'metronews',
       bio: 'If you have chemistry then you only need more thing, timing.',
       profilepic: '/images/profilepic/robin.jpg'
@@ -95,7 +95,7 @@ var currUser = new userModel ({
     {
       firstname: 'Lily',
       lastname: 'Aldrin',
-      username: '@Lilypad',
+      username: 'Lilypad',
       password: 'marvin',
       bio: 'You can\'t just skip to where you want to be.',
       profilepic: '/images/profilepic/lily.jpg'
@@ -105,7 +105,7 @@ var currUser = new userModel ({
     {
       firstname: 'Marshall',
       lastname: 'Eriksen',
-      username: '@bigFudge',
+      username: 'bigFudge',
       password: 'daisy',
       bio: 'ALL HAIL BEERCULES!',
       profilepic: '/images/profilepic/marsh.jpg'
@@ -120,7 +120,7 @@ var currUser = new userModel ({
       user: {
         firstname: 'Ted',
         lastname: 'Mosby',
-        username: '@prof_Brosby',
+        username: 'prof_Brosby',
         profilepic: '/images/profilepic/ted.jpg'
       },
       upvotes: '10',
@@ -190,7 +190,7 @@ var currUser = new userModel ({
           user: {
               firstname: 'Marshall',
               lastname: 'Eriksen',
-              username: '@bigFudge',
+              username: 'bigFudge',
               profilepic: '/images/profilepic/marsh.jpg'
           },
           content:'I love Pancakes!',
@@ -202,7 +202,7 @@ var currUser = new userModel ({
               user: {
                   firstname: 'Ted',
                   lastname: 'Mosby',
-                  username: '@prof_Brosby',
+                  username: 'prof_Brosby',
                   profilepic: '/images/profilepic/ted.jpg'
               },
               content:'thanks for the support marsh!',
@@ -220,7 +220,7 @@ var currUser = new userModel ({
       user: {
           firstname: 'Barney',
           lastname: 'Stinson',
-          username: '@the_barnacle',
+          username: 'the_barnacle',
           profilepic: '/images/profilepic/barney.jpg'
       },
       upvotes: '20',
@@ -292,7 +292,7 @@ var currUser = new userModel ({
           user: {
               firstname: 'Robin',
               lastname: 'Scherbatsky',
-              username: '@robin_mnews',
+              username: 'robin_mnews',
               profilepic: '/images/profilepic/robin.jpg'
           },
           content:'I am gonna expect that cake on our wedding day okay?',
@@ -304,7 +304,7 @@ var currUser = new userModel ({
               user: {
                   firstname: 'Barney',
                   lastname: 'Stinson',
-                  username: '@the_barnacle',
+                  username: 'the_barnacle',
                   profilepic: '/images/profilepic/barney.jpg'
               },
               content:'Wow. thanks for the pressure Robin, Sheesh!',
@@ -322,7 +322,7 @@ var currUser = new userModel ({
       user: {
           firstname: 'Lily',
           lastname: 'Aldrin',
-          username: '@lilypad',
+          username: 'lilypad',
           profilepic: '/images/profilepic/lily.jpg'
       },
       upvotes: '55',
@@ -416,7 +416,7 @@ var currUser = new userModel ({
           user: {
               firstname: 'Ted',
               lastname: 'Mosby',
-              username: '@prof_Brosby',
+              username: 'prof_Brosby',
               profilepic: '/images/profilepic/ted.jpg'
           },
           content:'Damn, Marshall is so lucky!',
@@ -428,7 +428,7 @@ var currUser = new userModel ({
               user: {
                 firstname: 'Marshall',
                 lastname: 'Eriksen',
-                username: '@bigFudge',
+                username: 'bigFudge',
                 profilepic: '/images/profilepic/marsh.jpg'
               },
               content:'The luckiest. I love you Lilypad.',
@@ -441,7 +441,7 @@ var currUser = new userModel ({
               user: {
                   firstname: 'Lily',
                   lastname: 'Aldrin',
-                  username: '@lilypad',
+                  username: 'lilypad',
                   profilepic: '/images/profilepic/lily.jpg'
               },
               content:'I love you too Marshmallow.',
@@ -459,7 +459,7 @@ var currUser = new userModel ({
       user: {
           firstname: 'Robin',
           lastname: 'Scherbatsky',
-          username: '@robin_mnews',
+          username: 'robin_mnews',
           profilepic: '/images/profilepic/robin.jpg'
       },
       upvotes: '13',
@@ -527,7 +527,7 @@ var currUser = new userModel ({
           user: {
               firstname: 'Barney',
               lastname: 'Stinson',
-              username: '@the_barnacle',
+              username: 'the_barnacle',
               profilepic: '/images/profilepic/barney.jpg'
           },
           content:'Since when did you learn making Japanese food?',
@@ -539,7 +539,7 @@ var currUser = new userModel ({
               user: {
                   firstname: 'Robin',
                   lastname: 'Scherbatsky',
-                  username: '@robin_mnews',
+                  username: 'robin_mnews',
                   profilepic: '/images/profilepic/robin.jpg'
               },
               content:'Since I newscasted in Japan remember? idiot.',
@@ -558,7 +558,7 @@ var currUser = new userModel ({
         {
           firstname: 'Marshall',
           lastname: 'Eriksen',
-          username: '@bigFudge',
+          username: 'bigFudge',
           profilepic: '/images/profilepic/marsh.jpg'
         }
       ],
@@ -615,7 +615,7 @@ var currUser = new userModel ({
           user: {
               firstname: 'Robin',
               lastname: 'Scherbatsky',
-              username: '@robin_mnews',
+              username: 'robin_mnews',
               profilepic: '/images/profilepic/robin.jpg'
           },
           content:'Marshall can cook! I am so proud of you.',
@@ -627,7 +627,7 @@ var currUser = new userModel ({
               user: {
                   firstname: 'Marshall',
                   lastname: 'Eriksen',
-                  username: '@bigFudge',
+                  username: 'bigFudge',
                   profilepic: '/images/profilepic/marsh.jpg'
               },
               content:'Wow. I sense the sarcasm Robin',
@@ -700,23 +700,9 @@ var currUser = new userModel ({
           styles: "css/styles_inside.css",
           tab_title: "Homepage",
           body_class: "inside",
-          posts: data
-        
-        // for this page
-          /* sam:
-              possible variables to transfer:
+          posts: data,
+          navUser: currUser.username
 
-              - object array for the 5 posts in the homepage ?
-                  each containing:
-                  - username
-                  - first name
-                  - last name
-                  - recipe post title
-                  - post description
-                  - upvote score
-                  - date posted
-                  - time posted
-          */
       })
   });
 
@@ -751,7 +737,8 @@ function getAccountProfile(req, res, next) {
       lastname:   currUser.lastname,
       username:   currUser.username,
       bio:        currUser.bio,
-      profilepic: currUser.profilepic
+      profilepic: currUser.profilepic,
+      navUser: currUser.username
     });
   });
 
@@ -782,7 +769,8 @@ app.get('/edit-account', function(req, res) {
     res.render('EditAccountProfile', {
       styles: "css/styles_inside.css",
       tab_title: "Edit Account",
-      body_class: "inside", 
+      body_class: "inside",
+      navUser: currUser.username
     });
 });
 
@@ -792,7 +780,8 @@ app.get('/edit-account', function(req, res) {
         // for main.hbs
           styles: "css/styles_inside.css",
           tab_title: "Create Post",
-          body_class: "inside"
+          body_class: "inside",
+          navUser: currUser.username
 
           // FEATURE: '/addPost'
       })
@@ -804,7 +793,8 @@ app.get('/edit-account', function(req, res) {
         // for main.hbs
           styles: "css/styles_inside.css",
           tab_title: "Edit Post",
-          body_class: "inside"
+          body_class: "inside",
+          navUser: currUser.username
         
         // for this page
           /* sam:
@@ -845,8 +835,9 @@ app.get('/edit-account', function(req, res) {
           instructions: data.instructions,
           
           comment_count: data.comments.length,
-          comments: data.comments
+          comments: data.comments,
 
+          navUser: currUser.username
       })
   });
 
@@ -856,7 +847,8 @@ app.get('/edit-account', function(req, res) {
         // for main.hbs
           styles: "css/styles_inside.css",
           tab_title: "Search Page",
-          body_class: "inside"
+          body_class: "inside",
+          navUser: currUser.username
         
         // for this page
           /* sam:
