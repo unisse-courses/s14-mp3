@@ -16,8 +16,8 @@ const ingredientsModel = require('./models/ingredients');
 const commentsModel = require('./models/ingredients');
 
 // IMPORTS FOR IMAGE UPLOADS
-var fs = require(‘fs’);
-var mongoose = require(‘mongoose’);
+var fs = require('fs');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var multer = require('multer');
 
@@ -653,19 +653,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
       });
   });
 
-//ACCOUNT PROFILE
-app.get('/getUsers', function(req, res) {
-  userModel.find({}).sort({username: 1}).exec(function(err, result) {
-    var userObjects = [];
-
-    result.forEach(function(doc) {
-      userObjects.push(doc.toObject());
-    });
-    //console.log(userObjects);
-    res.status(200).send(userObjects);
-  });
-});
-
 // USER LOGIN
   app.get('/log-in', function(req, res) {
       res.render('UserLogin', {
@@ -733,31 +720,27 @@ app.get('/getUsers', function(req, res) {
       })
   });
 
-// ACCOUNT PROFILE
-  app.get('/account-profile', function(req, res) {
-    res.render('AccountProfile', {
-      // for main.hbs
-        styles: "css/styles_inside.css",
-        tab_title: "Account Profile",
-        body_class: "inside"
-      
-      // for this page
-          /* sam:
-              possible variables to transfer:
+function getAccountProfile(req, res, next) {
+  userModel.find({}).sort({username: 1}).exec().then(result => {
+    var userObjects = [];
 
-              - object array for the posts
-                  (for this one, idk how we'll do it if it will have ALL posts or if we'll just have 5 posts per page
-                  then theres a next page to view older posts ?? basta we'll figure it out sana sa db parts)
-              - top part of acc profile
-                  - firstname
-                  - lastname
-                  - username
-                  - bio
-                  - profilepic
-          */
-      }
-    )
+    result.forEach(function(doc) {
+      userObjects.push(doc.toObject());
+    });
+    
+    console.log(userObjects);
+
+    res.render('AccountProfile', {
+      user: userObjects,
+      styles: "css/styles_inside.css",
+      tab_title: "Account Profile",
+      body_class: "inside"
+    });
   });
+};
+
+// ACCOUNT PROFILE
+  app.get('/account-profile', getAccountProfile);
 
 // CREATE ACCOUNT PROFILE
   app.get('/create-account', function(req, res) {
@@ -772,24 +755,23 @@ app.get('/getUsers', function(req, res) {
   });
 
 // EDIT ACCOUNT PROFILE
-  app.get('/edit-account', function(req, res) {
-      res.render('EditAccountProfile', {
-        // for main.hbs
-          styles: "css/styles_inside.css",
-          tab_title: "Edit Account",
-          body_class: "inside"
-        
-        // for this page
-          /* sam:
-              possible variables to transfer:
-              - firstname
-              - lastname
-              - password
-              - bio
-              - profilepic
-          */
-      })
-  });
+app.get('/edit-account', function(req, res) {
+
+  // for this page
+    /* sam:
+    possible variables to transfer:
+    - firstname
+    - lastname
+    - password
+    - bio
+    - profilepic
+    */
+    res.render('EditAccountProfile', {
+      styles: "css/styles_inside.css",
+      tab_title: "Edit Account",
+      body_class: "inside", 
+    });
+});
 
 // CREATE RECIPE POST
   app.get('/create-recipe', function(req, res) {
@@ -946,7 +928,18 @@ app.post('/loginAccount', function(req, res) {
   });
 
 // EDIT ACCOUNT PROFILE
+app.put('/edit-account', function(req, res) {
+  var user = req.body.username;
+    userModel.find({user}).sort({username: 1}).exec(function(err, result) {
+    var userObject = [];
 
+    result.forEach(function(doc) {
+      userObject.push(doc.toObject());
+    });
+
+    res.status(200).redirect('/account-profile');
+  });
+});
 
 // DELETE ACCOUNT PROFILE
   // POST

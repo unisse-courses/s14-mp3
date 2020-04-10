@@ -46,13 +46,12 @@ $(document).ready(function() {
             password: pass,
         }
 
-        localStorage.setItem("activeUser", user);
-
         $.post('loginAccount', account, function(data,status) {
             
             if(data.success){
                 alert("Welcome " + data.returnData.username);
                 window.location.href = "home";
+                localStorage.setItem("activeUser", data.returnData.username);
             }
             else{
                 document.getElementById("warning1").textContent = data.message;
@@ -778,7 +777,7 @@ if (window.location.href.includes("account-profile"))
         location.href='/'  
     });
 
-    $("#editAccount").click(function () { 
+    $("#edit-account").click(function () { 
         location.href='edit-account'
         
     });
