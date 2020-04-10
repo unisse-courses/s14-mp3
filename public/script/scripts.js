@@ -8,8 +8,19 @@ $(document).ready(function() {
 
     $("#noAccount").click(function () { 
         localStorage.setItem('isGuest', 0);
-        
-        window.location.href = "home";
+        var account = {
+            username: "Guest"
+        }
+
+        $.post('loginAccount', account, function(data,status) {
+            
+            if(data.success){
+                alert("Welcome " + data.returnData.username);
+                window.location.href = "home";
+                console.log(data.returnData.username);
+                localStorage.setItem("activeUser", data.returnData.username);
+            }
+        });
         
     });
 
@@ -46,13 +57,13 @@ $(document).ready(function() {
             password: pass,
         }
 
-        localStorage.setItem("activeUser", user);
-
         $.post('loginAccount', account, function(data,status) {
             
             if(data.success){
                 alert("Welcome " + data.returnData.username);
                 window.location.href = "home";
+                console.log(data.returnData.username);
+                localStorage.setItem("activeUser", data.returnData.username);
             }
             else{
                 document.getElementById("warning1").textContent = data.message;
@@ -141,11 +152,11 @@ $(document).ready(function() {
     });
 
 /* -------------------------------------------------- Homepage.hbs -------------------------------------------------- */
-    if(window.location.href.includes('homepage')){
+    if(window.location.href.includes('home')){
+        console.log(localStorage.getItem('isGuest'))
         if (localStorage.getItem('isGuest') == 0){
             $('#accProfile').addClass("disabled")
             $('#create').hide()
-            $('#navbar-dropdown').html("Guest User")
         }
         else{
             $('#accProfile').addClass("enabled")
@@ -778,7 +789,7 @@ if (window.location.href.includes("account-profile"))
         location.href='/'  
     });
 
-    $("#editAccount").click(function () { 
+    $("#edit_account-btn").click(function () { 
         location.href='edit-account'
         
     });

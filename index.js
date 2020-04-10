@@ -200,14 +200,14 @@ app.set('view engine', 'hbs');
 
 // GLOBAL VARIABLES
   
-    var currUser = new userModel ({
-        firstname: 'CurrUser',
-        lastname: 'LN',
-        username: 'current',
-        password: 'blank',
-        bio: 'blank',
-        profilepic: '/images/profilepic/ted.jpg'
-    });
+var currUser = new userModel ({
+  firstname: '',
+  lastname: '',
+  username: '',
+  password: '',
+  bio: '',
+  profilepic: ''
+});
 
     // var lastUser | we can use this for the last person who logged in ?
   
@@ -221,7 +221,7 @@ app.set('view engine', 'hbs');
     {
       firstname: 'Ted',
       lastname: 'Mosby',
-      username: '@prof_Brosby',
+      username: 'prof_Brosby',
       password: 'himym',
       bio: 'Somewhere out there, there is a yellow umbrella for everyone. You must be patient.',
       profilepic: '/images/profilepic/ted.jpg'
@@ -231,7 +231,7 @@ app.set('view engine', 'hbs');
     {
       firstname: 'Barney',
       lastname: 'Stinson',
-      username: '@the_barnacle',
+      username: 'the_barnacle',
       password: 'suitup69',
       bio: 'Tonight is the night that we make everything Legen... wait for it... Dary. LEGENDARY!',
       profilepic: '/images/profilepic/barney.jpg'
@@ -241,7 +241,7 @@ app.set('view engine', 'hbs');
     {
       firstname: 'Robin',
       lastname: 'Scherbatsky',
-      username: '@robin_mnews',
+      username: 'robin_mnews',
       password: 'metronews',
       bio: 'If you have chemistry then you only need more thing, timing.',
       profilepic: '/images/profilepic/robin.jpg'
@@ -251,7 +251,7 @@ app.set('view engine', 'hbs');
     {
       firstname: 'Lily',
       lastname: 'Aldrin',
-      username: '@Lilypad',
+      username: 'Lilypad',
       password: 'marvin',
       bio: 'You can\'t just skip to where you want to be.',
       profilepic: '/images/profilepic/lily.jpg'
@@ -261,7 +261,7 @@ app.set('view engine', 'hbs');
     {
       firstname: 'Marshall',
       lastname: 'Eriksen',
-      username: '@bigFudge',
+      username: 'bigFudge',
       password: 'daisy',
       bio: 'ALL HAIL BEERCULES!',
       profilepic: '/images/profilepic/marsh.jpg'
@@ -276,7 +276,7 @@ app.set('view engine', 'hbs');
       user: {
         firstname: 'Ted',
         lastname: 'Mosby',
-        username: '@prof_Brosby',
+        username: 'prof_Brosby',
         profilepic: '/images/profilepic/ted.jpg'
       },
       upvotes: '10',
@@ -346,7 +346,7 @@ app.set('view engine', 'hbs');
           user: {
               firstname: 'Marshall',
               lastname: 'Eriksen',
-              username: '@bigFudge',
+              username: 'bigFudge',
               profilepic: '/images/profilepic/marsh.jpg'
           },
           content:'I love Pancakes!',
@@ -358,7 +358,7 @@ app.set('view engine', 'hbs');
               user: {
                   firstname: 'Ted',
                   lastname: 'Mosby',
-                  username: '@prof_Brosby',
+                  username: 'prof_Brosby',
                   profilepic: '/images/profilepic/ted.jpg'
               },
               content:'thanks for the support marsh!',
@@ -376,7 +376,7 @@ app.set('view engine', 'hbs');
       user: {
           firstname: 'Barney',
           lastname: 'Stinson',
-          username: '@the_barnacle',
+          username: 'the_barnacle',
           profilepic: '/images/profilepic/barney.jpg'
       },
       upvotes: '20',
@@ -448,7 +448,7 @@ app.set('view engine', 'hbs');
           user: {
               firstname: 'Robin',
               lastname: 'Scherbatsky',
-              username: '@robin_mnews',
+              username: 'robin_mnews',
               profilepic: '/images/profilepic/robin.jpg'
           },
           content:'I am gonna expect that cake on our wedding day okay?',
@@ -460,7 +460,7 @@ app.set('view engine', 'hbs');
               user: {
                   firstname: 'Barney',
                   lastname: 'Stinson',
-                  username: '@the_barnacle',
+                  username: 'the_barnacle',
                   profilepic: '/images/profilepic/barney.jpg'
               },
               content:'Wow. thanks for the pressure Robin, Sheesh!',
@@ -478,7 +478,7 @@ app.set('view engine', 'hbs');
       user: {
           firstname: 'Lily',
           lastname: 'Aldrin',
-          username: '@lilypad',
+          username: 'lilypad',
           profilepic: '/images/profilepic/lily.jpg'
       },
       upvotes: '55',
@@ -572,7 +572,7 @@ app.set('view engine', 'hbs');
           user: {
               firstname: 'Ted',
               lastname: 'Mosby',
-              username: '@prof_Brosby',
+              username: 'prof_Brosby',
               profilepic: '/images/profilepic/ted.jpg'
           },
           content:'Damn, Marshall is so lucky!',
@@ -584,7 +584,7 @@ app.set('view engine', 'hbs');
               user: {
                 firstname: 'Marshall',
                 lastname: 'Eriksen',
-                username: '@bigFudge',
+                username: 'bigFudge',
                 profilepic: '/images/profilepic/marsh.jpg'
               },
               content:'The luckiest. I love you Lilypad.',
@@ -597,7 +597,7 @@ app.set('view engine', 'hbs');
               user: {
                   firstname: 'Lily',
                   lastname: 'Aldrin',
-                  username: '@lilypad',
+                  username: 'lilypad',
                   profilepic: '/images/profilepic/lily.jpg'
               },
               content:'I love you too Marshmallow.',
@@ -615,7 +615,7 @@ app.set('view engine', 'hbs');
       user: {
           firstname: 'Robin',
           lastname: 'Scherbatsky',
-          username: '@robin_mnews',
+          username: 'robin_mnews',
           profilepic: '/images/profilepic/robin.jpg'
       },
       upvotes: '13',
@@ -683,7 +683,7 @@ app.set('view engine', 'hbs');
           user: {
               firstname: 'Barney',
               lastname: 'Stinson',
-              username: '@the_barnacle',
+              username: 'the_barnacle',
               profilepic: '/images/profilepic/barney.jpg'
           },
           content:'Since when did you learn making Japanese food?',
@@ -695,7 +695,7 @@ app.set('view engine', 'hbs');
               user: {
                   firstname: 'Robin',
                   lastname: 'Scherbatsky',
-                  username: '@robin_mnews',
+                  username: 'robin_mnews',
                   profilepic: '/images/profilepic/robin.jpg'
               },
               content:'Since I newscasted in Japan remember? idiot.',
@@ -714,7 +714,7 @@ app.set('view engine', 'hbs');
         {
           firstname: 'Marshall',
           lastname: 'Eriksen',
-          username: '@bigFudge',
+          username: 'bigFudge',
           profilepic: '/images/profilepic/marsh.jpg'
         }
       ],
@@ -771,7 +771,7 @@ app.set('view engine', 'hbs');
           user: {
               firstname: 'Robin',
               lastname: 'Scherbatsky',
-              username: '@robin_mnews',
+              username: 'robin_mnews',
               profilepic: '/images/profilepic/robin.jpg'
           },
           content:'Marshall can cook! I am so proud of you.',
@@ -783,7 +783,7 @@ app.set('view engine', 'hbs');
               user: {
                   firstname: 'Marshall',
                   lastname: 'Eriksen',
-                  username: '@bigFudge',
+                  username: 'bigFudge',
                   profilepic: '/images/profilepic/marsh.jpg'
               },
               content:'Wow. I sense the sarcasm Robin',
@@ -808,19 +808,6 @@ app.set('view engine', 'hbs');
           body_class: "outside"
       });
   });
-
-//ACCOUNT PROFILE
-app.get('/getUsers', function(req, res) {
-  userModel.find({}).sort({username: 1}).exec(function(err, result) {
-    var userObjects = [];
-
-    result.forEach(function(doc) {
-      userObjects.push(doc.toObject());
-    });
-    //console.log(userObjects);
-    res.status(200).send(userObjects);
-  });
-});
 
 // USER LOGIN
   app.get('/log-in', function(req, res) {
@@ -869,50 +856,46 @@ app.get('/getUsers', function(req, res) {
           styles: "css/styles_inside.css",
           tab_title: "Homepage",
           body_class: "inside",
-          posts: data
-        
-        // for this page
-          /* sam:
-              possible variables to transfer:
+          posts: data,
+          navUser: currUser.username
 
-              - object array for the 5 posts in the homepage ?
-                  each containing:
-                  - username
-                  - first name
-                  - last name
-                  - recipe post title
-                  - post description
-                  - upvote score
-                  - date posted
-                  - time posted
-          */
       })
   });
 
-// ACCOUNT PROFILE
-  app.get('/account-profile', function(req, res) {
-    res.render('AccountProfile', {
-      // for main.hbs
-        styles: "css/styles_inside.css",
-        tab_title: "Account Profile",
-        body_class: "inside"
-      
-      // for this page
-          /* sam:
-              possible variables to transfer:
+function getAccountProfile(req, res, next) {
+  userModel.find({}).sort({username: 1}).exec().then(result => {
+    var userObjects = [];
 
-              - object array for the posts
-                  (for this one, idk how we'll do it if it will have ALL posts or if we'll just have 5 posts per page
-                  then theres a next page to view older posts ?? basta we'll figure it out sana sa db parts)
-              - top part of acc profile
-                  - firstname
-                  - lastname
-                  - username
-                  - bio
-                  - profilepic
-          */
-      }
-    )
+    result.forEach(function(doc) {
+      userObjects.push(doc.toObject());
+    });
+    
+    //console.log(userObjects);
+    
+    res.render('AccountProfile', {
+      user: userObjects,
+      styles: "css/styles_inside.css",
+      tab_title: "Account Profile",
+      body_class: "inside"
+    });
+  });
+};
+
+// ACCOUNT PROFILE
+  //app.get('/account-profile', getAccountProfile);
+
+  app.get('/account-profile', function(req, res){
+    res.render('AccountProfile', {
+      styles:     "css/styles_inside.css",
+      tab_title:  "Account Profile",
+      body_class: "inside",
+      firstname:  currUser.firstname,
+      lastname:   currUser.lastname,
+      username:   currUser.username,
+      bio:        currUser.bio,
+      profilepic: currUser.profilepic,
+      navUser: currUser.username
+    });
   });
 
 // CREATE ACCOUNT PROFILE
@@ -928,24 +911,24 @@ app.get('/getUsers', function(req, res) {
   });
 
 // EDIT ACCOUNT PROFILE
-  app.get('/edit-account', function(req, res) {
-      res.render('EditAccountProfile', {
-        // for main.hbs
-          styles: "css/styles_inside.css",
-          tab_title: "Edit Account",
-          body_class: "inside"
-        
-        // for this page
-          /* sam:
-              possible variables to transfer:
-              - firstname
-              - lastname
-              - password
-              - bio
-              - profilepic
-          */
-      })
-  });
+app.get('/edit-account', function(req, res) {
+
+  // for this page
+    /* sam:
+    possible variables to transfer:
+    - firstname
+    - lastname
+    - password
+    - bio
+    - profilepic
+    */
+    res.render('EditAccountProfile', {
+      styles: "css/styles_inside.css",
+      tab_title: "Edit Account",
+      body_class: "inside",
+      navUser: currUser.username
+    });
+});
 
 // CREATE RECIPE POST
   app.get('/create-recipe', function(req, res) {
@@ -953,7 +936,8 @@ app.get('/getUsers', function(req, res) {
         // for main.hbs
           styles: "css/styles_inside.css",
           tab_title: "Create Post",
-          body_class: "inside"
+          body_class: "inside",
+          navUser: currUser.username
 
           // FEATURE: '/addPost'
       })
@@ -965,7 +949,8 @@ app.get('/getUsers', function(req, res) {
         // for main.hbs
           styles: "css/styles_inside.css",
           tab_title: "Edit Post",
-          body_class: "inside"
+          body_class: "inside",
+          navUser: currUser.username
         
         // for this page
           /* sam:
@@ -1006,8 +991,9 @@ app.get('/getUsers', function(req, res) {
           instructions: data.instructions,
           
           comment_count: data.comments.length,
-          comments: data.comments
+          comments: data.comments,
 
+          navUser: currUser.username
       })
   });
 
@@ -1017,7 +1003,8 @@ app.get('/getUsers', function(req, res) {
         // for main.hbs
           styles: "css/styles_inside.css",
           tab_title: "Search Page",
-          body_class: "inside"
+          body_class: "inside",
+          navUser: currUser.username
         
         // for this page
           /* sam:
@@ -1074,10 +1061,36 @@ app.post('/loginAccount', function(req, res) {
       password:   req.body.password,
     }
     
+    if (account.username == "Guest"){
+      currUser = {
+        username: account.username
+      }
 
-    userModel.findOne({username: account.username}, function (err, accountResult){
+      result = {
+        success: true,
+        message: account.username + " has logged in!",
+        returnData: currUser
+      }
+      res.send(result);
+    }
+    else
+    {
+      userModel.findOne({username: account.username}, function (err, accountResult){
       
       if(accountResult){
+        console.log(accountResult.profilepic);
+        currUser = {
+          firstname:  accountResult.firstname,
+          lastname:   accountResult.lastname,
+          username:   accountResult.username, 
+          password:   accountResult.password, 
+          bio:        accountResult.bio, 
+          profilepic: accountResult.profilepic
+        }
+        
+        console.log("Current user:");
+        console.log(currUser);
+
         result = {
           success: true,
           message: account.username + " has logged in!",
@@ -1093,16 +1106,22 @@ app.post('/loginAccount', function(req, res) {
         }
         res.send(result);
       }
-      
-     
-    });
-
-
-    //res.status(200).send(account);
+    });}
   });
 
 // EDIT ACCOUNT PROFILE
+app.put('/edit-account', function(req, res) {
+  var user = req.body.username;
+    userModel.find({user}).sort({username: 1}).exec(function(err, result) {
+    var userObject = [];
 
+    result.forEach(function(doc) {
+      userObject.push(doc.toObject());
+    });
+
+    res.status(200).redirect('/account-profile');
+  });
+});
 
 // DELETE ACCOUNT PROFILE
   // POST
