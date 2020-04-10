@@ -905,8 +905,21 @@ app.post('/loginAccount', function(req, res) {
       password:   req.body.password,
     }
     
+    if (account.username == "Guest"){
+      currUser = {
+        username: account.username
+      }
 
-    userModel.findOne({username: account.username}, function (err, accountResult){
+      result = {
+        success: true,
+        message: account.username + " has logged in!",
+        returnData: currUser
+      }
+      res.send(result);
+    }
+    else
+    {
+      userModel.findOne({username: account.username}, function (err, accountResult){
       
       if(accountResult){
         console.log(accountResult.profilepic);
@@ -937,12 +950,7 @@ app.post('/loginAccount', function(req, res) {
         }
         res.send(result);
       }
-      
-     
-    });
-
-
-    //res.status(200).send(account);
+    });}
   });
 
 // EDIT ACCOUNT PROFILE
