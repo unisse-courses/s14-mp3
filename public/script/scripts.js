@@ -778,7 +778,7 @@ if (window.location.href.includes("account-profile"))
         location.href='/'  
     });
 
-    $("#edit-account").click(function () { 
+    $("#edit_account-btn").click(function () { 
         location.href='edit-account'
         
     });

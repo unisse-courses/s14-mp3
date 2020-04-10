@@ -3,26 +3,31 @@
         {{>navbar username=navUser}}
         
         <div class="d-flex flex-column content">
-            <div class="card profile-container" id="profile-container">
-                <div class="d-flex flex-row card-body" id="profile-row">
-                    <div class="full-width-container" id="profile-col1">
-                        <img src="{{profilepic}}"class="img-fluid" id="profile-picture"class="img-fluid">
+    
+
+            <div class="card profile-container">
+                <div class="d-flex flex-row card-body profile-row">
+                    <div class="full-width-container profile-col1">
+                        <img class="img-fluid" id="profile-picture" src="{{profilepic}}" class="img-fluid">
                     </div>
 
-                    <div id="profile-col2">
-                        <div class="d-flex flex-row justify-content-between" id="profile-col2_row1">
-                            <div id="profile-col2_row1a">
+                    <div class="profile-col2">
+                        <div class="d-flex flex-row justify-content-between profile-col2_row1">
+                            <div class="profile-col2_row1a">
                                 <h2>{{firstname}} {{lastname}}</h2>
-                                <p>{{username}}</p>
+                                <p>@{{username}}</p>
                             </div>
+
+
                         </div>
-                        <div id="profile-col2_row2">
+
+                        <div class="profile-col2_row2">
                             <p align="justify"> 
-                                {{bio}}
+                              {{bio}}   
                             </p>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
 
             <div class="card post_preview-container">
@@ -50,7 +55,7 @@
   
             </div>
 
-            <button type="button" class="btn btn-outline-secondary my-2 my-sm-0" id="edit-account">Edit Account</button>
+            <button type="button" class="btn btn-outline-success btn-lg btn-block" id="edit_account-btn">Edit Account</button>
             <button type="button" class="btn btn-outline-danger btn-lg btn-block" id="delete_account-btn" data-toggle="modal" data-target="#delete_account-modal">Delete Account</button>
 
             <!-- Modal -->
