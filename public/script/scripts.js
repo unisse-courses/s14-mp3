@@ -51,6 +51,7 @@ $(document).ready(function() {
             if(data.success){
                 alert("Welcome " + data.returnData.username);
                 window.location.href = "home";
+                console.log(data.returnData.username);
                 localStorage.setItem("activeUser", data.returnData.username);
             }
             else{

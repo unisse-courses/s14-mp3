@@ -1,12 +1,12 @@
 <!-- BODY CLASS = INSIDE-->
 
         {{>navbar}}
-        {{#with user}}
+        
         <div class="d-flex flex-column content">
             <div class="card profile-container" id="profile-container">
                 <div class="d-flex flex-row card-body" id="profile-row">
                     <div class="full-width-container" id="profile-col1">
-                        <img class="img-fluid" id="profile-picture"class="img-fluid">
+                        <img src="{{profilepic}}"class="img-fluid" id="profile-picture"class="img-fluid">
                     </div>
 
                     <div id="profile-col2">
@@ -80,4 +80,4 @@
 
         </div>
 
-        {{/with}}
+        

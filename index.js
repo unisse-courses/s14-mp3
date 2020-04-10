@@ -44,14 +44,14 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // GLOBAL VARIABLES
   
-    var currUser = new userModel ({
-        firstname: 'CurrUser',
-        lastname: 'LN',
-        username: 'current',
-        password: 'blank',
-        bio: 'blank',
-        profilepic: '/images/profilepic/ted.jpg'
-    });
+var currUser = new userModel ({
+  firstname: '',
+  lastname: '',
+  username: '',
+  password: '',
+  bio: '',
+  profilepic: ''
+});
 
     // var lastUser | we can use this for the last person who logged in ?
   
@@ -728,8 +728,8 @@ function getAccountProfile(req, res, next) {
       userObjects.push(doc.toObject());
     });
     
-    console.log(userObjects);
-
+    //console.log(userObjects);
+    
     res.render('AccountProfile', {
       user: userObjects,
       styles: "css/styles_inside.css",
@@ -740,7 +740,20 @@ function getAccountProfile(req, res, next) {
 };
 
 // ACCOUNT PROFILE
-  app.get('/account-profile', getAccountProfile);
+  //app.get('/account-profile', getAccountProfile);
+
+  app.get('/account-profile', function(req, res){
+    res.render('AccountProfile', {
+      styles:     "css/styles_inside.css",
+      tab_title:  "Account Profile",
+      body_class: "inside",
+      firstname:  currUser.firstname,
+      lastname:   currUser.lastname,
+      username:   currUser.username,
+      bio:        currUser.bio,
+      profilepic: currUser.profilepic
+    });
+  });
 
 // CREATE ACCOUNT PROFILE
   app.get('/create-account', function(req, res) {
@@ -904,6 +917,19 @@ app.post('/loginAccount', function(req, res) {
     userModel.findOne({username: account.username}, function (err, accountResult){
       
       if(accountResult){
+        console.log(accountResult.profilepic);
+        currUser = {
+          firstname:  accountResult.firstname,
+          lastname:   accountResult.lastname,
+          username:   accountResult.username, 
+          password:   accountResult.password, 
+          bio:        accountResult.bio, 
+          profilepic: accountResult.profilepic
+        }
+        
+        console.log("Current user:");
+        console.log(currUser);
+
         result = {
           success: true,
           message: account.username + " has logged in!",
