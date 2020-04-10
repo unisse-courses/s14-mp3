@@ -1,46 +1,202 @@
 // IMPORTS
-const express = require('express');
-const path = require('path');
-const exphbs = require('express-handlebars');
-const handlebars = require('handlebars');
-const bodyParser = require('body-parser');
+  const express = require('express');
+  const path = require('path');
+  const exphbs = require('express-handlebars');
+  const handlebars = require('handlebars');
+  const bodyParser = require('body-parser');
 
 // EXPRESS APP
-const app = express();
-const port = 3000; // sam: bc thats whats in the specs
+  const app = express();
+  const port = 3000;
 
 // IMPORTING THE MODEL
-const userModel = require('./models/users');
-const postModel = require('./models/posts');
-const ingredientsModel = require('./models/ingredients');
-const commentsModel = require('./models/ingredients');
+  const userModel = require('./models/users');
+  const postModel = require('./models/posts');
+  const ingredientsModel = require('./models/ingredients');
+  const commentsModel = require('./models/ingredients');
 
-// IMPORTS FOR IMAGE UPLOADS
-var fs = require(‘fs’);
-var mongoose = require(‘mongoose’);
-var Schema = mongoose.Schema;
-var multer = require('multer');
+// ALL THE STUFF FOR IMAGE UPLOADS
+  const crypto = require("crypto");
+  const mongoose = require("mongoose");
+  const multer = require("multer");
+  const GridFsStorage = require("multer-gridfs-storage");
+
+  /*
+// Middlewares
+app.use(express.json());
+app.set("view engine", "ejs");  // FIND A WAY TO MAKE THIS WORK IN THIS FILE
+
+// DB
+const mongoURI = 'mongodb://localhost:27017/foodiesdb';
+
+// connection
+const conn = mongoose.createConnection(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+// init gfs
+let gfs;
+conn.once("open", () => {
+  // init stream
+  gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+    bucketName: "uploads"
+  });
+});
+
+// Storage
+const storage = new GridFsStorage({
+  url: mongoURI,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString("hex") + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: "uploads"
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+
+const upload = multer({
+  storage
+});
+
+// get / page
+app.get("/", (req, res) => {
+  if(!gfs) {
+    console.log("some error occured, check connection to db");
+    res.send("some error occured, check connection to db");
+    process.exit(0);
+  }
+  gfs.find().toArray((err, files) => {
+    // check if files
+    if (!files || files.length === 0) {
+      return res.render("index", {
+        files: false
+      });
+    } else {
+      const f = files
+        .map(file => {
+          if (
+            file.contentType === "image/png" ||
+            file.contentType === "image/jpeg"
+          ) {
+            file.isImage = true;
+          } else {
+            file.isImage = false;
+          }
+          return file;
+        })
+        .sort((a, b) => {
+          return (
+            new Date(b["uploadDate"]).getTime() -
+            new Date(a["uploadDate"]).getTime()
+          );
+        });
+
+      return res.render("index", {
+        files: f
+      });
+    }
+
+    // return res.json(files);
+  });
+});
+
+app.post("/addImage", upload.single("file"), (req, res) => { // changes upload to "addImage"
+  // res.json({file : req.file})
+  res.redirect("/");
+});
+
+app.get("/files", (req, res) => {
+  gfs.find().toArray((err, files) => {
+    // check if files
+    if (!files || files.length === 0) {
+      return res.status(404).json({
+        err: "no files exist"
+      });
+    }
+
+    return res.json(files);
+  });
+});
+
+app.get("/files/:filename", (req, res) => {
+  gfs.find(
+    {
+      filename: req.params.filename
+    },
+    (err, file) => {
+      if (!file) {
+        return res.status(404).json({
+          err: "no files exist"
+        });
+      }
+
+      return res.json(file);
+    }
+  );
+});
+
+app.get("/image/:filename", (req, res) => {
+  // console.log('id', req.params.id)
+  const file = gfs
+    .find({
+      filename: req.params.filename
+    })
+    .toArray((err, files) => {
+      if (!files || files.length === 0) {
+        return res.status(404).json({
+          err: "no files exist"
+        });
+      }
+      gfs.openDownloadStreamByName(req.params.filename).pipe(res);
+    });
+});
+
+// files/del/:id
+// Delete chunks from the db
+app.post("/files/del/:id", (req, res) => {
+  gfs.delete(new mongoose.Types.ObjectId(req.params.id), (err, data) => {
+    if (err) return res.status(404).json({ err: err.message });
+    res.redirect("/");
+  });
+});
+
+const port = 5001;
+
+app.listen(port, () => {
+  console.log("server started on " + port);
+});
+  */
 
 
 // ENGINE SET-UP
-app.engine( 'hbs', exphbs({
-  extname: 'hbs',
-  defaultView: 'main',
-  layoutsDir: path.join(__dirname, '/views/layouts'),
-  partialsDir: path.join(__dirname, '/views/partials'),
-  helpers: {
-      incremented: function(index) {
-          index++;
-          return index;
-      }
-  }
-}));
+  app.engine( 'hbs', exphbs({
+    extname: 'hbs',
+    defaultView: 'main',
+    layoutsDir: path.join(__dirname, '/views/layouts'),
+    partialsDir: path.join(__dirname, '/views/partials'),
+    helpers: {
+        incremented: function(index) {
+            index++;
+            return index;
+        }
+    }
+  }));
 
 app.set('view engine', 'hbs');
 
 // Configuration for handling API endpoint data
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+  app.use(bodyParser.json()); // support json encoded bodies
+  app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // GLOBAL VARIABLES
   
