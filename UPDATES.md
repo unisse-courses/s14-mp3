@@ -7,9 +7,9 @@
   - [ ] Loading the SPECIFIC recipe post after clicking a post preview
   - [ ] Loading the Top 5 Most Recent Pages
 - [ ] Searchpage
-  - [ ] Search Button -> Uses get function to look for post / account
+  - [X] Search Button -> Uses get function to look for post / account
   - [ ] Should show all the deets + no errors for both post / account
-  - [ ] Shows partial results (example: u searched pan instead of "pancakes" but it still shows up)
+  - [X] Shows partial results (example: u searched pan instead of "pancakes" but it still shows up)
 - [x] Create Post
   - [x] Save Button -> Should add a new post in the db
 - [ ] Edit Post
@@ -22,18 +22,18 @@
   - [ ] Delete Post Button (IN MODAL) -> Should delete the post from the db
   - [ ] Upvote & Downvote Button -> Should update the upvote value in db
 - [ ] Account Profile
-  - [ ] Edit Account Button -> Should send the account info to the Edit Account Route
+  - [X] Edit Account Button -> Should send the account info to the Edit Account Route
   - [ ] Delete Account Button (IN MODAL) -> Should delete the user from the db
   - [ ] Should have ALL of the posts under that user pre-loaded
-  - [ ] Loads the current user's account info
+  - [X] Loads the current user's account info
 - [ ] Edit Account Profile
   - [ ] Save Button -> Should update the user info in the db
   - [ ] Account info should be pre-loaded na
 
 2. IN GENERAL
 - [ ] Each page AFTER LOGIN should have its own route ("/:id")
-  - [ ] Can see the current user's info in navbar
-  - [ ] Can see the current user's info after clicking their profile FROM Navbar
+  - [X] Can see the current user's info in navbar
+  - [X] Can see the current user's info after clicking their profile FROM Navbar
 
 THEN im not sure if need MVC agad but the last thing to do is:
 
