@@ -35,7 +35,7 @@ $(document).ready(function() {
     $("#loginButton").click(function () { 
         var user = document.getElementById("inputUser").value
         var pass = document.getElementById("inputPassword").value
-        
+
         //to verify if crednetials have been retrieved
         console.log(user + " " + pass)
             if (user == ""){
@@ -55,6 +55,7 @@ $(document).ready(function() {
         var account = {
             username: user,
             password: pass,
+            remember: $('#remember_me').is(":checked")
         }
 
         $.post('loginAccount', account, function(data,status) {
@@ -62,7 +63,7 @@ $(document).ready(function() {
             if(data.success){
                 alert("Welcome " + data.returnData.username);
                 window.location.href = "home";
-                console.log(data.returnData.username);
+                
                 localStorage.setItem("activeUser", data.returnData.username);
             }
             else{
@@ -128,7 +129,7 @@ $(document).ready(function() {
             bio: bio
         };
 
-        console.log(first, last, user, pass, bio);
+        
 
         $.post('addAccount', person, function(data,status) {
             console.log(data);
@@ -167,12 +168,13 @@ $(document).ready(function() {
         $('#logout').click(function(){
             sessionStorage.clear();
         })
-
+        /* 
+        WILL FIX SOON -JHANN
         $.get("posts", function (data, status) {
             console.log(data);
             console.log(status);
         });
-
+        */
     }
     function createPostDiv(item, parentDiv){
         alert(item.title);
@@ -227,6 +229,13 @@ $(document).ready(function() {
         $(image).attr("src", item.recipe_picture);
 
         $(title).text(item.title);
+        /*
+            ISSUE ATM:
+            IDK Y AYAW MAKUHA ANG USER PROPERTY SA DB
+            IE WHEN U TRY TO CONSOLE LOG THE POST
+            WALA TALAGA YUNG 'USER' PROPERTY
+        */
+
         //console.log(item.user.firstname);
         //$(userspan).text("By " + fullname(item.user.firstname, item.user.lastname) +" | " + userwithatsign(item.user.username));
 

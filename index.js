@@ -43,7 +43,8 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // GLOBAL VARIABLES
-  
+var rememberMe;
+
 var currUser = new userModel ({
   firstname: '',
   lastname: '',
@@ -655,24 +656,29 @@ var currUser = new userModel ({
 
 // USER LOGIN
   app.get('/log-in', function(req, res) {
-      res.render('UserLogin', {
-        // for main.hbs
-          styles: "css/styles_outside.css",
-          tab_title: "Log-In",
-          body_class: "outside"
-        
-        // for this page 
-          /* TODO: AFTER PHASE 2 SUBMISSION PA
-              sam:
-              possible variables to transfer:
 
-              lastUser: currUser.username,
-              lastPass: currUser.password
-              
-              i think there will be variables here since theres a "remember me" option which should
-              generate the login info of the last person who logged in + checked the box
-          */
+    if(rememberMe == 'true'){
+      res.render('UserLogin', {
+        styles: "css/styles_outside.css",
+        tab_title: "Log-In",
+        body_class: "outside",
+        username: currUser.username,
+        password: currUser.password,
+        isChecked: true
       })
+    }
+    else{
+      res.render('UserLogin', {
+        styles: "css/styles_outside.css",
+        tab_title: "Log-In",
+        body_class: "outside",
+        username: "",
+        password: "",
+        isChecked: false
+      })
+    }
+
+      
   });
 
 // HOMEPAGE
@@ -895,8 +901,11 @@ app.get('/edit-account', function(req, res) {
 // USER LOGIN FEATURE
   // POST
 app.post('/loginAccount', function(req, res) {
-    console.log(req.body);
+    
     var result;
+    console.log("checked: " + req.body.remember)
+    rememberMe = req.body.remember;
+
     var account = {
       username:  req.body.username,
       password:   req.body.password,

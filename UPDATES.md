@@ -27,10 +27,11 @@
   - [ ] Should have ALL of the posts under that user pre-loaded
   - [X] Loads the current user's account info
 - [ ] Edit Account Profile
-  - [ ] Save Button -> Should update the user info in the db
-  - [ ] Account info should be pre-loaded na
+  - [ ] Update Button -> Should update the user info in the db
+  - [X] Account info should be pre-loaded na
 
 2. IN GENERAL
+- [X] "Remember me" feature
 - [ ] Each page AFTER LOGIN should have its own route ("/:id")
   - [X] Can see the current user's info in navbar
   - [X] Can see the current user's info after clicking their profile FROM Navbar
