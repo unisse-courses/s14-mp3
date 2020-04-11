@@ -6,7 +6,7 @@
     }
 
     .parent {
-        height: 600px;
+        height: auto;
         width: 600px;
         justify-content: center;
         align-items: center;
@@ -52,5 +52,14 @@
 
     .container1 {
         padding: 80px;
+    }
+
+    .preview{
+        max-width: 100%;
+    }
+    
+    #previewContainer{
+        max-width: 300px;
+        
     }
 

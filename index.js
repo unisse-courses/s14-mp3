@@ -757,20 +757,17 @@ function getAccountProfile(req, res, next) {
 // EDIT ACCOUNT PROFILE
 app.get('/edit-account', function(req, res) {
 
-  // for this page
-    /* sam:
-    possible variables to transfer:
-    - firstname
-    - lastname
-    - password
-    - bio
-    - profilepic
-    */
     res.render('EditAccountProfile', {
-      styles: "css/styles_inside.css",
-      tab_title: "Edit Account",
+      styles:     "css/styles_inside.css",
+      tab_title:  "Edit Account",
       body_class: "inside",
-      navUser: currUser.username
+      navUser:    currUser.username,
+      firstname:  currUser.firstname,
+      lastname:   currUser.lastname,
+      username:   currUser.username,
+      password:   currUser.password,
+      profilepic: currUser.profilepic,
+      bio:        currUser.bio
     });
 });
 
