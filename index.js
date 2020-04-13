@@ -46,6 +46,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 var rememberMe;
 
 var currUser = new userModel ({
+  email: '',
   firstname: '',
   lastname: '',
   username: '',
@@ -672,8 +673,8 @@ var currUser = new userModel ({
         styles: "css/styles_outside.css",
         tab_title: "Log-In",
         body_class: "outside",
-        username: "",
-        password: "",
+        username: currUser.username,
+        password: currUser.password,
         isChecked: false
       })
     }
@@ -756,8 +757,6 @@ function getAccountProfile(req, res, next) {
         tab_title: "Create Account",
         body_class: "outside"
     })
-
-    // FEATURE: '/addAccount'
   });
 
 // EDIT ACCOUNT PROFILE
@@ -768,6 +767,7 @@ app.get('/edit-account', function(req, res) {
       tab_title:  "Edit Account",
       body_class: "inside",
       navUser:    currUser.username,
+      email:      currUser.email,
       firstname:  currUser.firstname,
       lastname:   currUser.lastname,
       username:   currUser.username,
@@ -864,53 +864,52 @@ app.get('/edit-account', function(req, res) {
 /* -------------------------------------------------- FEATURES -------------------------------------------------- */
 // CREATE ACCOUNT
   // POST
-  app.post('/addAccount', function(req, res) {
+  app.post('/create-account', function(req, res) {
+    console.log("the request:");
     console.log(req.body);
 
-    var user_person = new userModel({
-      firstname:  req.body.firstname,
-      lastname:   req.body.lastname,
-      username:   req.body.username,
-      password:   req.body.password,
-      profilepic: `${req.body.filename}.png`,
-      bio:        req.body.bio
+    var theUser = new userModel( {
+      email:      req.body.EMAIL,
+      firstname:  req.body.FIRSTNAME,
+      lastname:   req.body.LASTNAME,
+      username:   req.body.USERNAME,
+      password:   req.body.PASSWORD,
+      profilepic: req.body.PROFILEPIC,
+      bio:        req.body.BIO
     });
 
-    user_person.save(function(err, user) {
+    theUser.save(function(err, theUser) {
       var result;
-  
+
       if (err) {
         console.log(err.errors);
-  
-        result = { success: false, message: "User was not created!" }
-        res.send(result);
+
+        result = {success: false, message: "User was not created!"}
+        return res.send(result);
+      } else {
+        console.log("User was created!");
+        console.log(theUser);
+
+        return res.redirect("/log-in");
       }
-      else {
-        console.log("Successfully created a user");
-        console.log(user_person);
-        
-        result = { success: true, message: "User was created!" }
-  
-        res.send(result);
-      }
-  
-    });
-  });
+    })
+});
   
 
 // USER LOGIN FEATURE
   // POST
-app.post('/loginAccount', function(req, res) {
-    
+app.post('/log-in', function(req, res) {
+    console.log("The ID: ");
+    console.log(req.body);
     var result;
     console.log("checked: " + req.body.remember)
     rememberMe = req.body.remember;
 
     var account = {
-      username:  req.body.username,
-      password:   req.body.password,
+      username:  req.body.USER,
+      password:   req.body.PASS,
     }
-    
+
     if (account.username == "Guest"){
       currUser = {
         username: account.username
@@ -928,26 +927,21 @@ app.post('/loginAccount', function(req, res) {
       userModel.findOne({username: account.username}, function (err, accountResult){
       
       if(accountResult){
-        console.log(accountResult.profilepic);
         currUser = {
+          email:      accountResult.email,
           firstname:  accountResult.firstname,
           lastname:   accountResult.lastname,
           username:   accountResult.username, 
           password:   accountResult.password, 
-          bio:        accountResult.bio, 
-          profilepic: accountResult.profilepic
+          profilepic: accountResult.profilepic,
+          bio:        accountResult.bio
+          
         }
         
         console.log("Current user:");
         console.log(currUser);
 
-        result = {
-          success: true,
-          message: account.username + " has logged in!",
-          returnData: accountResult
-        }
-
-        res.send(result);
+        res.redirect("/home");
       }
       else{
         result = {
@@ -960,21 +954,52 @@ app.post('/loginAccount', function(req, res) {
   });
 
 // EDIT ACCOUNT PROFILE
-app.put('/edit-account', function(req, res) {
-  var user = req.body.username;
-    userModel.find({user}).sort({username: 1}).exec(function(err, result) {
-    var userObject = [];
+  app.post('/edit-account', function(req, res) {
+    var query = {
+      email: currUser.email
+    };
 
-    result.forEach(function(doc) {
-      userObject.push(doc.toObject());
+    var update = {
+      firstname: req.body.editfirstname,
+      lastname: req.body.editlastname,
+      username: req.body.editusername,
+      password: req.body.editpassword,
+      profilepic: req.body.editprofpic,
+      bio: req.body.editbio
+    };
+
+    userModel.findOneAndUpdate(query, update, { new: true }, function(err, user) {
+      if (err) throw err;
+      console.log(user);
+      currUser = {
+        email:      user.email,
+        firstname:  user.firstname,
+        lastname:   user.lastname,
+        username:   user.username, 
+        password:   user.password, 
+        bio:        user.bio, 
+        profilepic: user.profilepic
+      };
+
+      res.redirect("/account-profile");
     });
-
-    res.status(200).redirect('/account-profile');
   });
-});
 
-// DELETE ACCOUNT PROFILE
-  // POST
+//DELETE ACCOUNT
+  app.delete('delete-account', function(req, res) {
+    console.log(req.body);
+    var query = {
+      email: currUser.email
+  }
+  userModel.findOneAndDelete(query, function(err, account) {
+      console.log(account);
+      console.log("account deleted!");
+      res.status(200).redirect('/');
+  }); 
+
+  });
+
+// POST
   app.post('/addPost', function(req, res) {
 
     console.log(req.body);

@@ -2,14 +2,14 @@
 
         <div class="parent">
             <div class="container">
-                <form class="form-signin"> 
+                <form class="form-signin" action="/log-in" method="POST"> 
                     <h1 class="h3 mb-3 font-weight-normal text-center">Please Log in</h1>
                     
                     <label for="inputUser" class="sr-only">Username</label>
-                        <input type="text" id="inputUser" class="form-control inputboxes" placeholder="Username" autofocus="" value="{{username}}"/>
+                        <input type="text" name="USER" id="user" class="form-control inputboxes" placeholder="Username" autofocus="" value="{{username}}"/>
                     
                     <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" class="form-control inputboxes" placeholder="Password" value="{{password}}"/>
+                        <input type="password" name="PASS" id="pass" class="form-control inputboxes" placeholder="Password" value="{{password}}"/>
                     
                     <div class="checkbox">
                         <label>
@@ -18,7 +18,7 @@
                     </div>
 
                     <label id="warning1" class="warning1"></label>
-                    <button id="loginButton" class="btn btn-lg btn-primary btn-block">Log in</button>
+                    <button id="loginButton" class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
                     
                 </form>
             </div>

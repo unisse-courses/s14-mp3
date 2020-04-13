@@ -2,53 +2,62 @@
 
         <div class="parent overflow-auto">
             <div class="container1 overflow-auto">
-                <form action="log-in">
+                <form action="/create-account" method="POST">
                     <div class="form-row">
                         <h3>Create an account<small class="text-muted"> and join the fun now!</small></h3>
+                    </div>
+                    
+                    <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="text" class="form-control" name ="EMAIL" id="email" placeholder="e.g. fpj@yawa.com" >
+                                <label id="validEmail"class="invalid-feedback warning2"></label>
+                        </div>
+                    
                     </div>
 
                     <div class="form-row">
                             <label for="validationCustom01">First name</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="e.g. Cardo" >
-                            <label id="validFirst" class="warning2"></label>
+                            <input type="text" class="form-control" name="FIRSTNAME" id="firstname" placeholder="e.g. Cardo" >
+                            <label id="validFirst" class="valid-feedback warning2"></label>
                     </div>
 
                     <div class="form-row">
                             <label for="lastName">Last name</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="e.g. Dalisay" >
-                            <label id="validLast"class="warning2"></label>
+                            <input type="text" class="form-control" name="LASTNAME" id="lastname" placeholder="e.g. Dalisay" >
+                            <label id="validLast"class="invalid-feedback warning2"></label>
                     </div>
 
                     <div class="form-row">
                             <label for="userName">Username</label>
-                            <input type="text" class="form-control" id="userName" placeholder="e.g. The Next 15 Years" >
+                            <input type="text" class="form-control" name="USERNAME" id="username" placeholder="e.g. The Next 15 Years" >
                             <label id="validUser"class="warning2"></label>
                     </div>
 
                     <div class="form-row">
                             <label for="password">Password</label>
                             
-                            <input type="password" class="form-control" id="password" placeholder="" >
+                            <input type="password" class="form-control" name="PASSWORD" id="password" placeholder="" >
                             
                             <label id="validPass"class="warning2"></label>
                     </div>
 
                     <div class="form-row">
                             <label for="profilePic">Choose a Profile Picture</label>
-                            <input type="file" class="form-control-file" accept="image/*" id="profilePic">  
+                            <input type="file" class="form-control-file" accept="image/*" name="PROFILEPIC" id="profilepic">  
                     </div>
                     <div class="form-row" id="previewContainer">
                         <img class="preview" id="previewPic">
                     </div>    
                     <div class="form-row">
                             <label for="bio"><br>Short Bio</label>
-                            <textarea class="form-control" id="bio" rows="3"></textarea>
+                            <textarea class="form-control" name="BIO" id="bio" rows="3"></textarea>
                             <small id="assure" class="form-text text-muted">
                                 Don't worry you can leave this blank :^)                                                                                                                                                                                                                                                                                                                            
                             </small>
                     </div>
                     <br>
-                    <button id="createAccount" class="btn btn-lg btn-primary btn-block">Register Now</button>
+                    <button type="submit" id="createAccount" class="btn btn-lg btn-primary btn-block">Register Now</button>
                         
                 </form>
             </div>

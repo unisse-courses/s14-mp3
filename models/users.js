@@ -12,12 +12,13 @@ mongoose.connect(databaseURL, options);
 
 const userSchema = new mongoose.Schema(
     {
+        email:      {type: String, required: true, max: 100},
         firstname:  {type: String, required: true, max: 100},
         lastname:   {type: String, required: true, max: 100},
         username:   {type: String, required: true, max: 100},
         password:   {type: String, required: true, max: 100},
-        bio:        {type: String, required: false, max: 100},
-        profilepic: {type: String, required: false, max: 100}
+        profilepic: {type: String, required: false, max: 100},
+        bio:        {type: String, required: false, max: 100}
 
     },
     {

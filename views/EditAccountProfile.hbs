@@ -6,38 +6,38 @@
             
             <!-- PLACE THE DIVS HERE INSIDE THE CONTENT -->
                 <div class="form_container">
-                    <form action="account-profile">
+                    <form action ="/edit-account"method="POST">
                         <div class="form-row">
                             <h2>Edit Account Profile</h2>
                         </div>
     
                         <div class="form-row">
                             <label for="EDITfirstname">First name</label>
-                            <input type="text" class="form-control" id="EDITfirstName" placeholder="e.g. Cardo" value="{{firstname}}">
+                            <input type="text" class="form-control" name="editfirstname" id="EDITfirstName" placeholder="e.g. Cardo" value="{{firstname}}">
                             <label id="validFirst" class="warning"></label>
                         </div>
     
                         <div class="form-row">
                             <label for="EDITlastName">Last name</label>
-                            <input type="text" class="form-control" id="EDITlastName" placeholder="e.g. Dalisay" value="{{lastname}}">
+                            <input type="text" class="form-control" name="editlastname" id="EDITlastName" placeholder="e.g. Dalisay" value="{{lastname}}">
                             <label id="validLast"class="warning"></label>
                         </div>
     
                         <div class="form-row">
                             <label for="EDITuserName">Username</label>
-                            <input type="text" class="form-control" id="EDITuserName" placeholder="e.g. The Next 15 Years" value="{{username}}">
+                            <input type="text" class="form-control" name="editusername" id="EDITuserName" placeholder="e.g. The Next 15 Years" value="{{username}}">
                             <label id="validUser"class="warning"></label>
                         </div>
     
                         <div class="form-row">
                             <label for="EDITpassword">Password</label>
-                            <input type="password" class="form-control" id="EDITpassword" placeholder="" value="{{password}}">
+                            <input type="password" class="form-control" name="editpassword" id="EDITpassword" placeholder="" value="{{password}}">
                             <label id="validPass"class="warning"></label>
                         </div>
     
                         <div class="form-row">
                             <label for="EDITprofilePic">Choose a Profile Picture</label>
-                            <input type="file" class="form-control-file" accept="image/*" id="EDITprofilePic">  
+                            <input type="file" class="form-control-file" accept="image/*" name="editprofpic" id="EDITprofilePic" src="{{profilepic}}">  
                         </div>
                         
                         <div class="form-row" id="previewContainer">
@@ -46,7 +46,7 @@
 
                         <div class="form-row">
                             <label for="EDITbio"><br>Short Bio</label>
-                            <textarea class="form-control" id="EDITbio" rows="3">{{bio}}</textarea>
+                            <textarea class="form-control" name="editbio" id="EDITbio" rows="3">{{bio}}</textarea>
                             <small id="assure" class="form-text text-muted">
                                 Don't worry you can leave this blank :^)                                                                                                                                                                                                                                                                                                                            
                             </small>
