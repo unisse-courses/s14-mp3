@@ -888,10 +888,9 @@ if (window.location.href.includes("account-profile"))
         sessionStorage.clear();
       })
 }
-    $("#deleteAccount").click(function () { 
-        $.post('delete-account', function(data, status) {
-            console.log(status);
-        });
+    $("#deleteAccount").click(function (e) { 
+        $target = $(e.target);
+        console.log($target.attr('data-id'));
     });
 
     $("#edit_account-btn").click(function () { 

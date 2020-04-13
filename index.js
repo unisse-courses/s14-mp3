@@ -899,8 +899,6 @@ app.get('/edit-account', function(req, res) {
 // USER LOGIN FEATURE
   // POST
 app.post('/log-in', function(req, res) {
-    console.log("The ID: ");
-    console.log(req.body);
     var result;
     console.log("checked: " + req.body.remember)
     rememberMe = req.body.remember;
@@ -987,15 +985,15 @@ app.post('/log-in', function(req, res) {
 
 //DELETE ACCOUNT
   app.delete('delete-account', function(req, res) {
-    console.log(req.body);
-    var query = {
-      email: currUser.email
-  }
-  userModel.findOneAndDelete(query, function(err, account) {
-      console.log(account);
-      console.log("account deleted!");
-      res.status(200).redirect('/');
-  }); 
+    console.log(req.user._id);
+
+    var query = {_id: req.params.id};
+
+    userModel.remove(query, function(err) {
+      if (err) throw err;
+
+      res.send();
+    });
 
   });
 

@@ -12,7 +12,7 @@ mongoose.connect(databaseURL, options);
 
 const userSchema = new mongoose.Schema(
     {
-        email:      {type: String, required: true, max: 100},
+        email:      {type: String, required: true, unique: true, max: 100},
         firstname:  {type: String, required: true, max: 100},
         lastname:   {type: String, required: true, max: 100},
         username:   {type: String, required: true, max: 100},
