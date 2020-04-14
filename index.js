@@ -956,17 +956,29 @@ app.post('/log-in', function(req, res) {
     var query = {
       email: currUser.email
     };
-
-    var update = {
-      firstname: req.body.editfirstname,
-      lastname: req.body.editlastname,
-      username: req.body.editusername,
-      password: req.body.editpassword,
-      profilepic: req.body.editprofpic,
-      bio: req.body.editbio
-    };
-
-    userModel.findOneAndUpdate(query, update, { new: true }, function(err, user) {
+    var update
+    if (req.body.editprofpic == "")
+    {
+      update = {
+        firstname: req.body.editfirstname,
+        lastname: req.body.editlastname,
+        username: req.body.editusername,
+        password: req.body.editpassword,
+        profilepic: currUser.profilepic,
+        bio: req.body.editbio
+      };
+    }
+    else{
+      update = {
+        firstname: req.body.editfirstname,
+        lastname: req.body.editlastname,
+        username: req.body.editusername,
+        password: req.body.editpassword,
+        profilepic: req.body.editprofpic,
+        bio: req.body.editbio
+      };
+    }
+    userModel.findOneAndUpdate(query, update, { new: false }, function(err, user) {
       if (err) throw err;
       console.log(user);
       currUser = {
