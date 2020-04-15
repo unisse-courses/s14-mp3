@@ -889,8 +889,18 @@ if (window.location.href.includes("account-profile"))
       })
 }
     $("#deleteAccount").click(function (e) { 
-        $target = $(e.target);
-        console.log($target.attr('data-id'));
+        //$target = $(e.target);
+        //console.log($target.attr('data-id'));
+
+        var data = {
+            success: true
+        }
+        
+        $.post("delete-account", data,function (data, status) {
+            sessionStorage.clear();
+            location.href='/'
+        });
+        
     });
 
     $("#edit_account-btn").click(function () { 

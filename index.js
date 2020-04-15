@@ -996,15 +996,19 @@ app.post('/log-in', function(req, res) {
   });
 
 //DELETE ACCOUNT
-  app.delete('delete-account', function(req, res) {
-    console.log(req.user._id);
+  app.post('/delete-account', function(req, res) {
+    
 
-    var query = {_id: req.params.id};
-
-    userModel.remove(query, function(err) {
+    userModel.findOneAndRemove({email: currUser.email}, function(err) {
       if (err) throw err;
-
-      res.send();
+      currUser.email = "";
+      currUser.firstname = "";
+      currUser.lastname = "";
+      currUser.username = "";
+      currUser.password = "";
+      currUser.profilepic = "";
+      currUser.bio = "";
+      res.send(true);
     });
 
   });
