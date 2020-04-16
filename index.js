@@ -997,7 +997,7 @@ app.post('/loginACTION', function(req, res) {
       email: currUser.email
     };
     var update
-    console.log("somethong")
+    console.log("something")
     console.log(req.body)
     if (req.body.editprofilepic == "")
     {
@@ -1020,6 +1020,7 @@ app.post('/loginACTION', function(req, res) {
         bio: req.body.editbio
       };
     }
+    
     userModel.findOneAndUpdate(query, update, { new: false }, function(err, user) {
       if (err) throw err;
       console.log(" new name");

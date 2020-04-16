@@ -10,8 +10,8 @@
   - [x] Email has to have an "@" (should only be 1 @ and it must have at least 1 character before and after it)
   - [ ] Username Validation
     - [ ] Unique (no same name despite capitalization)
-    - [ ] Minimum of 6 characters
-    - [ ] Maximum of 15 characters
+    - [x] Minimum of 6 characters
+    - [x] Maximum of 15 characters
   - [ ] Working picture input & preview of image
   - [ ] Default Photo Option
 - [ ] Homepage

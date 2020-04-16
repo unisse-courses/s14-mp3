@@ -119,7 +119,7 @@ $(document).ready(function() {
             $("#validEmail").show()
             $("#validEmail").addClass("invalid-feedback")
             $("#validEmail").removeClass("valid-feedback")
-            $("#validEmail").html("Email required").css("color", "black")
+            $("#validEmail").html("Please input your email address").css("color", "black")
         }
         else {
             // if the email IS in the correct format
@@ -132,14 +132,14 @@ $(document).ready(function() {
                 $("#validEmail").html("Looks good!").css("color", "black")
             }
             // if the email is NOT the correct format
-            if( !(isEmailValid($("#email").val())) ) {
+            else if( !(isEmailValid($("#email").val())) ) {
                 $("#email").removeClass("is-valid")
                 $("#email").addClass("is-invalid")
     
                 $("#validEmail").show()
                 $("#validEmail").addClass("invalid-feedback")
                 $("#validEmail").removeClass("valid-feedback")
-                $("#validEmail").html("Email entered is invalid").css("color", "black")
+                $("#validEmail").html("Email entered is invalid or already taken").css("color", "black")
             }
         }
     });
@@ -153,7 +153,7 @@ $(document).ready(function() {
             $("#validFirst").show()
             $("#validFirst").addClass("invalid-feedback")
             $("#validFirst").removeClass("valid-feedback")
-            $("#validFirst").html("Input your First name").css("color", "black")
+            $("#validFirst").html("Please input your first name").css("color", "black")
         }
         //May laman
         else{
@@ -176,7 +176,7 @@ $(document).ready(function() {
             $("#validLast").show()
             $("#validLast").addClass("invalid-feedback")
             $("#validLast").removeClass("valid-feedback")
-            $("#validLast").html("Input your Last name").css("color", "black")
+            $("#validLast").html("Please input your last name").css("color", "black")
         }
         
         else {
@@ -198,29 +198,64 @@ $(document).ready(function() {
             $("#validUser").show()
             $("#validUser").addClass("invalid-feedback")
             $("#validUser").removeClass("valid-feedback")
-            $("#validUser").html("Boss, Username pakilagyan naman").css("color", "black")
+            $("#validUser").html("Please input your username").css("color", "black")
         }
         
+        // if the username is less than 6 characters
+        else if($("#username").val().length < 6) {
+            $("#username").removeClass("is-valid")
+            $("#username").addClass("is-invalid")
+
+            $("#validUser").show()
+            $("#validUser").addClass("invalid-feedback")
+            $("#validUser").removeClass("valid-feedback")
+            $("#validUser").html("Username must have at least 6 characters").css("color", "black")
+        }
+
+        // if the username is greater than 15 characters
+        else if($("#username").val().length > 15) {
+            $("#username").removeClass("is-valid")
+            $("#username").addClass("is-invalid")
+    
+            $("#validUser").show()
+            $("#validUser").addClass("invalid-feedback")
+            $("#validUser").removeClass("valid-feedback")
+            $("#validUser").html("Username must have at most 15 characters").css("color", "black")
+        }    
+ 
         else {
-            $("#username").addClass("is-valid")
-            $("#username").removeClass("is-invalid")
-            
-            $("#validUser").addClass("valid-feedback")
-            $("#validUser").removeClass("invalid-feedback")
-            $("#validUser").html("Looks good!").css("color", "black")
+            // if the username IS in the correct format
+            if( isUsernameValid($("#username").val()) ) {
+                $("#username").addClass("is-valid")
+                $("#username").removeClass("is-invalid")
+                
+                $("#validUser").addClass("valid-feedback")
+                $("#validUser").removeClass("invalid-feedback")
+                $("#validUser").html("Looks good!").css("color", "black")
+            }
+
+            // if the email is NOT in the correct format
+            else if( !(isUsernameValid($("#username").val())) ) {
+                $("#username").removeClass("is-valid")
+                $("#username").addClass("is-invalid")
+    
+                $("#validUser").show()
+                $("#validUser").addClass("invalid-feedback")
+                $("#validUser").removeClass("valid-feedback")
+                $("#validUser").html("Username entered is invalid or already taken").css("color", "black")
+            }
         }
     });
 
     $("#password").blur(() => {
         if ($("#password").val() == ""){
-
             $("#password").removeClass("is-valid")
             $("#password").addClass("is-invalid")
 
             $("#validPass").show()
             $("#validPass").addClass("invalid-feedback")
             $("#validPass").removeClass("valid-feedback")
-            $("#validPass").html("Sad. Wattasad. Big sad. :c").css("color", "black")
+            $("#validPass").html("Please input your password").css("color", "black")
         }
 
         else if($("#password").val().length < 6){
@@ -230,16 +265,30 @@ $(document).ready(function() {
             $("#validPass").show()
             $("#validPass").addClass("invalid-feedback")
             $("#validPass").removeClass("valid-feedback")
-            $("#validPass").html("Password must have at least six characters").css("color", "black")
+            $("#validPass").html("Password must have at least 6 characters").css("color", "black")
         }
         
         else {
-            $("#password").addClass("is-valid")
-            $("#password").removeClass("is-invalid")
-            
-            $("#validPass").addClass("valid-feedback")
-            $("#validPass").removeClass("invalid-feedback")
-            $("#validPass").html("Awesome!").css("color", "black")
+
+            // if the password IS in the correct format (sameformat as username)
+            if( isUsernameValid($("#password").val()) ) {
+                $("#password").addClass("is-valid")
+                $("#password").removeClass("is-invalid")
+                
+                $("#validPass").addClass("valid-feedback")
+                $("#validPass").removeClass("invalid-feedback")
+                $("#validPass").html("Looks good!").css("color", "black")
+            }
+
+            else if( !(isUsernameValid($("#password").val())) ) {
+                $("#password").removeClass("is-valid")
+                $("#password").addClass("is-invalid")
+
+                $("#validPass").show()
+                $("#validPass").addClass("invalid-feedback")
+                $("#validPass").removeClass("valid-feedback")
+                $("#validPass").html("Password entered is invalid").css("color", "black")
+            }
         }
     });
 
@@ -252,6 +301,21 @@ $(document).ready(function() {
         else {
             return false;
         }
+
+        // VALIDATION TO CHECK IF MAY KAPAREHAS
+    }
+
+    function isUsernameValid(usernameInput) {
+        var usernameFormat = /^[a-zA-Z0-9_]*$/;
+
+        if(usernameInput.match(usernameFormat)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+        // VALIDATION TO CHECK IF MAY KAPAREHAS
     }
 
     function showPreview(file) {
