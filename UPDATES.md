@@ -7,7 +7,7 @@
   - [X] Make a validation error (SAME PAGE) if the login info is wrong / doesnt exist 
 - [ ] Create Account
   - [x] Creates an account & is reflected in mongoose
-  - [ ] Email has to have an "@" (should only be 1 @ and it must have at least 1 character before and after it)
+  - [x] Email has to have an "@" (should only be 1 @ and it must have at least 1 character before and after it)
   - [ ] Username Validation
     - [ ] Unique (no same name despite capitalization)
     - [ ] Minimum of 6 characters

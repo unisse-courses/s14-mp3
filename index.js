@@ -52,7 +52,8 @@ var currUser = new userModel ({
 });
 
     // var lastUser | we can use this for the last person who logged in ?
-  
+
+var loginValidation = "";
 
 /* -------------------------------------------------- ALL THE DUMMY DATA -------------------------------------------------- */
 // TODO: AFTER doing the AJAX, we place the dummy data in .json files (data folder -> json files)
@@ -892,7 +893,7 @@ var currUser = new userModel ({
 /* -------------------------------------------------- FEATURES -------------------------------------------------- */
 // CREATE ACCOUNT
   // POST
-  app.post('/create-account', function(req, res) {
+  app.post('/addAccount', function(req, res) {
     console.log("the request:");
     console.log(req.body);
 
@@ -913,12 +914,17 @@ var currUser = new userModel ({
         console.log(err.errors);
 
         result = {success: false, message: "User was not created!"}
-        return res.send(result);
+        console.log(result);
+        
+        res.redirect("/create-account");
+
+
+        
       } else {
         console.log("User was created!");
         console.log(theUser);
 
-        return res.redirect("/log-in");
+        res.redirect("/log-in");
       }
     })
 });
@@ -981,8 +987,6 @@ app.post('/loginACTION', function(req, res) {
         loginValidation = "Invalid username or password";
         
         res.redirect("/log-in");
-
-        console.log(loginValidation);
       }
     });}
   });

@@ -2,7 +2,7 @@
 
         <div class="parent overflow-auto">
             <div class="container1 overflow-auto">
-                <form action="/create-account" method="POST">
+                <form action="/addAccount" method="POST">
                     <div class="form-row" style="padding-bottom: 10px;">
                         <h3>Create an account<small class="text-muted"> and join the fun now!</small></h3>
                     </div>
@@ -46,13 +46,14 @@
                     <div class="form-row" id="previewContainer">
                         <img class="preview" id="previewPic">
                     </div>    
-                    <div class="form-row">
+                    <div class="form-row" style="padding-bottom: 10px;">
                             <label for="bio"><br>Short Bio</label>
                             <textarea class="form-control" name="BIO" id="bio" rows="3"></textarea>
                             <small id="assure" class="form-text text-muted">
                                 Don't worry you can leave this blank :^)                                                                                                                                                                                                                                                                                                                            
                             </small>
                     </div>
+                    <label id="validSubmit"class="warning2"></label>
                     <br>
                     <button type="submit" id="createAccount" class="btn btn-lg btn-primary btn-block">Register Now</button>
                         

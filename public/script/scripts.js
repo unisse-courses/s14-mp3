@@ -123,7 +123,7 @@ $(document).ready(function() {
         }
         else {
             // if the email IS in the correct format
-            if(isEmailValid($("#email").val()) == true) {
+            if( isEmailValid($("#email").val()) ) {
                 $("#email").addClass("is-valid")
                 $("#email").removeClass("is-invalid")
                 
@@ -132,14 +132,14 @@ $(document).ready(function() {
                 $("#validEmail").html("Looks good!").css("color", "black")
             }
             // if the email is NOT the correct format
-            if(isEmailValid($("#email").val()) == false) {
+            if( !(isEmailValid($("#email").val())) ) {
                 $("#email").removeClass("is-valid")
                 $("#email").addClass("is-invalid")
     
                 $("#validEmail").show()
                 $("#validEmail").addClass("invalid-feedback")
                 $("#validEmail").removeClass("valid-feedback")
-                $("#validEmail").html("Email entered is invalid").css("color", "black")}
+                $("#validEmail").html("Email entered is invalid").css("color", "black")
             }
         }
     });
@@ -245,7 +245,8 @@ $(document).ready(function() {
 
     function isEmailValid(emailInput) {
         var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if(inputText.value.match(mailformat)) {
+        
+        if(emailInput.match(emailFormat)) {
             return true;
         }
         else {
