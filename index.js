@@ -1037,10 +1037,18 @@ app.post('/log-in', function(req, res) {
 
         bigContainer.push(smthg)
       };
-
+      var newCurrUser = userModel({
+        email: currUser.email,
+        firstname: currUser.firstname,
+        lastname: currUser.lastname,
+        username: currUser.username,
+        password: currUser.password,
+        profilepic: currUser.profilepic,
+        bio: currUser.bio
+      })
     var new_post = new postModel({
       title: req.body.title,
-      user: currUser,
+      user: newCurrUser,
       upvotes: req.body.upvotes,
       dateposted: req.body.dateposted,
       timeposted: req.body.timeposted,
