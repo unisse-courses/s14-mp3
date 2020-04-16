@@ -113,7 +113,6 @@ $(document).ready(function() {
     $("#email").blur(()=> {
         //Empty OR invalid format OR taken
         if ($("#email").val() == ""){
-
             $("#email").removeClass("is-valid")
             $("#email").addClass("is-invalid")
 
@@ -122,14 +121,26 @@ $(document).ready(function() {
             $("#validEmail").removeClass("valid-feedback")
             $("#validEmail").html("Email required").css("color", "black")
         }
-        //kulang pa to tho, dapat valid yung format ni email sa part na to pero this will do in the meantime
         else {
-            $("#email").addClass("is-valid")
-            $("#email").removeClass("is-invalid")
-            
-            $("#validEmail").addClass("valid-feedback")
-            $("#validEmail").removeClass("invalid-feedback")
-            $("#validEmail").html("Looks good!").css("color", "black")
+            // if the email IS in the correct format
+            if(isEmailValid($("#email").val()) == true) {
+                $("#email").addClass("is-valid")
+                $("#email").removeClass("is-invalid")
+                
+                $("#validEmail").addClass("valid-feedback")
+                $("#validEmail").removeClass("invalid-feedback")
+                $("#validEmail").html("Looks good!").css("color", "black")
+            }
+            // if the email is NOT the correct format
+            if(isEmailValid($("#email").val()) == false) {
+                $("#email").removeClass("is-valid")
+                $("#email").addClass("is-invalid")
+    
+                $("#validEmail").show()
+                $("#validEmail").addClass("invalid-feedback")
+                $("#validEmail").removeClass("valid-feedback")
+                $("#validEmail").html("Email entered is invalid").css("color", "black")}
+            }
         }
     });
 
@@ -231,6 +242,16 @@ $(document).ready(function() {
             $("#validPass").html("Awesome!").css("color", "black")
         }
     });
+
+    function isEmailValid(emailInput) {
+        var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(inputText.value.match(mailformat)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     function showPreview(file) {
         if (file.files && file.files[0]) {

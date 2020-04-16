@@ -659,7 +659,6 @@ var currUser = new userModel ({
 
 // USER LOGIN
   app.get('/log-in', function(req, res) {
-<<<<<<< HEAD
 
     var LogInWords = "";
     var LogInColor = "";
@@ -673,8 +672,6 @@ var currUser = new userModel ({
       LogInWords = "";
       LogInColor = "color: #F1F7ED";
     }
-=======
->>>>>>> c1cdeace18094092f136160403a1b1d464419158
 
     if(rememberMe == 'true'){
       res.render('UserLogin', {
@@ -683,13 +680,9 @@ var currUser = new userModel ({
         body_class: "outside",
         username: currUser.username,
         password: currUser.password,
-<<<<<<< HEAD
         isChecked: true,
         LogInWarning: LogInWords,
         LogInWarning_Color: LogInColor
-=======
-        isChecked: true
->>>>>>> c1cdeace18094092f136160403a1b1d464419158
       })
     }
     else{
@@ -699,13 +692,9 @@ var currUser = new userModel ({
         body_class: "outside",
         username: currUser.username,
         password: currUser.password,
-<<<<<<< HEAD
         isChecked: false,
         LogInWarning: LogInWords,
         LogInWarning_Color: LogInColor
-=======
-        isChecked: false
->>>>>>> c1cdeace18094092f136160403a1b1d464419158
       })
     }
 
@@ -767,12 +756,8 @@ var currUser = new userModel ({
   //app.get('/account-profile', getAccountProfile);
 
   app.get('/account-profile', function(req, res){
-<<<<<<< HEAD
     loginValidation = ""; // clearing the login validation warning
 
-=======
-    console.log("Current user: \n" + currUser.firstname);
->>>>>>> c1cdeace18094092f136160403a1b1d464419158
     res.render('AccountProfile', {
       styles:     "css/styles_inside.css",
       tab_title:  "Account Profile",
