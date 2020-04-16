@@ -16,11 +16,7 @@ const ingredientsModel = require('./models/ingredients');
 const commentsModel = require('./models/ingredients');
 
 // IMPORTS FOR IMAGE UPLOADS
-var fs = require('fs');
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var multer = require('multer');
-
+  // to be updated wt code once we find smth that works ;~;
 
 // ENGINE SET-UP
 app.engine( 'hbs', exphbs({
