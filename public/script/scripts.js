@@ -31,18 +31,7 @@ $(document).ready(function() {
     });
 
     
-/* -------------------------------------------------- UserLogin.hbs -------------------------------------------------- */
- /*
-    if (window.location.href.includes("log-in")){
-    var warning = document.getElementById("warning1").value
-
-    if(warning="Invalid username or password")
-        document.getElementById("warning1").style.color = "red";
-    }else {
-        document.getElementById("warning1").style.color = "#F1F7ED";
-    }
-*/
-    
+/* -------------------------------------------------- UserLogin.hbs -------------------------------------------------- */    
     $("#loginButton").click(function () { 
         var user = document.getElementById("user").value
         var pass = document.getElementById("pass").value

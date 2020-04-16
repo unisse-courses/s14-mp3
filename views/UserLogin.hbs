@@ -2,7 +2,7 @@
 
         <div class="parent">
             <div class="container">
-                <form class="form-signin" action="/log-in" method="POST"> 
+                <form class="form-signin" action="/loginACTION" method="POST"> 
                     <h1 class="h3 mb-3 font-weight-normal text-center">Please Log in</h1>
                     
                     <label for="inputUser" class="sr-only">Username</label>
@@ -17,7 +17,7 @@
                         </label>
                     </div>
 
-                    <label id="warning1" class="warning1">{{LogInWarning}}</label>
+                    <label id="warning1" class="warning1" style="{{LogInWarning_Color}}">{{LogInWarning}}</label>
                     <button id="loginButton" class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
                     
                 </form>

@@ -644,6 +644,8 @@ var loginValidation = "";
 
 // INDEX
   app.get('/', function(req, res) {
+      loginValidation = ""; // clearing the login validation warning
+
       res.render('index', {
         // for main.hbs
           styles: "css/styles_outside.css",
@@ -654,15 +656,18 @@ var loginValidation = "";
 
 // USER LOGIN
   app.get('/log-in', function(req, res) {
-    loginValidation = "";
 
-    var LogInWords ="";
+    var LogInWords = "";
+    var LogInColor = "";
 
-    if(loginValidation="Invalid username or password"){
-      LogInWords = "Invalid username or password"
+    if(loginValidation == "Invalid username or password"){
+        LogInWords = "Invalid username or password"
+        LogInColor = "color: red";
     }
     else {
-      LogInWords = ""
+      loginCtr = 0;
+      LogInWords = "";
+      LogInColor = "color: #F1F7ED";
     }
 
     if(rememberMe == 'true'){
@@ -673,7 +678,8 @@ var loginValidation = "";
         username: currUser.username,
         password: currUser.password,
         isChecked: true,
-        LogInWarning: LogInWords
+        LogInWarning: LogInWords,
+        LogInWarning_Color: LogInColor
       })
     }
     else{ // this is the problem for remember me bc it still places the last user who logged in, regardless if they checked it or not
@@ -684,7 +690,8 @@ var loginValidation = "";
         username: currUser.username,
         password: currUser.password,
         isChecked: false,
-        LogInWarning: LogInWords
+        LogInWarning: LogInWords,
+        LogInWarning_Color: LogInColor
       })
     }
 
@@ -692,6 +699,7 @@ var loginValidation = "";
 
 // HOMEPAGE
   app.get('/home', function(req, res) {
+    loginValidation = ""; // clearing the login validation warning
 
     var data = posts
     
@@ -721,29 +729,31 @@ var loginValidation = "";
       })
   });
 
-function getAccountProfile(req, res, next) {
-  userModel.find({}).sort({username: 1}).exec().then(result => {
-    var userObjects = [];
+  function getAccountProfile(req, res, next) {
+    userModel.find({}).sort({username: 1}).exec().then(result => {
+      var userObjects = [];
 
-    result.forEach(function(doc) {
-      userObjects.push(doc.toObject());
+      result.forEach(function(doc) {
+        userObjects.push(doc.toObject());
+      });
+      
+      //console.log(userObjects);
+      
+      res.render('AccountProfile', {
+        user: userObjects,
+        styles: "css/styles_inside.css",
+        tab_title: "Account Profile",
+        body_class: "inside"
+      });
     });
-    
-    //console.log(userObjects);
-    
-    res.render('AccountProfile', {
-      user: userObjects,
-      styles: "css/styles_inside.css",
-      tab_title: "Account Profile",
-      body_class: "inside"
-    });
-  });
-};
+  };
 
 // ACCOUNT PROFILE
   //app.get('/account-profile', getAccountProfile);
 
   app.get('/account-profile', function(req, res){
+    loginValidation = ""; // clearing the login validation warning
+
     res.render('AccountProfile', {
       styles:     "css/styles_inside.css",
       tab_title:  "Account Profile",
@@ -759,6 +769,8 @@ function getAccountProfile(req, res, next) {
 
 // CREATE ACCOUNT PROFILE
   app.get('/create-account', function(req, res) {
+    loginValidation = ""; // clearing the login validation warning
+
     res.render('CreateAccount', {
       // for main.hbs
         styles: "css/styles_outside.css",
@@ -768,25 +780,28 @@ function getAccountProfile(req, res, next) {
   });
 
 // EDIT ACCOUNT PROFILE
-app.get('/edit-account', function(req, res) {
+  app.get('/edit-account', function(req, res) {
+      loginValidation = ""; // clearing the login validation warning
 
-    res.render('EditAccountProfile', {
-      styles:     "css/styles_inside.css",
-      tab_title:  "Edit Account",
-      body_class: "inside",
-      navUser:    currUser.username,
-      email:      currUser.email,
-      firstname:  currUser.firstname,
-      lastname:   currUser.lastname,
-      username:   currUser.username,
-      password:   currUser.password,
-      profilepic: currUser.profilepic,
-      bio:        currUser.bio
-    });
-});
+      res.render('EditAccountProfile', {
+        styles:     "css/styles_inside.css",
+        tab_title:  "Edit Account",
+        body_class: "inside",
+        navUser:    currUser.username,
+        email:      currUser.email,
+        firstname:  currUser.firstname,
+        lastname:   currUser.lastname,
+        username:   currUser.username,
+        password:   currUser.password,
+        profilepic: currUser.profilepic,
+        bio:        currUser.bio
+      });
+  });
 
 // CREATE RECIPE POST
   app.get('/create-recipe', function(req, res) {
+      loginValidation = ""; // clearing the login validation warning
+
       res.render('CreateRecipePost', {
         // for main.hbs
           styles: "css/styles_inside.css",
@@ -800,6 +815,8 @@ app.get('/edit-account', function(req, res) {
 
 // EDIT RECIPE POST
   app.get('/edit-recipe', function(req, res) {
+      loginValidation = ""; // clearing the login validation warning
+
       res.render('EditRecipePost', {
         // for main.hbs
           styles: "css/styles_inside.css",
@@ -822,8 +839,7 @@ app.get('/edit-account', function(req, res) {
 
 // RECIPE POST
   app.get('/recipe-post', function(req, res) {
-
-    //insert code here to get data from db
+    loginValidation = ""; // clearing the login validation warning
     
     var data = posts[0];
           
@@ -854,6 +870,8 @@ app.get('/edit-account', function(req, res) {
 
 // SEARCH PAGE
   app.get('/search', function(req, res) {
+      loginValidation = ""; // clearing the login validation warning
+
       res.render('SearchPage', {
         // for main.hbs
           styles: "css/styles_inside.css",
@@ -906,7 +924,7 @@ app.get('/edit-account', function(req, res) {
 
 // USER LOGIN FEATURE
   // POST
-app.post('/log-in', function(req, res) {
+app.post('/loginACTION', function(req, res) {
     var result;
     console.log("checked: " + req.body.remember)
     rememberMe = req.body.remember;
@@ -926,7 +944,7 @@ app.post('/log-in', function(req, res) {
         message: account.username + " has logged in!",
         returnData: currUser
       }
-      res.send(result);
+      console.log(result.message);
     }
     else
     {
@@ -943,13 +961,15 @@ app.post('/log-in', function(req, res) {
           bio:        accountResult.bio
           
         }
-        
+        console.log(currUser.username + " has logged in!");
         console.log("Current user:");
         console.log(currUser);
 
         loginValidation = "";
 
         res.redirect("/home");
+
+        console.log("cleared the loginValidation");
       }
       else{
         result = {
@@ -957,11 +977,12 @@ app.post('/log-in', function(req, res) {
           message: "Invalid username or password"
         }
         console.log(result);
-        // res.send
 
         loginValidation = "Invalid username or password";
         
-        res.redirect("back");
+        res.redirect("/log-in");
+
+        console.log(loginValidation);
       }
     });}
   });
