@@ -3,8 +3,8 @@
 - [ ] Index
   - [ ] Make Guest Account work again
 - [ ] User Login
-  - [*] Remember Me
-  - [ ] Make a validation error (SAME PAGE) if the login info is wrong / doesnt exist 
+  - [ ] "Remember Me" Feature
+  - [X] Make a validation error (SAME PAGE) if the login info is wrong / doesnt exist 
 - [ ] Create Account
   - [x] Creates an account & is reflected in mongoose
   - [ ] Email has to have an "@" (should only be 1 @ and it must have at least 1 character before and after it)
@@ -16,7 +16,7 @@
   - [ ] Default Photo Option
 - [ ] Homepage
   - [ ] Loading the SPECIFIC recipe post after clicking a post preview
-  - [*] Loading the Top 5 Most Recent Pages
+  - [ ] Loading the Top 5 Most Recent Pages
 - [ ] Searchpage
   - [x] Search Button -> Uses get function to look for post / account
   - [ ] Should show all the deets + no errors for both post / account
@@ -24,7 +24,7 @@
 - [x] Create Post
   - [ ] Save Button -> Should add a new post in the db
     - [ ] Update the code using the updated current user code
-    - [*] Make a function that will generate a post id (incrementing numbers)
+    - [ ] Make a function that will generate a post id (incrementing numbers)
 - [ ] Edit Post
   - [ ] Save Button -> Should update the post info in the db & update the page information agad
   - [ ] Post info should be pre-loaded na
@@ -37,28 +37,24 @@
   - [ ] Upvote & Downvote Button -> Should update the upvote value in db
 - [ ] Account Profile
   - [X] Edit Account Button -> Should send the account info to the Edit Account Route
-  - [ ] Delete Account Button (IN MODAL) -> Should delete the user from the db
+  - [X] Delete Account Button (IN MODAL) -> Should delete the user from the db
   - [ ] Should have ALL of the posts under that user pre-loaded
   - [X] Loads the current user's account info
     - [ ] Loads the Profile Picture in Profile Container
 - [ ] Edit Account Profile
-  - [ ] Update Button -> Should update the user info in the db & update the page information agad
+  - [X] Update Button -> Should update the user info in the db & update the page information agad
   - [X] Account info should be pre-loaded na
     - [ ] Shows the preview of the picture & allows picture input
-    - [ ] Displays the email but u cant edit it (no input, so its just there)
+    - [X] Displays the email but u cant edit it (no input, so its just there)
   - [ ] Username validation (1 blob)
 2. IN GENERAL
-- [X] "Remember me" feature
-- [ ] Each page AFTER LOGIN should have its own route ("/:id")
-  - [X] Can see the current user's info in navbar
-  - [X] Can see the current user's info after clicking their profile FROM Navbar
+- [X] Can see the current user's info in navbar
+- [X] Can see the current user's info after clicking their profile FROM Navbar
 
-THEN im not sure if need MVC agad but the last thing to do is:
-
-3. CSS THINGS (do this after all the db things)
-  - fix logos
-    - logos in index.hbs (guest icon & registered user account icon)
-    - brand logo in navbar (fixed size so its not stretched)
-  - look for default icon for account?
-  - color scheme
-    - change colors of buttons accdg to color schems (¿)
+3. CSS THINGS (FIX AFTER SUBMITTING PHASE 2)
+- [ ] fix logos
+  - [ ] logos in index.hbs (guest icon & registered user account icon)
+  - [ ] brand logo in navbar (fixed size so its not stretched)
+- [ ] look for default icon for account?
+- [ ] color scheme
+  - [ ] change colors of buttons accdg to color schemes (¿)

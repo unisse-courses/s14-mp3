@@ -1,42 +1,46 @@
 // IMPORTS
-  const express = require('express');
-  const path = require('path');
-  const exphbs = require('express-handlebars');
-  const handlebars = require('handlebars');
-  const bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const exphbs = require('express-handlebars');
+const handlebars = require('handlebars');
+const bodyParser = require('body-parser');
 
 // EXPRESS APP
-  const app = express();
-  const port = 3000;
+const app = express();
+const port = 3000; // sam: bc thats whats in the specs
 
 // IMPORTING THE MODEL
-  const userModel = require('./models/users');
-  const postModel = require('./models/posts');
-  const ingredientsModel = require('./models/ingredients');
-  const commentsModel = require('./models/ingredients');
+const userModel = require('./models/users');
+const postModel = require('./models/posts');
+const ingredientsModel = require('./models/ingredients');
+const commentsModel = require('./models/ingredients');
 
-// ALL THE STUFF FOR IMAGE UPLOADS
+// IMPORTS FOR IMAGE UPLOADS
+var fs = require('fs');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var multer = require('multer');
 
 
 // ENGINE SET-UP
-  app.engine( 'hbs', exphbs({
-    extname: 'hbs',
-    defaultView: 'main',
-    layoutsDir: path.join(__dirname, '/views/layouts'),
-    partialsDir: path.join(__dirname, '/views/partials'),
-    helpers: {
-        incremented: function(index) {
-            index++;
-            return index;
-        }
-    }
-  }));
+app.engine( 'hbs', exphbs({
+  extname: 'hbs',
+  defaultView: 'main',
+  layoutsDir: path.join(__dirname, '/views/layouts'),
+  partialsDir: path.join(__dirname, '/views/partials'),
+  helpers: {
+      incremented: function(index) {
+          index++;
+          return index;
+      }
+  }
+}));
 
 app.set('view engine', 'hbs');
 
 // Configuration for handling API endpoint data
-  app.use(bodyParser.json()); // support json encoded bodies
-  app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // GLOBAL VARIABLES
 var rememberMe;
@@ -52,8 +56,7 @@ var currUser = new userModel ({
 });
 
     // var lastUser | we can use this for the last person who logged in ?
-
-var loginValidation = "";
+  
 
 /* -------------------------------------------------- ALL THE DUMMY DATA -------------------------------------------------- */
 // TODO: AFTER doing the AJAX, we place the dummy data in .json files (data folder -> json files)
@@ -656,6 +659,7 @@ var loginValidation = "";
 
 // USER LOGIN
   app.get('/log-in', function(req, res) {
+<<<<<<< HEAD
 
     var LogInWords = "";
     var LogInColor = "";
@@ -669,6 +673,8 @@ var loginValidation = "";
       LogInWords = "";
       LogInColor = "color: #F1F7ED";
     }
+=======
+>>>>>>> c1cdeace18094092f136160403a1b1d464419158
 
     if(rememberMe == 'true'){
       res.render('UserLogin', {
@@ -677,24 +683,33 @@ var loginValidation = "";
         body_class: "outside",
         username: currUser.username,
         password: currUser.password,
+<<<<<<< HEAD
         isChecked: true,
         LogInWarning: LogInWords,
         LogInWarning_Color: LogInColor
+=======
+        isChecked: true
+>>>>>>> c1cdeace18094092f136160403a1b1d464419158
       })
     }
-    else{ // this is the problem for remember me bc it still places the last user who logged in, regardless if they checked it or not
+    else{
       res.render('UserLogin', {
         styles: "css/styles_outside.css",
         tab_title: "Log-In",
         body_class: "outside",
         username: currUser.username,
         password: currUser.password,
+<<<<<<< HEAD
         isChecked: false,
         LogInWarning: LogInWords,
         LogInWarning_Color: LogInColor
+=======
+        isChecked: false
+>>>>>>> c1cdeace18094092f136160403a1b1d464419158
       })
     }
 
+      
   });
 
 // HOMEPAGE
@@ -752,18 +767,24 @@ var loginValidation = "";
   //app.get('/account-profile', getAccountProfile);
 
   app.get('/account-profile', function(req, res){
+<<<<<<< HEAD
     loginValidation = ""; // clearing the login validation warning
 
+=======
+    console.log("Current user: \n" + currUser.firstname);
+>>>>>>> c1cdeace18094092f136160403a1b1d464419158
     res.render('AccountProfile', {
       styles:     "css/styles_inside.css",
       tab_title:  "Account Profile",
       body_class: "inside",
+      
       firstname:  currUser.firstname,
       lastname:   currUser.lastname,
       username:   currUser.username,
       bio:        currUser.bio,
       profilepic: currUser.profilepic,
-      navUser: currUser.username
+      email:      currUser.email,
+      navUser:    currUser.username
     });
   });
 
@@ -928,7 +949,7 @@ app.post('/loginACTION', function(req, res) {
     var result;
     console.log("checked: " + req.body.remember)
     rememberMe = req.body.remember;
-
+  
     var account = {
       username:  req.body.USER,
       password:   req.body.PASS,
@@ -965,8 +986,6 @@ app.post('/loginACTION', function(req, res) {
         console.log("Current user:");
         console.log(currUser);
 
-        loginValidation = "";
-
         res.redirect("/home");
 
         console.log("cleared the loginValidation");
@@ -993,15 +1012,17 @@ app.post('/loginACTION', function(req, res) {
       email: currUser.email
     };
     var update
-    if (req.body.editprofpic == "")
+    console.log("somethong")
+    console.log(req.body)
+    if (req.body.editprofilepic == "")
     {
       update = {
-        firstname: req.body.editfirstname,
-        lastname: req.body.editlastname,
-        username: req.body.editusername,
-        password: req.body.editpassword,
+        firstname:  req.body.editfirstname,
+        lastname:   req.body.editlastname,
+        username:   req.body.editusername,
+        password:   req.body.editpassword,
         profilepic: currUser.profilepic,
-        bio: req.body.editbio
+        bio:        req.body.editbio
       };
     }
     else{
@@ -1010,13 +1031,14 @@ app.post('/loginACTION', function(req, res) {
         lastname: req.body.editlastname,
         username: req.body.editusername,
         password: req.body.editpassword,
-        profilepic: req.body.editprofpic,
+        profilepic: req.body.editprofilepic,
         bio: req.body.editbio
       };
     }
     userModel.findOneAndUpdate(query, update, { new: false }, function(err, user) {
       if (err) throw err;
-      console.log(user);
+      console.log(" new name");
+      console.log(user.firstname);
       currUser = {
         email:      user.email,
         firstname:  user.firstname,
@@ -1027,7 +1049,7 @@ app.post('/loginACTION', function(req, res) {
         profilepic: user.profilepic
       };
 
-      res.redirect("/account-profile");
+      res.send(currUser);
     });
   });
 
@@ -1067,10 +1089,18 @@ app.post('/loginACTION', function(req, res) {
 
         bigContainer.push(smthg)
       };
-
+      var newCurrUser = userModel({
+        email: currUser.email,
+        firstname: currUser.firstname,
+        lastname: currUser.lastname,
+        username: currUser.username,
+        password: currUser.password,
+        profilepic: currUser.profilepic,
+        bio: currUser.bio
+      })
     var new_post = new postModel({
       title: req.body.title,
-      user: currUser,
+      user: newCurrUser,
       upvotes: req.body.upvotes,
       dateposted: req.body.dateposted,
       timeposted: req.body.timeposted,
