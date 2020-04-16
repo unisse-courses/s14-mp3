@@ -1,22 +1,36 @@
 ### **TODO**
 1. ALL PAGES (10 pages in total)
-- [x] Index
-- [x] User Login
-- [x] Create Account
+- [ ] Index
+  - [ ] Make Guest Account work again
+- [ ] User Login
+  - [*] Remember Me
+  - [ ] Make a validation error (SAME PAGE) if the login info is wrong / doesnt exist 
+- [ ] Create Account
+  - [x] Creates an account & is reflected in mongoose
+  - [ ] Email has to have an "@" (should only be 1 @ and it must have at least 1 character before and after it)
+  - [ ] Username Validation
+    - [ ] Unique (no same name despite capitalization)
+    - [ ] Minimum of 6 characters
+    - [ ] Maximum of 15 characters
+  - [ ] Working picture input & preview of image
+  - [ ] Default Photo Option
 - [ ] Homepage
   - [ ] Loading the SPECIFIC recipe post after clicking a post preview
-  - [ ] Loading the Top 5 Most Recent Pages
+  - [*] Loading the Top 5 Most Recent Pages
 - [ ] Searchpage
-  - [X] Search Button -> Uses get function to look for post / account
+  - [x] Search Button -> Uses get function to look for post / account
   - [ ] Should show all the deets + no errors for both post / account
-  - [X] Shows partial results (example: u searched pan instead of "pancakes" but it still shows up)
+  - [x] Shows partial results (example: u searched pan instead of "pancakes" but it still shows up)
 - [x] Create Post
-  - [x] Save Button -> Should add a new post in the db
+  - [ ] Save Button -> Should add a new post in the db
+    - [ ] Update the code using the updated current user code
+    - [*] Make a function that will generate a post id (incrementing numbers)
 - [ ] Edit Post
-  - [ ] Save Button -> Should update the post info in the db
+  - [ ] Save Button -> Should update the post info in the db & update the page information agad
   - [ ] Post info should be pre-loaded na
 - [ ] Recipe Post
   - [ ] Reply Button -> Should append the reply INSIDE of the list of the specific comment
+    - [ ] Date & Time format should be in the comments & replies (copy the code from create post)
   - [ ] Fix the formatting of the Nested Replies within the Comment (mali yung pag format ko sa html dati so pls fix it na lang rin -sam)
   - [ ] Edit Post Button -> Should send the post info to the Edit Post Route
   - [ ] Delete Post Button (IN MODAL) -> Should delete the post from the db
@@ -26,10 +40,13 @@
   - [ ] Delete Account Button (IN MODAL) -> Should delete the user from the db
   - [ ] Should have ALL of the posts under that user pre-loaded
   - [X] Loads the current user's account info
+    - [ ] Loads the Profile Picture in Profile Container
 - [ ] Edit Account Profile
-  - [ ] Update Button -> Should update the user info in the db
+  - [ ] Update Button -> Should update the user info in the db & update the page information agad
   - [X] Account info should be pre-loaded na
-
+    - [ ] Shows the preview of the picture & allows picture input
+    - [ ] Displays the email but u cant edit it (no input, so its just there)
+  - [ ] Username validation (1 blob)
 2. IN GENERAL
 - [X] "Remember me" feature
 - [ ] Each page AFTER LOGIN should have its own route ("/:id")
