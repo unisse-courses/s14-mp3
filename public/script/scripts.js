@@ -1113,6 +1113,49 @@ if (window.location.href.includes("account-profile"))
         showEditPreview(this);
     });
 
+
+    $("#updateAccount").click(function () { 
+        var first = document.getElementById("EDITfirstName").value;
+        var last = document.getElementById("EDITlastName").value;
+        var user = document.getElementById("EDITuserName").value;
+        var pass = document.getElementById("EDITpassword").value;
+        var pic = document.getElementById("EDITprofilePic").value;
+        var bio = document.getElementById("EDITbio").value;
+        
+        var user = {
+            editfirstname: first,
+            editlastname: last,
+            editusername: user,
+            editpassword: pass,
+            editprofilepic: pic,
+            editbio: bio
+        }
+        
+        $.post("edit-account", user,
+            function (data, status) {
+                location.href = "account-profile"
+                $(document).ready(function () {
+                    $("#account-profile-picture").attr("src", data.profilepic);
+                    $("#accountname").text(data.firstname + " " + data.lastname);
+                    $("#accountusername").text(data.username);
+                    $("#accountbio").text(data.bio);
+                });
+                
+            }
+        );
+        $.post("edit-account", user,
+            function (data, status) {
+                location.href = "account-profile"
+                $(document).ready(function () {
+                    $("#account-profile-picture").attr("src", data.profilepic);
+                    $("#accountname").text(data.firstname + " " + data.lastname);
+                    $("#accountusername").text(data.username);
+                    $("#accountbio").text(data.bio);
+                });
+                
+            }
+        );
+    });
 /* -------------------------------------------------- EditRecipePost.hbs -------------------------------------------------- */
 
     $("#editRecipePost").click(function () { 

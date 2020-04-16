@@ -6,11 +6,17 @@
             
             <!-- PLACE THE DIVS HERE INSIDE THE CONTENT -->
                 <div class="form_container">
-                    <form action ="/edit-account"method="POST">
+                    <form>
                         <div class="form-row">
                             <h2>Edit Account Profile</h2>
                         </div>
-    
+
+                        <div class="form-row">
+                            <label>Email</label>
+                            <input type="text" class="form-control" value="{{email}}" readonly>
+                            <small class="form-text text-muted">For display purposes only</small>
+                        </div>
+
                         <div class="form-row">
                             <label for="EDITfirstname">First name</label>
                             <input type="text" class="form-control" name="editfirstname" id="EDITfirstName" placeholder="e.g. Cardo" value="{{firstname}}">

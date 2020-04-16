@@ -37,18 +37,18 @@
   - [ ] Upvote & Downvote Button -> Should update the upvote value in db
 - [ ] Account Profile
   - [X] Edit Account Button -> Should send the account info to the Edit Account Route
-  - [ ] Delete Account Button (IN MODAL) -> Should delete the user from the db
+  - [X] Delete Account Button (IN MODAL) -> Should delete the user from the db
   - [ ] Should have ALL of the posts under that user pre-loaded
   - [X] Loads the current user's account info
     - [ ] Loads the Profile Picture in Profile Container
 - [ ] Edit Account Profile
-  - [ ] Update Button -> Should update the user info in the db & update the page information agad
+  - [X] Update Button -> Should update the user info in the db & update the page information agad
   - [X] Account info should be pre-loaded na
     - [ ] Shows the preview of the picture & allows picture input
-    - [ ] Displays the email but u cant edit it (no input, so its just there)
+    - [X] Displays the email but u cant edit it (no input, so its just there)
   - [ ] Username validation (1 blob)
 2. IN GENERAL
-- [X] "Remember me" feature
+- [ ] "Remember me" feature
 - [ ] Each page AFTER LOGIN should have its own route ("/:id")
   - [X] Can see the current user's info in navbar
   - [X] Can see the current user's info after clicking their profile FROM Navbar

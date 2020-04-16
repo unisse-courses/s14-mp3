@@ -8,21 +8,21 @@
             <div class="card profile-container">
                 <div class="d-flex flex-row card-body profile-row">
                     <div class="full-width-container profile-col1">
-                        <img class="img-fluid" id="profile-picture" src="{{profilepic}}" class="img-fluid">
+                        <img class="img-fluid" id="account-profile-picture" src="{{profilepic}}" class="img-fluid">
                     </div>
 
                     <div class="profile-col2">
                         <div class="d-flex flex-row justify-content-between profile-col2_row1">
                             <div class="profile-col2_row1a">
-                                <h2>{{firstname}} {{lastname}}</h2>
-                                <p>@{{username}}</p>
+                                <h2 id="accountname">{{firstname}} {{lastname}}</h2>
+                                <p id="accountusername">@{{username}}</p>
                             </div>
 
 
                         </div>
 
                         <div class="profile-col2_row2">
-                            <p align="justify"> 
+                            <p align="justify" id="accountbio"> 
                               {{bio}}   
                             </p>
                         </div>
