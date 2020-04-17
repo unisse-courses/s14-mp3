@@ -860,7 +860,7 @@ var count;
       if(data){
         res.render('RecipePost', {
           // for main.hbs
-            styles: "css/styles_inside.css",
+            styles: "../css/styles_inside.css",
             tab_title: "Recipe Post",
             body_class: "inside",
             
@@ -878,7 +878,7 @@ var count;
             
             comment_count: data.comments.length,
             comments: data.comments,
-  
+            post: true,
             navUser: currUser.username
         })
       }
