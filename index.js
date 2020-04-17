@@ -849,34 +849,42 @@ var count;
   });
 
 // RECIPE POST
-  app.get('/recipe-post', function(req, res) {
+  app.get('/recipe-post/:param', function(req, res) {
     loginValidation = ""; // clearing the login validation warning
     
-    var data = posts[0];
-          
-      res.render('RecipePost', {
-        // for main.hbs
-          styles: "css/styles_inside.css",
-          tab_title: "Recipe Post",
-          body_class: "inside",
-          
-          title: data.title,
-          upvote_score: data.upvotes,
-          date_posted: data.dateposted,
-          time_posted: data.timeposted,
-          username: data.user.username,
-          firstname: data.user.firstname,
-          lastname: data.user.lastname,
-          picture: data.recipe_picture,
-          description: data.description,
-          ingredients: data.ingredients,
-          instructions: data.instructions,
-          
-          comment_count: data.comments.length,
-          comments: data.comments,
+    var id = req.params.param;
 
-          navUser: currUser.username
-      })
+    postModel.findOne({_id: id}).exec(function(err, data){
+      if(err) throw err;
+
+      if(data){
+        res.render('RecipePost', {
+          // for main.hbs
+            styles: "css/styles_inside.css",
+            tab_title: "Recipe Post",
+            body_class: "inside",
+            
+            title: data.title,
+            upvote_score: data.upvotes,
+            date_posted: data.dateposted,
+            time_posted: data.timeposted,
+            username: data.user.username,
+            firstname: data.user.firstname,
+            lastname: data.user.lastname,
+            picture: data.recipe_picture,
+            description: data.description,
+            ingredients: data.ingredients,
+            instructions: data.instructions,
+            
+            comment_count: data.comments.length,
+            comments: data.comments,
+  
+            navUser: currUser.username
+        })
+      }
+    })
+          
+      
   });
 
 // SEARCH PAGE
