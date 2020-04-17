@@ -1067,23 +1067,15 @@ app.post('/loginACTION', function(req, res) {
       var i = 0;
 
       for (i = 0 ; i < req.body.ingredients.length; i++){
-        var smthg = new ingredientsModel ({
+        var smthg = {
           name: req.body.ingredients[i].name,
           quantitiy: req.body.ingredients[i].quantity,
           amount: req.body.ingredients[i].amount,
-        });
+        };
 
         bigContainer.push(smthg)
       };
-      var newCurrUser = userModel({
-        email: currUser.email,
-        firstname: currUser.firstname,
-        lastname: currUser.lastname,
-        username: currUser.username,
-        password: currUser.password,
-        profilepic: currUser.profilepic,
-        bio: currUser.bio
-      })
+      
     var new_post = new postModel({
       title: req.body.title,
       user: currUser,
@@ -1092,7 +1084,7 @@ app.post('/loginACTION', function(req, res) {
       timeposted: req.body.timeposted,
       recipe_picture: `${req.body.recipe_picture}.png`,
       description: req.body.description,
-      ingredients: bigContainer,
+      ingredients: req.body.ingredients,
       instructions: req.body.instructions,
     });
 
