@@ -641,7 +641,7 @@ var loginValidation = "";
   ];
 
 /* -------------------------------------------------- ROUTES -------------------------------------------------- */
-
+var count;
 // INDEX
   app.get('/', function(req, res) {
       loginValidation = ""; // clearing the login validation warning
@@ -704,6 +704,14 @@ var loginValidation = "";
 
     var data = posts
     
+    
+
+    postModel.countDocuments({}).exec(function(err, c){
+      count = {
+        something: c
+      };
+    })
+
     /*
       I found sample code on how we could get the top X posts
       var below is supposed to sort the all the posts by ascending order ( 1 = ascending),
@@ -754,7 +762,7 @@ var loginValidation = "";
 
   app.get('/account-profile', function(req, res){
     loginValidation = ""; // clearing the login validation warning
-
+    console.log(count)
     res.render('AccountProfile', {
       styles:     "css/styles_inside.css",
       tab_title:  "Account Profile",
@@ -1075,38 +1083,44 @@ app.post('/loginACTION', function(req, res) {
 
         bigContainer.push(smthg)
       };
-      
-    var new_post = new postModel({
-      title: req.body.title,
-      user: currUser,
-      upvotes: req.body.upvotes,
-      dateposted: req.body.dateposted,
-      timeposted: req.body.timeposted,
-      recipe_picture: `${req.body.recipe_picture}.png`,
-      description: req.body.description,
-      ingredients: req.body.ingredients,
-      instructions: req.body.instructions,
-    });
-
-    new_post.save(function(err, new_post) {
-      var result;
+    
+    postModel.countDocuments().exec(function(err, count){
+      var new_post = new postModel({
+        title: req.body.title,
+        user: currUser,
+        upvotes: req.body.upvotes,
+        dateposted: req.body.dateposted,
+        timeposted: req.body.timeposted,
+        recipe_picture: `${req.body.recipe_picture}.png`,
+        description: req.body.description,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+        _id: count
+      });
   
-      if (err) {
-        console.log(err.errors);
   
-        result = { success: false, message: "Recipe post was not created!" }
-        res.send(result);
-      }
-      else {
-        console.log("Successfully created a recipe post!");
-        console.log(new_post);
-        
-        result = { success: true, message: "Recipe post created!" }
-  
-        res.send(result);
-      }
-  
-    });
+      new_post.save(function(err, new_post) {
+        var result;
+    
+        if (err) {
+          console.log(err.errors);
+    
+          result = { success: false, message: "Recipe post was not created!" }
+          res.send(result);
+        }
+        else {
+          console.log("Successfully created a recipe post!");
+          console.log(new_post);
+          
+          result = { success: true, message: "Recipe post created!" }
+    
+          res.send(result);
+        }
+    
+      });
+    })
+    
+    
   });
 
 // CREATE RECIPE POST

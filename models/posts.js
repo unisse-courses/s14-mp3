@@ -11,7 +11,7 @@ const options = { useNewUrlParser: true,
 mongoose.connect(databaseURL, options);
 
 const postSchema = new mongoose.Schema( // TO BE UPDATED AFTER COMMENTS
-    {
+    {   _id: {type: Number, required: true},
         title: {type: String, required: true, max: 100},
         user: {type: mongoose.Schema.Types.Mixed, required: true},
         upvotes: {type:Number, required: true, default:0},
@@ -28,5 +28,9 @@ const postSchema = new mongoose.Schema( // TO BE UPDATED AFTER COMMENTS
         toJSON: { virtuals: true }
     }
     );
+
+function theCount (){
+
+}
 
 module.exports = mongoose.model('Post', postSchema);
