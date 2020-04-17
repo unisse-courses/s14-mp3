@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 // GLOBAL VARIABLES
 var rememberMe;
 
-var currUser = new userModel ({
+var currUser = {
   email: '',
   firstname: '',
   lastname: '',
@@ -49,7 +49,7 @@ var currUser = new userModel ({
   password: '',
   bio: '',
   profilepic: ''
-});
+};
 
     // var lastUser | we can use this for the last person who logged in ?
 
@@ -1086,7 +1086,7 @@ app.post('/loginACTION', function(req, res) {
       })
     var new_post = new postModel({
       title: req.body.title,
-      user: newCurrUser,
+      user: currUser,
       upvotes: req.body.upvotes,
       dateposted: req.body.dateposted,
       timeposted: req.body.timeposted,
