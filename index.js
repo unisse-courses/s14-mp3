@@ -917,17 +917,39 @@ var loginValidation = "";
         console.log(result);
         
         res.redirect("/create-account");
-
-
-        
-      } else {
+      }
+      else {
         console.log("User was created!");
         console.log(theUser);
 
         res.redirect("/log-in");
       }
     })
-});
+  });
+
+  app.post('/uniqueEmailCheck', function(req, res) {
+    var emailInput = req.body.email;
+
+    console.log("email entered: " + emailInput);
+    console.log("checking if this email is unique");
+
+    userModel.findOne({email: emailInput}, function(err, emailResult) {
+      if (emailResult) {
+        console.log(emailInput + " is NOT UNIQUE");
+          
+        result = { success: false }
+        res.send(result);
+
+      }
+      else {
+        console.log(emailInput + " is UNIQUE");
+
+        result = { success: true }
+        res.send(result);
+      }
+    });
+
+  });
   
 
 // USER LOGIN FEATURE

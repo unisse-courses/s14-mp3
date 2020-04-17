@@ -122,25 +122,47 @@ $(document).ready(function() {
             $("#validEmail").html("Please input your email address").css("color", "black")
         }
         else {
-            // if the email IS in the correct format
-            if( isEmailValid($("#email").val()) ) {
-                $("#email").addClass("is-valid")
-                $("#email").removeClass("is-invalid")
+            // gets the email inputted
+            var emailInput = $("#email").val();
+
+            // copy paste i found to match the email format
+            var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            
+            if(emailInput.match(emailFormat)) { // if it matches the format
+                $.post('uniqueEmailCheck', {email: emailInput}, function(data, status) {
+                    console.log(data);
+        
+                    if (data.success) { // if the email inputted is UNIQUE
+                        $("#email").addClass("is-valid")
+                        $("#email").removeClass("is-invalid")
+                            
+                        $("#validEmail").addClass("valid-feedback")
+                        $("#validEmail").removeClass("invalid-feedback")
+                        $("#validEmail").html("Looks good!").css("color", "black")
+                    }
+                    else { // if the email inputted is NOT UNIQUE
+                        $("#email").removeClass("is-valid")
+                        $("#email").addClass("is-invalid")
                 
-                $("#validEmail").addClass("valid-feedback")
-                $("#validEmail").removeClass("invalid-feedback")
-                $("#validEmail").html("Looks good!").css("color", "black")
+                        $("#validEmail").show()
+                        $("#validEmail").addClass("invalid-feedback")
+                        $("#validEmail").removeClass("valid-feedback")
+                        $("#validEmail").html("Email entered is already taken").css("color", "black")
+                    }
+                });
+
             }
-            // if the email is NOT the correct format
-            else if( !(isEmailValid($("#email").val())) ) {
+            else { // if it doesnt match the format
                 $("#email").removeClass("is-valid")
                 $("#email").addClass("is-invalid")
     
                 $("#validEmail").show()
                 $("#validEmail").addClass("invalid-feedback")
                 $("#validEmail").removeClass("valid-feedback")
-                $("#validEmail").html("Email entered is invalid or already taken").css("color", "black")
+                $("#validEmail").html("Email entered is invalid").css("color", "black")
+                    
             }
+      
         }
     });
 
@@ -292,28 +314,8 @@ $(document).ready(function() {
         }
     });
 
-    function isEmailValid(emailInput) {
-        var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        
-        if(emailInput.match(emailFormat)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-        // VALIDATION TO CHECK IF MAY KAPAREHAS
-    }
-
     function isUsernameValid(usernameInput) {
-        var usernameFormat = /^[a-zA-Z0-9_]*$/;
-
-        if(usernameInput.match(usernameFormat)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        
 
         // VALIDATION TO CHECK IF MAY KAPAREHAS
     }
