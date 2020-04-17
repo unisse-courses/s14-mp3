@@ -130,7 +130,7 @@ $(document).ready(function() {
             
             if(emailInput.match(emailFormat)) { // if it matches the format
                 $.post('uniqueEmailCheck', {email: emailInput}, function(data, status) {
-                    console.log(data);
+                    console.log(emailInput + " = " + data.success);
         
                     if (data.success) { // if the email inputted is UNIQUE
                         $("#email").addClass("is-valid")
@@ -246,26 +246,47 @@ $(document).ready(function() {
         }    
  
         else {
-            // if the username IS in the correct format
-            if( isUsernameValid($("#username").val()) ) {
-                $("#username").addClass("is-valid")
-                $("#username").removeClass("is-invalid")
-                
-                $("#validUser").addClass("valid-feedback")
-                $("#validUser").removeClass("invalid-feedback")
-                $("#validUser").html("Looks good!").css("color", "black")
-            }
+            // gets the username inputted
+            var usernameInput = $("#username").val();
 
-            // if the email is NOT in the correct format
-            else if( !(isUsernameValid($("#username").val())) ) {
+            // copy paste i found to match the username format
+            var usernameFormat = /^[a-zA-Z0-9_]*$/;	
+        
+            if(usernameInput.match(usernameFormat)) { // if it matches the format
+                $.post('uniqueUsernameCheck', {username: usernameInput}, function(data, status) {
+                    console.log(usernameInput + " = " + data.success);
+        
+                    if (data.success) { // if the username inputted is UNIQUE  
+                        $("#username").addClass("is-valid")
+                        $("#username").removeClass("is-invalid")
+                        
+                        $("#validUser").addClass("valid-feedback")
+                        $("#validUser").removeClass("invalid-feedback")
+                        $("#validUser").html("Looks good!").css("color", "black")
+                    }
+                    else { // if the email username is NOT UNIQUE
+                        $("#username").removeClass("is-valid")
+                        $("#username").addClass("is-invalid")
+            
+                        $("#validUser").show()
+                        $("#validUser").addClass("invalid-feedback")
+                        $("#validUser").removeClass("valid-feedback")
+                        $("#validUser").html("Username entered is already taken").css("color", "black")
+                    }
+                });
+            }
+            else{ // if it doesnt match the format
                 $("#username").removeClass("is-valid")
                 $("#username").addClass("is-invalid")
     
                 $("#validUser").show()
                 $("#validUser").addClass("invalid-feedback")
                 $("#validUser").removeClass("valid-feedback")
-                $("#validUser").html("Username entered is invalid or already taken").css("color", "black")
+                $("#validUser").html("Username entered is invalid").css("color", "black")
             }
+            
+
+
         }
     });
 
@@ -291,9 +312,13 @@ $(document).ready(function() {
         }
         
         else {
+            // gets the password inputted
+            var passwordInput = $("#password").val();
 
-            // if the password IS in the correct format (sameformat as username)
-            if( isUsernameValid($("#password").val()) ) {
+            // copy paste i found to match the password format
+            var passwordFormat = /^[a-zA-Z0-9_]*$/;	
+
+            if(passwordInput.match(passwordFormat)) { // if it matches the format
                 $("#password").addClass("is-valid")
                 $("#password").removeClass("is-invalid")
                 
@@ -301,8 +326,7 @@ $(document).ready(function() {
                 $("#validPass").removeClass("invalid-feedback")
                 $("#validPass").html("Looks good!").css("color", "black")
             }
-
-            else if( !(isUsernameValid($("#password").val())) ) {
+            else { // if it doesnt match the format
                 $("#password").removeClass("is-valid")
                 $("#password").addClass("is-invalid")
 
@@ -311,14 +335,9 @@ $(document).ready(function() {
                 $("#validPass").removeClass("valid-feedback")
                 $("#validPass").html("Password entered is invalid").css("color", "black")
             }
+
         }
     });
-
-    function isUsernameValid(usernameInput) {
-        
-
-        // VALIDATION TO CHECK IF MAY KAPAREHAS
-    }
 
     function showPreview(file) {
         if (file.files && file.files[0]) {
@@ -1086,7 +1105,7 @@ if (window.location.href.includes("account-profile"))
             $("#validFirst").show()
             $("#validFirst").addClass("invalid-feedback")
             $("#validFirst").removeClass("valid-feedback")
-            $("#validFirst").html("Input your First name").css("color", "black")
+            $("#validFirst").html("Please input your first name").css("color", "black")
         }
         //May laman
         else{
@@ -1109,7 +1128,7 @@ if (window.location.href.includes("account-profile"))
             $("#validLast").show()
             $("#validLast").addClass("invalid-feedback")
             $("#validLast").removeClass("valid-feedback")
-            $("#validLast").html("Input your Last name").css("color", "black")
+            $("#validLast").html("Please input your last name").css("color", "black")
         }
         
         else {
@@ -1131,17 +1150,83 @@ if (window.location.href.includes("account-profile"))
             $("#validUser").show()
             $("#validUser").addClass("invalid-feedback")
             $("#validUser").removeClass("valid-feedback")
-            $("#validUser").html("Boss, Username pakilagyan naman").css("color", "black")
+            $("#validUser").html("Please input your username").css("color", "black")
         }
         
-        else {
-            $("#EDITuserName").addClass("is-valid")
-            $("#EDITuserName").removeClass("is-invalid")
-            
-            $("#validUser").addClass("valid-feedback")
-            $("#validUser").removeClass("invalid-feedback")
-            $("#validUser").html("Looks good!").css("color", "black")
+        // if the username is less than 6 characters
+        else if($("#EDITuserName").val().length < 6) {
+            $("#EDITuserName").removeClass("is-valid")
+            $("#EDITuserName").addClass("is-invalid")
+
+            $("#validUser").show()
+            $("#validUser").addClass("invalid-feedback")
+            $("#validUser").removeClass("valid-feedback")
+            $("#validUser").html("Username must have at least 6 characters").css("color", "black")
         }
+
+        // if the username is greater than 15 characters
+        else if($("#EDITuserName").val().length > 15) {
+            $("#EDITuserName").removeClass("is-valid")
+            $("#EDITuserName").addClass("is-invalid")
+
+            $("#validUser").show()
+            $("#validUser").addClass("invalid-feedback")
+            $("#validUser").removeClass("valid-feedback")
+            $("#validUser").html("Username must have at most 15 characters").css("color", "black")
+        }    
+
+        else {
+            // gets the username inputted
+            var usernameInput = $("#EDITuserName").val();
+
+            // copy paste i found to match the username format
+            var usernameFormat = /^[a-zA-Z0-9_]*$/;	
+
+            if(usernameInput.match(usernameFormat)) { // if it matches the format
+                $.post('uniqueUsernameCheckEDIT', {username: usernameInput}, function(data, status) {
+                    console.log(usernameInput + " = " + data.success);
+
+                    if(data.current == usernameInput) {
+                        $("#EDITuserName").addClass("is-valid")
+                        $("#EDITuserName").removeClass("is-invalid")
+                        
+                        $("#validUser").addClass("valid-feedback")
+                        $("#validUser").removeClass("invalid-feedback")
+                        $("#validUser").html("Looks good!").css("color", "black")
+                    }
+                    else {
+                        if (data.success) { // if the username inputted is UNIQUE  
+                            $("#EDITuserName").addClass("is-valid")
+                            $("#EDITuserName").removeClass("is-invalid")
+                            
+                            $("#validUser").addClass("valid-feedback")
+                            $("#validUser").removeClass("invalid-feedback")
+                            $("#validUser").html("Looks good!").css("color", "black")
+                        }
+                        else { // if the email username is NOT UNIQUE
+                            $("#EDITuserName").removeClass("is-valid")
+                            $("#EDITuserName").addClass("is-invalid")
+                
+                            $("#validUser").show()
+                            $("#validUser").addClass("invalid-feedback")
+                            $("#validUser").removeClass("valid-feedback")
+                            $("#validUser").html("Username entered is already taken").css("color", "black")
+                        }
+                    }
+                });
+            }
+            else{ // if it doesnt match the format
+                $("#EDITuserName").removeClass("is-valid")
+                $("#EDITuserName").addClass("is-invalid")
+
+                $("#validUser").show()
+                $("#validUser").addClass("invalid-feedback")
+                $("#validUser").removeClass("valid-feedback")
+                $("#validUser").html("Username entered is invalid").css("color", "black")
+            }
+            
+        }
+
     });
 
     $("#EDITpassword").blur(() => {
@@ -1153,7 +1238,7 @@ if (window.location.href.includes("account-profile"))
             $("#validPass").show()
             $("#validPass").addClass("invalid-feedback")
             $("#validPass").removeClass("valid-feedback")
-            $("#validPass").html("Sad. Wattasad. Big sad. :c").css("color", "black")
+            $("#validPass").html("Please input your password").css("color", "black")
         }
 
         else if($("#EDITpassword").val().length < 6){
@@ -1167,12 +1252,29 @@ if (window.location.href.includes("account-profile"))
         }
         
         else {
-            $("#EDITpassword").addClass("is-valid")
-            $("#EDITpassword").removeClass("is-invalid")
-            
-            $("#validPass").addClass("valid-feedback")
-            $("#validPass").removeClass("invalid-feedback")
-            $("#validPass").html("Awesome!").css("color", "black")
+            // gets the password inputted
+            var passwordInput = $("#EDITpassword").val();
+
+            // copy paste i found to match the password format
+            var passwordFormat = /^[a-zA-Z0-9_]*$/;	
+
+            if(passwordInput.match(passwordFormat)) { // if it matches the format
+                $("#EDITpassword").addClass("is-valid")
+                $("#EDITpassword").removeClass("is-invalid")
+                
+                $("#validPass").addClass("valid-feedback")
+                $("#validPass").removeClass("invalid-feedback")
+                $("#validPass").html("Looks good!").css("color", "black")
+            }
+            else { // if it doesnt match the format
+                $("#EDITpassword").removeClass("is-valid")
+                $("#EDITpassword").addClass("is-invalid")
+
+                $("#validPass").show()
+                $("#validPass").addClass("invalid-feedback")
+                $("#validPass").removeClass("valid-feedback")
+                $("#validPass").html("Password entered is invalid").css("color", "black")
+            }
         }
     });
 

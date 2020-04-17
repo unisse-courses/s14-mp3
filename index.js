@@ -966,6 +966,30 @@ var count;
     });
 
   });
+
+  app.post('/uniqueUsernameCheck', function(req, res) {
+    var usernameInput = req.body.username;
+
+    console.log("username entered: " + usernameInput);
+    console.log("checking if this username is unique");
+
+    userModel.findOne({username: usernameInput}, function(err, usernameResult) {
+      if (usernameResult) {
+        console.log(usernameInput + " is NOT UNIQUE");
+          
+        result = { success: false }
+        res.send(result);
+
+      }
+      else {
+        console.log(usernameInput + " is UNIQUE");
+
+        result = { success: true }
+        res.send(result);
+      }
+    });
+
+  });
   
 
 // USER LOGIN FEATURE
@@ -1075,6 +1099,30 @@ app.post('/loginACTION', function(req, res) {
 
       res.send(currUser);
     });
+  });
+
+  app.post('/uniqueUsernameCheckEDIT', function(req, res) {
+    var usernameInput = req.body.username;
+
+    console.log("username entered: " + usernameInput);
+    console.log("checking if this username is unique");
+
+    userModel.findOne({username: usernameInput}, function(err, usernameResult) {
+      if (usernameResult) {
+        console.log(usernameInput + " is NOT UNIQUE");
+          
+        result = { success: false, current: currUser.username }
+        res.send(result);
+
+      }
+      else {
+        console.log(usernameInput + " is UNIQUE");
+
+        result = { success: true, current: currUser.username }
+        res.send(result);
+      }
+    });
+
   });
 
 //DELETE ACCOUNT

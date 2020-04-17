@@ -8,8 +8,8 @@
 - [ ] Create Account
   - [x] Creates an account & is reflected in mongoose
   - [x] Email has to have an "@" (should only be 1 @ and it must have at least 1 character before and after it)
-  - [ ] Username Validation
-    - [ ] Unique (no same name despite capitalization)
+  - [x] Username Validation
+    - [x] Unique (no same name despite capitalization)
     - [x] Minimum of 6 characters
     - [x] Maximum of 15 characters
   - [ ] Working picture input & preview of image
@@ -22,9 +22,10 @@
   - [ ] Should show all the deets + no errors for both post / account
   - [x] Shows partial results (example: u searched pan instead of "pancakes" but it still shows up)
 - [x] Create Post
-  - [ ] Save Button -> Should add a new post in the db
-    - [ ] Update the code using the updated current user code
-    - [ ] Make a function that will generate a post id (incrementing numbers)
+  - [x] Save Button -> Should add a new post in the db
+    - [x] Update the code using the updated current user code
+    - [x] Make a function that will generate a post id (incrementing numbers)
+    - [ ] should be redirected to the correct route (which is the new post created)
 - [ ] Edit Post
   - [ ] Save Button -> Should update the post info in the db & update the page information agad
   - [ ] Post info should be pre-loaded na
@@ -46,7 +47,7 @@
   - [X] Account info should be pre-loaded na
     - [ ] Shows the preview of the picture & allows picture input
     - [X] Displays the email but u cant edit it (no input, so its just there)
-  - [ ] Username validation (1 blob)
+  - [x] Username validation (1 blob)
 2. IN GENERAL
 - [X] Can see the current user's info in navbar
 - [X] Can see the current user's info after clicking their profile FROM Navbar
