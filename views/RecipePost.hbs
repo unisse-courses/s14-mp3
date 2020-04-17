@@ -1,7 +1,7 @@
 <!-- BODY CLASS = INSIDE-->
 
         {{>navbar username=navUser}}
-
+        
         <div class="d-flex flex-column content">
           <div class="container post-container" >
       
@@ -9,14 +9,14 @@
                 <div class="post-header_left">
                   <a href="account-profile" id="title_username-badge"><span class="badge badge-light post-stamps sides">By {{firstname}} {{lastname}} | {{username}}</span></a>
                 </div>
-
+                
                 <div class="post-header_mid">
                   <h1 class="display-3">{{title}}</h1>
 
                   <span class="badge badge-light" id="votes">
-                    <a href="#"><img class="img-fluid" src="images/upvote.png" id="upvote-icon"></a>
+                    <a href="#"><img class="img-fluid" src="../images/upvote.png" id="upvote-icon"></a>
                     <span id="voteCount" class="post-stamps">{{upvote_score}}</span>
-                    <a href="#"><img class="img-fluid" src="images/downvote.png" id="downvote-icon"></a>
+                    <a href="#"><img class="img-fluid" src="../images/downvote.png" id="downvote-icon"></a>
                   </span>
                   
                 </div>
