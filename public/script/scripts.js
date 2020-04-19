@@ -35,11 +35,12 @@ $(document).ready(function() {
 
     
 /* -------------------------------------------------- UserLogin.hbs -------------------------------------------------- */    
-    $("#loginButton").click(function () { 
+    $("#loginButton").click(function (event) { 
+        event.preventDefault();
+
         var user = document.getElementById("user").value
         var pass = document.getElementById("pass").value
 
-        //to verify if crednetials have been retrieved
         console.log(user + " " + pass)
             if (user == ""){
                 document.getElementById("warning1").textContent ='Please input your username'
@@ -66,17 +67,15 @@ $(document).ready(function() {
             if(!data.success){
                 document.getElementById("warning1").textContent = data.message;
                 document.getElementById("warning1").style.color = "red";
+    
+                console.log(data.message);
+            }
+            else {
+                console.log(data.message);
+
+                window.location.href = "/home";
             }
         });
-/*
-        $.post('showInvalidLogin', function(data, status) {
-            if(!data.success) {
-                document.getElementById("warning1").textContent = data.message;
-                document.getElementById("warning1").style.color = "red";
-                return false;
-            }
-        });
-*/
 
     });
 

@@ -51,10 +51,6 @@ var currUser = {
   profilepic: ''
 };
 
-    // var lastUser | we can use this for the last person who logged in ?
-
-var loginValidation = "";
-
 /* -------------------------------------------------- ALL THE DUMMY DATA -------------------------------------------------- */
 // TODO: AFTER doing the AJAX, we place the dummy data in .json files (data folder -> json files)
 
@@ -644,9 +640,7 @@ var loginValidation = "";
 var count;
 // INDEX
   app.get('/', function(req, res) {
-      loginValidation = ""; // clearing the login validation warning
-
-      res.render('index', {
+        res.render('index', {
         // for main.hbs
           styles: "css/styles_outside.css",
           tab_title: "Index",
@@ -656,20 +650,6 @@ var count;
 
 // USER LOGIN
   app.get('/log-in', function(req, res) {
-
-    var LogInWords = "";
-    var LogInColor = "";
-
-    if(loginValidation == "Invalid username or password"){
-        LogInWords = "Invalid username or password"
-        LogInColor = "color: red";
-    }
-    else {
-      loginCtr = 0;
-      LogInWords = "";
-      LogInColor = "color: #F1F7ED";
-    }
-
     if(rememberMe == 'true'){
       res.render('UserLogin', {
         styles: "css/styles_outside.css",
@@ -677,9 +657,7 @@ var count;
         body_class: "outside",
         username: currUser.username,
         password: currUser.password,
-        isChecked: true/*,
-        LogInWarning: LogInWords,
-        LogInWarning_Color: LogInColor*/
+        isChecked: true
       })
     }
     else{
@@ -689,9 +667,7 @@ var count;
         body_class: "outside",
         username: currUser.username,
         password: currUser.password,
-        isChecked: false/*,
-        LogInWarning: LogInWords,
-        LogInWarning_Color: LogInColor*/
+        isChecked: false
       })
     }
 
@@ -704,7 +680,7 @@ var count;
   })
 // HOMEPAGE
   app.get('/home', function(req, res) {
-    loginValidation = ""; // clearing the login validation warning
+     
 
       res.render('Homepage', {
         // for main.hbs
@@ -720,7 +696,7 @@ var count;
   //app.get('/account-profile', getAccountProfile);
 
   app.get('/account-profile', function(req, res){
-    loginValidation = ""; // clearing the login validation warning
+     
     console.log(count)
     res.render('AccountProfile', {
       styles:     "css/styles_inside.css",
@@ -739,8 +715,6 @@ var count;
 
 // CREATE ACCOUNT PROFILE
   app.get('/create-account', function(req, res) {
-    loginValidation = ""; // clearing the login validation warning
-
     res.render('CreateAccount', {
       // for main.hbs
         styles: "css/styles_outside.css",
@@ -751,8 +725,6 @@ var count;
 
 // EDIT ACCOUNT PROFILE
   app.get('/edit-account', function(req, res) {
-      loginValidation = ""; // clearing the login validation warning
-
       res.render('EditAccountProfile', {
         styles:     "css/styles_inside.css",
         tab_title:  "Edit Account",
@@ -770,8 +742,6 @@ var count;
 
 // CREATE RECIPE POST
   app.get('/create-recipe', function(req, res) {
-      loginValidation = ""; // clearing the login validation warning
-
       res.render('CreateRecipePost', {
         // for main.hbs
           styles: "css/styles_inside.css",
@@ -785,8 +755,6 @@ var count;
 
 // EDIT RECIPE POST
   app.get('/edit-recipe', function(req, res) {
-      loginValidation = ""; // clearing the login validation warning
-
       res.render('EditRecipePost', {
         // for main.hbs
           styles: "css/styles_inside.css",
@@ -811,8 +779,6 @@ var count;
 
 // RECIPE POST
   app.get('/recipe-post/:param', function(req, res) {
-    loginValidation = ""; // clearing the login validation warning
-    
     var id = req.params.param;
 
     postModel.findOne({_id: id}).exec(function(err, data){
@@ -850,8 +816,6 @@ var count;
 
 // SEARCH PAGE
   app.get('/search', function(req, res) {
-      loginValidation = ""; // clearing the login validation warning
-
       res.render('SearchPage', {
         // for main.hbs
           styles: "css/styles_inside.css",
@@ -968,8 +932,8 @@ app.post('/loginACTION', function(req, res) {
     rememberMe = req.body.remember;
   
     var account = {
-      username:  req.body.USER,
-      password:   req.body.PASS,
+      username:  req.body.username,
+      password:   req.body.password,
     }
 
     if (account.username == "Guest"){
@@ -987,8 +951,16 @@ app.post('/loginACTION', function(req, res) {
     else
     {
         userModel.findOne({username: account.username}, function (err, accountResult){
-            if(accountResult){ // if the username entered exists in the db
+          if(err) {
+            console.log(err.errors);
+          }
+          
+          if(accountResult){ // if the username entered exists in the db
+              console.log("USERNAME EXISTS IN DB");
+
               if(account.password == accountResult.password) { // if the password entered matches with the password from the db
+                console.log("PASSWORD IS RIGHT");
+              
                 currUser = {
                   email:      accountResult.email,
                   firstname:  accountResult.firstname,
@@ -999,42 +971,44 @@ app.post('/loginACTION', function(req, res) {
                   bio:        accountResult.bio
                   
                 }
+
+                result = {
+                  success: true,
+                  message: "Login Successful!"
+                }
+
                 console.log(currUser.username + " has logged in!");
                 console.log("Current user:");
                 console.log(currUser);
 
-                res.redirect("/home");
+                res.send(result);
+
               }
               else { // the username exists but the password is wrong
-                //app.post('/showInvalidLogin', function(req, res) {
+                  console.log("PASSWORD IS WRONG");
+
                   result = {
                     success: false,
                     message: "Invalid username or password"
                   }
                   
                   res.send(result);
-                //});
+
               }
-              //console.log("cleared the loginValidation");
+              
             }
             else{ // if the username doesnt exist
-
-              //loginValidation = "Invalid username or password";
-
-              //app.post('/showInvalidLogin', function(req, res) {
+              console.log("USERNAME DOESNT EXIST IN DB");
+              
                 result = {
                   success: false,
                   message: "Invalid username or password"
                 }
                 
                 res.send(result);
-
-
-                
-              //});
-
             }
         });
+
     }
   });
       
