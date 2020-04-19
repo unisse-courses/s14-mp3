@@ -2,37 +2,6 @@
         
         {{>navbar username=navUser}}
 
-        <div class="d-flex flex-column content">
+        <div id="homeContainer"class="d-flex flex-column content">
 
-          {{#each posts}}
-            <div class="card post_preview-container">
-            <div class="full-width-container post_preview-row0">
-              <img class="img-fluid" src="{{this.recipe_picture}}" alt="Card image cap" id="post_preview-image">
-            </div>
-
-            <div class="d-flex flex-column card-body post_preview-below_image">
-              <div class="d-flex flex-column post_preview-row1">
-                <h3 class="card-title">{{this.title}}</h3>
-                <p class="card-subtitle"><span class="badge badge-light">By {{this.user.firstname}} {{this.user.lastname}} | {{this.user.username}}</span></p>
-              </div>
-
-              <div class="d-flex flex-column post_preview-row2">
-                <p class="card-text">{{this.description}}
-                  <br>
-                <a href="recipe-post/{{_id}}" class="stretched-link" >Continue reading...</a></p>
-              </div>
-
-              <div class="d-flex justify-content-between flex-wrap post_preview-row3">
-                <p class="card-text"><small class="text-muted">{{this.upvotes}} UPVOTES</small></p>
-                <p class="card-text"><small class="text-muted">{{this.dateposted}} {{this.timeposted}}</small></p>
-              </div>
-
-            </div>
-
-          </div>
-          {{/each}}
-
-
-          
-        
         </div>

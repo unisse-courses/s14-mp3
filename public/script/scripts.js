@@ -380,6 +380,19 @@ $(document).ready(function() {
             console.log(status);
         });
         */
+
+
+        $.post("getTopFive", function (data, status) {
+            var parent = $("#homeContainer")
+            data.forEach((item, i) => {
+                createPostDiv(item, parent);
+            });
+        });
+
+
+        $(document).on("unload", function(){
+            $("#homeContainer").empty();
+        })
     }
     function createPostDiv(item, parentDiv){
         

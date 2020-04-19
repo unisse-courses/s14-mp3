@@ -697,56 +697,24 @@ var count;
 
       
   });
-
+  app.post('/getTopFive', function(req, res){
+    postModel.find().lean().limit(5).sort({upvotes: -1, title: 1}).exec(function(err, data){
+      res.send(data);
+    })  
+  })
 // HOMEPAGE
   app.get('/home', function(req, res) {
     loginValidation = ""; // clearing the login validation warning
 
-    /*
-      I found sample code on how we could get the top X posts
-      var below is supposed to sort the all the posts by ascending order ( 1 = ascending),
-      and limit the returned results to at most 5 posts
-
-      also var below doesnt do anything yet, naka display lang muna siya while we fix the other stuffs AHAHAHA
-    */
-    postModel.find().lean().limit(5).sort({upvotes: -1, title: 1}).exec(function(err, data){
       res.render('Homepage', {
         // for main.hbs
           styles: "css/styles_inside.css",
           tab_title: "Homepage",
           body_class: "inside",
-          posts: data,
           navUser: currUser.username
           
       })
-    })
-
-    /*
-      we can prob send these first five using res.render() 
-      then kung if may change ng top 5 we can use a JS function to update the home page na lang
-    */
-
-      
   });
-
-  function getAccountProfile(req, res, next) {
-    userModel.find({}).sort({username: 1}).exec().then(result => {
-      var userObjects = [];
-
-      result.forEach(function(doc) {
-        userObjects.push(doc.toObject());
-      });
-      
-      //console.log(userObjects);
-      
-      res.render('AccountProfile', {
-        user: userObjects,
-        styles: "css/styles_inside.css",
-        tab_title: "Account Profile",
-        body_class: "inside"
-      });
-    });
-  };
 
 // ACCOUNT PROFILE
   //app.get('/account-profile', getAccountProfile);
