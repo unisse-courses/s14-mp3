@@ -12,7 +12,8 @@
                   <li class="nav-item">
                     <div class="dropdown">
                       <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbar-dropdown">
-                        {{username}}
+                        <img src="{{navIcon}}" class="rounded-circle" width="20" height="20" alt="" id="navbar-icon">
+                        {{navUser}}
                       </button>
                       <div class="dropdown-menu">
                         <a class="dropdown-item" id="accProfile" href="{{#if post}}../{{/if}}account-profile">Account Profile</a>

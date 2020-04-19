@@ -13,7 +13,7 @@
     - [x] Minimum of 6 characters
     - [x] Maximum of 15 characters
   - [ ] Working picture input & preview of image
-  - [ ] Default Photo Option
+  - [x] Default Photo Option
 - [X] Homepage
   - [X] Loading the SPECIFIC recipe post after clicking a post preview
   - [X] Loading the Top 5 Most upvoted Pages

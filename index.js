@@ -680,15 +680,13 @@ var count;
   })
 // HOMEPAGE
   app.get('/home', function(req, res) {
-     
-
       res.render('Homepage', {
         // for main.hbs
           styles: "css/styles_inside.css",
           tab_title: "Homepage",
           body_class: "inside",
-          navUser: currUser.username
-          
+          navUser: currUser.username,
+          navIcon: currUser.profilepic
       })
   });
 
@@ -709,7 +707,8 @@ var count;
       bio:        currUser.bio,
       profilepic: currUser.profilepic,
       email:      currUser.email,
-      navUser:    currUser.username
+      navUser: currUser.username,
+      navIcon: currUser.profilepic
     });
   });
 
@@ -719,7 +718,9 @@ var count;
       // for main.hbs
         styles: "css/styles_outside.css",
         tab_title: "Create Account",
-        body_class: "outside"
+        body_class: "outside",
+        navUser: currUser.username,
+        navIcon: currUser.profilepic
     })
   });
 
@@ -729,7 +730,8 @@ var count;
         styles:     "css/styles_inside.css",
         tab_title:  "Edit Account",
         body_class: "inside",
-        navUser:    currUser.username,
+        navUser: currUser.username,
+        navIcon: currUser.profilepic,
         email:      currUser.email,
         firstname:  currUser.firstname,
         lastname:   currUser.lastname,
@@ -747,7 +749,8 @@ var count;
           styles: "css/styles_inside.css",
           tab_title: "Create Post",
           body_class: "inside",
-          navUser: currUser.username
+          navUser: currUser.username,
+          navIcon: currUser.profilepic,
 
           // FEATURE: '/addPost'
       })
@@ -760,20 +763,8 @@ var count;
           styles: "css/styles_inside.css",
           tab_title: "Edit Post",
           body_class: "inside",
-          navUser: currUser.username
-        
-        // for this page
-          /* sam:
-              possible variables to transfer:
-              - title
-              - description of post
-              - table of ingredients
-              - table of instructions
-
-              QUESTION: will the date and time posted change after a person has updated it ???
-
-             (Answer) Giann: if we only consider the date the post is created, 
-          */
+          navUser: currUser.username,
+          navIcon: currUser.profilepic,
       })
   });
 
@@ -790,6 +781,8 @@ var count;
             styles: "../css/styles_inside.css",
             tab_title: "Recipe Post",
             body_class: "inside",
+            navUser: currUser.username,
+            navIcon: currUser.profilepic,
             
             title: data.title,
             upvote_score: data.upvotes,
@@ -805,8 +798,7 @@ var count;
             
             comment_count: data.comments.length,
             comments: data.comments,
-            post: true,
-            navUser: currUser.username
+            post: true
         })
       }
     })
@@ -821,13 +813,8 @@ var count;
           styles: "css/styles_inside.css",
           tab_title: "Search Page",
           body_class: "inside",
-          navUser: currUser.username
-        
-        // for this page
-          /* sam:
-              possible variables to transfer:
-              - im actually not sure if it needs any ??
-          */
+          navUser: currUser.username,
+          navIcon: currUser.profilepic,
       })
   });
 
@@ -881,13 +868,14 @@ var count;
     console.log("email entered: " + emailInput);
     console.log("checking if this email is unique");
 
-    userModel.findOne({email: emailInput}, function(err, emailResult) {
-      if (emailResult) {
+    var regexInput = "^" + emailInput;
+
+    userModel.findOne({ "email" : { $regex: regexInput, $options: 'i' } }, function(err, emailResult) {
+      if (emailResult) { // emailInput is taken (and in same capitalization)
         console.log(emailInput + " is NOT UNIQUE");
           
         result = { success: false }
         res.send(result);
-
       }
       else {
         console.log(emailInput + " is UNIQUE");
@@ -905,19 +893,20 @@ var count;
     console.log("username entered: " + usernameInput);
     console.log("checking if this username is unique");
 
-    userModel.findOne({username: usernameInput}, function(err, usernameResult) {
-      if (usernameResult) {
+    var regexInput = "^" + usernameInput;
+
+    userModel.findOne({ "username" : { $regex: regexInput, $options: 'i' } }, function(err, usernameResult) {
+      if (usernameResult) { // usernameInput is taken (and in same capitalization)
         console.log(usernameInput + " is NOT UNIQUE");
           
         result = { success: false }
         res.send(result);
-
       }
       else {
-        console.log(usernameInput + " is UNIQUE");
+          console.log(usernameInput + " is UNIQUE");
 
-        result = { success: true }
-        res.send(result);
+          result = { success: true }
+          res.send(result);
       }
     });
 
@@ -950,7 +939,9 @@ app.post('/loginACTION', function(req, res) {
     }
     else
     {
-        userModel.findOne({username: account.username}, function (err, accountResult){
+      var regexInput = "^" + account.username;
+
+        userModel.findOne({username: { $regex: regexInput, $options: 'i' }}, function (err, accountResult){
           if(err) {
             console.log(err.errors);
           }
@@ -1121,6 +1112,13 @@ app.post('/loginACTION', function(req, res) {
 
         bigContainer.push(smthg)
       };
+
+    // DEFAULT PHOTO OPTION
+    var photoInput = '/images/default_post.jpg'
+
+    if(!(req.body.recipe_picture == "")) {
+      photoInput = `${req.body.recipe_picture}.png`;
+    }
     
     postModel.countDocuments().exec(function(err, count){
       var new_post = new postModel({
@@ -1130,7 +1128,7 @@ app.post('/loginACTION', function(req, res) {
         upvotes: req.body.upvotes,
         dateposted: req.body.dateposted,
         timeposted: req.body.timeposted,
-        recipe_picture: `${req.body.recipe_picture}.png`,
+        recipe_picture: photoInput,
         description: req.body.description,
         ingredients: req.body.ingredients,
         instructions: req.body.instructions
