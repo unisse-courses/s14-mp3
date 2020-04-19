@@ -31,7 +31,7 @@
   - [ ] Post info should be pre-loaded na
 - [ ] Recipe Post
   - [ ] Reply Button -> Should append the reply INSIDE of the list of the specific comment
-    - [ ] Date & Time format should be in the comments & replies (copy the code from create post)
+    - [x] Date & Time format should be in the comments & replies (copy the code from create post)
   - [ ] Fix the formatting of the Nested Replies within the Comment (mali yung pag format ko sa html dati so pls fix it na lang rin -sam)
   - [ ] Edit Post Button -> Should send the post info to the Edit Post Route
   - [ ] Delete Post Button (IN MODAL) -> Should delete the post from the db
