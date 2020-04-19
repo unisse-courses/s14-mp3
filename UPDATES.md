@@ -15,7 +15,7 @@
   - [ ] Working picture input & preview of image
   - [ ] Default Photo Option
 - [ ] Homepage
-  - [ ] Loading the SPECIFIC recipe post after clicking a post preview
+  - [X] Loading the SPECIFIC recipe post after clicking a post preview
   - [ ] Loading the Top 5 Most Recent Pages
 - [ ] Searchpage
   - [x] Search Button -> Uses get function to look for post / account
@@ -25,7 +25,7 @@
   - [x] Save Button -> Should add a new post in the db
     - [x] Update the code using the updated current user code
     - [x] Make a function that will generate a post id (incrementing numbers)
-    - [ ] should be redirected to the correct route (which is the new post created)
+    - [X] should be redirected to the correct route (which is the new post created)
 - [ ] Edit Post
   - [ ] Save Button -> Should update the post info in the db & update the page information agad
   - [ ] Post info should be pre-loaded na

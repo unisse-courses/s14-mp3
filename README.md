@@ -44,7 +44,7 @@
 * Guests cannot also comment on any recipe post.
 
 # Homepage
-* The homepage will show the top five most upvoted posts
+* The homepage will show the top five most recent posts
 
 # Account Profiles
 * Existing users can view their own profiles via the nav bar.

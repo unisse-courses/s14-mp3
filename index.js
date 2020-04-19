@@ -1157,6 +1157,7 @@ app.post('/loginACTION', function(req, res) {
     
     postModel.countDocuments().exec(function(err, count){
       var new_post = new postModel({
+        _id: count + 1,
         title: req.body.title,
         user: currUser,
         upvotes: req.body.upvotes,
@@ -1165,25 +1166,25 @@ app.post('/loginACTION', function(req, res) {
         recipe_picture: `${req.body.recipe_picture}.png`,
         description: req.body.description,
         ingredients: req.body.ingredients,
-        instructions: req.body.instructions,
-        _id: count
+        instructions: req.body.instructions
+        
       });
-  
+      console.log(count);
   
       new_post.save(function(err, new_post) {
         var result;
     
         if (err) {
-          console.log(err.errors);
+          console.log(err);
     
           result = { success: false, message: "Recipe post was not created!" }
           res.send(result);
         }
         else {
           console.log("Successfully created a recipe post!");
-          console.log(new_post);
+          //console.log(new_post);
           
-          result = { success: true, message: "Recipe post created!" }
+          result = { success: true, message: "Recipe post created!", _id: new_post._id}
     
           res.send(result);
         }
@@ -1244,9 +1245,7 @@ app.post('/loginACTION', function(req, res) {
 
 
 // VIEW COMMENT
-  app.get('/getCommentRow', function(req, res) {
-    res.status(200).send(posts[0].comments);
-  });
+
 
 // DELETE COMMENT
     // TODO: not sure how for ajax

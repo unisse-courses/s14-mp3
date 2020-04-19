@@ -642,7 +642,8 @@ $(document).ready(function() {
         };
 
         $.post('addPost', new_post, function(data,status) {
-            console.log(data);
+            //console.log(data);
+            location.href="recipe-post/" + data._id;
         });
         
     });
@@ -912,7 +913,7 @@ $(document).ready(function() {
                 parentDiv.append(bigUL);
         }
 
-        $.get("getCommentRow", function (data, status) { // This function GETS the existing comments from the DUMMY DATA
+        /*$.get("getCommentRow", function (data, status) { // This function GETS the existing comments from the DUMMY DATA
             // We just place these in console to make sure there are no errors
                 console.log(data);
                 console.log(status);
@@ -930,9 +931,9 @@ $(document).ready(function() {
                 data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
                     appendReply(item, commentsContainer);
                 });
-            */
+            
         });
-
+        */
         
 
         $('#addComment-btn').click(function() {  
