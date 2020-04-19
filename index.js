@@ -702,16 +702,6 @@ var count;
   app.get('/home', function(req, res) {
     loginValidation = ""; // clearing the login validation warning
 
-    var data = posts
-    
-    
-
-    postModel.countDocuments({}).exec(function(err, c){
-      count = {
-        something: c
-      };
-    })
-
     /*
       I found sample code on how we could get the top X posts
       var below is supposed to sort the all the posts by ascending order ( 1 = ascending),
@@ -719,14 +709,7 @@ var count;
 
       also var below doesnt do anything yet, naka display lang muna siya while we fix the other stuffs AHAHAHA
     */
-
-    var topFive = postModel.find().sort({'upvotes': 1}).limit(5);
-
-    /*
-      we can prob send these first five using res.render() 
-      then kung if may change ng top 5 we can use a JS function to update the home page na lang
-    */
-
+    postModel.find().lean().limit(2).exec(function(err, data){
       res.render('Homepage', {
         // for main.hbs
           styles: "css/styles_inside.css",
@@ -736,6 +719,14 @@ var count;
           navUser: currUser.username
 
       })
+    })
+
+    /*
+      we can prob send these first five using res.render() 
+      then kung if may change ng top 5 we can use a JS function to update the home page na lang
+    */
+
+      
   });
 
   function getAccountProfile(req, res, next) {
