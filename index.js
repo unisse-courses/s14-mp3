@@ -717,7 +717,7 @@ var count;
           body_class: "inside",
           posts: data,
           navUser: currUser.username
-
+          
       })
     })
 
