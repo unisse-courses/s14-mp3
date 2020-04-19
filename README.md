@@ -39,12 +39,12 @@
 * Additionally, existing users must their credentials before being redirected to the homepage.
 
 # Guest Limitations:
-* Guests cannot open the account profile in the nvaigation bar.
+* Guests cannot open the account profile in the navigation bar.
 * Guests cannot see the contents of any comments in any posts.
 * Guests cannot also comment on any recipe post.
 
 # Homepage
-* The homepage will show the top five most recent posts
+* The homepage will show the top five most upvoted posts
 
 # Account Profiles
 * Existing users can view their own profiles via the nav bar.

@@ -14,9 +14,9 @@
     - [x] Maximum of 15 characters
   - [ ] Working picture input & preview of image
   - [ ] Default Photo Option
-- [ ] Homepage
+- [X] Homepage
   - [X] Loading the SPECIFIC recipe post after clicking a post preview
-  - [ ] Loading the Top 5 Most Recent Pages
+  - [X] Loading the Top 5 Most upvoted Pages
 - [ ] Searchpage
   - [x] Search Button -> Uses get function to look for post / account
   - [ ] Should show all the deets + no errors for both post / account

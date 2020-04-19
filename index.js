@@ -709,7 +709,7 @@ var count;
 
       also var below doesnt do anything yet, naka display lang muna siya while we fix the other stuffs AHAHAHA
     */
-    postModel.find().lean().limit(2).exec(function(err, data){
+    postModel.find().lean().limit(5).sort({upvotes: -1, title: 1}).exec(function(err, data){
       res.render('Homepage', {
         // for main.hbs
           styles: "css/styles_inside.css",
