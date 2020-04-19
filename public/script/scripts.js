@@ -19,6 +19,9 @@ $(document).ready(function() {
                 window.location.href = "home";
                 console.log(data.returnData.username);
                 localStorage.setItem("activeUser", data.returnData.username);
+                localStorage.setItem("userFirstname", data.returnData.firstname);
+                localStorage.setItem("userLastname", data.returnData.lastname);
+                localStorage.setItem("userProfpic", data.returnData.profilepic);
             }
         });
         
@@ -930,27 +933,30 @@ $(document).ready(function() {
             */
         });
 
+        
+
         $('#addComment-btn').click(function() {  
             var content = $("#olinput").val();
             console.log(content);
             var replies = [{}];
-            /*
-            the sample comment below is just dummy for now
 
-            */
+            var today = new Date();
+            var Date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+            var Time = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+
             if(content != "") // if comment field is not empty
             {
                 var comment = {
-                
+
                     user: {
-                      firstname:    'Marshall',
-                      lastname:     'Eriksen',
-                      username:     '@bigFudge',
-                      profilepic:   '/images/profilepic/marsh.jpg'
+                      firstname:    localStorage.getItem("userFirstname"),
+                      lastname:     localStorage.getItem("userLastname"),
+                      username:     localStorage.getItem("activeUser"),
+                      profilepic:   localStorage.getItem("userProfpic")
                     },
                     content:         content,
-                    date:            'February 28, 2020',
-                    time:            '11:39 AM',
+                    date:            Date,
+                    time:            Time,
                     replies:         replies
                   }
         
@@ -961,7 +967,32 @@ $(document).ready(function() {
                 });
             }
             else{
-                //if empty does nothing or alerts that u need to fill in the comment 
+                window.alert("Please fill up the comment box, or cancel comment!");
+            }
+        });
+
+        $('#reply-btn').click(function() {
+            var content = $('#reply-input').val();
+            console.log(content);
+            var replies = [{}];
+
+            var today = new Date();
+            var Date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+            var Time = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+
+            if (content!="") {
+                var reply = {
+                    user: {
+                        firstname:    localStorage.getItem("userFirstname"),
+                        lastname:     localStorage.getItem("userLastname"),
+                        username:     localStorage.getItem("activeUser"),
+                        profilepic:   localStorage.getItem("userProfpic")
+                    },
+                content:              content,
+                date:                 Date,
+                time:                 Time,
+                replies:              replies
+                }
             }
         });
 

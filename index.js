@@ -844,6 +844,8 @@ var count;
               - table of instructions
 
               QUESTION: will the date and time posted change after a person has updated it ???
+
+             (Answer) Giann: if we only consider the date the post is created, 
           */
       })
   });
@@ -1212,23 +1214,42 @@ app.post('/loginACTION', function(req, res) {
 
 // POST COMMENT
   app.post('/addCommentRow', function(req, res) {
-    var comment = { 
-      user: {
-        firstname:  req.body.user.firstname,
-        lastname:   req.body.user.lastname,
-        username:   req.body.user.username,
-        profilepic: req.body.user.profilepic
-      },
-      content:      req.body.content,
-      date:         req.body.date,
-      time:         req.body.time,
-      replies:      req.body.replies
-    }
+    commentsModel.countDocuments().exec(function(err, count) {
+      var comment = new commentsModel({ 
+        user: {
+          firstname:  req.body.user.firstname,
+          lastname:   req.body.user.lastname,
+          username:   req.body.user.username,
+          profilepic: req.body.user.profilepic
+        },
+        content:      req.body.content,
+        date:         req.body.date,
+        time:         req.body.time,
+        replies:      req.body.replies,
+        _id:          count
+      });
+    })
   
-    posts[0].comments.push(comment);
+    comment.save(function(err, comment) {
+      var result;
   
-    res.status(200).send(posts[0].comments);
-  })
+      if (err) {
+        console.log(err.errors);
+  
+        result = { success: false, message: "Recipe post was not created!" }
+        res.send(result);
+      }
+      else {
+        console.log("Successfully commented on a recipe post!");
+        console.log(comment);
+        
+        result = { success: true, message: "Comment created!" }
+        posts[0].comments.push(comment);
+        res.status(200).send(result);
+      }
+  
+    });
+  });
 
 
 // VIEW COMMENT
@@ -1239,6 +1260,44 @@ app.post('/loginACTION', function(req, res) {
 // DELETE COMMENT
     // TODO: not sure how for ajax
 
+// CREATE REPLY
+app.post('/addReplyRow', function(req, res) {
+  commentsModel.countDocuments().exec(function(err, count) {
+    var reply = new commentsModel({ 
+      user: {
+        firstname:  req.body.user.firstname,
+        lastname:   req.body.user.lastname,
+        username:   req.body.user.username,
+        profilepic: req.body.user.profilepic
+      },
+      content:      req.body.content,
+      date:         req.body.date,
+      time:         req.body.time,
+      replies:      req.body.replies,
+      _id:          count
+    });
+  })
+
+  reply.save(function(err, reply) {
+    var result;
+
+    if (err) {
+      console.log(err.errors);
+
+      result = { success: false, message: "Recipe post was not created!" }
+      res.send(result);
+    }
+    else {
+      console.log("Successfully commented on a recipe post!");
+      console.log(reply);
+      
+      result = { success: true, message: "Comment created!" }
+      posts[0].comments.push(reply);
+      res.status(200).send(result);
+    }
+
+  });
+});
 
 // SEARCH RECIPE POST
 app.post('/find-post', function(req, res) {
