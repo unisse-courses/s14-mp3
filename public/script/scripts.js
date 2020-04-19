@@ -382,7 +382,7 @@ $(document).ready(function() {
         */
     }
     function createPostDiv(item, parentDiv){
-        alert(item.title);
+        
         var biggestdiv  = document.createElement('div');
 
         var imageDiv    = document.createElement('div');
@@ -434,19 +434,12 @@ $(document).ready(function() {
         $(image).attr("src", item.recipe_picture);
 
         $(title).text(item.title);
-        /*
-            ISSUE ATM:
-            IDK Y AYAW MAKUHA ANG USER PROPERTY SA DB
-            IE WHEN U TRY TO CONSOLE LOG THE POST
-            WALA TALAGA YUNG 'USER' PROPERTY
-        */
-
-        //console.log(item.user.firstname);
-        //$(userspan).text("By " + fullname(item.user.firstname, item.user.lastname) +" | " + userwithatsign(item.user.username));
+  
+        $(userspan).text("By " + fullname(item.user.firstname, item.user.lastname) +" | " + userwithatsign(item.user.username));
 
         $(desc).text(item.description);
         
-        $(anchor).attr("href", "RecipePost");
+        $(anchor).attr("href", "recipe-post/"+item._id);
         $(anchor).text("Continue reading...");
 
         $(smupvotes).text(item.upvotes + " UPVOTES");
@@ -1584,8 +1577,9 @@ if (window.location.href.includes("account-profile"))
                     }
                     else{
                         var text = document.createElement('p');
+                        var container = $("#searchList")
                         $(text).text("Sorry no posts found");
-                        $("searchList").append(text)
+                        container.append(text)
                     }
                 });
             }
@@ -1605,9 +1599,10 @@ if (window.location.href.includes("account-profile"))
                     }
                     else{
                         var text = document.createElement('p');
-                            $(text).text("Sorry no users found");
-                            $("searchList").append(text)
-                        }
+                        var container = $("#searchList")
+                        $(text).text("Sorry no users found");
+                        container.append(text)
+                    }
                        
                 });
             }

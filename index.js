@@ -1293,21 +1293,10 @@ app.post('/addReplyRow', function(req, res) {
 app.post('/find-post', function(req, res) {
   var searchingFor = req.body.searchingFor;
   var results;
-  
-  //call database
-  /*
-    Below would potentially look for all the posts with that title
-    
-    Maybe what we can do is return back the results then we use JS to form the
-    format the results to be able to stick it in seachpage.hbs
-  */
+
   var searchPattern = "^" + searchingFor;
-  postModel.find({title: {$regex: searchPattern}}).populate('user').exec( function(err, searchResults){
+  postModel.find({title: {$regex: searchPattern}}).lean().exec( function(err, searchResults){
     
-    /*
-      HERE SAM
-      console.log(searchResults[0].user.firstname)
-    */
 
     console.log(searchResults)
     if(searchResults){
@@ -1331,17 +1320,10 @@ app.post('/find-post', function(req, res) {
 app.post('/find-account', function(req, res) {
   var searchingFor = req.body.searchingFor;
   var results;
-  
-  //call database
-  /*
-    Below would potentially look for all the users with that username
-    
-    Maybe what we can do is return back the results then we use JS to form the
-    format the results to be able to stick it in seachpage.hbs
-  */
+
   var pattern = "^" + searchingFor;
   userModel.find({username: {$regex: pattern}}).exec( function(err, accounts){
-    console.log("this is in index");
+
     console.log(accounts)
     if(accounts){
       results = {
