@@ -13,10 +13,10 @@
     - [x] Minimum of 6 characters
     - [x] Maximum of 15 characters
   - [ ] Working picture input & preview of image
-  - [x] Default Photo Option
-- [ ] Homepage
-  - [ ] Loading the SPECIFIC recipe post after clicking a post preview
-  - [ ] Loading the Top 5 Most Recent Pages
+  - [ ] Default Photo Option
+- [X] Homepage
+  - [X] Loading the SPECIFIC recipe post after clicking a post preview
+  - [X] Loading the Top 5 Most upvoted Pages
 - [ ] Searchpage
   - [x] Search Button -> Uses get function to look for post / account
   - [ ] Should show all the deets + no errors for both post / account
@@ -25,13 +25,13 @@
   - [x] Save Button -> Should add a new post in the db
     - [x] Update the code using the updated current user code
     - [x] Make a function that will generate a post id (incrementing numbers)
-    - [ ] should be redirected to the correct route (which is the new post created)
+    - [X] should be redirected to the correct route (which is the new post created)
 - [ ] Edit Post
   - [ ] Save Button -> Should update the post info in the db & update the page information agad
   - [ ] Post info should be pre-loaded na
 - [ ] Recipe Post
   - [ ] Reply Button -> Should append the reply INSIDE of the list of the specific comment
-    - [ ] Date & Time format should be in the comments & replies (copy the code from create post)
+    - [x] Date & Time format should be in the comments & replies (copy the code from create post)
   - [ ] Fix the formatting of the Nested Replies within the Comment (mali yung pag format ko sa html dati so pls fix it na lang rin -sam)
   - [ ] Edit Post Button -> Should send the post info to the Edit Post Route
   - [ ] Delete Post Button (IN MODAL) -> Should delete the post from the db

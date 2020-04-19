@@ -29,8 +29,4 @@ const postSchema = new mongoose.Schema( // TO BE UPDATED AFTER COMMENTS
     }
     );
 
-function theCount (){
-
-}
-
 module.exports = mongoose.model('Post', postSchema);

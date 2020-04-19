@@ -697,65 +697,24 @@ var count;
 
       
   });
-
+  app.post('/getTopFive', function(req, res){
+    postModel.find().lean().limit(5).sort({upvotes: -1, title: 1}).exec(function(err, data){
+      res.send(data);
+    })  
+  })
 // HOMEPAGE
   app.get('/home', function(req, res) {
     loginValidation = ""; // clearing the login validation warning
-
-    var data = posts
-    
-    
-
-    postModel.countDocuments({}).exec(function(err, c){
-      count = {
-        something: c
-      };
-    })
-
-    /*
-      I found sample code on how we could get the top X posts
-      var below is supposed to sort the all the posts by ascending order ( 1 = ascending),
-      and limit the returned results to at most 5 posts
-
-      also var below doesnt do anything yet, naka display lang muna siya while we fix the other stuffs AHAHAHA
-    */
-
-    var topFive = postModel.find().sort({'upvotes': 1}).limit(5);
-
-    /*
-      we can prob send these first five using res.render() 
-      then kung if may change ng top 5 we can use a JS function to update the home page na lang
-    */
 
       res.render('Homepage', {
         // for main.hbs
           styles: "css/styles_inside.css",
           tab_title: "Homepage",
           body_class: "inside",
-          posts: data,
           navUser: currUser.username
-
+          
       })
   });
-
-  function getAccountProfile(req, res, next) {
-    userModel.find({}).sort({username: 1}).exec().then(result => {
-      var userObjects = [];
-
-      result.forEach(function(doc) {
-        userObjects.push(doc.toObject());
-      });
-      
-      //console.log(userObjects);
-      
-      res.render('AccountProfile', {
-        user: userObjects,
-        styles: "css/styles_inside.css",
-        tab_title: "Account Profile",
-        body_class: "inside"
-      });
-    });
-  };
 
 // ACCOUNT PROFILE
   //app.get('/account-profile', getAccountProfile);
@@ -844,6 +803,8 @@ var count;
               - table of instructions
 
               QUESTION: will the date and time posted change after a person has updated it ???
+
+             (Answer) Giann: if we only consider the date the post is created, 
           */
       })
   });
@@ -1189,6 +1150,7 @@ app.post('/loginACTION', function(req, res) {
     
     postModel.countDocuments().exec(function(err, count){
       var new_post = new postModel({
+        _id: count + 1,
         title: req.body.title,
         user: currUser,
         upvotes: req.body.upvotes,
@@ -1197,25 +1159,25 @@ app.post('/loginACTION', function(req, res) {
         recipe_picture: `${req.body.recipe_picture}.png`,
         description: req.body.description,
         ingredients: req.body.ingredients,
-        instructions: req.body.instructions,
-        _id: count
+        instructions: req.body.instructions
+        
       });
-  
+      console.log(count);
   
       new_post.save(function(err, new_post) {
         var result;
     
         if (err) {
-          console.log(err.errors);
+          console.log(err);
     
           result = { success: false, message: "Recipe post was not created!" }
           res.send(result);
         }
         else {
           console.log("Successfully created a recipe post!");
-          console.log(new_post);
+          //console.log(new_post);
           
-          result = { success: true, message: "Recipe post created!" }
+          result = { success: true, message: "Recipe post created!", _id: new_post._id}
     
           res.send(result);
         }
@@ -1237,7 +1199,54 @@ app.post('/loginACTION', function(req, res) {
 
 // POST COMMENT
   app.post('/addCommentRow', function(req, res) {
-    var comment = { 
+    commentsModel.countDocuments().exec(function(err, count) {
+      var comment = new commentsModel({ 
+        user: {
+          firstname:  req.body.user.firstname,
+          lastname:   req.body.user.lastname,
+          username:   req.body.user.username,
+          profilepic: req.body.user.profilepic
+        },
+        content:      req.body.content,
+        date:         req.body.date,
+        time:         req.body.time,
+        replies:      req.body.replies,
+        _id:          count
+      });
+    })
+  
+    comment.save(function(err, comment) {
+      var result;
+  
+      if (err) {
+        console.log(err.errors);
+  
+        result = { success: false, message: "Recipe post was not created!" }
+        res.send(result);
+      }
+      else {
+        console.log("Successfully commented on a recipe post!");
+        console.log(comment);
+        
+        result = { success: true, message: "Comment created!" }
+        posts[0].comments.push(comment);
+        res.status(200).send(result);
+      }
+  
+    });
+  });
+
+
+// VIEW COMMENT
+
+
+// DELETE COMMENT
+    // TODO: not sure how for ajax
+
+// CREATE REPLY
+app.post('/addReplyRow', function(req, res) {
+  commentsModel.countDocuments().exec(function(err, count) {
+    var reply = new commentsModel({ 
       user: {
         firstname:  req.body.user.firstname,
         lastname:   req.body.user.lastname,
@@ -1247,43 +1256,40 @@ app.post('/loginACTION', function(req, res) {
       content:      req.body.content,
       date:         req.body.date,
       time:         req.body.time,
-      replies:      req.body.replies
-    }
-  
-    posts[0].comments.push(comment);
-  
-    res.status(200).send(posts[0].comments);
+      replies:      req.body.replies,
+      _id:          count
+    });
   })
 
+  reply.save(function(err, reply) {
+    var result;
 
-// VIEW COMMENT
-  app.get('/getCommentRow', function(req, res) {
-    res.status(200).send(posts[0].comments);
+    if (err) {
+      console.log(err.errors);
+
+      result = { success: false, message: "Recipe post was not created!" }
+      res.send(result);
+    }
+    else {
+      console.log("Successfully commented on a recipe post!");
+      console.log(reply);
+      
+      result = { success: true, message: "Comment created!" }
+      posts[0].comments.push(reply);
+      res.status(200).send(result);
+    }
+
   });
-
-// DELETE COMMENT
-    // TODO: not sure how for ajax
-
+});
 
 // SEARCH RECIPE POST
 app.post('/find-post', function(req, res) {
   var searchingFor = req.body.searchingFor;
   var results;
-  
-  //call database
-  /*
-    Below would potentially look for all the posts with that title
-    
-    Maybe what we can do is return back the results then we use JS to form the
-    format the results to be able to stick it in seachpage.hbs
-  */
+
   var searchPattern = "^" + searchingFor;
-  postModel.find({title: {$regex: searchPattern}}).populate('user').exec( function(err, searchResults){
+  postModel.find({title: {$regex: searchPattern}}).lean().exec( function(err, searchResults){
     
-    /*
-      HERE SAM
-      console.log(searchResults[0].user.firstname)
-    */
 
     console.log(searchResults)
     if(searchResults){
@@ -1307,17 +1313,10 @@ app.post('/find-post', function(req, res) {
 app.post('/find-account', function(req, res) {
   var searchingFor = req.body.searchingFor;
   var results;
-  
-  //call database
-  /*
-    Below would potentially look for all the users with that username
-    
-    Maybe what we can do is return back the results then we use JS to form the
-    format the results to be able to stick it in seachpage.hbs
-  */
+
   var pattern = "^" + searchingFor;
   userModel.find({username: {$regex: pattern}}).exec( function(err, accounts){
-    console.log("this is in index");
+
     console.log(accounts)
     if(accounts){
       results = {
