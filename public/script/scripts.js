@@ -51,26 +51,26 @@ $(document).ready(function() {
             }
                 
             localStorage.setItem('isGuest', 1);
- /*       
+      
         var account = {
             username: user,
             password: pass,
             remember: $('#remember_me').is(":checked")
         }
 
-        $.post('log-in', account, function(data,status) {
+        $.post('loginACTION', account, function(data,status) {
             
-            if(data.success){
-                alert("Welcome " + data.returnData.username);
-                window.location.href = "home";
-                
-                localStorage.setItem("activeUser", data.returnData.username);
-            }
-            else{
+            if(!data.success){
                 document.getElementById("warning1").textContent = data.message;
                 document.getElementById("warning1").style.color = "red";
-                alert(data.message + "\n" + "You shall not pass");
-
+            }
+        });
+/*
+        $.post('showInvalidLogin', function(data, status) {
+            if(!data.success) {
+                document.getElementById("warning1").textContent = data.message;
+                document.getElementById("warning1").style.color = "red";
+                return false;
             }
         });
 */
@@ -1301,6 +1301,8 @@ if (window.location.href.includes("account-profile"))
         var pic = document.getElementById("EDITprofilePic").value;
         var bio = document.getElementById("EDITbio").value;
         
+        console.log("VALUE INSIDE = " + pic);
+
         var user = {
             editfirstname: first,
             editlastname: last,

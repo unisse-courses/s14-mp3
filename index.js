@@ -677,9 +677,9 @@ var count;
         body_class: "outside",
         username: currUser.username,
         password: currUser.password,
-        isChecked: true,
+        isChecked: true/*,
         LogInWarning: LogInWords,
-        LogInWarning_Color: LogInColor
+        LogInWarning_Color: LogInColor*/
       })
     }
     else{
@@ -689,9 +689,9 @@ var count;
         body_class: "outside",
         username: currUser.username,
         password: currUser.password,
-        isChecked: false,
+        isChecked: false/*,
         LogInWarning: LogInWords,
-        LogInWarning_Color: LogInColor
+        LogInWarning_Color: LogInColor*/
       })
     }
 
@@ -913,13 +913,20 @@ var count;
     console.log("the request:");
     console.log(req.body);
 
+    // DEFAULT PHOTO OPTION
+    var photoInput = '/images/default_profile.png'
+
+    if(!(req.body.PROFILEPIC == "")) {
+      photoInput = `${req.body.PROFILEPIC}.png`;
+    }
+
     var theUser = new userModel( {
       email:      req.body.EMAIL,
       firstname:  req.body.FIRSTNAME,
       lastname:   req.body.LASTNAME,
       username:   req.body.USERNAME,
       password:   req.body.PASSWORD,
-      profilepic: req.body.PROFILEPIC,
+      profilepic: photoInput,
       bio:        req.body.BIO
     });
 
@@ -1018,40 +1025,58 @@ app.post('/loginACTION', function(req, res) {
     }
     else
     {
-      userModel.findOne({username: account.username}, function (err, accountResult){
-      
-      if(accountResult){
-        currUser = {
-          email:      accountResult.email,
-          firstname:  accountResult.firstname,
-          lastname:   accountResult.lastname,
-          username:   accountResult.username, 
-          password:   accountResult.password, 
-          profilepic: accountResult.profilepic,
-          bio:        accountResult.bio
-          
-        }
-        console.log(currUser.username + " has logged in!");
-        console.log("Current user:");
-        console.log(currUser);
+        userModel.findOne({username: account.username}, function (err, accountResult){
+            if(accountResult){ // if the username entered exists in the db
+              if(account.password == accountResult.password) { // if the password entered matches with the password from the db
+                currUser = {
+                  email:      accountResult.email,
+                  firstname:  accountResult.firstname,
+                  lastname:   accountResult.lastname,
+                  username:   accountResult.username, 
+                  password:   accountResult.password, 
+                  profilepic: accountResult.profilepic,
+                  bio:        accountResult.bio
+                  
+                }
+                console.log(currUser.username + " has logged in!");
+                console.log("Current user:");
+                console.log(currUser);
 
-        res.redirect("/home");
+                res.redirect("/home");
+              }
+              else { // the username exists but the password is wrong
+                //app.post('/showInvalidLogin', function(req, res) {
+                  result = {
+                    success: false,
+                    message: "Invalid username or password"
+                  }
+                  
+                  res.send(result);
+                //});
+              }
+              //console.log("cleared the loginValidation");
+            }
+            else{ // if the username doesnt exist
 
-        console.log("cleared the loginValidation");
-      }
-      else{
-        result = {
-          success: false,
-          message: "Invalid username or password"
-        }
-        console.log(result);
+              //loginValidation = "Invalid username or password";
 
-        loginValidation = "Invalid username or password";
-        
-        res.redirect("/log-in");
-      }
-    });}
+              //app.post('/showInvalidLogin', function(req, res) {
+                result = {
+                  success: false,
+                  message: "Invalid username or password"
+                }
+                
+                res.send(result);
+
+
+                
+              //});
+
+            }
+        });
+    }
   });
+      
 
 // EDIT ACCOUNT PROFILE
   app.post('/edit-account', function(req, res) {
@@ -1068,7 +1093,7 @@ app.post('/loginACTION', function(req, res) {
         lastname:   req.body.editlastname,
         username:   req.body.editusername,
         password:   req.body.editpassword,
-        profilepic: currUser.profilepic,
+        profilepic: '/images/default_profile.png', 
         bio:        req.body.editbio
       };
     }
