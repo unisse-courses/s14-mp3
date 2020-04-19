@@ -563,16 +563,6 @@ $(document).ready(function() {
             document.getElementById("ltitle").value ='';
         }
 
-        if (thumb == ""){
-            document.getElementById("lThumb").textContent ='Please provide a thumbnail for your recipe post';
-            document.getElementById("lThumb").style.color = "red";
-            return false;
-        }
-        else {
-            document.getElementById("lThumb").style.color = "white";
-            document.getElementById("lThumb").textContent ='';
-        }
-
         if (desc == ""){
             document.getElementById("lDesc").textContent ='Please provide a brief description of your recipe';
             document.getElementById("lDesc").style.color = "red";
