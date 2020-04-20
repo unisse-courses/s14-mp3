@@ -18,10 +18,6 @@ $(document).ready(function() {
                 alert("Welcome " + data.returnData.username);
                 window.location.href = "home";
                 console.log(data.returnData.username);
-                localStorage.setItem("activeUser", data.returnData.username);
-                localStorage.setItem("userFirstname", data.returnData.firstname);
-                localStorage.setItem("userLastname", data.returnData.lastname);
-                localStorage.setItem("userProfpic", data.returnData.profilepic);
             }
         });
         
@@ -63,7 +59,7 @@ $(document).ready(function() {
         }
 
         $.post('loginACTION', account, function(data,status) {
-            
+            console.log(data);
             if(!data.success){
                 document.getElementById("warning1").textContent = data.message;
                 document.getElementById("warning1").style.color = "red";
@@ -72,7 +68,11 @@ $(document).ready(function() {
             }
             else {
                 console.log(data.message);
-
+                console.log(data.username);
+                localStorage.setItem("activeUser", data.username);
+                localStorage.setItem("userFirstname", data.firstname);
+                localStorage.setItem("userLastname", data.lastname);
+                localStorage.setItem("userProfpic", data.profilepic);
                 window.location.href = "/home";
             }
         });
@@ -989,8 +989,8 @@ $(document).ready(function() {
             var replies = [{}];
 
             var today = new Date();
-            var Date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
-            var Time = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+            var DATE = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+            var TIME = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
             if(content != "") // if comment field is not empty
             {
@@ -1003,12 +1003,12 @@ $(document).ready(function() {
                       profilepic:   localStorage.getItem("userProfpic")
                     },
                     content:         content,
-                    date:            Date,
-                    time:            Time,
+                    date:            DATE,
+                    time:            TIME,
                     replies:         replies
                   }
-        
-                $.post('addCommentRow', comment, function(data,status) {
+                  console.log(comment);
+                $.post('/addCommentRow', comment, function(data,status) {
                     console.log(data);
                     var commentsContainer = $("#commentList");
                     appendComment(comment, commentsContainer);

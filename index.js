@@ -13,7 +13,7 @@ const port = 3000; // sam: bc thats whats in the specs
 const userModel = require('./models/users');
 const postModel = require('./models/posts');
 const ingredientsModel = require('./models/ingredients');
-const commentsModel = require('./models/ingredients');
+const commentsModel = require('./models/comments');
 
 // IMPORTS FOR IMAGE UPLOADS
   // to be updated wt code once we find smth that works ;~;
@@ -1008,8 +1008,12 @@ app.post('/loginACTION', function(req, res) {
                 }
 
                 result = {
-                  success: true,
-                  message: "Login Successful!"
+                  success:    true,
+                  message:    "Login Successful!",
+                  firstname:  currUser.firstname,
+                  lastname:   currUser.lastname,
+                  username:   currUser.username,
+                  profilepic: currUser.profilepic
                 }
 
                 console.log(currUser.username + " has logged in!");
@@ -1218,41 +1222,37 @@ app.post('/loginACTION', function(req, res) {
 
 // POST COMMENT
   app.post('/addCommentRow', function(req, res) {
+    console.log(req.body);
     commentsModel.countDocuments().exec(function(err, count) {
       var comment = new commentsModel({ 
-        user: {
-          firstname:  req.body.user.firstname,
-          lastname:   req.body.user.lastname,
-          username:   req.body.user.username,
-          profilepic: req.body.user.profilepic
-        },
+        user:         req.body.user,
         content:      req.body.content,
         date:         req.body.date,
         time:         req.body.time,
         replies:      req.body.replies,
         _id:          count
+      })
+
+      comment.save(function(err, comment) {
+        var result;
+    
+        if (err) {
+          console.log(err.errors);
+    
+          result = { success: false, message: "Comment not Successful!" }
+          res.send(result);
+        }
+        else {
+          console.log("Successfully commented on a recipe post!");
+          console.log(comment);
+          
+          result = { success: true, message: "Comment created!" }
+          posts[0].comments.push(comment);
+          res.status(200).send(result);
+        }
+    
       });
     })
-  
-    comment.save(function(err, comment) {
-      var result;
-  
-      if (err) {
-        console.log(err.errors);
-  
-        result = { success: false, message: "Recipe post was not created!" }
-        res.send(result);
-      }
-      else {
-        console.log("Successfully commented on a recipe post!");
-        console.log(comment);
-        
-        result = { success: true, message: "Comment created!" }
-        posts[0].comments.push(comment);
-        res.status(200).send(result);
-      }
-  
-    });
   });
 
 
