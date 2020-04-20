@@ -671,7 +671,7 @@ $(document).ready(function() {
 
         li.appendChild(bigspan);
 
-        if (inputValue1 === '' && inputValue2 === '' && inputValue3 === '') {
+        if (inputValue1 === ' ' && inputValue2 === ' ' && inputValue3 === ' ') {
             alert("You must write something!");
         } else {
             document.getElementById("ulist").appendChild(li);
@@ -1422,8 +1422,9 @@ if (window.location.href.includes("account-profile"))
 
 
 
-    if(window.location.href.includes("edit-recipe")){
+    if(window.location.href.indexOf("edit-recipe") > -1){
         var i;
+        console.log("INITIALIZING START");
 
             // initializing array of ingredients
                 var ulist = document.getElementsByTagName("UL")[1];
@@ -1467,10 +1468,32 @@ if (window.location.href.includes("account-profile"))
                     }
                 }
 
+            console.log("INITIALIZING END");
+
+            var postID = window.location.pathname;
+            var str = "";
+            var j;
+            var x = 0;
+
+            for(j=0; j<postID.length; j++) {
+                if(postID[j] == '/') {
+                    x = j;
+                }
+            }
+            
+            str = postID.substring(x+1, postID.length+1);
+
+            postidnum = {
+                id: str
+            }
+
+            console.log("str is = " + str);
+
             // loading ingredients from db
-            $.post('loadIngredients', function(data,status) {
+            $.post("loadIngredients", postidnum, function(data,status) {
                 var arrIngred = data.ingredients;
                 var i;
+                console.log("before loop");
 
                 for(i=0; i < arrIngred.length; i++) {
                     var li = document.createElement("li");
@@ -1499,11 +1522,9 @@ if (window.location.href.includes("account-profile"))
             
                     li.appendChild(bigspan);
             
+                    console.log("before append");
                     document.getElementById("EDITulist").appendChild(li);
-                    
-                    document.getElementById("EDITulinput1").value = "";
-                    document.getElementById("EDITulinput2").value = "";
-                    document.getElementById("EDITulinput3").value = "";
+                    console.log("after append");
             
                     var span = document.createElement("SPAN");
                     var txt = document.createTextNode("\u00D7");
@@ -1522,6 +1543,7 @@ if (window.location.href.includes("account-profile"))
 
                 }
 
+                console.log("end of post");
             });
 
             // loading instructions from db
@@ -1540,8 +1562,6 @@ if (window.location.href.includes("account-profile"))
                     li.appendChild(spanContainer);
 
                     document.getElementById("EDITolist").appendChild(li);
-                    
-                    document.getElementById("EDITolinput").value = "";
             
                     var span = document.createElement("SPAN");
                     var txt = document.createTextNode("\u00D7");
@@ -1592,10 +1612,10 @@ if (window.location.href.includes("account-profile"))
 
         li.appendChild(bigspan);
 
-        if (inputValue1 === '' && inputValue2 === '' && inputValue3 === '') {
+        if (inputValue1 === ' ' && inputValue2 === ' ' && inputValue3 === ' ') {
             alert("You must write something!");
         } else {
-            document.getElementById("ulist").appendChild(li);
+            document.getElementById("EDITulist").appendChild(li);
         }
         document.getElementById("EDITulinput1").value = "";
         document.getElementById("EDITulinput2").value = "";

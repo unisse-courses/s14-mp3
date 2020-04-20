@@ -51,7 +51,6 @@ var currUser = {
   profilepic: ''
 };
 
-var currentPostID;
 
 /* -------------------------------------------------- ALL THE DUMMY DATA -------------------------------------------------- */
 // TODO: AFTER doing the AJAX, we place the dummy data in .json files (data folder -> json files)
@@ -767,17 +766,11 @@ var count;
 
       if(data){
         if(currUser.username == data.user.username) {
-          app.post('/loadIngredients', function(req, res) {
-            res.send(data);
-          });
-
-          app.post('/loadInstructions', function(req, res) {
-            res.send(data);
-          });
+        
 
           res.render('EditRecipePost', {
             // for main.hbs
-              styles: "css/styles_inside.css",
+              styles: "../css/styles_inside.css",
               tab_title: "Edit Post",
               body_class: "inside",
               navUser: currUser.username,
@@ -801,10 +794,28 @@ var count;
 
   });
 
+  app.post('/loadIngredients', function(req, res) {
+    console.log("before sending data in index");
+
+    postModel.findOne({_id: req.body.id}).exec(function(err, data){
+      if(err) throw err;
+
+      if(data){
+        res.send(data)
+      }
+
+    });
+
+    console.log("after sending data in index");
+  });
+
+  app.post('/loadInstructions', function(req, res) {
+    res.send(data);
+  });
+
 // RECIPE POST
   app.get('/recipe-post/:param', function(req, res) {
     var id = req.params.param;
-    var currentPostID = id;
 
     postModel.findOne({_id: id}).exec(function(err, data){
       if(err) throw err;
