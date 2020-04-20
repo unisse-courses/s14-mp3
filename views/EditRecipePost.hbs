@@ -9,14 +9,25 @@
                     </div>
 
                     <div class="form-row">
+                        <label>Title of Recipe</label>
+                        <input type="text" class="form-control" id="post_title" value="{{title}}">
+                        <label id="ltitle" class="warning"></label>
+                    </div>
+
+                    <div class="form-row">
                         <label for="recipePic">Choose a Thumbnail for your Post</label>
-                        <input type="file" class="form-control-file" accept="image/*" id="EDITthumbnail">  
+                        <input type="file" class="form-control-file" accept="image/*" id="EDITthumbnail" src="{{thumbnail}}">
                         <label id="lThumb" class="warning"></label>
                     </div>
+                        
+                    <div class="form-row" id="previewContainer">
+                        <img class="preview" id="EDITpreviewPic" src="{{thumbnail}}">
+                    </div>
+                    pls show
                             
                     <div class="form-row">
                         <label>Description</label>
-                        <textarea class="form-control" id="EDITdescription"></textarea>
+                        <textarea class="form-control" id="EDITdescription">{{description}}</textarea>
                         <label id="lDesc" class="warning"></label>
                     </div>
                             

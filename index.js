@@ -51,6 +51,8 @@ var currUser = {
   profilepic: ''
 };
 
+var currentPostID;
+
 /* -------------------------------------------------- ALL THE DUMMY DATA -------------------------------------------------- */
 // TODO: AFTER doing the AJAX, we place the dummy data in .json files (data folder -> json files)
 
@@ -757,20 +759,52 @@ var count;
   });
 
 // EDIT RECIPE POST
-  app.get('/edit-recipe', function(req, res) {
-      res.render('EditRecipePost', {
-        // for main.hbs
-          styles: "css/styles_inside.css",
-          tab_title: "Edit Post",
-          body_class: "inside",
-          navUser: currUser.username,
-          navIcon: currUser.profilepic,
-      })
+  app.get('/edit-recipe/:param', function(req, res) {
+    var id = req.params.param;
+
+    postModel.findOne({_id: id}).exec(function(err, data){
+      if(err) throw err;
+
+      if(data){
+        if(currUser.username == data.user.username) {
+          app.post('/loadIngredients', function(req, res) {
+            res.send(data);
+          });
+
+          app.post('/loadInstructions', function(req, res) {
+            res.send(data);
+          });
+
+          res.render('EditRecipePost', {
+            // for main.hbs
+              styles: "css/styles_inside.css",
+              tab_title: "Edit Post",
+              body_class: "inside",
+              navUser: currUser.username,
+              navIcon: currUser.profilepic,
+              
+              title: data.title,
+              thumbnail: data.recipe_picture,
+              description: data.description,
+              post: true
+          })
+      
+        }
+        else {
+          result = {
+            message: "You cannot edit other user's recipe posts"
+          }
+          res.send(result);
+        }
+      }
+    })
+
   });
 
 // RECIPE POST
   app.get('/recipe-post/:param', function(req, res) {
     var id = req.params.param;
+    var currentPostID = id;
 
     postModel.findOne({_id: id}).exec(function(err, data){
       if(err) throw err;
@@ -801,8 +835,7 @@ var count;
             post: true
         })
       }
-    })
-          
+    })    
       
   });
 
@@ -1164,6 +1197,9 @@ app.post('/loginACTION', function(req, res) {
 
 
 // UPDATE RECIPE POST
+  app.post('/updatePost', function(req, res) {
+    // todo
+  });
 
 
 // DELETE RECIPE POST

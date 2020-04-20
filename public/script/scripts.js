@@ -434,7 +434,7 @@ $(document).ready(function() {
         $(descDiv).addClass("d-flex flex-column post_preview-row2");
         $(desc).addClass("card-text");
         //br
-        $(anchor).addClass("streched-link");
+        $(anchor).addClass("stretched-link");
 
         $(whenPosted).addClass("d-flex justify-content-between flex-wrap post_preview-row3");
         $(upvotes).addClass("card-text");
@@ -773,8 +773,23 @@ $(document).ready(function() {
             location.href='home'
         });
 
-        $("#edit_post-btn").click(function () { 
-            location.href='edit-recipe'
+        $("#edit_post-btn").click(function () {
+            var postID = window.location.pathname;
+            var str = "";
+            var i;
+            var x = 0;
+
+            for(i=0; i<postID.length; i++) {
+                if(postID[i] == '/') {
+                    x = i;
+                }
+            }
+            
+            str = postID.substring(x+1, postID.length+1);
+
+            console.log(str);
+
+            window.location.href = "/edit-recipe/" + str;
         });
 
         function appendComment(item, parentDiv) {
@@ -1039,7 +1054,7 @@ if (window.location.href.includes("account-profile"))
 
     $("#edit_account-btn").click(function () { 
         location.href='edit-account'
-        
+
     });
 
     function fullname(firstname, lastname) {
@@ -1451,23 +1466,136 @@ if (window.location.href.includes("account-profile"))
                         div.remove();
                     }
                 }
+
+            // loading ingredients from db
+            $.post('loadIngredients', function(data,status) {
+                var arrIngred = data.ingredients;
+                var i;
+
+                for(i=0; i < arrIngred.length; i++) {
+                    var li = document.createElement("li");
+
+                    var inputValue1 = arrIngred[i].name;
+                    var inputValue2 = arrIngred[i].quantity;
+                    var inputValue3 = arrIngred[i].unit;
+
+                    var span1 = document.createElement("SPAN");
+                    var span2 = document.createElement("SPAN");
+                    var span3 = document.createElement("SPAN");
+            
+                    var text1 = document.createTextNode(inputValue1);
+                    var text2 = document.createTextNode(inputValue2);
+                    var text3 = document.createTextNode(inputValue3);
+                   
+                    span1.appendChild(text1);
+                    span2.appendChild(text2);
+                    span3.appendChild(text3);
+            
+                    var bigspan = document.createElement("SPAN");
+            
+                    bigspan.appendChild(span1);
+                    bigspan.appendChild(span2);
+                    bigspan.appendChild(span3);
+            
+                    li.appendChild(bigspan);
+            
+                    document.getElementById("EDITulist").appendChild(li);
+                    
+                    document.getElementById("EDITulinput1").value = "";
+                    document.getElementById("EDITulinput2").value = "";
+                    document.getElementById("EDITulinput3").value = "";
+            
+                    var span = document.createElement("SPAN");
+                    var txt = document.createTextNode("\u00D7");
+                    span.className = "close1";
+            
+                    span.appendChild(txt);
+                    li.appendChild(span);
+                    li.className = "list_item";
+                    
+                    for (var i = 0; i < close1.length; i++) {
+                        close1[i].onclick = function() {
+                            var div = this.parentElement;
+                            div.remove();
+                        }
+                    }
+
+                }
+
+            });
+
+            // loading instructions from db
+            $.post('loadInstructions', function(data,status) {
+                var arrInstruct = data.instructions;
+                var i;
+
+                for(i=0; i < arrInstruct.length; i++) {
+                    var li = document.createElement("li");
+                    var inputValue = arrInstruct[i];
+                    var spanContainer = document.createElement("SPAN");
+                    var text = document.createTextNode(inputValue);
+            
+                    spanContainer.appendChild(text);
+            
+                    li.appendChild(spanContainer);
+
+                    document.getElementById("EDITolist").appendChild(li);
+                    
+                    document.getElementById("EDITolinput").value = "";
+            
+                    var span = document.createElement("SPAN");
+                    var txt = document.createTextNode("\u00D7");
+                    span.className = "close2";
+                    span.appendChild(txt);
+                    li.appendChild(span);
+                    li.className = "list_item";
+                                
+                                
+                    //this one is to place the function remove on the newly added list item
+                    for (var i = 0; i < close2.length; i++) {
+                        close2[i].onclick = function() {
+                        var div = this.parentElement;
+                        div.remove();
+                        }
+                    }
+                }
+
+            });
+
+
     }
 
     $("#EDITingredient").click(function () { 
         var li = document.createElement("li");
-        var inputValue1 = document.getElementById("EDITulinput1").value;
-        var inputValue2 = document.getElementById("EDITulinput2").value;
-        var inputValue3 = document.getElementById("EDITulinput3").value;
-            
-        var inputALL = inputValue1 + inputValue2 + inputValue3;
-            
-        var t = document.createTextNode(inputALL);
+        var inputValue1 = document.getElementById("EDITulinput1").value + " ";
+        var inputValue2 = document.getElementById("EDITulinput2").value + " ";
+        var inputValue3 = document.getElementById("EDITulinput3").value + " ";
 
-        li.appendChild(t);
+        // i made 1 span per input
+        var span1 = document.createElement("SPAN");
+        var span2 = document.createElement("SPAN");
+        var span3 = document.createElement("SPAN");
+
+        var text1 = document.createTextNode(inputValue1);
+        var text2 = document.createTextNode(inputValue2);
+        var text3 = document.createTextNode(inputValue3);
+       
+        span1.appendChild(text1);
+        span2.appendChild(text2);
+        span3.appendChild(text3);
+
+        var bigspan = document.createElement("SPAN");
+
+        bigspan.appendChild(span1);
+        bigspan.appendChild(span2);
+        bigspan.appendChild(span3);
+
+        li.appendChild(bigspan);
+
         if (inputValue1 === '' && inputValue2 === '' && inputValue3 === '') {
             alert("You must write something!");
         } else {
-            document.getElementById("EDITulist").appendChild(li);
+            document.getElementById("ulist").appendChild(li);
         }
         document.getElementById("EDITulinput1").value = "";
         document.getElementById("EDITulinput2").value = "";
@@ -1476,16 +1604,15 @@ if (window.location.href.includes("account-profile"))
         var span = document.createElement("SPAN");
         var txt = document.createTextNode("\u00D7");
         span.className = "close1";
+
         span.appendChild(txt);
         li.appendChild(span);
         li.className = "list_item";
-
-
-        //this one is to place the function remove on the newly added list item
-        for (i = 0; i < close1.length; i++) {
+        
+        for (var i = 0; i < close1.length; i++) {
             close1[i].onclick = function() {
-            var div = this.parentElement;
-            div.remove();
+                var div = this.parentElement;
+                div.remove();
             }
         }
     });
@@ -1493,12 +1620,16 @@ if (window.location.href.includes("account-profile"))
     $("#EDITinstruction").click(function () { 
         var li = document.createElement("li");
         var inputValue = document.getElementById("EDITolinput").value;
-        var t = document.createTextNode(inputValue);
-        li.appendChild(t);
+        var spanContainer = document.createElement("SPAN");
+        var text = document.createTextNode(inputValue);
+
+        spanContainer.appendChild(text);
+
+        li.appendChild(spanContainer);
         if (inputValue === '') {
             alert("You must write something!");
         } else {
-            document.getElementById("EDITolist").appendChild(li);
+        document.getElementById("EDITolist").appendChild(li);
         }
         document.getElementById("EDITolinput").value = "";
 
@@ -1508,15 +1639,29 @@ if (window.location.href.includes("account-profile"))
         span.appendChild(txt);
         li.appendChild(span);
         li.className = "list_item";
-
-
+                    
+                    
         //this one is to place the function remove on the newly added list item
-        for (i = 0; i < close2.length; i++) {
+        for (var i = 0; i < close2.length; i++) {
             close2[i].onclick = function() {
             var div = this.parentElement;
             div.remove();
             }
         }
+    });
+
+    function showEditPreview(file) {
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+            $('#EDITpreviewPic').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(file.files[0]); 
+        }
+    }
+    
+    $("#EDITthumbnail").change(function() {
+        showEditPreview(this);
     });
 
 /* -------------------------------------------------- SearchPage.hbs -------------------------------------------------- */
