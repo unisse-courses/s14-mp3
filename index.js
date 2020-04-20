@@ -1362,35 +1362,34 @@ app.post('/find-account', function(req, res) {
 
 // UPVOTE/DOWNVOTE
 
-app.post('/upvote', function(req, res) {
-  var num =     req.body.num;
-  var first =   req.body.firstname;
-  var last =    req.body.lastname;
-  var usrname = req.body.username;
+app.post('/changeVote', function(req, res) {
 
-  
-  postModel.findOneAndUpdate( {'user.firstname': first}, function(err, user) {
+
+  console.log(req.body.num);
+  var query = {
+    _id: req.body.num
+  }
+
+  var update = {
+    upvotes: req.body.val
+  }
+
+  postModel.findOneAndUpdate(query, update, { new: false }, function(err, count) { 
     if (err) throw err;
-    console.log(user);
-    res.send(user);
+    
+    postModel.findOneAndUpdate(query, update, { new: false }, function(err, count) { 
+      if (err) throw err;
+      
+      console.log(count.upvotes);
+      var number = {
+        value: count.upvotes
+      }
+      res.send(number);
+    });
   });
-  
+
 
 });
-
-
-app.post('/downvote', function(req, res) {
-  var num =     req.body.num;
-  var first =   req.body.firstname;
-  var last =    req.body.lastname;
-  var usrname = req.body.username;
-
-  postModel.findOneAndUpdate( {'user.firstname': first}, function(err, user) {
-    if (err) throw err;
-    console.log(user);
-    res.send(user);
-  });
-})
 
 /* -------------------------------------------------- divider lang po -------------------------------------------------- */
 
