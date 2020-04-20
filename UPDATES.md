@@ -35,7 +35,7 @@
   - [ ] Fix the formatting of the Nested Replies within the Comment (mali yung pag format ko sa html dati so pls fix it na lang rin -sam)
   - [ ] Edit Post Button -> Should send the post info to the Edit Post Route
   - [ ] Delete Post Button (IN MODAL) -> Should delete the post from the db
-  - [ ] Upvote & Downvote Button -> Should update the upvote value in db
+  - [X] Upvote & Downvote Button -> Should update the upvote value in db
 - [ ] Account Profile
   - [X] Edit Account Button -> Should send the account info to the Edit Account Route
   - [X] Delete Account Button (IN MODAL) -> Should delete the user from the db
