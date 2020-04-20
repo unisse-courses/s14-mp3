@@ -756,18 +756,55 @@ $(document).ready(function() {
             
             $('#post-comments-list').show()
         }
-
-        document.getElementById('upvote-icon').addEventListener('click', function () {
-            // TODO: code to increase score
-
-            console.log("plus 1 vote")
-        });
-
-        document.getElementById('downvote-icon').addEventListener('click', function () {
-            // TODO: code to decrease score
+        
+        $("#upvote-icon").click(function () { 
             
-            console.log("minus 1 vote")
+            var url = window.location.href;
+            url = url.slice(34)
+            url = url.replace(/\D/g,'');
+            
+            var value = $("#voteCount").text();
+
+            newValue = parseInt(value,10)
+            newValue += 1;
+            console.log(newValue);
+
+            var stuff = {
+                num: url,
+                val: newValue
+            }
+            $.post("../changeVote", stuff ,function (data, status) {
+                  
+                $("#voteCount").text(data.value);
+
+            });
+            
         });
+
+        $("#downvote-icon").click(function () { 
+            
+            var url = window.location.href;
+            url = url.slice(34)
+            url = url.replace(/\D/g,'');
+            
+            var value = $("#voteCount").text();
+
+            newValue = parseInt(value,10)
+            newValue -= 1;
+            console.log(newValue);
+
+            var stuff = {
+                num: url,
+                val: newValue
+            }
+            $.post("../changeVote", stuff ,function (data, status) {
+                  
+                $("#voteCount").text(data.value);
+ 
+            });
+            
+        });
+
 
         $("#delete").click(function () { 
             location.href='home'
