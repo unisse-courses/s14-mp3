@@ -1126,8 +1126,6 @@ app.post('/loginACTION', function(req, res) {
 
 //DELETE ACCOUNT
   app.post('/delete-account', function(req, res) {
-    
-
     userModel.findOneAndRemove({email: currUser.email}, function(err) {
       if (err) throw err;
       currUser.email = "";
@@ -1142,7 +1140,7 @@ app.post('/loginACTION', function(req, res) {
 
   });
 
-// POST
+// CREATE RECIPE POST
   app.post('/addPost', function(req, res) {
 
     console.log(req.body);
@@ -1208,9 +1206,6 @@ app.post('/loginACTION', function(req, res) {
     
   });
 
-// CREATE RECIPE POST
-
-
 // UPDATE RECIPE POST
   app.post('/updatePost', function(req, res) {
     // todo
@@ -1222,10 +1217,18 @@ app.post('/loginACTION', function(req, res) {
 
 // POST COMMENT
   app.post('/addCommentRow', function(req, res) {
-    console.log(req.body);
+    var the_USER = new userModel({
+      email:      currUser.email,
+      firstname:  currUser.firstname,
+      lastname:   currUser.lastname,
+      username:   currUser.username,
+      password:   currUser.password,
+      bio:        currUser.bio,
+      profilepic: currUser.profilepic
+    })
     commentsModel.countDocuments().exec(function(err, count) {
       var comment = new commentsModel({ 
-        user:         req.body.user,
+        user:         the_USER,
         content:      req.body.content,
         date:         req.body.date,
         time:         req.body.time,
@@ -1261,43 +1264,49 @@ app.post('/loginACTION', function(req, res) {
 
 // DELETE COMMENT
     // TODO: not sure how for ajax
+app.post('/deleteCommentRow', function (req, res) {
+  console.log(req.body);
+});
 
 // CREATE REPLY
 app.post('/addReplyRow', function(req, res) {
+  var USER = new userModel({
+    email:      currUser.email,
+    firstname:  currUser.firstname,
+    lastname:   currUser.lastname,
+    username:   currUser.username,
+    password:   currUser.password,
+    bio:        currUser.bio,
+    profilepic: currUser.profilepic
+  })
   commentsModel.countDocuments().exec(function(err, count) {
     var reply = new commentsModel({ 
-      user: {
-        firstname:  req.body.user.firstname,
-        lastname:   req.body.user.lastname,
-        username:   req.body.user.username,
-        profilepic: req.body.user.profilepic
-      },
+      user:         USER,
       content:      req.body.content,
       date:         req.body.date,
       time:         req.body.time,
       replies:      req.body.replies,
       _id:          count
     });
-  })
 
-  reply.save(function(err, reply) {
-    var result;
-
-    if (err) {
-      console.log(err.errors);
-
-      result = { success: false, message: "Recipe post was not created!" }
-      res.send(result);
-    }
-    else {
-      console.log("Successfully commented on a recipe post!");
-      console.log(reply);
-      
-      result = { success: true, message: "Comment created!" }
-      posts[0].comments.push(reply);
-      res.status(200).send(result);
-    }
-
+    reply.save(function(err, reply) {
+      var result;
+  
+      if (err) {
+        console.log(err.errors);
+  
+        result = { success: false, message: "Recipe post was not created!" }
+        res.send(result);
+      }
+      else {
+        console.log("Successfully commented on a recipe post!");
+        console.log(reply);
+        
+        result = { success: true, message: "Comment created!" }
+        posts[0].comments.push(reply);
+        res.status(200).send(result);
+      }
+    })
   });
 });
 

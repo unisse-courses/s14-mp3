@@ -1016,8 +1016,8 @@ $(document).ready(function() {
             var replies = [{}];
 
             var today = new Date();
-            var Date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
-            var Time = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+            var DATE = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+            var TIME = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
             if (content!="") {
                 var reply = {
@@ -1028,10 +1028,15 @@ $(document).ready(function() {
                         profilepic:   localStorage.getItem("userProfpic")
                     },
                 content:              content,
-                date:                 Date,
-                time:                 Time,
+                date:                 DATE,
+                time:                 TIME,
                 replies:              replies
                 }
+
+                $.post('/addReplyRow', reply, function(data, status) {
+                    var commentsContainer = $("#commentList");
+                    appendReply(reply, commentsContainer);
+                })
             }
         });
 
