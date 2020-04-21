@@ -22,6 +22,8 @@
         align-content: center;
         max-width: 800px;
         margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .post_preview-row0 {
@@ -155,6 +157,8 @@
         margin-bottom: 30px;
         padding: 20px;
         flex: 1 1 0px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .profile-row {
@@ -195,6 +199,9 @@
 /* - - - - - - - - - - SEARCH PAGE - - - - - - - - - - */    
     .search_bar {
         margin-bottom: 50px;
+    }
+
+    #searchList {
     }
 
 

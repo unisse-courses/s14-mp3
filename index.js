@@ -1316,24 +1316,28 @@ app.post('/find-post', function(req, res) {
   var results;
 
   var searchPattern = "^" + searchingFor;
-  postModel.find({title: {$regex: searchPattern}}).lean().exec( function(err, searchResults){
-    
+  postModel.find({title: {$regex: searchPattern, $options: 'i'}}).lean().exec( function(err, searchResults){
+    if(searchResults.length >= 1){
+      console.log(searchResults);
 
-    console.log(searchResults)
-    if(searchResults){
       results = {
         success: true,
         posts: searchResults
       }
+
+      res.send(results);
     }
     //else, only return success false
-    else
-    {
+    else {
+      console.log("The post does not exist in the database");
+
       results = {
         success: false,
       }
+
+      res.send(results);
     }
-    res.send(results);
+    
   });
 })
 
@@ -1343,25 +1347,31 @@ app.post('/find-account', function(req, res) {
   var results;
 
   var pattern = "^" + searchingFor;
-  userModel.find({username: {$regex: pattern}}).exec( function(err, accounts){
+  userModel.find({username: {$regex: pattern, $options: 'i'}}).exec( function(err, accounts){
+    if(accounts.length >= 1){
+      console.log(accounts);
 
-    console.log(accounts)
-    if(accounts){
       results = {
         success: true,
         users: accounts
-      }
+      };
+
+      res.send(results);
     }
     //else, only return success false
-    else
-    {
+    else {
+      console.log("The account does not exist in the database");
+
       results = {
-        success: false,
+        success: false
       }
+
+      res.send(results);
     }
-    res.send(results);
+    
   });
-})
+
+});
 
 // UPVOTE/DOWNVOTE
 

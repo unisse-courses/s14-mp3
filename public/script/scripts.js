@@ -1098,7 +1098,7 @@ if (window.location.href.includes("account-profile"))
 
     function addprofilediv(item, parentdiv) {
         var profrowdiv = document.createElement('div');
-        var biggerDiv = document.createElement('div');
+        //var biggerDiv = document.createElement('div');
         var bigdiv = document.createElement('div');
         var profcol1 = document.createElement('div');
         var profimage = document.createElement('img');
@@ -1120,7 +1120,7 @@ if (window.location.href.includes("account-profile"))
         var Pbio = document.createElement('p');
 
         //containers
-        $(biggerDiv).addClass("d-flex flex-column content");
+        $//(biggerDiv).addClass("d-flex flex-column content");
         $(bigdiv).addClass('card profile-container')
         $(profrowdiv).addClass('d-flex flex-row card-body profile-row');
         $(profcol1).addClass('full-width-container profile-col1');
@@ -1163,8 +1163,8 @@ if (window.location.href.includes("account-profile"))
         profrowdiv.append(profcol2);
 
         bigdiv.append(profrowdiv);
-        biggerDiv.append(bigdiv);
-        parentdiv.append(biggerDiv);
+        //biggerDiv.append(bigdiv);
+        parentdiv.append(bigdiv);
 
     }
 
@@ -1773,10 +1773,11 @@ if (window.location.href.includes("account-profile"))
                             createPostDiv(item, parent);
                         });
                     }
-                    else{
+                    else {
                         var text = document.createElement('p');
                         var container = $("#searchList")
-                        $(text).text("Sorry no posts found");
+                        $(text).text("Sorry, this post cannot be found");
+                        $(text).css("text-align", "center");
                         container.append(text)
                     }
                 });
@@ -1798,7 +1799,8 @@ if (window.location.href.includes("account-profile"))
                     else{
                         var text = document.createElement('p');
                         var container = $("#searchList")
-                        $(text).text("Sorry no users found");
+                        $(text).text("Sorry, this account cannot be found");
+                        $(text).css("text-align", "center");
                         container.append(text)
                     }
                        
