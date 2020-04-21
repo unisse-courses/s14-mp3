@@ -12,7 +12,7 @@
                   <li class="nav-item">
                     <div class="dropdown">
                       <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbar-dropdown">
-                        <img src="{{navIcon}}" class="rounded-circle" width="20" height="20" alt="" id="navbar-icon">
+                        <img src="{{#if post}}../{{/if}}{{navIcon}}" class="rounded-circle" width="20" height="20" alt="" id="navbar-icon">
                         {{navUser}}
                       </button>
                       <div class="dropdown-menu">

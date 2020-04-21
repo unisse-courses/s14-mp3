@@ -736,7 +736,6 @@ $(document).ready(function() {
             $('#delete_post-btn').hide()
             $('.post-comments-list').hide()
             
-            $('#navbar-dropdown').html("Guest User")
         }
         else{
             $('#accProfile').addClass("enabled")
@@ -1048,8 +1047,6 @@ if (window.location.href.includes("account-profile"))
         $('#create').hide()
         $('#edit').hide()
         $('#delete_account-btn').hide()
-
-        $('#navbar-dropdown').html("Guest User")
       }
       else{
         $('#accProfile').addClass("enabled")
@@ -1722,8 +1719,6 @@ if (window.location.href.includes("account-profile"))
         if (localStorage.getItem('isGuest') == 0){
             $('#accProfile').addClass("disabled")
             $('#create').hide()
-
-            $('#navbar-dropdown').html("Guest User")   
         }
         else{
             $('#accProfile').addClass("enabled")

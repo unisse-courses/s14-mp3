@@ -971,7 +971,8 @@ app.post('/loginACTION', function(req, res) {
 
     if (account.username == "Guest"){
       currUser = {
-        username: account.username
+        username: account.username,
+        profilepic: "images/default_profile.png"
       }
 
       result = {
