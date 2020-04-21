@@ -979,7 +979,7 @@ app.post('/loginACTION', function(req, res) {
         message: account.username + " has logged in!",
         returnData: currUser
       }
-      console.log(result.message);
+      res.send(result);
     }
     else
     {
@@ -1047,7 +1047,6 @@ app.post('/loginACTION', function(req, res) {
                 res.send(result);
             }
         });
-
     }
   });
       
@@ -1352,12 +1351,6 @@ app.post('/find-account', function(req, res) {
     }
     res.send(results);
   });
-
-  /*
-    i honestly dont know if the .find() will work here
-  */
-
-  
 })
 
 // UPVOTE/DOWNVOTE

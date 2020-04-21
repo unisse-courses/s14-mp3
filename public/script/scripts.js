@@ -12,10 +12,10 @@ $(document).ready(function() {
             username: "Guest"
         }
 
-        $.post('loginAccount', account, function(data,status) {
+        $.post('loginACTION', account, function(data,status) {
             
             if(data.success){
-                alert("Welcome " + data.returnData.username);
+                
                 window.location.href = "home";
                 console.log(data.returnData.username);
             }
@@ -372,14 +372,6 @@ $(document).ready(function() {
         $('#logout').click(function(){
             sessionStorage.clear();
         })
-        /* 
-        WILL FIX SOON -JOHANN
-        $.get("posts", function (data, status) {
-            console.log(data);
-            console.log(status);
-        });
-        */
-
 
         $.post("getTopFive", function (data, status) {
             var parent = $("#homeContainer")
