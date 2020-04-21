@@ -735,7 +735,7 @@ $(document).ready(function() {
             $('#edit_post-btn').hide()
             $('#delete_post-btn').hide()
             $('.post-comments-list').hide()
-            
+            $('.post-comment-input').hide()
         }
         else{
             $('#accProfile').addClass("enabled")
@@ -744,7 +744,7 @@ $(document).ready(function() {
             $('#downvote-icon').show()
             $('#edit_post-btn').show()
             $('#delete_post-btn').show()
-            
+            $('.post-comment-input').show()
             $('#post-comments-list').show()
         }
         
