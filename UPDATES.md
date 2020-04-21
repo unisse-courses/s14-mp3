@@ -59,6 +59,8 @@
 - [ ] Hiding of Buttons (while logged-in, i guess we copy the code for guest account here)
   - [ ] Viewing other's recipe post = Hidden Edit Post & Delete Post button
   - [ ] Viewing other's account profile = Hidden Edit Account & Delete Account button
+  - [ ] Viewing other's comments and replies = Hidden Delete Comment & Delete Reply
+
 
 3. CSS THINGS (FIX AFTER SUBMITTING PHASE 2)
 - [ ] fix logos
