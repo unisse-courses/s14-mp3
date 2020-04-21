@@ -5,21 +5,20 @@
 - [ ] User Login
   - [ ] "Remember Me" Feature
   - [X] Make a validation error (SAME PAGE) if the login info is wrong / doesnt exist 
-- [ ] Create Account
+- [X] Create Account
   - [x] Creates an account & is reflected in mongoose
   - [x] Email has to have an "@" (should only be 1 @ and it must have at least 1 character before and after it)
   - [x] Username Validation
     - [x] Unique (no same name despite capitalization)
     - [x] Minimum of 6 characters
     - [x] Maximum of 15 characters
-  - [ ] Working picture input & preview of image
   - [x] Default Photo Option
 - [X] Homepage
   - [X] Loading the SPECIFIC recipe post after clicking a post preview
   - [X] Loading the Top 5 Most upvoted Pages
 - [ ] Searchpage
   - [x] Search Button -> Uses get function to look for post / account
-  - [ ] Should show all the deets + no errors for both post / account
+  - [ ] Ignores capitalization when searching
   - [x] Shows partial results (example: u searched pan instead of "pancakes" but it still shows up)
 - [x] Create Post
   - [x] Save Button -> Should add a new post in the db
@@ -31,8 +30,12 @@
   - [ ] Post info should be pre-loaded na
 - [ ] Recipe Post
   - [ ] Reply Button -> Should append the reply INSIDE of the list of the specific comment
-    - [x] Date & Time format should be in the comments & replies (copy the code from create post)
-  - [ ] Fix the formatting of the Nested Replies within the Comment (mali yung pag format ko sa html dati so pls fix it na lang rin -sam)
+  - [ ] COMMENTS
+    - [ ] Comments save in the db (rn it shows in the page but not yet saved)
+    - [ ] Comments Counter (not including replies) is updated (Badge beside "Comment Section" Label)
+    - [ ] Load previously saved comments from db to the page (nasa GET request for route 'recipe-post/:param')
+  - [ ] REPLIES
+    - [ ] Fix the formatting of the Nested Replies within the Comment (mali yung pag format ko sa html dati so pls fix it na lang rin -sam)
   - [ ] Edit Post Button -> Should send the post info to the Edit Post Route
   - [ ] Delete Post Button (IN MODAL) -> Should delete the post from the db
   - [X] Upvote & Downvote Button -> Should update the upvote value in db
@@ -41,7 +44,7 @@
   - [X] Delete Account Button (IN MODAL) -> Should delete the user from the db
   - [ ] Should have ALL of the posts under that user pre-loaded
   - [X] Loads the current user's account info
-    - [ ] Loads the Profile Picture in Profile Container
+    - [X] Loads the Profile Picture in Profile Container
 - [ ] Edit Account Profile
   - [X] Update Button -> Should update the user info in the db & update the page information agad
   - [X] Account info should be pre-loaded na
@@ -49,8 +52,13 @@
     - [X] Displays the email but u cant edit it (no input, so its just there)
   - [x] Username validation (1 blob)
 2. IN GENERAL
+- [ ] ALL ROUTES WORKING (like if we click a button / link it should be the correct route)
 - [X] Can see the current user's info in navbar
 - [X] Can see the current user's info after clicking their profile FROM Navbar
+- [ ] Picture Input - least priority (For Create/Edit Post & Create/Edit Account)
+- [ ] Hiding of Buttons (while logged-in, i guess we copy the code for guest account here)
+  - [ ] Viewing other's recipe post = Hidden Edit Post & Delete Post button
+  - [ ] Viewing other's account profile = Hidden Edit Account & Delete Account button
 
 3. CSS THINGS (FIX AFTER SUBMITTING PHASE 2)
 - [ ] fix logos
