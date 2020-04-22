@@ -9,7 +9,8 @@ $(document).ready(function() {
     $("#noAccount").click(function () { 
         localStorage.setItem('isGuest', 0);
         var account = {
-            username: "Guest"
+            username: "Guest",
+            remember: false
         }
 
         $.post('loginACTION', account, function(data,status) {
@@ -17,7 +18,7 @@ $(document).ready(function() {
             if(data.success){
                 
                 window.location.href = "home";
-                console.log(data.returnData.username);
+
             }
         });
         
@@ -30,7 +31,24 @@ $(document).ready(function() {
     });
 
     
-/* -------------------------------------------------- UserLogin.hbs -------------------------------------------------- */    
+/* -------------------------------------------------- UserLogin.hbs -------------------------------------------------- */
+
+    if(window.location.href.includes("log-in")){
+        $.post("remember", function (data, status) {
+            console.log(data);
+            $("#user").val(data.username);
+            $("#pass").val(data.password);
+
+            if(data.remember == "true"){
+                $("#remember_me").attr("checked", true);
+            }
+            else{
+                $("#remember_me").removeAttr("checked");
+            }
+            
+        });
+    }
+
     $("#loginButton").click(function (event) { 
         event.preventDefault();
 
@@ -57,7 +75,7 @@ $(document).ready(function() {
             password: pass,
             remember: $('#remember_me').is(":checked")
         }
-
+        console.log(account.remember)
         $.post('loginACTION', account, function(data,status) {
             console.log(data);
             if(!data.success){

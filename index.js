@@ -39,7 +39,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // GLOBAL VARIABLES
-var rememberMe;
+var rememberMe = false;
 
 var currUser = {
   email: '',
@@ -651,28 +651,11 @@ var count;
 
 // USER LOGIN
   app.get('/log-in', function(req, res) {
-    if(rememberMe == 'true'){
       res.render('UserLogin', {
         styles: "css/styles_outside.css",
         tab_title: "Log-In",
         body_class: "outside",
-        username: currUser.username,
-        password: currUser.password,
-        isChecked: true
-      })
-    }
-    else{
-      res.render('UserLogin', {
-        styles: "css/styles_outside.css",
-        tab_title: "Log-In",
-        body_class: "outside",
-        username: currUser.username,
-        password: currUser.password,
-        isChecked: false
-      })
-    }
-
-      
+      })  
   });
   app.post('/getTopFive', function(req, res){
     postModel.find().lean().limit(5).sort({upvotes: -1, title: 1}).exec(function(err, data){
@@ -961,7 +944,8 @@ var count;
   // POST
 app.post('/loginACTION', function(req, res) {
     var result;
-    console.log("checked: " + req.body.remember)
+    console.log("checked: " + req.body.remember);
+
     rememberMe = req.body.remember;
   
     var account = {
@@ -1051,6 +1035,25 @@ app.post('/loginACTION', function(req, res) {
     }
   });
       
+
+app.post('/remember', function(req, res){
+  if(rememberMe == "true"){
+    var stuff = {
+      username: currUser.username,
+      password: currUser.password,
+      remember: rememberMe
+    }
+    res.send(stuff)
+  }
+  else{
+    var stuff = {
+      username: "",
+      password: "",
+      remember: rememberMe
+    }
+    res.send(stuff)
+  }
+})
 
 // EDIT ACCOUNT PROFILE
   app.post('/edit-account', function(req, res) {
