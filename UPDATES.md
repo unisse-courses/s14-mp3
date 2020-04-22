@@ -16,9 +16,9 @@
 - [X] Homepage
   - [X] Loading the SPECIFIC recipe post after clicking a post preview
   - [X] Loading the Top 5 Most upvoted Pages
-- [ ] Searchpage
+- [X] Searchpage
   - [x] Search Button -> Uses get function to look for post / account
-  - [ ] Ignores capitalization when searching
+  - [X] Ignores capitalization when searching
   - [x] Shows partial results (example: u searched pan instead of "pancakes" but it still shows up)
 - [x] Create Post
   - [x] Save Button -> Should add a new post in the db
