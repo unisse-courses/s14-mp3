@@ -28,6 +28,11 @@ app.engine( 'hbs', exphbs({
       incremented: function(index) {
           index++;
           return index;
+      },
+      ifSame: function(v1, v2){
+        if(v1 === v2) {
+          return (this);
+        }
       }
   }
 }));
@@ -636,7 +641,7 @@ var currUser = {
     }
     
   ];
-
+  
 /* -------------------------------------------------- ROUTES -------------------------------------------------- */
 var count;
 // INDEX
@@ -681,37 +686,48 @@ var count;
     var user_route = "^" + req.params.param;
     
     userModel.findOne({username: { $regex: user_route, $options: 'i' }}).exec(function(err, data){
-      if(err) throw err;
+      postModel.find({"user.email" : currUser.email}).lean().exec(function (err, posts){
+        console.log(posts);
+        if(err) throw err;
 
-      if(data){
-        res.render('AccountProfile', {
-          styles:     "../css/styles_inside.css",
-          tab_title:  "Account Profile",
-          body_class: "inside",
-          
-          firstname:  data.firstname,
-          lastname:   data.lastname,
-          username:   data.username,
-          bio:        data.bio,
-          profilepic: data.profilepic,
-          email:      data.email,
-          
-          navUser: currUser.username,
-          navIcon: currUser.profilepic
-        });
-      }
-      else {
-        result = {
-          message: "Account does not exist"
+        if(data){
+          res.render('AccountProfile', {
+            styles:     "../css/styles_inside.css",
+            tab_title:  "Account Profile",
+            body_class: "inside",
+            
+            firstname:  data.firstname,
+            lastname:   data.lastname,
+            username:   data.username,
+            bio:        data.bio,
+            profilepic: data.profilepic,
+            email:      data.email,
+            posts:      posts,
+
+            navUser: currUser.username,
+            navIcon: currUser.profilepic
+          });
         }
+        else {
+          result = {
+            message: "Account does not exist"
+          }
 
-        res.send(result.message);
-      }
-
+          res.send(result.message);
+        }
+      })
+      
     });
 
   });
 
+  app.post("/userposts", function (req, res){
+
+    postModel.find({"user.email" : currUser.email}).lean().exec(function (err, data){
+      console.log(data);
+      res.send(data);
+    })
+  })
 // CREATE ACCOUNT PROFILE
   app.get('/create-account', function(req, res) {
     res.render('CreateAccount', {

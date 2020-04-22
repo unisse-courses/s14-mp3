@@ -552,9 +552,6 @@ $(document).ready(function() {
             }
     }
 
-
-
-
     $("#postRecipe").click(function () { 
         var name = document.getElementById("post_title").value;
         var thumb = document.getElementById("thumbnail").value;
@@ -1163,7 +1160,18 @@ if (window.location.href.includes("account-profile")){
         location.href='edit-account'
 
     });
-
+/*
+    $.post("../userposts", function (data, status) {
+        var parent = $("#main_container")
+        if (!data.length < 1){
+            
+            data.forEach((item, i) => {
+                console.log(item);
+                createPostDiv(item, parent);
+            });
+        }
+    });
+*/
 }
 
     function fullname(firstname, lastname) {

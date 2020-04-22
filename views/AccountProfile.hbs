@@ -29,32 +29,35 @@
                     </div>
                 </div>
             </div>
-
+            {{#if posts}}
+            {{#each posts}}
             <div class="card post_preview-container">
               <div class="full-width-container post_preview-row0">
-                <img class="img-fluid" id="recipe-user" alt="Card image cap">
+                <img  src="../{{recipe_picture}}" class="img-fluid" id="recipe-user" alt="Card image cap">
               </div>
   
               <div class="d-flex flex-column card-body post_preview-below_image">
                 <div class="d-flex flex-column post_preview-row1">
-                  <h3 class="card-title" id="title"> </h3>
+                  <h3 class="card-title">{{title}}</h3>
+                  <p class="card-subtitle"><span class="badge badge-light">By {{user.firstname}} {{user.lastname}}| @{{user.username}}</span></p>
                 </div>
   
                 <div class="d-flex flex-column post_preview-row2">
-                  <p class="card-text" id="description"> </p> 
+                  <p class="card-text" id="{{description}}"> </p> 
                   <br>
-                  <a id=""></a>
+                  <a class="stretched-link" href="../recipe-post/{{_id}}">Continue reading...</a>
                 </div>
   
                 <div class="d-flex justify-content-between flex-wrap post_preview-row3">
-                  <p class="card-text" id="upvotes"><small class="text-muted"></small></p>
-                  <p class="card-text" id="date"><small class="text-muted"></small></p>
+                  <p class="card-text" id="upvotes"><small class="text-muted">{{upvotes}} UPVOTES</small></p>
+                  <p class="card-text" id="date"><small class="text-muted">{{dateposted}} {{timeposted}}</small></p>
                 </div>
   
               </div>
-  
+            
             </div>
-
+            {{/each}}
+            {{/if}}
             <button type="button" class="btn btn-outline-success btn-lg btn-block" id="edit_account-btn">Edit Account</button>
             <button type="button" class="btn btn-outline-danger btn-lg btn-block" id="delete_account-btn" data-toggle="modal" data-target="#delete_account-modal">Delete Account</button>
 
