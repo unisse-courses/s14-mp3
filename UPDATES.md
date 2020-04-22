@@ -1,9 +1,9 @@
 ### **TODO**
 1. ALL PAGES (10 pages in total)
-- [ ] Index
-  - [ ] Make Guest Account work again
-- [ ] User Login
-  - [ ] "Remember Me" Feature
+- [X] Index
+  - [X] Make Guest Account work again
+- [X] User Login
+  - [X] "Remember Me" Feature
   - [X] Make a validation error (SAME PAGE) if the login info is wrong / doesnt exist 
 - [X] Create Account
   - [x] Creates an account & is reflected in mongoose
@@ -48,7 +48,6 @@
 - [ ] Edit Account Profile
   - [X] Update Button -> Should update the user info in the db & update the page information agad
   - [X] Account info should be pre-loaded na
-    - [ ] Shows the preview of the picture & allows picture input
     - [X] Displays the email but u cant edit it (no input, so its just there)
   - [x] Username validation (1 blob)
 2. IN GENERAL
@@ -56,10 +55,10 @@
 - [X] Can see the current user's info in navbar
 - [X] Can see the current user's info after clicking their profile FROM Navbar
 - [ ] Picture Input - least priority (For Create/Edit Post & Create/Edit Account)
-- [ ] Hiding of Buttons (while logged-in, i guess we copy the code for guest account here)
-  - [ ] Viewing other's recipe post = Hidden Edit Post & Delete Post button
-  - [ ] Viewing other's account profile = Hidden Edit Account & Delete Account button
-  - [ ] Viewing other's comments and replies = Hidden Delete Comment & Delete Reply
+- [X] Hiding of Buttons (while logged-in, i guess we copy the code for guest account here)
+  - [X] Viewing other's recipe post = Hidden Edit Post & Delete Post button
+  - [X] Viewing other's account profile = Hidden Edit Account & Delete Account button
+  - [X] Viewing other's comments and replies = Hidden Delete Comment & Delete Reply
 
 
 3. CSS THINGS (FIX AFTER SUBMITTING PHASE 2)
