@@ -16,9 +16,9 @@
 - [X] Homepage
   - [X] Loading the SPECIFIC recipe post after clicking a post preview
   - [X] Loading the Top 5 Most upvoted Pages
-- [ ] Searchpage
+- [X] Searchpage
   - [x] Search Button -> Uses get function to look for post / account
-  - [ ] Ignores capitalization when searching
+  - [X] Ignores capitalization when searching
   - [x] Shows partial results (example: u searched pan instead of "pancakes" but it still shows up)
 - [x] Create Post
   - [x] Save Button -> Should add a new post in the db
@@ -42,10 +42,10 @@
 - [ ] Account Profile
   - [X] Edit Account Button -> Should send the account info to the Edit Account Route
   - [X] Delete Account Button (IN MODAL) -> Should delete the user from the db
-  - [ ] Should have ALL of the posts under that user pre-loaded
+  - [X] Should have ALL of the posts under that user pre-loaded
   - [X] Loads the current user's account info
     - [X] Loads the Profile Picture in Profile Container
-- [ ] Edit Account Profile
+- [X] Edit Account Profile
   - [X] Update Button -> Should update the user info in the db & update the page information agad
   - [X] Account info should be pre-loaded na
     - [X] Displays the email but u cant edit it (no input, so its just there)
