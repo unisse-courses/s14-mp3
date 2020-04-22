@@ -1133,7 +1133,7 @@ app.post('/remember', function(req, res){
       // updating posts that this user has made
       postModel.find({user: prevUser}).lean().exec( function(err, posts){
         console.log(posts);
-
+        
         
 
       });
