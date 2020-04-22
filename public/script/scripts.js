@@ -745,6 +745,19 @@ $(document).ready(function() {
 
     if (window.location.href.includes("recipe-post")){
 
+        var path = window.location.pathname;
+        var str = "";
+        var j;
+        var x = 0;
+    
+        for(j=0; j<path.length; j++) {
+            if(path[j] == '/') {
+                x = j;
+            }
+        }
+        
+        str = path.substring(x+1, path.length+1);
+
         if (localStorage.getItem('isGuest') == 0){
             $('#accProfile').addClass("disabled")
             $('#create').hide()
@@ -756,15 +769,38 @@ $(document).ready(function() {
             $('.post-comment-input').hide()
         }
         else{
-            $('#accProfile').addClass("enabled")
-            $('#create').show()
-            $('#upvote-icon').show()
-            $('#downvote-icon').show()
-            $('#edit_post-btn').show()
-            $('#delete_post-btn').show()
-            $('.post-comment-input').show()
-            $('#post-comments-list').show()
+            
+            if(localStorage.getItem("activeUser") != str) { // viewing another person's profile
+                $('#accProfile').addClass("enabled")
+                $('#create').show()
+                $('#upvote-icon').show()
+                $('#downvote-icon').show()
+                $('#edit_post-btn').hide()
+                $('#delete_post-btn').hide()
+                $('.post-comments-list').show()
+                $('.post-comment-input').show()
+            }
+            else {
+                $('#accProfile').addClass("enabled")
+                $('#create').show()
+                $('#upvote-icon').show()
+                $('#downvote-icon').show()
+                $('#edit_post-btn').show()
+                $('#delete_post-btn').show()
+                $('.post-comment-input').show()
+                $('#post-comments-list').show()
+            }
         }
+
+        $("#acc_badge").click(function () {
+            var username = document.getElementById("unameb").innerText;
+
+            console.log(username);
+
+            console.log("Going to the profile of @" + username);
+
+            window.location.href = "/account-profile/" + username;
+        });
         
         $("#upvote-icon").click(function () { 
             
@@ -1063,20 +1099,42 @@ $(document).ready(function() {
 
 /* -------------------------------------------------- AccountProfile.hbs -------------------------------------------------- */
 
-if (window.location.href.includes("account-profile"))
-{
+if (window.location.href.includes("account-profile")){
+
+    var path = window.location.pathname;
+    var str = "";
+    var j;
+    var x = 0;
+
+    for(j=0; j<path.length; j++) {
+        if(path[j] == '/') {
+            x = j;
+        }
+    }
+    
+    str = path.substring(x+1, path.length+1);
+
     if (localStorage.getItem('isGuest') == 0){
         $('#accProfile').addClass("disabled")
         $('#create').hide()
-        $('#edit').hide()
+        $('#edit_account-btn').hide()
         $('#delete_account-btn').hide()
-      }
-      else{
-        $('#accProfile').addClass("enabled")
-        $('#create').show()
-        $('#edit').show()
-        $('#delete_account-btn').show()
-      }
+    }
+    else{
+
+        if(localStorage.getItem("activeUser") != str) { // viewing another person's profile
+            $('#accProfile').addClass("enabled")
+            $('#create').show()
+            $('#delete_account-btn').hide()
+            $('#edit_account-btn').hide()
+        }
+        else { // viewing your own profile
+            $('#accProfile').addClass("enabled")
+            $('#create').show()
+            $('#edit_account-btn').show()
+            $('#delete_account-btn').show()
+        }
+    }
 
       $('#logout').click(function(){
         sessionStorage.clear();
@@ -1085,7 +1143,7 @@ if (window.location.href.includes("account-profile"))
       $('#delete').click(function(){
         sessionStorage.clear();
       })
-}
+
     $("#deleteAccount").click(function (e) { 
         //$target = $(e.target);
         //console.log($target.attr('data-id'));
@@ -1106,6 +1164,8 @@ if (window.location.href.includes("account-profile"))
 
     });
 
+}
+
     function fullname(firstname, lastname) {
         return firstname + " " + lastname;
     };
@@ -1120,6 +1180,7 @@ if (window.location.href.includes("account-profile"))
         var bigdiv = document.createElement('div');
         var profcol1 = document.createElement('div');
         var profimage = document.createElement('img');
+        var anchor      = document.createElement('a');
 
         var profcol2 = document.createElement('div');
 
@@ -1154,6 +1215,11 @@ if (window.location.href.includes("account-profile"))
         $(profimage).addClass('img-fluid');
         if(item.profilepic != "")
             $(profimage).attr('src', item.profilepic);
+
+        $(anchor).attr("href", "account-profile/"+item.username);
+        $(anchor).css('text-decoration', 'none'); 
+        $(anchor).css('color', '#212529');
+
         $(Hfirstname).text(item.firstname);
         $(Hlastname).text(item.lastname);
         $(Pusername).text(item.username);
@@ -1180,7 +1246,9 @@ if (window.location.href.includes("account-profile"))
         profrowdiv.append(profcol1);
         profrowdiv.append(profcol2);
 
-        bigdiv.append(profrowdiv);
+        anchor.append(profrowdiv);
+
+        bigdiv.append(anchor);
         //biggerDiv.append(bigdiv);
         parentdiv.append(bigdiv);
 

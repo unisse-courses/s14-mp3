@@ -1,7 +1,7 @@
 <div id ="navigation_bar">
           <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-              <a class="navbar-brand" href="{{#if post}}../{{/if}}home">
-                  <img src="{{#if post}}../{{/if}}images/foodies_navbar.jpg" width="150" height="30" class="d-inline-block align-top">
+              <a class="navbar-brand" href="../home">
+                  <img src="../images/foodies_navbar.jpg" width="150" height="30" class="d-inline-block align-top">
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -12,11 +12,11 @@
                   <li class="nav-item">
                     <div class="dropdown">
                       <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbar-dropdown">
-                        <img src="{{#if post}}../{{/if}}{{navIcon}}" class="rounded-circle" width="20" height="20" alt="" id="navbar-icon">
+                        <img src="{{navIcon}}" class="rounded-circle" width="20" height="20" alt="" id="navbar-icon">
                         {{navUser}}
                       </button>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" id="accProfile" href="{{#if post}}../{{/if}}account-profile">Account Profile</a>
+                        <a class="dropdown-item" id="accProfile" href="/account-profile/{{navUser}}">Account Profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" data-toggle="modal" data-target="#log_out">Log Out</a>
                       </div>
@@ -24,12 +24,12 @@
                   </li>
 
                   <li class="nav-item">
-                    <button id="create" class="btn btn-light" type="button" onclick="location.href='{{#if post}}../{{/if}}create-recipe';">Create Recipe Post</button>
+                    <button id="create" class="btn btn-light" type="button" onclick="location.href='../create-recipe';">Create Recipe Post</button>
                   </li>
                   
                 </ul>
 
-                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location.href='{{#if post}}../{{/if}}search';">Search Page</button>
+                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location.href='../search';">Search Page</button>
 
               </div>
 
@@ -52,7 +52,7 @@
                     </div>
                     
                     <div class="modal-footer">
-                      <button id="logout"type="button" class="btn btn-primary"  onclick="location.href='{{#if post}}..{{/if}}/';">Yes</button>
+                      <button id="logout"type="button" class="btn btn-primary"  onclick="location.href='/';">Yes</button>
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     </div>
                     

@@ -677,23 +677,39 @@ var count;
 // ACCOUNT PROFILE
   //app.get('/account-profile', getAccountProfile);
 
-  app.get('/account-profile', function(req, res){
-     
-    console.log(count)
-    res.render('AccountProfile', {
-      styles:     "css/styles_inside.css",
-      tab_title:  "Account Profile",
-      body_class: "inside",
-      
-      firstname:  currUser.firstname,
-      lastname:   currUser.lastname,
-      username:   currUser.username,
-      bio:        currUser.bio,
-      profilepic: currUser.profilepic,
-      email:      currUser.email,
-      navUser: currUser.username,
-      navIcon: currUser.profilepic
+  app.get('/account-profile/:param', function(req, res){
+    var user_route = "^" + req.params.param;
+    
+    userModel.findOne({username: { $regex: user_route, $options: 'i' }}).exec(function(err, data){
+      if(err) throw err;
+
+      if(data){
+        res.render('AccountProfile', {
+          styles:     "../css/styles_inside.css",
+          tab_title:  "Account Profile",
+          body_class: "inside",
+          
+          firstname:  data.firstname,
+          lastname:   data.lastname,
+          username:   data.username,
+          bio:        data.bio,
+          profilepic: data.profilepic,
+          email:      data.email,
+          
+          navUser: currUser.username,
+          navIcon: currUser.profilepic
+        });
+      }
+      else {
+        result = {
+          message: "Account does not exist"
+        }
+
+        res.send(result.message);
+      }
+
     });
+
   });
 
 // CREATE ACCOUNT PROFILE
@@ -804,6 +820,8 @@ var count;
       if(err) throw err;
 
       if(data){
+        var acc = "account-profile/" + data.user.username;
+
         res.render('RecipePost', {
           // for main.hbs
             styles: "../css/styles_inside.css",
@@ -824,6 +842,7 @@ var count;
             ingredients: data.ingredients,
             instructions: data.instructions,
             
+            account_link: acc,
             comment_count: data.comments.length,
             comments: data.comments,
             post: true
@@ -956,7 +975,7 @@ app.post('/loginACTION', function(req, res) {
     if (account.username == "Guest"){
       currUser = {
         username: account.username,
-        profilepic: "images/default_profile.png"
+        profilepic: "../images/default_profile.png"
       }
 
       result = {
@@ -1056,7 +1075,7 @@ app.post('/remember', function(req, res){
 })
 
 // EDIT ACCOUNT PROFILE
-  app.post('/edit-account', function(req, res) {
+  app.post('/edit-account/', function(req, res) {
     var query = {
       email: currUser.email
     };
