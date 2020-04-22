@@ -744,19 +744,8 @@ $(document).ready(function() {
 //to follow: Actual Data stuff from database lol 
 
     if (window.location.href.includes("recipe-post")){
-
-        var path = window.location.pathname;
-        var str = "";
-        var j;
-        var x = 0;
-    
-        for(j=0; j<path.length; j++) {
-            if(path[j] == '/') {
-                x = j;
-            }
-        }
         
-        str = path.substring(x+1, path.length+1);
+        var str = document.getElementById("unameb").innerText;
 
         if (localStorage.getItem('isGuest') == 0){
             $('#accProfile').addClass("disabled")
@@ -1160,7 +1149,7 @@ if (window.location.href.includes("account-profile")){
     });
 
     $("#edit_account-btn").click(function () { 
-        location.href='edit-account'
+        window.location.href='../edit-account'
 
     });
 
@@ -1471,28 +1460,29 @@ if (window.location.href.includes("account-profile")){
             editbio: bio
         }
         
-        $.post("edit-account", user,
-            function (data, status) {
-                location.href = "account-profile"
+        $.post("edit-account", user, function (data, status) {
                 $(document).ready(function () {
                     $("#account-profile-picture").attr("src", data.profilepic);
                     $("#accountname").text(data.firstname + " " + data.lastname);
                     $("#accountusername").text(data.username);
                     $("#accountbio").text(data.bio);
+
                 });
                 
+
+                window.location.href = "../account-profile/" + data.username;
             }
         );
         $.post("edit-account", user,
             function (data, status) {
-                location.href = "account-profile"
                 $(document).ready(function () {
                     $("#account-profile-picture").attr("src", data.profilepic);
                     $("#accountname").text(data.firstname + " " + data.lastname);
                     $("#accountusername").text(data.username);
                     $("#accountbio").text(data.bio);
                 });
-                
+
+                window.location.href = "../account-profile/" + data.username;
             }
         );
     });

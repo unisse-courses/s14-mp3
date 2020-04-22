@@ -997,7 +997,7 @@ app.post('/loginACTION', function(req, res) {
           if(accountResult){ // if the username entered exists in the db
               console.log("USERNAME EXISTS IN DB");
 
-              if(account.password == accountResult.password) { // if the password entered matches with the password from the db
+              if(account.password == accountResult.password && account.username == accountResult.username) { // if the password entered matches with the password from the db
                 console.log("PASSWORD IS RIGHT");
               
                 currUser = {
@@ -1106,8 +1106,9 @@ app.post('/remember', function(req, res){
     
     userModel.findOneAndUpdate(query, update, { new: false }, function(err, user) {
       if (err) throw err;
-      console.log(" new name");
-      console.log(user.firstname);
+
+      prevUser = currUser;
+
       currUser = {
         email:      user.email,
         firstname:  user.firstname,
@@ -1118,8 +1119,19 @@ app.post('/remember', function(req, res){
         profilepic: user.profilepic
       };
 
+      // updating posts that this user has made
+      postModel.find({user: prevUser}).lean().exec( function(err, posts){
+        console.log(posts);
+
+        
+
+      });
+
+
+
       res.send(currUser);
     });
+     
   });
 
   app.post('/uniqueUsernameCheckEDIT', function(req, res) {
