@@ -28,11 +28,6 @@ app.engine( 'hbs', exphbs({
       incremented: function(index) {
           index++;
           return index;
-      },
-      ifSame: function(v1, v2){
-        if(v1 === v2) {
-          return (this);
-        }
       }
   }
 }));
@@ -686,7 +681,7 @@ var count;
     var user_route = "^" + req.params.param;
     
     userModel.findOne({username: { $regex: user_route, $options: 'i' }}).exec(function(err, data){
-      postModel.find({"user.email" : currUser.email}).lean().exec(function (err, posts){
+      postModel.find({"user.email" : data.email}).lean().exec(function (err, posts){
         console.log(posts);
         if(err) throw err;
 
