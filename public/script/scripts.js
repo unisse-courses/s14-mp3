@@ -1680,11 +1680,12 @@ if (window.location.href.includes("account-profile")){
         console.log("str is = " + str);
 
         // loading ingredients from db
-        $.post("../loadLists", postidnum, function(data,status) {
-            var arrIngred = data.ingredients;
+        $.post("../loadIngredients", postidnum, function(data,status) {
+            var arrIngred = data;
             var i;
-
+            
             for(i=0; i < arrIngred.length; i++) {
+                console.log(i)
                 var li = document.createElement("li");
 
                 var inputValue1 = arrIngred[i].name;
@@ -1721,21 +1722,23 @@ if (window.location.href.includes("account-profile")){
                 li.appendChild(span);
                 li.className = "list_item";
                     
-                for (var i = 0; i < close1.length; i++) {
-                    close1[i].onclick = function() {
-                        var div = this.parentElement;
-                        div.remove();
-                    }
+                
+            }
+            for (var i = 0; i < close1.length; i++) {
+                close1[i].onclick = function() {
+                    var div = this.parentElement;
+                    div.remove();
                 }
             }
-
-
+            })
+            $.post("../loadInstructions", postidnum, function(data,status) {
             // loading instructions from db
 
-            var arrInstruct = data.instructions;
+            var arrInstruct = data;
             var i;
-
+            
             for(i=0; i < arrInstruct.length; i++) {
+                
                 var li = document.createElement("li");
                 var inputValue = arrInstruct[i];
                 var spanContainer = document.createElement("SPAN");
@@ -1756,11 +1759,12 @@ if (window.location.href.includes("account-profile")){
                                 
                                 
                 //this one is to place the function remove on the newly added list item
-                for (var i = 0; i < close2.length; i++) {
-                    close2[i].onclick = function() {
+                
+            }
+            for (var i = 0; i < close1.length; i++) {
+                close1[i].onclick = function() {
                     var div = this.parentElement;
                     div.remove();
-                    }
                 }
             }
         });
@@ -1814,7 +1818,7 @@ if (window.location.href.includes("account-profile")){
         li.appendChild(span);
         li.className = "list_item";
         
-        for (var i = 0; i < close1.length; i++) {
+        for (i = 0; i < close1.length; i++) {
             close1[i].onclick = function() {
                 var div = this.parentElement;
                 div.remove();

@@ -818,6 +818,30 @@ var count;
   });
 
 
+
+  app.post('/loadInstructions', function(req, res) {
+  
+    postModel.findOne({_id: req.body.id}).lean().exec(function(err, data){
+      if(err) throw err;
+
+      if(data){
+        res.send(data.instructions)
+      }
+
+    });
+  });
+
+  app.post('/loadIngredients', function(req, res) {
+  
+    postModel.findOne({_id: req.body.id}).lean().exec(function(err, data){
+      if(err) throw err;
+
+      if(data){
+        res.send(data.ingredients)
+      }
+
+    });
+  });
 // RECIPE POST
   app.get('/recipe-post/:param', function(req, res) {
     var id = req.params.param;
