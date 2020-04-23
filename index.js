@@ -1252,7 +1252,13 @@ app.post('/remember', function(req, res){
 
 // DELETE RECIPE POST
 
+  app.post('/deletePost', function(req, res){
+    postModel.findOneAndRemove({_id: req.body.num}).exec(function(err){
+      if(err) throw err;
 
+      res.send(true);
+    })
+  })
 // POST COMMENT
   app.post('/addCommentRow', function(req, res) {
     var the_USER = new userModel({

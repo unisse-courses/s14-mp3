@@ -838,7 +838,22 @@ $(document).ready(function() {
 
 
         $("#delete").click(function () { 
-            location.href='home'
+
+            var url = window.location.href;
+            url = url.slice(34)
+            url = url.replace(/\D/g,'');
+
+            var stuff = {
+                num: url,
+            }
+
+            console.log(stuff.num)
+
+            $.post("../deletePost", stuff ,function (data) {
+                if(data){
+                    window.location.href="../home"
+                }
+            });
         });
 
         $("#edit_post-btn").click(function () {
@@ -1689,8 +1704,6 @@ if (window.location.href.includes("account-profile")){
                     }
                 }
             });
-
-
     }
 
     $("#EDITingredient").click(function () { 
