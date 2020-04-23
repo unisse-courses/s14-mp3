@@ -645,7 +645,7 @@ $(document).ready(function() {
 
         $.post('addPost', new_post, function(data,status) {
             //console.log(data);
-            location.href="recipe-post/" + data._id;
+            window.location.href="../recipe-post/" + data._id;
         });
         
     });
@@ -1474,6 +1474,10 @@ if (window.location.href.includes("account-profile")){
                     $("#accountname").text(data.firstname + " " + data.lastname);
                     $("#accountusername").text(data.username);
                     $("#accountbio").text(data.bio);
+
+
+                    $("#fullnameb").innertext(data.firstname + " " + data.lastname);
+                    $("#unameb").innertext(data.username);
 
                 });
                 

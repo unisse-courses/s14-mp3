@@ -1131,9 +1131,18 @@ app.post('/remember', function(req, res){
       };
 
       // updating posts that this user has made
-      postModel.find({user: prevUser}).lean().exec( function(err, posts){
-        console.log(posts);
+      postModel.find({user: prevUser})( function(err, posts){
+        if (err) throw err;
         
+        console.log(posts);
+
+        var i=0;
+
+        for(i=0; i<posts.length; i++) {
+          posts[i].user = currUser;
+        }
+
+        console.log("donw wt first find");
         
 
       });
