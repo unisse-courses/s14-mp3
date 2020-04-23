@@ -27,7 +27,7 @@
     - [X] should be redirected to the correct route (which is the new post created)
 - [ ] Edit Post
   - [ ] Save Button -> Should update the post info in the db & update the page information agad
-  - [ ] Post info should be pre-loaded na
+  - [X] Post info should be pre-loaded na
 - [ ] Recipe Post
   - [ ] Reply Button -> Should append the reply INSIDE of the list of the specific comment
   - [ ] COMMENTS

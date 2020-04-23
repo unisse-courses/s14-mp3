@@ -838,7 +838,22 @@ $(document).ready(function() {
 
 
         $("#delete").click(function () { 
-            location.href='home'
+
+            var url = window.location.href;
+            url = url.slice(34)
+            url = url.replace(/\D/g,'');
+
+            var stuff = {
+                num: url,
+            }
+
+            console.log(stuff.num)
+
+            $.post("../deletePost", stuff ,function (data) {
+                if(data){
+                    window.location.href="../home"
+                }
+            });
         });
 
         $("#edit_post-btn").click(function () {
@@ -1609,10 +1624,9 @@ if (window.location.href.includes("account-profile")){
             console.log("str is = " + str);
 
             // loading ingredients from db
-            $.post("loadIngredients", postidnum, function(data,status) {
+            $.post("../loadLists", postidnum, function(data,status) {
                 var arrIngred = data.ingredients;
                 var i;
-                console.log("before loop");
 
                 for(i=0; i < arrIngred.length; i++) {
                     var li = document.createElement("li");
@@ -1641,9 +1655,7 @@ if (window.location.href.includes("account-profile")){
             
                     li.appendChild(bigspan);
             
-                    console.log("before append");
                     document.getElementById("EDITulist").appendChild(li);
-                    console.log("after append");
             
                     var span = document.createElement("SPAN");
                     var txt = document.createTextNode("\u00D7");
@@ -1659,14 +1671,11 @@ if (window.location.href.includes("account-profile")){
                             div.remove();
                         }
                     }
-
                 }
 
-                console.log("end of post");
-            });
 
             // loading instructions from db
-            $.post('loadInstructions', function(data,status) {
+
                 var arrInstruct = data.instructions;
                 var i;
 
@@ -1698,10 +1707,7 @@ if (window.location.href.includes("account-profile")){
                         }
                     }
                 }
-
             });
-
-
     }
 
     $("#EDITingredient").click(function () { 

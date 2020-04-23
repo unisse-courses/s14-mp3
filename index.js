@@ -771,7 +771,7 @@ var count;
   app.get('/edit-recipe/:param', function(req, res) {
     var id = req.params.param;
 
-    postModel.findOne({_id: id}).exec(function(err, data){
+    postModel.findOne({_id: id}).lean().exec(function(err, data){
       if(err) throw err;
 
       if(data){
@@ -786,9 +786,7 @@ var count;
               navUser: currUser.username,
               navIcon: currUser.profilepic,
               
-              title: data.title,
-              thumbnail: data.recipe_picture,
-              description: data.description,
+              stuff: data,
               post: true
           })
       
@@ -804,10 +802,10 @@ var count;
 
   });
 
-  app.post('/loadIngredients', function(req, res) {
+  app.post('/loadLists', function(req, res) {
     console.log("before sending data in index");
 
-    postModel.findOne({_id: req.body.id}).exec(function(err, data){
+    postModel.findOne({_id: req.body.id}).lean().exec(function(err, data){
       if(err) throw err;
 
       if(data){
@@ -815,13 +813,8 @@ var count;
       }
 
     });
-
-    console.log("after sending data in index");
   });
 
-  app.post('/loadInstructions', function(req, res) {
-    res.send(data);
-  });
 
 // RECIPE POST
   app.get('/recipe-post/:param', function(req, res) {
@@ -1268,7 +1261,13 @@ app.post('/remember', function(req, res){
 
 // DELETE RECIPE POST
 
+  app.post('/deletePost', function(req, res){
+    postModel.findOneAndRemove({_id: req.body.num}).exec(function(err){
+      if(err) throw err;
 
+      res.send(true);
+    })
+  })
 // POST COMMENT
   app.post('/addCommentRow', function(req, res) {
     var the_USER = new userModel({
