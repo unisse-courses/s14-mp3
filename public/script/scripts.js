@@ -1512,198 +1512,262 @@ if (window.location.href.includes("account-profile")){
 /* -------------------------------------------------- EditRecipePost.hbs -------------------------------------------------- */
 
     $("#editRecipePost").click(function () { 
-        var desc = document.getElementById("description").value;
-                var ingred = document.getElementById("ingredients").value;
-                var instruct = document.getElementById("instructions").value;
+        var name = document.getElementById("post_title").value;
+        var thumb = document.getElementById("EDITthumbnail").value;
+        var desc = document.getElementById("EDITdescription").value;
+        var ingred =  document.getElementById("EDITulist").getElementsByTagName("li").length;
+        var instruct =  document.getElementById("EDITolist").getElementsByTagName("li").length;
+
+
+        if (name == ""){
+            document.getElementById("ltitle").textContent = 'Please provide a title for your recipe post';
+            document.getElementById("ltitle").style.color = "red";
+            return false;
+        }
+        else {
+            document.getElementById("ltitle").style.color = "white";
+            document.getElementById("ltitle").value ='';
+        }
+
+        if (desc == ""){
+            document.getElementById("lDesc").textContent ='Please provide a brief description of your recipe';
+            document.getElementById("lDesc").style.color = "red";
+            return false;
+        }
+        else {
+            document.getElementById("lDesc").style.color = "white";
+            document.getElementById("lDesc").value ='';
+        }
+            
+        if(ingred == "0"){
+            document.getElementById("lIngred").textContent ='Please provide the list of ingredients for your recipe';
+            document.getElementById("lIngred").style.color = "red";
+            return false;
+        }
+        else {
+            document.getElementById("lIngred").style.color = "white";
+            document.getElementById("lIngred").value ='';
+        }
+
+        if(instruct == "0"){
+            document.getElementById("lInst").textContent ='Please provide the list of instructions for your recipe';
+            document.getElementById("lInst").style.color = "red";
+            return false;
+        }
+        else {
+            document.getElementById("lInst").style.color = "white";
+            document.getElementById("lInst").value ='';
+        }
+
+            
+        var arrIngred = [];
+            var listArray = document.getElementById("EDITulist").getElementsByTagName("li");   
+            var i=0;
                 
-                if (desc == ""){
-                    document.getElementById("warning").textContent ='Please provide a brief description of your recipe';
-                    document.getElementById("warning").style.color = "red";
-                    return false;
-                }
-                else {
-                    document.getElementById("warning").style.color = "white";
-                    document.getElementById("warning").textContent ='';
-                }
-                    
-                if(ingred == ""){
-                    document.getElementById("warning").textContent ='Please list down the ingredients used';
-                    document.getElementById("warning").style.color = "red";
-
-                    return false;
-                }
-                else {
-                    document.getElementById("warning").style.color = "white";
-                    document.getElementById("warning").textContent ='';
+            for (i = 0; i < listArray.length; i++) {
+                var spanArray = listArray[i].getElementsByTagName("span");
+                
+                var temp_ingred = {
+                    name: spanArray[0].getElementsByTagName("span")[0].innerHTML,
+                    quantity: spanArray[0].getElementsByTagName("span")[1].innerHTML,
+                    unit: spanArray[0].getElementsByTagName("span")[2].innerHTML
                 }
 
-                if(instruct == ""){
-                    document.getElementById("warning").textContent ='Please list the steps in creating the recipe';
-                    document.getElementById("warning").style.color = "red";
-
-                    return false;
-                }
-                else {
-                    document.getElementById("warning").style.color = "white";
-                    document.getElementById("warning").textContent ='';
-                }
+                arrIngred.push(temp_ingred);
+            };
         
+        var arrInstruct = [];
+            var listIN = document.getElementById("EDITolist").getElementsByTagName("li");
+            
+            var i=0;
+            
+            for (i = 0; i < listIN.length; i++) {
+                var spanIN= listIN[i].getElementsByTagName("span");
+                var temp = spanIN[0].innerHTML
+                    
+                arrInstruct.push(temp)
+            };
+            
+
+        var url = window.location.href;
+        url = url.slice(34)
+        url = url.replace(/\D/g,'');
+
+        var new_post = {
+            title: name,
+            recipe_picture: thumb,
+            description: desc,
+            ingredients: arrIngred,
+            instructions: arrInstruct,
+            _id: url
+        };
+
+        $.post('../updatePost', new_post, function(data,status) {
+            window.location.href="../recipe-post/" + url
+        });
+
+        $.post('../updatePost', new_post, function(data,status) {
+            window.location.href="../recipe-post/" + url
+        });
+
     });
-
-
 
     if(window.location.href.indexOf("edit-recipe") > -1){
         var i;
         console.log("INITIALIZING START");
 
             // initializing array of ingredients
-                var ulist = document.getElementsByTagName("UL")[1];
-                var arrIngredients = ulist.getElementsByTagName("LI");
+            var ulist = document.getElementsByTagName("UL")[1];
+            var arrIngredients = ulist.getElementsByTagName("LI");
 
-                for (i = 0; i < arrIngredients.length; i++) {
-                    var span = document.createElement("SPAN");
-                    var txt = document.createTextNode("\u00D7");
-                    span.className = "close1";
-                    span.appendChild(txt);
-                    arrIngredients[i].appendChild(span);
+            for (i = 0; i < arrIngredients.length; i++) {
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close1";
+                span.appendChild(txt);
+                arrIngredients[i].appendChild(span);
+            }
+
+            var close1 = document.getElementsByClassName("close1");
+            var i;
+            for (i = 0; i < close1.length; i++) {
+                close1[i].onclick = function() {
+                    var div = this.parentElement;
+                    div.remove();
                 }
+            }
 
-                var close1 = document.getElementsByClassName("close1");
-                var i;
-                for (i = 0; i < close1.length; i++) {
+            // initializing array of instructions
+            var olist = document.getElementsByTagName("OL")[0];
+            var arrInstructions = olist.getElementsByTagName("LI");
+
+            for (i = 0; i < arrInstructions.length; i++) {
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close2";
+                span.appendChild(txt);
+                arrInstructions[i].appendChild(span);
+            }
+
+            var close2 = document.getElementsByClassName("close2");
+            var i;
+            for (i = 0; i < close2.length; i++) {
+                close2[i].onclick = function() {
+                    var div = this.parentElement;
+                    div.remove();
+            }
+        }
+
+        console.log("INITIALIZING END");
+
+        var postID = window.location.pathname;
+        var str = "";
+        var j;
+        var x = 0;
+
+        for(j=0; j<postID.length; j++) {
+            if(postID[j] == '/') {
+                x = j;
+            }
+        }
+            
+        str = postID.substring(x+1, postID.length+1);
+
+        postidnum = {
+            id: str
+        }
+
+        console.log("str is = " + str);
+
+        // loading ingredients from db
+        $.post("../loadLists", postidnum, function(data,status) {
+            var arrIngred = data.ingredients;
+            var i;
+
+            for(i=0; i < arrIngred.length; i++) {
+                var li = document.createElement("li");
+
+                var inputValue1 = arrIngred[i].name;
+                var inputValue2 = arrIngred[i].quantity;
+                var inputValue3 = arrIngred[i].unit;
+
+                var span1 = document.createElement("SPAN");
+                var span2 = document.createElement("SPAN");
+                var span3 = document.createElement("SPAN");
+            
+                var text1 = document.createTextNode(inputValue1);
+                var text2 = document.createTextNode(inputValue2);
+                var text3 = document.createTextNode(inputValue3);
+               
+                span1.appendChild(text1);
+                span2.appendChild(text2);
+                span3.appendChild(text3);
+            
+                var bigspan = document.createElement("SPAN");
+            
+                bigspan.appendChild(span1);
+                bigspan.appendChild(span2);
+                bigspan.appendChild(span3);
+        
+                li.appendChild(bigspan);
+            
+                document.getElementById("EDITulist").appendChild(li);
+            
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close1";
+            
+                span.appendChild(txt);
+                li.appendChild(span);
+                li.className = "list_item";
+                    
+                for (var i = 0; i < close1.length; i++) {
                     close1[i].onclick = function() {
                         var div = this.parentElement;
                         div.remove();
                     }
                 }
-
-            // initializing array of instructions
-                var olist = document.getElementsByTagName("OL")[0];
-                var arrInstructions = olist.getElementsByTagName("LI");
-
-                for (i = 0; i < arrInstructions.length; i++) {
-                    var span = document.createElement("SPAN");
-                    var txt = document.createTextNode("\u00D7");
-                    span.className = "close2";
-                    span.appendChild(txt);
-                    arrInstructions[i].appendChild(span);
-                }
-
-                var close2 = document.getElementsByClassName("close2");
-                var i;
-                for (i = 0; i < close2.length; i++) {
-                    close2[i].onclick = function() {
-                        var div = this.parentElement;
-                        div.remove();
-                    }
-                }
-
-            console.log("INITIALIZING END");
-
-            var postID = window.location.pathname;
-            var str = "";
-            var j;
-            var x = 0;
-
-            for(j=0; j<postID.length; j++) {
-                if(postID[j] == '/') {
-                    x = j;
-                }
             }
-            
-            str = postID.substring(x+1, postID.length+1);
-
-            postidnum = {
-                id: str
-            }
-
-            console.log("str is = " + str);
-
-            // loading ingredients from db
-            $.post("../loadLists", postidnum, function(data,status) {
-                var arrIngred = data.ingredients;
-                var i;
-
-                for(i=0; i < arrIngred.length; i++) {
-                    var li = document.createElement("li");
-
-                    var inputValue1 = arrIngred[i].name;
-                    var inputValue2 = arrIngred[i].quantity;
-                    var inputValue3 = arrIngred[i].unit;
-
-                    var span1 = document.createElement("SPAN");
-                    var span2 = document.createElement("SPAN");
-                    var span3 = document.createElement("SPAN");
-            
-                    var text1 = document.createTextNode(inputValue1);
-                    var text2 = document.createTextNode(inputValue2);
-                    var text3 = document.createTextNode(inputValue3);
-                   
-                    span1.appendChild(text1);
-                    span2.appendChild(text2);
-                    span3.appendChild(text3);
-            
-                    var bigspan = document.createElement("SPAN");
-            
-                    bigspan.appendChild(span1);
-                    bigspan.appendChild(span2);
-                    bigspan.appendChild(span3);
-            
-                    li.appendChild(bigspan);
-            
-                    document.getElementById("EDITulist").appendChild(li);
-            
-                    var span = document.createElement("SPAN");
-                    var txt = document.createTextNode("\u00D7");
-                    span.className = "close1";
-            
-                    span.appendChild(txt);
-                    li.appendChild(span);
-                    li.className = "list_item";
-                    
-                    for (var i = 0; i < close1.length; i++) {
-                        close1[i].onclick = function() {
-                            var div = this.parentElement;
-                            div.remove();
-                        }
-                    }
-                }
 
 
             // loading instructions from db
 
-                var arrInstruct = data.instructions;
-                var i;
+            var arrInstruct = data.instructions;
+            var i;
 
-                for(i=0; i < arrInstruct.length; i++) {
-                    var li = document.createElement("li");
-                    var inputValue = arrInstruct[i];
-                    var spanContainer = document.createElement("SPAN");
-                    var text = document.createTextNode(inputValue);
+            for(i=0; i < arrInstruct.length; i++) {
+                var li = document.createElement("li");
+                var inputValue = arrInstruct[i];
+                var spanContainer = document.createElement("SPAN");
+                var text = document.createTextNode(inputValue);
             
-                    spanContainer.appendChild(text);
+                spanContainer.appendChild(text);
             
-                    li.appendChild(spanContainer);
+                li.appendChild(spanContainer);
 
-                    document.getElementById("EDITolist").appendChild(li);
+                document.getElementById("EDITolist").appendChild(li);
             
-                    var span = document.createElement("SPAN");
-                    var txt = document.createTextNode("\u00D7");
-                    span.className = "close2";
-                    span.appendChild(txt);
-                    li.appendChild(span);
-                    li.className = "list_item";
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close2";
+                span.appendChild(txt);
+                li.appendChild(span);
+                li.className = "list_item";
                                 
                                 
-                    //this one is to place the function remove on the newly added list item
-                    for (var i = 0; i < close2.length; i++) {
-                        close2[i].onclick = function() {
-                        var div = this.parentElement;
-                        div.remove();
-                        }
+                //this one is to place the function remove on the newly added list item
+                for (var i = 0; i < close2.length; i++) {
+                    close2[i].onclick = function() {
+                    var div = this.parentElement;
+                    div.remove();
                     }
                 }
-            });
+            }
+        });
+
+
+
+
     }
 
     $("#EDITingredient").click(function () { 
