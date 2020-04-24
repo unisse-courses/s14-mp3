@@ -30,38 +30,33 @@
                 </div>
             </div>
             {{#if posts}}
-            {{#each posts}}
-            <div class="card post_preview-container">
-              <div class="full-width-container post_preview-row0">
-                <img  src="../{{recipe_picture}}" class="img-fluid" id="recipe-user" alt="Card image cap">
+              {{#each posts}}
+              <div class="card post_preview-container">
+                <div class="full-width-container post_preview-row0">
+                  <img  src="../{{recipe_picture}}" class="img-fluid" id="recipe-user" alt="Card image cap">
+                </div>
+    
+                <div class="d-flex flex-column card-body post_preview-below_image">
+                  <div class="d-flex flex-column post_preview-row1">
+                    <h3 class="card-title">{{title}}</h3>
+                    <p class="card-subtitle"><span class="badge badge-light">By {{user.firstname}} {{user.lastname}}| @{{user.username}}</span></p>
+                  </div>
+    
+                  <div class="d-flex flex-column post_preview-row2">
+                    <p class="card-text" id="{{description}}"> </p> 
+                    <br>
+                    <a class="stretched-link" href="../recipe-post/{{_id}}">Continue reading...</a>
+                  </div>
+    
+                  <div class="d-flex justify-content-between flex-wrap post_preview-row3">
+                    <p class="card-text" id="upvotes"><small class="text-muted">{{upvotes}} UPVOTES</small></p>
+                    <p class="card-text" id="date"><small class="text-muted">{{dateposted}} {{timeposted}}</small></p>
+                  </div>
+    
+                </div>
               </div>
-  
-              <div class="d-flex flex-column card-body post_preview-below_image">
-                <div class="d-flex flex-column post_preview-row1">
-                  <h3 class="card-title">{{title}}</h3>
-                  <p class="card-subtitle"><span class="badge badge-light">By {{user.firstname}} {{user.lastname}}| @{{user.username}}</span></p>
-                </div>
-  
-                <div class="d-flex flex-column post_preview-row2">
-                  <p class="card-text" id="{{description}}"> </p> 
-                  <br>
-                  <a class="stretched-link" href="../recipe-post/{{_id}}">Continue reading...</a>
-                </div>
-  
-                <div class="d-flex justify-content-between flex-wrap post_preview-row3">
-                  <p class="card-text" id="upvotes"><small class="text-muted">{{upvotes}} UPVOTES</small></p>
-                  <p class="card-text" id="date"><small class="text-muted">{{dateposted}} {{timeposted}}</small></p>
-                </div>
-  
-              </div>
-            {{/each}}
-            
-            
-            
-            
-
-            
-            </div>
+              {{/each}}
+              
             {{else}}
             <h4 class="text-muted">Its empty over here</h4>
             {{/if}}

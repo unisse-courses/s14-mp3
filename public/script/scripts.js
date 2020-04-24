@@ -1491,27 +1491,13 @@ if (window.location.href.includes("account-profile")){
                     $("#accountbio").text(data.bio);
 
 
-                    $("#fullnameb").innertext(data.firstname + " " + data.lastname);
-                    $("#unameb").innertext(data.username);
-
+                    //$("#fullnameb").innertext(data.firstname + " " + data.lastname);
+                    //$("#unameb").innertext(data.username);
                 });
                 
 
                 window.location.href = "../account-profile/" + data.username;
-            }
-        );
-        $.post("edit-account", user,
-            function (data, status) {
-                $(document).ready(function () {
-                    $("#account-profile-picture").attr("src", data.profilepic);
-                    $("#accountname").text(data.firstname + " " + data.lastname);
-                    $("#accountusername").text(data.username);
-                    $("#accountbio").text(data.bio);
-                });
-
-                window.location.href = "../account-profile/" + data.username;
-            }
-        );
+        });
     });
 /* -------------------------------------------------- EditRecipePost.hbs -------------------------------------------------- */
 

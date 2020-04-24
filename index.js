@@ -786,8 +786,7 @@ var count;
               navUser: currUser.username,
               navIcon: currUser.profilepic,
               
-              stuff: data,
-              post: true
+              stuff: data
           })
       
         }
@@ -848,8 +847,7 @@ var count;
             
             account_link: acc,
             comment_count: data.comments.length,
-            comments: data.comments,
-            post: true
+            comments: data.comments
         })
       }
     })    
@@ -1001,7 +999,7 @@ app.post('/loginACTION', function(req, res) {
           if(accountResult){ // if the username entered exists in the db
               console.log("USERNAME EXISTS IN DB");
 
-              if(account.password == accountResult.password && account.username == accountResult.username) { // if the password entered matches with the password from the db
+              if(account.password == accountResult.password) { // if the password entered matches with the password from the db
                 console.log("PASSWORD IS RIGHT");
               
                 currUser = {
@@ -1023,6 +1021,46 @@ app.post('/loginACTION', function(req, res) {
                   username:   currUser.username,
                   profilepic: currUser.profilepic
                 }
+
+                postModel.updateMany({ "user.email": currUser.email },
+                  { $set: {
+                    "user.firstname": currUser.firstname,
+                    "user.lastname": currUser.lastname,
+                    "user.username": currUser.username,
+                    "user.password": currUser.password,
+                    "user.bio": currUser.bio,
+                    "user.profilepic ": currUser.profilepic
+                  } },
+                  
+                  function(err, result) {
+                    if (err) throw err;
+                  }
+                );
+
+                /*
+                  CODE TO UPDATE THE COMMENTS MADE W/ THE NEW ACCOUNT INFO
+
+                  *test this out siguro when comments are fully functional*
+
+                  commentsModel.updateMany({ "user.email": currUser.email },
+                    { $set: {
+                      "user.firstname": currUser.firstname,
+                      "user.lastname": currUser.lastname,
+                      "user.username": currUser.username,
+                      "user.password": currUser.password,
+                      "user.bio": currUser.bio,
+                      "user.profilepic ": currUser.profilepic
+                    } },
+                    
+                    function(err, result) {
+                      if (err) throw err;
+
+                    }
+                  );
+
+                */                
+
+                console.log("All Account Information has been updated");
 
                 console.log(currUser.username + " has logged in!");
                 console.log("Current user:");
@@ -1109,42 +1147,64 @@ app.post('/remember', function(req, res){
     }
     
     userModel.findOneAndUpdate(query, update, { new: false }, function(err, user) {
-      if (err) throw err;
-
-      prevUser = currUser;
-
-      currUser = {
-        email:      user.email,
-        firstname:  user.firstname,
-        lastname:   user.lastname,
-        username:   user.username, 
-        password:   user.password, 
-        bio:        user.bio, 
-        profilepic: user.profilepic
-      };
-
-      // updating posts that this user has made
-      postModel.find({user: prevUser})( function(err, posts){
         if (err) throw err;
-        
-        console.log(posts);
 
-        var i=0;
-
-        for(i=0; i<posts.length; i++) {
-          posts[i].user = currUser;
+        currUser = {
+          email:      currUser.email,
+          firstname:  update.firstname,
+          lastname:   update.lastname,
+          username:   update.username, 
+          password:   update.password, 
+          bio:        update.bio, 
+          profilepic: update.profilepic
         }
 
-        console.log("donw wt first find");
+      console.log("UPDATE OBJECT = " + JSON.stringify(update));
+      console.log("curruser OBJECT = " + JSON.stringify(currUser));
+      
+
+      postModel.updateMany({ "user.email": currUser.email },
+        { $set: {
+          "user.firstname": currUser.firstname,
+          "user.lastname": currUser.lastname,
+          "user.username": currUser.username,
+          "user.password": currUser.password,
+          "user.bio": currUser.bio,
+          "user.profilepic ": currUser.profilepic
+        } },
         
+        function(err, result) {
+          if (err) throw err;
 
-      });
+        }
+      );
 
+      /*
+        CODE TO UPDATE THE COMMENTS MADE W/ THE NEW ACCOUNT INFO
 
+        *test this out siguro when comments are fully functional*
 
-      res.send(currUser);
+        commentsModel.updateMany({ "user.email": currUser.email },
+          { $set: {
+            "user.firstname": currUser.firstname,
+            "user.lastname": currUser.lastname,
+            "user.username": currUser.username,
+            "user.password": currUser.password,
+            "user.bio": currUser.bio,
+            "user.profilepic ": currUser.profilepic
+          } },
+          
+          function(err, result) {
+            if (err) throw err;
+
+          }
+        );
+
+      */
+       
     });
-     
+
+    res.send(currUser);
   });
 
   app.post('/uniqueUsernameCheckEDIT', function(req, res) {
