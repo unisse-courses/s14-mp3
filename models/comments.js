@@ -17,7 +17,8 @@ const commentSchema = new mongoose.Schema(
         date: {type: String, required: true},
         time: {type: String, required: true},
         replies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment', required: false}],
-        _id:    {type: Number, required: true}
+        _id:    {type: Number, required: true},
+        recipe_id: {type: Number, required: true}
     },
     {
         toObject: { virtuals: true },
