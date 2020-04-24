@@ -802,11 +802,13 @@ var count;
   });
 
   app.post('/loadLists', function(req, res) {
-    console.log("before sending data in index");
+    
 
     postModel.findOne({_id: req.body.id}).lean().exec(function(err, data){
       if(err) throw err;
 
+      console.log(data.ingredients);
+      console.log(data.instructions)
       if(data){
         res.send(data)
       }
@@ -815,6 +817,30 @@ var count;
   });
 
 
+
+  app.post('/loadInstructions', function(req, res) {
+  
+    postModel.findOne({_id: req.body.id}).lean().exec(function(err, data){
+      if(err) throw err;
+
+      if(data){
+        res.send(data.instructions)
+      }
+
+    });
+  });
+
+  app.post('/loadIngredients', function(req, res) {
+  
+    postModel.findOne({_id: req.body.id}).lean().exec(function(err, data){
+      if(err) throw err;
+
+      if(data){
+        res.send(data.ingredients)
+      }
+
+    });
+  });
 // RECIPE POST
   app.get('/recipe-post/:param', function(req, res) {
     var id = req.params.param;
@@ -963,7 +989,7 @@ var count;
 
 // USER LOGIN FEATURE
   // POST
-app.post('/loginACTION', function(req, res) {
+  app.post('/loginACTION', function(req, res) {
     var result;
     console.log("checked: " + req.body.remember);
 
@@ -1097,7 +1123,7 @@ app.post('/loginACTION', function(req, res) {
   });
       
 
-app.post('/remember', function(req, res){
+  app.post('/remember', function(req, res){
   if(rememberMe == "true"){
     var stuff = {
       username: currUser.username,
@@ -1114,7 +1140,7 @@ app.post('/remember', function(req, res){
     }
     res.send(stuff)
   }
-})
+  })
 
 // EDIT ACCOUNT PROFILE
   app.post('/edit-account/', function(req, res) {
@@ -1315,8 +1341,53 @@ app.post('/remember', function(req, res){
 
 // UPDATE RECIPE POST
   app.post('/updatePost', function(req, res) {
-    // todo
+    var query = {
+      _id: req.body._id
+    }
+
+    var update
+
+    postModel.findOne({_id: req.body._id}).lean().exec(function (err, data){
+      if (req.body.recipe_picture == "")
+    {
+      update = {
+        _id: data._id,
+        title: req.body.title,
+        user: data.user,
+        upvotes: data.upvotes,
+        dateposted: data.dateposted,
+        timeposted: data.timeposted,
+        recipe_picture: data.recipe_picture,
+        description: req.body.description,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+        comments: data.comments
+      }
+    }
+    else
+    {
+      update = {
+        _id: data._id,
+        title: req.body.title,
+        user: data.user,
+        upvotes: data.upvotes,
+        dateposted: data.dateposted,
+        timeposted: data.timeposted,
+        recipe_picture: req.body.recipe_picture,
+        description: req.body.description,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+        comments: data.comments
+      }
+    }
+    console.log(update)
+    postModel.findOneAndUpdate(query, update, {new: false}, function (err,new_post){
+      res.send(new_post)
+    })
+
+    });
   });
+  
 
 
 // DELETE RECIPE POST

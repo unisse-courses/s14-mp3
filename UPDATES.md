@@ -25,8 +25,8 @@
     - [x] Update the code using the updated current user code
     - [x] Make a function that will generate a post id (incrementing numbers)
     - [X] should be redirected to the correct route (which is the new post created)
-- [ ] Edit Post
-  - [ ] Save Button -> Should update the post info in the db & update the page information agad
+- [X] Edit Post
+  - [X] Save Button -> Should update the post info in the db & update the page information agad
   - [X] Post info should be pre-loaded na
 - [ ] Recipe Post
   - [ ] Reply Button -> Should append the reply INSIDE of the list of the specific comment
@@ -36,10 +36,10 @@
     - [ ] Load previously saved comments from db to the page (nasa GET request for route 'recipe-post/:param')
   - [ ] REPLIES
     - [ ] Fix the formatting of the Nested Replies within the Comment (mali yung pag format ko sa html dati so pls fix it na lang rin -sam)
-  - [ ] Edit Post Button -> Should send the post info to the Edit Post Route
-  - [ ] Delete Post Button (IN MODAL) -> Should delete the post from the db
+  - [X] Edit Post Button -> Should send the post info to the Edit Post Route
+  - [X] Delete Post Button (IN MODAL) -> Should delete the post from the db
   - [X] Upvote & Downvote Button -> Should update the upvote value in db
-- [ ] Account Profile
+- [X] Account Profile
   - [X] Edit Account Button -> Should send the account info to the Edit Account Route
   - [X] Delete Account Button (IN MODAL) -> Should delete the user from the db
   - [X] Should have ALL of the posts under that user pre-loaded
