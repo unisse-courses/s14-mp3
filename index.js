@@ -845,7 +845,7 @@ var count;
   app.get('/recipe-post/:param', function(req, res) {
     var id = req.params.param;
 
-    postModel.findOne({_id: id}).exec(function(err, data){
+    postModel.findOne({_id: id}).lean().exec(function(err, data){
       if(err) throw err;
 
       if(data){
