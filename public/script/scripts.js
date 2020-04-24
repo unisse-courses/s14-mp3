@@ -1596,10 +1596,6 @@ if (window.location.href.includes("account-profile")){
             window.location.href="../recipe-post/" + url
         });
 
-        $.post('../updatePost', new_post, function(data,status) {
-            window.location.href="../recipe-post/" + url
-        });
-
     });
 
     if(window.location.href.indexOf("edit-recipe") > -1){
