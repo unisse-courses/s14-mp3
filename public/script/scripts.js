@@ -936,17 +936,18 @@ $(document).ready(function() {
                 // LIST is the BIGGEST div
                 list.append(profileImg);
                 list.append(bigDiv);
-/*
-                if (item.replies.length != 0)
+
+                
+            // STEP 5: Append the BIGGEST div to the PARENT DIV (which is the parameter of this function)
+                parentDiv.append(list);
+
+                if (!item.replies.length < 1)
                 {
                     for ( i = 0 ; i < item.replies.length ; i++)
                     {
-                        appendReply(item.replies[i], list)
+                        appendReply(item.replies[i], parentDiv)
                     }
                 }
-*/
-            // STEP 5: Append the BIGGEST div to the PARENT DIV (which is the parameter of this function)
-                parentDiv.append(list);
         }
         
         function appendReply(item, parentDiv) {
@@ -1026,9 +1027,11 @@ $(document).ready(function() {
                     appendComment(item, commentsContainer);
                 });   
             // This is a loop that appends ALL the existing REPLIES of the DUMMY DATA
+            /*
                 data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
                     appendReply(item, commentsContainer);
                 });
+                */
             }
         });
     
