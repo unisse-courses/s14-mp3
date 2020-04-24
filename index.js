@@ -851,38 +851,29 @@ var count;
       if(data){
         var acc = "account-profile/" + data.user.username;
 
-        commentsModel.find({recipe_id: id}).exec(function(err, data2){
-          if (err) throw err;
-
-          console.log(data2);
-          if (data2){
-            res.render('RecipePost', {
-              // for main.hbs
-                styles: "../css/styles_inside.css",
-                tab_title: "Recipe Post",
-                body_class: "inside",
-                navUser: currUser.username,
-                navIcon: currUser.profilepic,
+          res.render('RecipePost', {
+            // for main.hbs
+               styles: "../css/styles_inside.css",
+              tab_title: "Recipe Post",
+              body_class: "inside",
+              navUser: currUser.username,
+              navIcon: currUser.profilepic,
                 
-                title: data.title,
-                upvote_score: data.upvotes,
-                date_posted: data.dateposted,
-                time_posted: data.timeposted,
-                username: data.user.username,
-                firstname: data.user.firstname,
-                lastname: data.user.lastname,
-                picture: data.recipe_picture,
-                description: data.description,
-                ingredients: data.ingredients,
-                instructions: data.instructions,
-                
-                account_link: acc,
-                comment_count: data2.length,
-                comments: data2,
-                post: true
+              title: data.title,
+              upvote_score: data.upvotes,
+              date_posted: data.dateposted,
+              time_posted: data.timeposted,
+              username: data.user.username,
+              firstname: data.user.firstname,
+              lastname: data.user.lastname,
+              picture: data.recipe_picture,
+              description: data.description,
+              ingredients: data.ingredients,
+              instructions: data.instructions,
+              comment_count: data.comments.length,
+              account_link: acc,
+              post: true
             })
-          }
-        })
       }
     })    
   });
@@ -1451,9 +1442,15 @@ var count;
 
 
 // VIEW COMMENT
-// app.post('/getCommentRow', function(req, res) {
+app.post('/getComments', function(req, res) {
+  postModel.findOne({_id: req.body._id}).lean().exec(function (err, postComments){
+    if (err) throw err;
 
-// });
+
+
+    res.send(postComments.comments)
+  })
+});
 
 // DELETE COMMENT
     // TODO: not sure how for ajax

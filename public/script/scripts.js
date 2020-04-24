@@ -1006,29 +1006,32 @@ $(document).ready(function() {
                 parentDiv.append(bigUL);
         }
 
-        /*$.get("getCommentRow", function (data, status) { // This function GETS the existing comments from the DUMMY DATA
+
+        var url = window.location.href;
+        url = url.slice(34)
+        url = url.replace(/\D/g,'');
+
+        var stuff = {
+            _id: url
+        }
+
+        $.post("../getComments", stuff, function (data, status) { // This function GETS the existing comments from the DUMMY DATA
             // We just place these in console to make sure there are no errors
-                console.log(data);
-                console.log(status);
-            
+
             // This variable is the DIV that we want to populate
                 var commentsContainer = $("#commentList");
-
-            
-            // This is a loop that appends ALL the existing COMMENTS of the DUMMY DATA
+            if (!data.length < 1){
+                // This is a loop that appends ALL the existing COMMENTS of the DUMMY DATA
                 data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
                     appendComment(item, commentsContainer);
-                });
-            /*   
+                });   
             // This is a loop that appends ALL the existing REPLIES of the DUMMY DATA
                 data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
                     appendReply(item, commentsContainer);
                 });
-            
+            }
         });
-        */
-        
-
+    
         $('#addComment-btn').click(function() {  
             var content = $("#olinput").val();
             console.log(content);
