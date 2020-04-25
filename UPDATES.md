@@ -32,8 +32,8 @@
   - [ ] Reply Button -> Should append the reply INSIDE of the list of the specific comment
   - [ ] COMMENTS
     - [ ] Comments save in the db (rn it shows in the page but not yet saved)
-    - [ ] Comments Counter (not including replies) is updated (Badge beside "Comment Section" Label)
-    - [ ] Load previously saved comments from db to the page (nasa GET request for route 'recipe-post/:param')
+    - [X] Comments Counter (not including replies) is updated (Badge beside "Comment Section" Label)
+    - [X] Load previously saved comments from db to the page (nasa GET request for route 'recipe-post/:param')
   - [ ] REPLIES
     - [ ] Fix the formatting of the Nested Replies within the Comment (mali yung pag format ko sa html dati so pls fix it na lang rin -sam)
   - [X] Edit Post Button -> Should send the post info to the Edit Post Route
