@@ -1399,6 +1399,7 @@ var count;
   })
 // POST COMMENT
   app.post('/addCommentRow', function(req, res) {
+    console.log(req.body);
     var the_USER = new userModel({
       email:      currUser.email,
       firstname:  currUser.firstname,
@@ -1454,9 +1455,9 @@ app.post('/getComments', function(req, res) {
 
 // DELETE COMMENT
     // TODO: not sure how for ajax
-app.post('/deleteCommentRow', function (req, res) {
-  console.log(req.body);
-});
+// app.post('/deleteCommentRow', function (req, res) {
+//   console.log(req.body);
+// });
 
 // CREATE REPLY
 app.post('/addReplyRow', function(req, res) {

@@ -894,6 +894,21 @@ $(document).ready(function() {
                 var smallDiv = document.createElement('div');
                 var replyButton = document.createElement('button');
 
+                if (localStorage.getItem("activeUser")== user.username){
+                    var deleteButton = document.createElement('button');
+                    $(deleteButton).addClass("btn btn-outline-secondary");
+                    $(deleteButton).attr("type", "button");
+                    $(deleteButton).attr("id", "DELETION");
+                    $(deleteButton).attr("data-toggle", "modal");
+                    $(deleteButton).attr("data-target", "#delete-comment");
+                    $(deleteButton).text("Delete");
+                    console.log("same user");
+                    smallDiv.append(deleteButton);
+                }
+                else {
+                    console.log("wrong sht men");
+                }
+                
             // STEP 2: Add the attributes and classes in each tag (we did it by order rin so its not confusing)
                 $(list).addClass("media post-comment-thread");
 
@@ -910,6 +925,7 @@ $(document).ready(function() {
                 $(smallDiv).addClass("d-flex flex-row justify-content-end");
                 $(replyButton).addClass("btn btn-outline-secondary");
                 $(replyButton).attr("type", "button");
+                $(replyButton).attr("id", "REPLYIN");
                 $(replyButton).attr("data-toggle", "modal");
                 $(replyButton).attr("data-target", "#reply");
 
@@ -924,7 +940,7 @@ $(document).ready(function() {
 
             // STEP 4: We append from the INNERMOST to the OUTERMOST container 
                 smallDiv.append(replyButton);
-
+                
                 person.append(anchor);
 
                 bigDiv.append(person);
