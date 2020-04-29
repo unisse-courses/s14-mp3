@@ -1,0 +1,23 @@
+<!-- BODY CLASS = INSIDE-->
+
+        {{>navbar username=navUser}}
+
+        <div class="d-flex flex-column content">
+            <div class="input-group search_bar">
+                <div class="input-group-prepend">
+                    <select class="custom-select" id="inputGroupSelect02">
+                    <option selected>Search by...</option>
+                    <option value="1">Username</option>
+                    <option value="2">Recipe Post Title</option>
+                    </select>
+                </div>
+
+                <input type="text" class="form-control" aria-describedby="button-addon2" id="searching">
+
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                </div>
+            </div> 
+            <div id="searchList" class="container"></div>
+            
+        </div>

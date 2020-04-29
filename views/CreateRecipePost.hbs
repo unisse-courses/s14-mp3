@@ -1,0 +1,77 @@
+<!-- BODY CLASS = INSIDE-->
+
+        {{>navbar username=navUser}}
+
+        <div class="d-flex flex-column content">
+                <form class="main-form">
+                    <div class="form-row">
+                        <h2>Create Recipe Post</h2>
+                    </div>
+
+                     <div class="form-row">
+                        <label>Title of Recipe</label>
+                        <input type="text" class="form-control" id="post_title">
+                        <label id="ltitle" class="warning"></label>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="recipePic">Choose a Thumbnail for your Post</label>
+                        <input type="file" class="form-control-file" accept="image/*" id="thumbnail">  
+                        <label id="lThumb" class="warning"></label>
+                    </div>
+                            
+                    <div class="form-row">
+                        <label>Description</label>
+                        <textarea class="form-control" id="description"></textarea>
+                        <label id="lDesc" class="warning"></label>
+                    </div>
+                            
+                    <div class="form-row">
+                        <div class="form-col ingdiv">
+                            <label>Ingredients</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="ulinput1" placeholder="Quantity" aria-label="Quantity">
+                                <input type="text" class="form-control" id="ulinput2" placeholder="Unit" aria-label="Unit">
+                                <input type="text" class="form-control" id="ulinput3" placeholder="Ingredient Name" aria-label="Ingredient Name">
+
+
+                                <div class="input-group-append">
+                                    <button id="addIngredient" class="btn btn-outline-secondary btn-sm add-btn" type="button" >
+                                        Add Ingredient
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="list_container">
+                                <ul class="listgroup" id="ulist"></ul>
+                            </div>
+
+                            <label id="lIngred" class="warning"></label>
+                        </div>
+
+                        <div class="form-col insdiv">
+                            <div class="form-row">
+                                <label>Instructions</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="olinput">
+        
+                                    <div class="input-group-append">
+                                        <button id="addInstruction" class="btn btn-outline-secondary btn-sm add-btn" type="button">
+                                            Add Instruction
+                                        </button>
+                                    </div>
+                                </div> 
+
+                                <div class="list_container">
+                                    <ol class="listgroup" id="olist"></ol>
+                                </div>
+
+                                <label id="lInst" class="warning"></label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <button id="postRecipe" class="btn btn-primary">Post</button>
+                </form>
+        </div>

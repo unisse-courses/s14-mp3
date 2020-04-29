@@ -1,0 +1,198 @@
+<!-- BODY CLASS = INSIDE-->
+
+        {{>navbar username=navUser}}
+        
+        <div class="d-flex flex-column content">
+          <div class="container post-container" >
+      
+            <div class="d-flex align-items-end post-row0">
+                <div class="post-header_left">
+                  <a id="acc_badge" href="#" id="title_username-badge"><span class="badge badge-light post-stamps sides">By <span id="fullnameb">{{firstname}} {{lastname}}</span> | @<span id="unameb">{{username}}</span></span></a>
+                </div>
+                
+                <div class="post-header_mid">
+                  <h1 class="display-3">{{title}}</h1>
+
+                  <span class="badge badge-light" id="votes">
+                    <a href="#"><img class="img-fluid" src="../images/upvote.png" id="upvote-icon"></a>
+                    <span id="voteCount" class="post-stamps">{{upvote_score}}</span>
+                    <a href="#"><img class="img-fluid" src="../images/downvote.png" id="downvote-icon"></a>
+                  </span>
+                  
+                </div>
+
+                <div class="post-header_right">
+                  <span class="badge badge-light post-stamps sides">{{date_posted}} {{time_posted}}</span>
+                </div>
+                  
+            </div>
+        
+            <div class="row justify-content-md-center post-row1">
+              <div class="card">
+                <div class="card post-image_div" >
+                  <img class="card-img-top img-fluid" src="{{picture}}" id="post-image" alt="Card image cap">
+                </div>  
+
+                <div class="card-body">
+                  <p class="card-text">
+                    {{description}}
+                  </p>
+                </div>
+                
+              </div> 
+
+            </div>
+        
+            <div class="d-flex justify-content-between post-row2">
+                <div class="post-ingredients">
+                  <table class="table" id="table-ingredients">
+                    <thead>
+                      <tr>
+                        <th colspan="1">Ingredients</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      {{#each ingredients}}  
+                      <tr>
+                        <td>{{this.quantity}} {{this.unit}} {{this.name}}</td>
+                      </tr>
+                      {{/each}}
+
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="post-instructions">
+                  <table class="table" id="table-instructions">
+                    <thead>
+                      <tr>
+                        <th colspan="2">Cooking Instructions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      {{#each instructions}}
+                      <tr>
+                        <th scope="row">{{incremented @index}}</th>
+                        <td>{{this}}</td>
+                      </tr>
+                      {{/each}}
+
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+
+            <div class="row full-width-container post-row3">
+              <div class="container-fluid post-comment-section">
+                <h2>Comment Section <span class="badge badge-secondary">{{comment_count}}</span></h2>
+              </div>
+
+              <div class ="post-comment-input">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="olinput">
+                      
+                    <div class="input-group-append">
+                      <button id="addComment-btn" class="btn btn-outline-secondary add-btn" type="button">
+                          Comment
+                      </button>
+                    </div>
+                  </div>
+              </div>
+
+              <ul id="commentList" class="post-comments-list">
+                <!-- Comments & Replies will be loaded by 'getCommentRow' in scripts.js-->
+                
+              </ul>
+
+              <!-- Modal for REPLY BUTTON -->
+                <div class="modal fade" id="reply" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog" style="margin-top: 60px;" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">New Reply</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+
+                      <div class="modal-body">
+                          <form>
+                              <div class="form-group">
+                                  <label for="reply-label" class="col-form-label">Please input your reply:</label>
+                                  <input type="text" class="form-control" id="reply-input">
+                              </div>
+                          </form>
+                      </div>
+
+                      <div class="modal-footer">
+                          <button id="reply-btn" type="button" class="btn btn-primary">Reply</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      </div>
+
+                    </div> 
+                  </div>        
+                </div>
+
+                <!-- Modal for DELETE COMMENT BUTTON -->
+                <div class="modal fade" id="delete-comment" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog" style="margin-top: 60px;" role="document">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Delete Comment</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+               
+                      <div class="modal-body">
+                        This cannot be undone. <br>
+                        Are you sure you want to delete your comment?
+                      </div>
+                                     
+                      <div class="modal-footer">
+                        <button id="delete-COMMENT" type="button" class="btn btn-danger">Delete Comment</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      </div>
+                                     
+                    </div>
+                  </div>         
+                </div>
+
+              
+              <button type="button" class="btn btn-outline-success btn-lg btn-block" id="edit_post-btn">Edit Recipe Post</button>
+ 
+              <button type="button" class="btn btn-outline-danger btn-lg btn-block" id="delete_post-btn" data-toggle="modal" data-target="#delete_post-modal">Delete Recipe Post</button>
+               
+              <!-- Modal for DELETE BUTTON-->
+                <div class="modal fade" id="delete_post-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog" style="margin-top: 60px;" role="document">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Delete My Post</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+               
+                      <div class="modal-body">
+                        This cannot be undone. <br>
+                        Are you sure you want to delete your post?
+                      </div>
+                                     
+                      <div class="modal-footer">
+                        <button id="delete" type="button" class="btn btn-danger">Delete Post</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      </div>
+                                     
+                    </div>
+                  </div>        
+                </div>
+            
+            </div>
+        
+          </div>
+        </div>

@@ -1,0 +1,65 @@
+<!-- BODY CLASS = INSIDE-->
+
+        {{>navbar username=navUser}}
+        
+        <div class="d-flex flex-column content">
+            
+            <!-- PLACE THE DIVS HERE INSIDE THE CONTENT -->
+                <div class="form_container">
+                    <form>
+                        <div class="form-row">
+                            <h2>Edit Account Profile</h2>
+                        </div>
+
+                        <div class="form-row">
+                            <label>Email</label>
+                            <input type="text" class="form-control" value="{{email}}" readonly>
+                            <small class="form-text text-muted">For display purposes only. Your email account cannot be changed.</small>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="EDITfirstname">First name</label>
+                            <input type="text" class="form-control" name="editfirstname" id="EDITfirstName" placeholder="e.g. Cardo" value="{{firstname}}">
+                            <label id="validFirst" class="warning"></label>
+                        </div>
+    
+                        <div class="form-row">
+                            <label for="EDITlastName">Last name</label>
+                            <input type="text" class="form-control" name="editlastname" id="EDITlastName" placeholder="e.g. Dalisay" value="{{lastname}}">
+                            <label id="validLast"class="warning"></label>
+                        </div>
+    
+                        <div class="form-row">
+                            <label for="EDITuserName">Username</label>
+                            <input type="text" class="form-control" name="editusername" id="EDITuserName" placeholder="e.g. The Next 15 Years" value="{{username}}">
+                            <label id="validUser"class="warning"></label>
+                        </div>
+    
+                        <div class="form-row">
+                            <label for="EDITpassword">Password</label>
+                            <input type="password" class="form-control" name="editpassword" id="EDITpassword" placeholder="" value="{{password}}">
+                            <label id="validPass"class="warning"></label>
+                        </div>
+    
+                        <div class="form-row">
+                            <label for="EDITprofilePic">Choose a Profile Picture</label>
+                            <input type="file" class="form-control-file" accept="image/*" name="editprofpic" id="EDITprofilePic" src="{{profilepic}}">  
+                        </div>
+                        
+                        <div class="form-row" id="previewContainer">
+                            <img class="preview" id="EDITpreviewPic" src="{{profilepic}}">
+                        </div>    
+
+                        <div class="form-row">
+                            <label for="EDITbio"><br>Short Bio</label>
+                            <textarea class="form-control" name="editbio" id="EDITbio" rows="3">{{bio}}</textarea>
+                            <small id="assure" class="form-text text-muted">
+                                Don't worry you can leave this blank :^)                                                                                                                                                                                                                                                                                                                            
+                            </small>
+                        </div>
+                        
+                        
+                    </form>
+                    <button id="updateAccount" class="btn btn-primary">Update</button>
+                </div>
+            </div>
