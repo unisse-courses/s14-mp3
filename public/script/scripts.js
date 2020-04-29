@@ -930,9 +930,9 @@ $(document).ready(function() {
                 $(replyButton).attr("data-target", "#reply");
 
             // STEP 3: We went through each tag that has TEXT inside the tag
-                $(anchor).text("By " + user.firstname + " " + user.lastname + " | " + user.username);
+                $(anchor).text("By " + item.user.firstname + " " + item.user.lastname + " | " + item.user.username);
 
-                $(time).text(' ' + item.dateposted + " " + item.timeposted);
+                $(time).text(' ' + item.date + " " + item.time);
 
                 $(laman).text(item.content);
 
@@ -1037,8 +1037,8 @@ $(document).ready(function() {
 
             // This variable is the DIV that we want to populate
                 var commentsContainer = $("#commentList");
-            if (!data.length >= 1){
-                console.log("Not empty")
+            if (data.comments.length >= 1){
+                console.log(data.comments)
                 data.comments.forEach((item, i) => { 
                     appendComment(item, commentsContainer);
                 });   

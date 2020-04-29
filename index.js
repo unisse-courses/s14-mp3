@@ -1425,14 +1425,14 @@ var count;
 
 // VIEW COMMENT
 app.post('/getComments', function(req, res) {
-  postModel.find({_id: req.body._id}).lean().exec(function (err, postComments){
+  postModel.findOne({_id: req.body._id}).lean().exec(function (err, postComments){
     if (err) throw err;
 
     var stuff = {
-      comments: postComments
+      comments: postComments.comments
     }
 
-    console.log(stuff);
+    console.log(stuff.comments);
 
     res.send(stuff);
   })
