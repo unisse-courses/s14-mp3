@@ -1056,6 +1056,11 @@ $(document).ready(function() {
             console.log(content);
             var replies = [{}];
 
+            var url = window.location.href;
+            url = url.slice(34);
+            url = url.replace(/\D/g,'');
+            console.log(url);
+
             var today = new Date();
             var DATE = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
             var TIME = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
@@ -1073,7 +1078,8 @@ $(document).ready(function() {
                     content:         content,
                     date:            DATE,
                     time:            TIME,
-                    replies:         replies
+                    replies:         replies,
+                    recipe_id:       url
                   }
                   console.log(comment);
                 $.post('/addCommentRow', comment, function(data,status) {
@@ -1092,6 +1098,9 @@ $(document).ready(function() {
             console.log(content);
             var replies = [{}];
 
+            var url = window.location.href;
+            url = url.slice(34);
+            
             var today = new Date();
             var DATE = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
             var TIME = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
@@ -1107,7 +1116,8 @@ $(document).ready(function() {
                 content:              content,
                 date:                 DATE,
                 time:                 TIME,
-                replies:              replies
+                replies:              replies,
+                recipe_id:            url
                 }
 
                 $.post('/addReplyRow', reply, function(data, status) {
@@ -1117,6 +1127,21 @@ $(document).ready(function() {
             }
         });
 
+        $('#delete-COMMENT').click(function(){
+            var url = window.location.href;
+            url = url.slice(34)
+            url = url.replace(/\D/g,'');
+
+            var stuff = {
+                num: url,
+            }
+
+            console.log(stuff.num)
+
+            $.post("../deleteCommentRow", stuff ,function (data) {
+                
+            });
+        });
 
     };
 

@@ -1416,27 +1416,55 @@ var count;
         date:         req.body.date,
         time:         req.body.time,
         replies:      req.body.replies,
-        _id:          count
+        _id:          count + 1,
+        recipe_id:    req.body.recipe_id
       })
 
       comment.save(function(err, comment) {
         var result;
     
         if (err) {
-          console.log(err.errors);
+          console.log(err);
     
           result = { success: false, message: "Comment not Successful!" }
           res.send(result);
         }
         else {
           console.log("Successfully commented on a recipe post!");
-          console.log(comment);
           
-          result = { success: true, message: "Comment created!" }
-          posts[0].comments.push(comment);
-          res.status(200).send(result);
+          posts[req.body.recipe_id-1].comments.push(comment);
+          
+          console.log(posts[req.body.recipe_id-1].comments);
+          console.log(posts[req.body.recipe_id-1].comments.length);
+
+          var query = {
+            _id: req.body.recipe_id
+          }
+
+          var update;
+
+          postModel.findOne({_id : req.body.recipe_id }).lean().exec(function(err, data){
+            
+              update = {
+                _id: data._id,
+                title: data.title,
+                user: the_USER,
+                upvotes: data.upvotes,
+                dateposted: data.dateposted,
+                timeposted: data.timeposted,
+                recipe_picture: data.recipe_picture,
+                description: data.description,
+                ingredients: data.ingredients,
+                instructions: data.instructions,
+                comments: posts[req.body.recipe_id-1].comments
+              }
+            
+              postModel.findOneAndUpdate(query, update, {new: false}, function (err,new_post){
+                console.log(new_post);
+                res.status(200).send(new_post);
+              })
+          })
         }
-    
       });
     })
   });
@@ -1444,20 +1472,26 @@ var count;
 
 // VIEW COMMENT
 app.post('/getComments', function(req, res) {
-  postModel.findOne({_id: req.body._id}).lean().exec(function (err, postComments){
+  postModel.findMany({_id: req.body._id}).lean().exec(function (err, postComments){
     if (err) throw err;
 
+    console.log(postComments.comments);
 
-
-    res.send(postComments.comments)
+    res.send(postComments.comments);
   })
 });
 
 // DELETE COMMENT
     // TODO: not sure how for ajax
-// app.post('/deleteCommentRow', function (req, res) {
-//   console.log(req.body);
-// });
+app.post('/deleteCommentRow', function (req, res) {
+  postModel.findOne({_id: req.body.num}).lean().exec(function(err, postResults){
+    commentsModel.findOneAndRemove({recipe_id: postResults._id}).lean().exec(function(err, commentResult){
+      if (err) throw err;
+
+      console.log("comment deleted");
+    });
+  });
+});
 
 // CREATE REPLY
 app.post('/addReplyRow', function(req, res) {
@@ -1477,7 +1511,8 @@ app.post('/addReplyRow', function(req, res) {
       date:         req.body.date,
       time:         req.body.time,
       replies:      req.body.replies,
-      _id:          count
+      _id:          count + 1,
+      recipe_id:    req.body.recipe_id
     });
 
     reply.save(function(err, reply) {
@@ -1493,9 +1528,38 @@ app.post('/addReplyRow', function(req, res) {
         console.log("Successfully commented on a recipe post!");
         console.log(reply);
         
-        result = { success: true, message: "Comment created!" }
-        posts[0].comments.push(reply);
-        res.status(200).send(result);
+        posts[req.body.recipe_id-1].comments.push(comment);
+          
+        console.log(posts[req.body.recipe_id-1].comments);
+        console.log(posts[req.body.recipe_id-1].comments.length);
+
+        var query = {
+          _id: req.body.recipe_id
+        }
+
+        var update;
+
+        postModel.findOne({_id : req.body.recipe_id }).lean().exec(function(err, data){
+          
+            update = {
+              _id: data._id,
+              title: data.title,
+              user: the_USER,
+              upvotes: data.upvotes,
+              dateposted: data.dateposted,
+              timeposted: data.timeposted,
+              recipe_picture: data.recipe_picture,
+              description: data.description,
+              ingredients: data.ingredients,
+              instructions: data.instructions,
+              comments: posts[req.body.recipe_id-1].comments
+            }
+          
+            postModel.findOneAndUpdate(query, update, {new: false}, function (err,new_post){
+              console.log(new_post);
+              res.status(200).send(new_post);
+            })
+        })
       }
     })
   });
