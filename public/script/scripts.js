@@ -892,8 +892,8 @@ $(document).ready(function() {
                 var laman = document.createElement('span');
 
                 var smallDiv = document.createElement('div');
-                var replyButton = document.createElement('button');
-
+                //var replyButton = document.createElement('button');
+                /*
                 if (localStorage.getItem("activeUser")== user.username){
                     var deleteButton = document.createElement('button');
                     $(deleteButton).addClass("btn btn-outline-secondary");
@@ -908,7 +908,7 @@ $(document).ready(function() {
                 else {
                     console.log("wrong sht men");
                 }
-                
+                */
             // STEP 2: Add the attributes and classes in each tag (we did it by order rin so its not confusing)
                 $(list).addClass("media post-comment-thread");
 
@@ -923,11 +923,11 @@ $(document).ready(function() {
                 $(time).addClass("text-muted");
 
                 $(smallDiv).addClass("d-flex flex-row justify-content-end");
-                $(replyButton).addClass("btn btn-outline-secondary");
-                $(replyButton).attr("type", "button");
-                $(replyButton).attr("id", "REPLYIN");
-                $(replyButton).attr("data-toggle", "modal");
-                $(replyButton).attr("data-target", "#reply");
+                //$(replyButton).addClass("btn btn-outline-secondary");
+                //$(replyButton).attr("type", "button");
+                //$(replyButton).attr("id", "REPLYIN");
+                //$(replyButton).attr("data-toggle", "modal");
+               // $(replyButton).attr("data-target", "#reply");
 
             // STEP 3: We went through each tag that has TEXT inside the tag
                 $(anchor).text("By " + item.user.firstname + " " + item.user.lastname + " | " + item.user.username);
@@ -936,10 +936,10 @@ $(document).ready(function() {
 
                 $(laman).text(item.content);
 
-                $(replyButton).text("Reply");
+                //$(replyButton).text("Reply");
 
             // STEP 4: We append from the INNERMOST to the OUTERMOST container 
-                smallDiv.append(replyButton);
+                //smallDiv.append(replyButton);
                 
                 person.append(anchor);
 
