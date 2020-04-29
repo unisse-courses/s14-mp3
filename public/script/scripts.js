@@ -932,7 +932,7 @@ $(document).ready(function() {
             // STEP 3: We went through each tag that has TEXT inside the tag
                 $(anchor).text("By " + user.firstname + " " + user.lastname + " | " + user.username);
 
-                $(time).text(' ' + item.date + " " + item.time);
+                $(time).text(' ' + item.dateposted + " " + item.timeposted);
 
                 $(laman).text(item.content);
 
@@ -957,7 +957,7 @@ $(document).ready(function() {
             // STEP 5: Append the BIGGEST div to the PARENT DIV (which is the parameter of this function)
                 parentDiv.append(list);
 
-                if (!item.replies.length < 1)
+                if ('replies' in item)
                 {
                     for ( i = 0 ; i < item.replies.length ; i++)
                     {
@@ -971,7 +971,7 @@ $(document).ready(function() {
             // the variable 'post' from the dummy data is represented by 'item'
             var reply = item;
             var user = item.user;
-
+            console.log(user);
             // STEP 1: Create a variable for each tag used (we did ours in order of the original html code)
                 var bigUL = document.createElement('ul');
                 var list = document.createElement('li');
@@ -1037,17 +1037,12 @@ $(document).ready(function() {
 
             // This variable is the DIV that we want to populate
                 var commentsContainer = $("#commentList");
-            if (!data.length < 1){
-                // This is a loop that appends ALL the existing COMMENTS of the DUMMY DATA
-                data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
+            if (!data.length >= 1){
+                console.log("Not empty")
+                data.comments.forEach((item, i) => { 
                     appendComment(item, commentsContainer);
                 });   
-            // This is a loop that appends ALL the existing REPLIES of the DUMMY DATA
-            /*
-                data.forEach((item, i) => { // item here represents 'posts[i].comments' which is the comments array of a specific post 
-                    appendReply(item, commentsContainer);
-                });
-                */
+
             }
         });
     
@@ -1067,6 +1062,8 @@ $(document).ready(function() {
 
             if(content != "") // if comment field is not empty
             {
+
+
                 var comment = {
 
                     user: {
@@ -1079,9 +1076,11 @@ $(document).ready(function() {
                     date:            DATE,
                     time:            TIME,
                     replies:         replies,
-                    recipe_id:       url
-                  }
-                  console.log(comment);
+                    recipe_id:       url,
+                    replies:         []
+                }
+                console.log(comment);
+
                 $.post('/addCommentRow', comment, function(data,status) {
                     console.log(data);
                     var commentsContainer = $("#commentList");

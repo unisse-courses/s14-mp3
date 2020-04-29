@@ -21,7 +21,7 @@ const postSchema = new mongoose.Schema( // TO BE UPDATED AFTER COMMENTS
         description: {type: String, required: true, max: 250},
         ingredients: [{type: mongoose.Schema.Types.Mixed, required: true}],
         instructions: [{type: String, required: true}],
-        comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment', required: false}]
+        comments: [{type: mongoose.Schema.Types.Mixed, ref: 'Comment', required: false}]
     },
     {
         toObject: { virtuals: true },
