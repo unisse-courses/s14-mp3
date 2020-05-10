@@ -1,70 +1,39 @@
 ### **TODO**
-1. ALL PAGES (10 pages in total)
-- [X] Index
-  - [X] Make Guest Account work again
-- [X] User Login
-  - [X] "Remember Me" Feature
-  - [X] Make a validation error (SAME PAGE) if the login info is wrong / doesnt exist 
-- [X] Create Account
-  - [x] Creates an account & is reflected in mongoose
-  - [x] Email has to have an "@" (should only be 1 @ and it must have at least 1 character before and after it)
-  - [x] Username Validation
-    - [x] Unique (no same name despite capitalization)
-    - [x] Minimum of 6 characters
-    - [x] Maximum of 15 characters
-  - [x] Default Photo Option
-- [X] Homepage
-  - [X] Loading the SPECIFIC recipe post after clicking a post preview
-  - [X] Loading the Top 5 Most upvoted Pages
-- [X] Searchpage
-  - [x] Search Button -> Uses get function to look for post / account
-  - [X] Ignores capitalization when searching
-  - [x] Shows partial results (example: u searched pan instead of "pancakes" but it still shows up)
-- [x] Create Post
-  - [x] Save Button -> Should add a new post in the db
-    - [x] Update the code using the updated current user code
-    - [x] Make a function that will generate a post id (incrementing numbers)
-    - [X] should be redirected to the correct route (which is the new post created)
-- [X] Edit Post
-  - [X] Save Button -> Should update the post info in the db & update the page information agad
-  - [X] Post info should be pre-loaded na
-- [ ] Recipe Post
-  - [ ] Reply Button -> Should append the reply INSIDE of the list of the specific comment
-  - [ ] COMMENTS
-    - [ ] Comments save in the db (rn it shows in the page but not yet saved)
-    - [X] Comments Counter (not including replies) is updated (Badge beside "Comment Section" Label)
-    - [X] Load previously saved comments from db to the page (nasa GET request for route 'recipe-post/:param')
-  - [ ] REPLIES
-    - [ ] Fix the formatting of the Nested Replies within the Comment (mali yung pag format ko sa html dati so pls fix it na lang rin -sam)
-  - [X] Edit Post Button -> Should send the post info to the Edit Post Route
-  - [X] Delete Post Button (IN MODAL) -> Should delete the post from the db
-  - [X] Upvote & Downvote Button -> Should update the upvote value in db
-- [X] Account Profile
-  - [X] Edit Account Button -> Should send the account info to the Edit Account Route
-  - [X] Delete Account Button (IN MODAL) -> Should delete the user from the db
-  - [X] Should have ALL of the posts under that user pre-loaded
-  - [X] Loads the current user's account info
-    - [X] Loads the Profile Picture in Profile Container
-- [X] Edit Account Profile
-  - [X] Update Button -> Should update the user info in the db & update the page information agad
-  - [X] Account info should be pre-loaded na
-    - [X] Displays the email but u cant edit it (no input, so its just there)
-  - [x] Username validation (1 blob)
-2. IN GENERAL
-- [ ] ALL ROUTES WORKING (like if we click a button / link it should be the correct route)
-- [X] Can see the current user's info in navbar
-- [X] Can see the current user's info after clicking their profile FROM Navbar
-- [ ] Picture Input - least priority (For Create/Edit Post & Create/Edit Account)
-- [X] Hiding of Buttons (while logged-in, i guess we copy the code for guest account here)
-  - [X] Viewing other's recipe post = Hidden Edit Post & Delete Post button
-  - [X] Viewing other's account profile = Hidden Edit Account & Delete Account button
-  - [X] Viewing other's comments and replies = Hidden Delete Comment & Delete Reply
+1. MVC ORGANIZATION
+  - [X] ROUTES
+    - [X] Moved all the routes to "routes.js"
+  - [X] MODELS
+    - [X] Organize the exports functions naming
+  - [ ] Check if all the features still work after the transfer
 
+2. SESSIONS FOR LOGIN
+  - [ ] Cross-site scripting ??
+    - [ ] note
+  - [ ] Hashed passwords using crypto
+    - [ ] note
 
-3. CSS THINGS (FIX AFTER SUBMITTING PHASE 2)
-- [ ] fix logos
-  - [ ] logos in index.hbs (guest icon & registered user account icon)
-  - [ ] brand logo in navbar (fixed size so its not stretched)
-- [ ] look for default icon for account?
-- [ ] color scheme
-  - [ ] change colors of buttons accdg to color schemes (¿)
+3. DUMMY DATA JSON FILES
+  - [ ] 20 Dummy POSTS
+    - [ ] 5 posts from Ted
+    - [ ] 5 posts from Lily
+    - [ ] 5 posts from Marshall
+    - [ ] 5 posts from Barney
+    - [ ] 5 posts from Robin
+  - [ ] 20 Dummy COMMENTS
+    - [ ] siguro 1 comment per post na lang siguro HAHA
+
+4. DEPLOYMENT VIA HEROKU
+  - [ ] Fully functional deployed app
+    - [ ] note 
+
+5. OTHER IMPORTANT THINGS
+  - [ ] Update the README.md
+    - [ ] About page should include all NPM Packages used 
+
+5. CSS THINGS (ako na ditoo -sam)
+  - [ ] fix logos
+    - [ ] logos in index.hbs (guest icon & registered user account icon)
+    - [ ] brand logo in navbar (fixed size so its not stretched)
+  - [ ] look for default icon for account?
+  - [ ] color scheme
+    - [ ] change colors of buttons accdg to color schemes (¿)

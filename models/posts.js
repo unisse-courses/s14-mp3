@@ -39,13 +39,13 @@ exports.topFive = function(next){
       }) 
 }
 
-exports.getOne = function(id, next){
+exports.getOnePost = function(id, next){
     postModel.findOne({_id: id}).lean().exec(function(err, data){
         next(data)
     })
 }
 
-exports.ownPosts = function(email, next){
+exports.getOwnPosts = function(email, next){
     postModel.find({"user.email" : email}).lean().exec(function (err, data){
         next(data)
     })

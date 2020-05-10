@@ -4,6 +4,7 @@ $(document).ready(function() {
     $('#logout').click(function(){
         sessionStorage.clear();
     });
+
 /* -------------------------------------------------- index.hbs -------------------------------------------------- */
 
     $("#noAccount").click(function () { 
@@ -99,36 +100,6 @@ $(document).ready(function() {
 
 
 /* -------------------------------------------------- CreateAccount.hbs -------------------------------------------------- */
-    //Steps for validation
-    /* 
-    1. Check if fields are empty
-    2. AJAX call to check if username and email are taken
-    3. Submit
-    */
-
-    /* 
-        logic for the bootstrap built in warnings in the form
-
-        (if data is invalid)
-            [input].removeClass("is-valid")
-            [input].addClass("is-invalid")
-            
-            [input's validation messagetag].show()
-            [input's validation messagetag].addClass("invalid-feedback")
-            [input's validation messagetag].removeClass("valid-feedback")
-            [input's validation messagetag].html("Custom message")
-
-        else //if data is valid
-            [input].addClass("is-valid")
-            [input].removeClass("is-invalid")
-            
-            [input's validation messagetag].addClass("valid-feedback")
-            [input's validation messagetag].removeClass("invalid-feedback")
-            [input's validation messagetag].html("Looks good!")
-
-    */
-    
-    //Captures pag lumipat na ng textbox si user
     
     $("#email").blur(()=> {
         //Empty OR invalid format OR taken
@@ -403,6 +374,7 @@ $(document).ready(function() {
             $("#homeContainer").empty();
         })
     }
+
     function createPostDiv(item, parentDiv){
         
         var biggestdiv  = document.createElement('div');
@@ -738,7 +710,6 @@ $(document).ready(function() {
     
     });
 /* -------------------------------------------------- RecipePost.hbs -------------------------------------------------- */
-//to follow: Actual Data stuff from database lol 
 
     if (window.location.href.includes("recipe-post")){
         
@@ -1146,83 +1117,83 @@ $(document).ready(function() {
 
 /* -------------------------------------------------- AccountProfile.hbs -------------------------------------------------- */
 
-if (window.location.href.includes("account-profile")){
+    if (window.location.href.includes("account-profile")){
 
-    var path = window.location.pathname;
-    var str = "";
-    var j;
-    var x = 0;
+        var path = window.location.pathname;
+        var str = "";
+        var j;
+        var x = 0;
 
-    for(j=0; j<path.length; j++) {
-        if(path[j] == '/') {
-            x = j;
+        for(j=0; j<path.length; j++) {
+            if(path[j] == '/') {
+                x = j;
+            }
         }
-    }
-    
-    str = path.substring(x+1, path.length+1);
+        
+        str = path.substring(x+1, path.length+1);
 
-    if (localStorage.getItem('isGuest') == 0){
-        $('#accProfile').addClass("disabled")
-        $('#create').hide()
-        $('#edit_account-btn').hide()
-        $('#delete_account-btn').hide()
-    }
-    else{
-
-        if(localStorage.getItem("activeUser") != str) { // viewing another person's profile
-            $('#accProfile').addClass("enabled")
-            $('#create').show()
-            $('#delete_account-btn').hide()
+        if (localStorage.getItem('isGuest') == 0){
+            $('#accProfile').addClass("disabled")
+            $('#create').hide()
             $('#edit_account-btn').hide()
+            $('#delete_account-btn').hide()
         }
-        else { // viewing your own profile
-            $('#accProfile').addClass("enabled")
-            $('#create').show()
-            $('#edit_account-btn').show()
-            $('#delete_account-btn').show()
+        else{
+
+            if(localStorage.getItem("activeUser") != str) { // viewing another person's profile
+                $('#accProfile').addClass("enabled")
+                $('#create').show()
+                $('#delete_account-btn').hide()
+                $('#edit_account-btn').hide()
+            }
+            else { // viewing your own profile
+                $('#accProfile').addClass("enabled")
+                $('#create').show()
+                $('#edit_account-btn').show()
+                $('#delete_account-btn').show()
+            }
         }
-    }
 
-      $('#logout').click(function(){
-        sessionStorage.clear();
-      })
-
-      $('#delete').click(function(){
-        sessionStorage.clear();
-      })
-
-    $("#deleteAccount").click(function (e) { 
-        //$target = $(e.target);
-        //console.log($target.attr('data-id'));
-
-        var data = {
-            success: true
-        }
-        
-        $.post("../delete-account", data,function (data, status) {
+        $('#logout').click(function(){
             sessionStorage.clear();
-            location.href='/'
-        });
-        
-    });
+        })
 
-    $("#edit_account-btn").click(function () { 
-        window.location.href='../edit-account'
+        $('#delete').click(function(){
+            sessionStorage.clear();
+        })
 
-    });
-/*
-    $.post("../userposts", function (data, status) {
-        var parent = $("#main_container")
-        if (!data.length < 1){
+        $("#deleteAccount").click(function (e) { 
+            //$target = $(e.target);
+            //console.log($target.attr('data-id'));
+
+            var data = {
+                success: true
+            }
             
-            data.forEach((item, i) => {
-                console.log(item);
-                createPostDiv(item, parent);
+            $.post("../delete-account", data,function (data, status) {
+                sessionStorage.clear();
+                location.href='/'
             });
-        }
-    });
-*/
-}
+            
+        });
+
+        $("#edit_account-btn").click(function () { 
+            window.location.href='../edit-account'
+
+        });
+    /*
+        $.post("../userposts", function (data, status) {
+            var parent = $("#main_container")
+            if (!data.length < 1){
+                
+                data.forEach((item, i) => {
+                    console.log(item);
+                    createPostDiv(item, parent);
+                });
+            }
+        });
+    */
+    }
 
     function fullname(firstname, lastname) {
         return firstname + " " + lastname;
@@ -1545,6 +1516,7 @@ if (window.location.href.includes("account-profile")){
                 window.location.href = "../account-profile/" + data.username;
         });
     });
+
 /* -------------------------------------------------- EditRecipePost.hbs -------------------------------------------------- */
 
     $("#editRecipePost").click(function () { 
@@ -2003,146 +1975,3 @@ if (window.location.href.includes("account-profile")){
     }
 
 });
-
-
-    /*$("unt").click(function () { 
-        
-        let email = $("#email").val() 
-        let first = $("#firstName").val()
-        let last = $("#lastName").val()
-        let user = $("#userName").val()
-        let pass = $("#password").val()
-        let pic = $("#profilePic").val()
-        let bio = $("#bio").val()
-        
-        // <--Para pag nag-error di ka mamamatay mag undo HAHAHA
-        // var email = $("#firstname")
-        // var first = document.getElementById("firstName").value
-        // var last = document.getElementById("lastName").value
-        // var user = document.getElementById("userName").value
-        // var pass = document.getElementById("password").value
-        // var pic = document.getElementById("profilePic").value
-        // var bio = document.getElementById("bio").value
-
-        // if (email == ""){
-        //     $("#validEmail").html("Email Required")
-        //     $("#validEmail").css("color", "red")
-        //     // document.getElementById("validEmail").textContent = 'Email Required'
-        //     // document.getElementById("validEmail").style.color = "red";
-        //     return false
-        // }
-        // else 
-        //     $("#validEmail").css("color", "green")
-        // //  document.getElementById("validEmail").style.color = "#F1F7ED";
-        
-        // if (first == ""){
-        //     $("#validFirst").html("First name Required")
-        //     $("#validFirst").css("color", "red")
-        //     // document.getElementById("validFirst").textContent ='Missing first name'
-        //     // document.getElementById("validFirst").style.color = "red";
-        //     return false
-        // }
-        // else
-        //     $("#validFirst").css("color", "#F1F7ED")
-        //     document.getElementById("validFirst").style.color = "#F1F7ED";
-                    
-        // if(last == ""){
-        //     $("#validLast").html("Lastname Required")
-        //     $("#validLast").css("color", "red")
-        //     // document.getElementById("validLast").textContent ='Missing last name'
-        //     // document.getElementById("validLast").style.color = "red";
-        //     return false;
-        // }
-        // else
-        //     $("#validLast").css("color", "green")
-        //     // document.getElementById("validLast").style.color = "#F1F7ED";
-
-        // if(user == ""){
-        //     $("#validUser").html("Please inut your username")
-        //     $("#validUser").css("color", "red")
-        //     // document.getElementById("validUser").textContent ='Please input your password'
-        //     // document.getElementById("validUser").style.color = "red";
-        //     return false;
-        // }
-        // else
-        //     $("#validUser").css("color", "green")
-        // //    document.getElementById("validUser").style.color = "#F1F7ED";
-
-        // if(pass == ""){
-        //     $("#validPass").html("Please input your password")
-        //     $("#validPass").css("color", "red")
-        //  //   document.getElementById("validPass").textContent ='Please input your password'
-        //  //   document.getElementById("validPass").style.color = "red";
-        //     return false;
-        // }
-        // else
-        //     $("#validPass").css("color", "green")
-        // //    document.getElementById("validPass").style.color = "#F1F7ED";
-
-        var person = {
-            emailAddress: email,
-            firstname: first,
-            lastname: last,
-            username: user,
-            password: pass,
-            //profilepic: pic,
-            bio: bio
-        };
-
-        
-
-        $.post('/create-account', person, function(data,status) {
-            console.log(data);
-        });
-     });
-     */
-
-
-
-         // $("#updateAccount").click(function () { 
-    //     var first = document.getElementById("EDITfirstName").value;
-    //     var last = document.getElementById("EDITlastName").value;
-    //     var user = document.getElementById("EDITuserName").value;
-    //     var pass = document.getElementById("EDITpassword").value;
-    //     //var pic = document.getElementById("EDITprofilePic").value
-    //     var bio = document.getElementById("EDITbio").value;
-                    
-    //     if (first == ""){
-    //         document.getElementById("validFirst").textContent ='Missing first name';
-    //         document.getElementById("validFirst").style.color = "red";
-    //         return false;
-    //     }
-    //     else {
-    //         document.getElementById("validFirst").style.color = "white";
-    //     }
-                        
-    //     if(last == ""){
-    //         document.getElementById("validLast").style.color = "red";
-    //         document.getElementById("validLast").textContent ='Missing last name';
-    //         return false;
-                        
-    //     }
-    //     else {
-    //         document.getElementById("validLast").style.color = "white";
-    //     }
-
-    //     if(user == ""){
-    //         document.getElementById("validUser").textContent ='Please input your password';
-    //         document.getElementById("validUser").style.color = "red";
-    //         return false;
-                        
-    //     }
-    //     else{
-    //         document.getElementById("validUser").style.color = "white";
-    //     }
-
-    //     if(pass == ""){
-    //         document.getElementById("validPass").textContent ='Please input your password';
-    //         document.getElementById("validPass").style.color = "red";
-    //         return false;
-    //     }
-    //     else {
-    //         document.getElementById("validPass").style.color = "white";
-    //     }
-        
-    // });

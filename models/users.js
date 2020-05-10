@@ -29,33 +29,27 @@ const userSchema = new mongoose.Schema(
 
 const userModel = mongoose.model('User', userSchema);
 
-exports.getOne = function (name, next){
+exports.getCurrAccountInfo = function (name, next){
     var regexInput = "^" + name;
     userModel.findOne({username: { $regex: regexInput, $options: 'i' }}, function (err, accountResult){
         next(accountResult);
     })
-}
+};
 
-exports.getAll = function (name, next){
+exports.getAllAccounts = function (name, next){
     var regexInput = "^" + name;
     userModel.find({username: { $regex: regexInput, $options: 'i' }}, function (err, accountResult){
         next(accountResult);
     })
 }
 
-exports.getOne = function (name, next){
-    var regexInput = "^" + name;
-    userModel.findOne({username: { $regex: regexInput, $options: 'i' }}, function (err, accountResult){
-        next(accountResult);
-    })
-}
-exports.editOne = function (query, update, next){
+exports.editCurrAccountInfo = function (query, update, next){
     userModel.findOneAndUpdate(query, update, { new: false }, function(err, user) {
         next(user)
     })
 }
 
-exports.findSpecific = function(user, next){
+exports.findSpecificEmail = function(user, next){
     userModel.findOne({username: user}, function(err, usernameResult){
         next(usernameResult);
     })
@@ -67,7 +61,7 @@ exports.deleteAccount = function(email, next){
     })
 }
 
-exports.emailCheck = function (email, next){
+exports.checkUniqueEmail = function (email, next){
     var regexInput = "^" + email;
 
     userModel.findOne({ "email" : { $regex: email, $options: 'i' } }, function(err, emailResult) {
@@ -75,7 +69,7 @@ exports.emailCheck = function (email, next){
     })
 }
 
-exports.usernameCheck = function(user, next){
+exports.checkUniqueUsername = function(user, next){
     var regexInput = "^" + user;
 
     userModel.findOne({ "username" : { $regex: regexInput, $options: 'i' } }, function(err, usernameResult) {
@@ -83,7 +77,7 @@ exports.usernameCheck = function(user, next){
     })
 }
 
-exports.newUser = function (user, next){
+exports.createNewAccount = function (user, next){
     const newuser = new userModel(user);
 
     newuser.save(function(err, new_user){

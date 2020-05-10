@@ -1,203 +1,52 @@
+// ROUTER DECLARATION
+  const router = require('express').Router();
 
-const router = require('express').Router();
+// IMPORTING MODELS
+  const userModel = require('../models/users');
+  const postModel = require('../models/posts');
+  const ingredientsModel = require('../models/ingredients');
+  const commentsModel = require('../models/comments');
 
-const userModel = require('../models/users');
-const postModel = require('../models/posts');
-const ingredientsModel = require('../models/ingredients');
-const commentsModel = require('../models/comments');
+// GLOBAL VARIABLES
+  var rememberMe = false;
 
+  var currUser = {
+    email: '',
+    firstname: '',
+    lastname: '',
+    username: '',
+    password: '',
+    bio: '',
+    profilepic: ''
+  };
 
-var rememberMe = false;
+  var count;
 
-var currUser = {
-  email: '',
-  firstname: '',
-  lastname: '',
-  username: '',
-  password: '',
-  bio: '',
-  profilepic: ''
-};
+/* -------------------------------------------------- ALL THE OTHER ROUTES -------------------------------------------------- */
 
-var count;
-router.get('/log-in', function(req, res) {
-    res.render('UserLogin', {
-      styles: "css/styles_outside.css",
-      tab_title: "Log-In",
-      body_class: "outside",
-    })  
-});
-
-// HOMEPAGE
-router.get('/home', function(req, res) {
-    res.render('Homepage', {
-      // for main.hbs
-        styles: "css/styles_inside.css",
-        tab_title: "Homepage",
-        body_class: "inside",
-        navUser: currUser.username,
-        navIcon: currUser.profilepic
-    })
-});
-
-router.get('/account-profile/:param', function(req, res){
-  var user_route = "^" + req.params.param;
-  
-  userModel.getOne(req.params.param, function(data){
-    postModel.ownPosts(data.email, function (posts){
-      console.log(posts);
-
-
-      if(data){
-        res.render('AccountProfile', {
-          styles:     "../css/styles_inside.css",
-          tab_title:  "Account Profile",
-          body_class: "inside",
-          
-          firstname:  data.firstname,
-          lastname:   data.lastname,
-          username:   data.username,
-          bio:        data.bio,
-          profilepic: data.profilepic,
-          email:      data.email,
-          posts:      posts,
-
-          navUser: currUser.username,
-          navIcon: currUser.profilepic
-        });
-      }
-      else {
-        result = {
-          message: "Account does not exist"
-        }
-
-        res.send(result.message);
-      }
-    })
-    
+// LOG-IN
+  router.get('/log-in', function(req, res) {
+      res.render('UserLogin', {
+        styles: "css/styles_outside.css",
+        tab_title: "Log-In",
+        body_class: "outside",
+      })  
   });
 
-});
-
-
-// CREATE ACCOUNT PROFILE
-router.get('/create-account', function(req, res) {
-  res.render('CreateAccount', {
-    // for main.hbs
-      styles: "css/styles_outside.css",
-      tab_title: "Create Account",
-      body_class: "outside",
-      navUser: currUser.username,
-      navIcon: currUser.profilepic
-  })
-});
-
-// EDIT ACCOUNT PROFILE
-router.get('/edit-account', function(req, res) {
-    res.render('EditAccountProfile', {
-      styles:     "css/styles_inside.css",
-      tab_title:  "Edit Account",
-      body_class: "inside",
-      navUser: currUser.username,
-      navIcon: currUser.profilepic,
-      email:      currUser.email,
-      firstname:  currUser.firstname,
-      lastname:   currUser.lastname,
-      username:   currUser.username,
-      password:   currUser.password,
-      profilepic: currUser.profilepic,
-      bio:        currUser.bio
-    });
-});
-
-// CREATE RECIPE POST
-router.get('/create-recipe', function(req, res) {
-    res.render('CreateRecipePost', {
-      // for main.hbs
-        styles: "css/styles_inside.css",
-        tab_title: "Create Post",
-        body_class: "inside",
-        navUser: currUser.username,
-        navIcon: currUser.profilepic,
-
-        // FEATURE: '/addPost'
-    })
-});
-
-// EDIT RECIPE POST
-router.get('/edit-recipe/:param', function(req, res) {
-  var id = req.params.param;
-
-  postModel.getOne(id,function(data){
-
-
-    if(data){
-      if(currUser.username == data.user.username) {
-      
-
-        res.render('EditRecipePost', {
-          // for main.hbs
-            styles: "../css/styles_inside.css",
-            tab_title: "Edit Post",
-            body_class: "inside",
-            navUser: currUser.username,
-            navIcon: currUser.profilepic,
-            
-            stuff: data
-        })
-    
-      }
-      else {
-        result = {
-          message: "You cannot edit other user's recipe posts"
-        }
-        res.send(result);
-      }
-    }
-  })
-
-});
-
-
-// RECIPE POST
-router.get('/recipe-post/:param', function(req, res) {
-  var id = req.params.param;
-
-  postModel.getOne(id,function(data){
-
-
-    if(data){
-      var acc = "account-profile/" + data.user.username;
-
-        res.render('RecipePost', {
-          // for main.hbs
-             styles: "../css/styles_inside.css",
-            tab_title: "Recipe Post",
-            body_class: "inside",
-            navUser: currUser.username,
-            navIcon: currUser.profilepic,
-              
-            title: data.title,
-            upvote_score: data.upvotes,
-            date_posted: data.dateposted,
-            time_posted: data.timeposted,
-            username: data.user.username,
-            firstname: data.user.firstname,
-            lastname: data.user.lastname,
-            picture: data.recipe_picture,
-            description: data.description,
-            ingredients: data.ingredients,
-            instructions: data.instructions,
-            comment_count: data.comments.length,
-            account_link: acc,
-            post: true
-          })
-    }
-  })    
-});
-
+// HOMEPAGE
+  router.get('/home', function(req, res) {
+      res.render('Homepage', {
+        // for main.hbs
+          styles: "css/styles_inside.css",
+          tab_title: "Homepage",
+          body_class: "inside",
+          navUser: currUser.username,
+          navIcon: currUser.profilepic
+      })
+  });
+  
 // SEARCH PAGE
-router.get('/search', function(req, res) {
+  router.get('/search', function(req, res) {
     res.render('SearchPage', {
       // for main.hbs
         styles: "css/styles_inside.css",
@@ -206,160 +55,173 @@ router.get('/search', function(req, res) {
         navUser: currUser.username,
         navIcon: currUser.profilepic,
     })
-});
+  });
 
-
-
-router.post('/getTopFive', function(req, res){
-    postModel.topFive(function(data){
-
-      res.send(data);
-    })  
-  })
-
-router.post("/userposts", function (req, res){
-
-    postModel.ownPosts(currUser.email, function(data){
-      console.log(data);
-      res.send(data);
-    })
-})
-
-router.post('/loadLists', function(req, res) {
+// ACCOUNT PROFILE
+  router.get('/account-profile/:param', function(req, res){
+    var user_route = "^" + req.params.param;
     
+    userModel.getCurrAccountInfo(req.params.param, function(data){
+      postModel.getOwnPosts(data.email, function (posts){
+        console.log(posts);
 
-    postModel.getOne(req.body.id,function(data){
-      if(err) throw err;
+        if(data){
+          res.render('AccountProfile', {
+            styles:     "../css/styles_inside.css",
+            tab_title:  "Account Profile",
+            body_class: "inside",
+            
+            firstname:  data.firstname,
+            lastname:   data.lastname,
+            username:   data.username,
+            bio:        data.bio,
+            profilepic: data.profilepic,
+            email:      data.email,
+            posts:      posts,
 
-      console.log(data.ingredients);
-      console.log(data.instructions)
-      if(data){
-        res.send(data)
-      }
+            navUser: currUser.username,
+            navIcon: currUser.profilepic
+          });
+        }
+        else {
+          result = {
+            message: "Account does not exist"
+          }
 
-    });
-});
-
-router.post('/loadInstructions', function(req, res) {
-  
-    postModel.getOne(req.body.id,function(data){
+          res.send(result.message);
+        }
+      })
       
-
-      if(data){
-        res.send(data.instructions)
-      }
-
     });
+
   });
 
-router.post('/loadIngredients', function(req, res) {
-  
-    postModel.getOne(req.body.id,function(data){
-      
-
-      if(data){
-        res.send(data.ingredients)
-      }
-
-    });
-});
-
-router.post('/addAccount', function(req, res) {
-    console.log("the request:");
-    console.log(req.body);
-
-    // DEFAULT PHOTO OPTION
-    var photoInput = '/images/default_profile.png'
-
-    if(!(req.body.PROFILEPIC == "")) {
-      photoInput = `${req.body.PROFILEPIC}.png`;
-    }
-
-    var theUser = {
-      email:      req.body.EMAIL,
-      firstname:  req.body.FIRSTNAME,
-      lastname:   req.body.LASTNAME,
-      username:   req.body.USERNAME,
-      password:   req.body.PASSWORD,
-      profilepic: photoInput,
-      bio:        req.body.BIO
-    };
-
-    userModel.newUser(theUser, function(err, new_user){
-      var result;
-
-      if (err) {
-        console.log(err.errors);
-
-        result = {success: false, message: "User was not created!"}
-        console.log(result);
-        
-        res.redirect("/create-account");
-      }
-      else {
-        console.log("User was created!");
-        console.log(theUser);
-
-        res.redirect("/log-in");
-      }
+// CREATE ACCOUNT
+  router.get('/create-account', function(req, res) {
+    res.render('CreateAccount', {
+      // for main.hbs
+        styles: "css/styles_outside.css",
+        tab_title: "Create Account",
+        body_class: "outside",
+        navUser: currUser.username,
+        navIcon: currUser.profilepic
     })
   });
 
-  router.post('/uniqueEmailCheck', function(req, res) {
-    var emailInput = req.body.email;
-
-    console.log("email entered: " + emailInput);
-    console.log("checking if this email is unique");
-
-    userModel.emailCheck(emailInput, function(emailResult){
-      if (emailResult) { // emailInput is taken (and in same capitalization)
-        console.log(emailInput + " is NOT UNIQUE");
-          
-        result = { success: false }
-        res.send(result);
-      }
-      else {
-        console.log(emailInput + " is UNIQUE");
-
-        result = { success: true }
-        res.send(result);
-      }
-    });
-
+// EDIT ACCOUNT
+  router.get('/edit-account', function(req, res) {
+      res.render('EditAccountProfile', {
+        styles:     "css/styles_inside.css",
+        tab_title:  "Edit Account",
+        body_class: "inside",
+        navUser: currUser.username,
+        navIcon: currUser.profilepic,
+        email:      currUser.email,
+        firstname:  currUser.firstname,
+        lastname:   currUser.lastname,
+        username:   currUser.username,
+        password:   currUser.password,
+        profilepic: currUser.profilepic,
+        bio:        currUser.bio
+      });
   });
 
-  router.post('/uniqueUsernameCheck', function(req, res) {
-    var usernameInput = req.body.username;
+// RECIPE POST
+  router.get('/recipe-post/:param', function(req, res) {
+    var id = req.params.param;
 
-    console.log("username entered: " + usernameInput);
-    console.log("checking if this username is unique");
+    postModel.getOnePost(id,function(data){
 
-    userModel.usernameCheck(usernameInput, function(usernameResult){
-      if (usernameResult) { // usernameInput is taken (and in same capitalization)
-        console.log(usernameInput + " is NOT UNIQUE");
-          
-        result = { success: false }
-        res.send(result);
+
+      if(data){
+        var acc = "account-profile/" + data.user.username;
+
+          res.render('RecipePost', {
+            // for main.hbs
+              styles: "../css/styles_inside.css",
+              tab_title: "Recipe Post",
+              body_class: "inside",
+              navUser: currUser.username,
+              navIcon: currUser.profilepic,
+                
+              title: data.title,
+              upvote_score: data.upvotes,
+              date_posted: data.dateposted,
+              time_posted: data.timeposted,
+              username: data.user.username,
+              firstname: data.user.firstname,
+              lastname: data.user.lastname,
+              picture: data.recipe_picture,
+              description: data.description,
+              ingredients: data.ingredients,
+              instructions: data.instructions,
+              comment_count: data.comments.length,
+              account_link: acc,
+              post: true
+            })
       }
-      else {
-          console.log(usernameInput + " is UNIQUE");
+    })    
+  });
 
-          result = { success: true }
+// CREATE RECIPE POST
+  router.get('/create-recipe', function(req, res) {
+      res.render('CreateRecipePost', {
+        // for main.hbs
+          styles: "css/styles_inside.css",
+          tab_title: "Create Post",
+          body_class: "inside",
+          navUser: currUser.username,
+          navIcon: currUser.profilepic,
+
+          // FEATURE: '/addPost'
+      })
+  });
+
+// EDIT RECIPE POST
+  router.get('/edit-recipe/:param', function(req, res) {
+    var id = req.params.param;
+
+    postModel.getOnePost(id,function(data){
+
+
+      if(data){
+        if(currUser.username == data.user.username) {
+        
+
+          res.render('EditRecipePost', {
+            // for main.hbs
+              styles: "../css/styles_inside.css",
+              tab_title: "Edit Post",
+              body_class: "inside",
+              navUser: currUser.username,
+              navIcon: currUser.profilepic,
+              
+              stuff: data
+          })
+      
+        }
+        else {
+          result = {
+            message: "You cannot edit other user's recipe posts"
+          }
           res.send(result);
+        }
       }
-    });
+    })
 
   });
-  
 
-// USER LOGIN FEATURE
-  // POST
+/* --------------------------------------------- FEATURES & OTHER POST REQUESTS --------------------------------------------- */
+
+/* ----------- FEATURES BEFORE LOGIN ------------ */
+
+// [LOG-IN] Actions After Clicking Login Button
   router.post('/loginACTION', function(req, res) {
     var result;
     console.log("checked: " + req.body.remember);
 
     rememberMe = req.body.remember;
-  
+
     var account = {
       username:  req.body.username,
       password:   req.body.password,
@@ -381,7 +243,7 @@ router.post('/addAccount', function(req, res) {
     else
     {
 
-        userModel.getOne(account.username, function(accountResult){
+        userModel.getCurrAccountInfo(account.username, function(accountResult){
 
           
           if(accountResult){ // if the username entered exists in the db
@@ -446,8 +308,8 @@ router.post('/addAccount', function(req, res) {
         });
     }
   });
-      
 
+// [LOG-IN] Remember Me Checkbox Actions
   router.post('/remember', function(req, res){
   if(rememberMe == "true"){
     var stuff = {
@@ -467,7 +329,107 @@ router.post('/addAccount', function(req, res) {
   }
   })
 
-// EDIT ACCOUNT PROFILE
+/* --------------- ACCOUNT STUFF --------------- */
+
+// [ACCOUNT PROFILE] SKIPPED
+  router.post("/userposts", function (req, res){
+      postModel.getOwnPosts(currUser.email, function(data){
+        console.log(data);
+        res.send(data);
+      })
+  });
+
+// [CREATE ACCOUNT] Adding an Account to the DB
+  router.post('/addAccount', function(req, res) {
+    console.log("the request:");
+    console.log(req.body);
+
+    // DEFAULT PHOTO OPTION
+    var photoInput = '/images/default_profile.png'
+
+    if(!(req.body.PROFILEPIC == "")) {
+      photoInput = `${req.body.PROFILEPIC}.png`;
+    }
+
+    var theUser = {
+      email:      req.body.EMAIL,
+      firstname:  req.body.FIRSTNAME,
+      lastname:   req.body.LASTNAME,
+      username:   req.body.USERNAME,
+      password:   req.body.PASSWORD,
+      profilepic: photoInput,
+      bio:        req.body.BIO
+    };
+
+    userModel.createNewAccount(theUser, function(err, new_user){
+      var result;
+
+      if (err) {
+        console.log(err.errors);
+
+        result = {success: false, message: "User was not created!"}
+        console.log(result);
+        
+        res.redirect("/create-account");
+      }
+      else {
+        console.log("User was created!");
+        console.log(theUser);
+
+        res.redirect("/log-in");
+      }
+    })
+  });
+
+// [CREATE ACCOUNT] Unique Email Validation
+  router.post('/uniqueEmailCheck', function(req, res) {
+    var emailInput = req.body.email;
+
+    console.log("email entered: " + emailInput);
+    console.log("checking if this email is unique");
+
+    userModel.checkUniqueEmail(emailInput, function(emailResult){
+      if (emailResult) { // emailInput is taken (and in same capitalization)
+        console.log(emailInput + " is NOT UNIQUE");
+          
+        result = { success: false }
+        res.send(result);
+      }
+      else {
+        console.log(emailInput + " is UNIQUE");
+
+        result = { success: true }
+        res.send(result);
+      }
+    });
+
+  });
+
+// [CREATE ACCOUNT] Unique Username Validation
+  router.post('/uniqueUsernameCheck', function(req, res) {
+    var usernameInput = req.body.username;
+
+    console.log("username entered: " + usernameInput);
+    console.log("checking if this username is unique");
+
+    userModel.checkUniqueUsername(usernameInput, function(usernameResult){
+      if (usernameResult) { // usernameInput is taken (and in same capitalization)
+        console.log(usernameInput + " is NOT UNIQUE");
+          
+        result = { success: false }
+        res.send(result);
+      }
+      else {
+          console.log(usernameInput + " is UNIQUE");
+
+          result = { success: true }
+          res.send(result);
+      }
+    });
+
+  });
+
+// [EDIT ACCOUNT] Updates the Account in the DB
   router.post('/edit-account/', function(req, res) {
     var query = {
       email: currUser.email
@@ -497,8 +459,8 @@ router.post('/addAccount', function(req, res) {
       };
     }
     
-    userModel.editOne(query, update, function(user) {
- 
+    userModel.editCurrAccountInfo(query, update, function(user) {
+
         currUser = {
           email:      currUser.email,
           firstname:  update.firstname,
@@ -513,19 +475,20 @@ router.post('/addAccount', function(req, res) {
       console.log("curruser OBJECT = " + JSON.stringify(currUser));
       
       postModel.updateAllPosts(currUser.firstname, currUser.lastname, currUser.username, currUser.password, currUser.bio, currUser.profilepic)
-   
+  
     });
 
     res.send(currUser);
   });
 
+// [EDIT ACCOUNT] Username Username Validation Part 2
   router.post('/uniqueUsernameCheckEDIT', function(req, res) {
     var usernameInput = req.body.username;
 
     console.log("username entered: " + usernameInput);
     console.log("checking if this username is unique");
 
-    userModel.findSpecific(usernameInput, function(usernameResult){
+    userModel.findSpecificEmail(usernameInput, function(usernameResult){
       if (usernameResult) {
         console.log(usernameInput + " is NOT UNIQUE");
           
@@ -543,7 +506,7 @@ router.post('/addAccount', function(req, res) {
 
   });
 
-//DELETE ACCOUNT
+// [DELETE ACCOUNT] Deletes the Account in the DB
   router.post('/delete-account', function(req, res) {
     userModel.deleteAccount(currUser.email, function(){
 
@@ -559,7 +522,71 @@ router.post('/addAccount', function(req, res) {
 
   });
 
-// CREATE RECIPE POST
+/* ------------ RECIPE POST STUFF ------------ */
+
+// [RECIPE POST] Creates a Comment in the DB
+  router.post('/addCommentRow', function(req, res) {
+    console.log(req.body);
+
+    postModel.getOnePost(req.body.recipe_id, function(data){
+    
+
+      var commentsList = [];
+
+      if ('comments' in req.body){
+        commentList = req.body.comments;
+      }
+
+      commentsList.push(req.body);
+
+      postModel.addComments(data._id, commentsList, function(stuff){
+
+        res.send(stuff);
+      })
+    })
+  });
+
+// [RECIPE POST] Gets the Array of Comments from the DB
+  router.post('/getComments', function(req, res) {
+    postModel.getOnePost(req.body._id, function(postComments){
+
+
+      var stuff = {
+        comments: postComments.comments
+      }
+
+      console.log(stuff.comments);
+
+      res.send(stuff);
+    })
+  });
+
+// [RECIPE POST] Upvoting / Downvoting a Post
+  router.post('/changeVote', function(req, res) {
+
+
+    console.log(req.body.num);
+    var query = {
+      _id: req.body.num
+    }
+
+    var update = {
+      upvotes: req.body.val
+    }
+
+    postModel.updateOnePost(query, update, function(count) {  
+      console.log(count.upvotes);
+      var number = {
+        value: count.upvotes
+      }
+      res.send(number);
+
+    });
+
+
+  });
+
+// [CREATE RECIPE POST] Creates the Post in the DB
   router.post('/addPost', function(req, res) {
 
     console.log(req.body);
@@ -600,7 +627,7 @@ router.post('/addAccount', function(req, res) {
         
       };
       console.log(count);
-  
+
       postModel.newPost(new_post, function(err, newpost) {
         var result;
     
@@ -625,15 +652,55 @@ router.post('/addAccount', function(req, res) {
     
   });
 
-// UPDATE RECIPE POST
+// [EDIT RECIPE POST] SKIPPED
+  router.post('/loadLists', function(req, res) {
+      postModel.getOnePost(req.body.id,function(data){
+        if(err) throw err;
+
+        console.log(data.ingredients);
+        console.log(data.instructions)
+        if(data){
+          res.send(data)
+        }
+
+      });
+  });
+
+// [EDIT RECIPE POST] Loading Instructions in Edit Page
+  router.post('/loadInstructions', function(req, res) {
+    
+      postModel.getOnePost(req.body.id,function(data){
+        
+
+        if(data){
+          res.send(data.instructions)
+        }
+
+      });
+  });
+
+// [EDIT RECIPE POST] Loading Ingredients in Edit Page
+  router.post('/loadIngredients', function(req, res) {
+    
+      postModel.getOnePost(req.body.id,function(data){
+        
+
+        if(data){
+          res.send(data.ingredients)
+        }
+
+      });
+  });
+
+// [EDIT RECIPE POST] Updates the Post in the DB
   router.post('/updatePost', function(req, res) {
     var query = {
       _id: req.body._id
     }
 
-    var update
+    var update;
 
-    postModel.getOne(req.body._id, function(data){
+    postModel.getOnePost(req.body._id, function(data){
       if (req.body.recipe_picture == "")
     {
       update = {
@@ -674,145 +741,87 @@ router.post('/addAccount', function(req, res) {
     });
   });
 
-
-// DELETE RECIPE POST
-
+// [DELETE RECIPE POST] Deletes the Post in the DB
   router.post('/deletePost', function(req, res){
     postModel.removePost(req.body.num, function(){
       res.send(true);
     })
   })
-// POST COMMENT
-  router.post('/addCommentRow', function(req, res) {
-    console.log(req.body);
 
-    postModel.getOne(req.body.recipe_id, function(data){
-    
+/* ------- OTHER FEATURES AFTER LOGIN ------- */
 
-      var commentsList = [];
+// [HOMEPAGE] Getting the Top Five Posts w/ the Most Upvotes
+  router.post('/getTopFive', function(req, res){
+    postModel.topFive(function(data){
 
-      if ('comments' in req.body){
-        commentList = req.body.comments;
-      }
-
-      commentsList.push(req.body);
-
-      postModel.addComments(data._id, commentsList, function(stuff){
-
-        res.send(stuff);
-      })
-    })
+      res.send(data);
+    })  
   });
 
+// [SEARCH PAGE] Searches for a Post in the DB
+  router.post('/find-post', function(req, res) {
+    var searchingFor = req.body.searchingFor;
+    var results;
 
-// VIEW COMMENT
-router.post('/getComments', function(req, res) {
-  postModel.getOne(req.body._id, function(postComments){
+    
+    postModel.findByTitle(searchingFor, function(searchResults){
+      if(searchResults.length >= 1){
+        console.log(searchResults);
 
+        results = {
+          success: true,
+          posts: searchResults
+        }
 
-    var stuff = {
-      comments: postComments.comments
-    }
+        res.send(results);
+      }
+      //else, only return success false
+      else {
+        console.log("The post does not exist in the database");
 
-    console.log(stuff.comments);
+        results = {
+          success: false,
+        }
 
-    res.send(stuff);
+        res.send(results);
+      }
+      
+    });
   })
-});
 
-
-// SEARCH RECIPE POST
-router.post('/find-post', function(req, res) {
-  var searchingFor = req.body.searchingFor;
-  var results;
+// [SEARCH PAGE] Searches for an Account in the DB
+  router.post('/find-account', function(req, res) {
+    var searchingFor = req.body.searchingFor;
+    var results;
 
   
-  postModel.findByTitle(searchingFor, function(searchResults){
-    if(searchResults.length >= 1){
-      console.log(searchResults);
+    userModel.getAllAccounts(searchingFor, function(accounts){
+      if(accounts.length >= 1){
+        console.log(accounts);
 
-      results = {
-        success: true,
-        posts: searchResults
+        results = {
+          success: true,
+          users: accounts
+        };
+
+        res.send(results);
       }
+      //else, only return success false
+      else {
+        console.log("The account does not exist in the database");
 
-      res.send(results);
-    }
-    //else, only return success false
-    else {
-      console.log("The post does not exist in the database");
+        results = {
+          success: false
+        }
 
-      results = {
-        success: false,
+        res.send(results);
       }
-
-      res.send(results);
-    }
-    
-  });
-})
-
-// SEARCH ACCOUNT NAME
-router.post('/find-account', function(req, res) {
-  var searchingFor = req.body.searchingFor;
-  var results;
-
- 
-  userModel.getAll(searchingFor, function(accounts){
-    if(accounts.length >= 1){
-      console.log(accounts);
-
-      results = {
-        success: true,
-        users: accounts
-      };
-
-      res.send(results);
-    }
-    //else, only return success false
-    else {
-      console.log("The account does not exist in the database");
-
-      results = {
-        success: false
-      }
-
-      res.send(results);
-    }
-    
-  });
-
-});
-
-// UPVOTE/DOWNVOTE
-
-router.post('/changeVote', function(req, res) {
-
-
-  console.log(req.body.num);
-  var query = {
-    _id: req.body.num
-  }
-
-  var update = {
-    upvotes: req.body.val
-  }
-
-  postModel.updateOnePost(query, update, function(count) { 
-    
-    postModel.findOneAndUpdate(query, update,function(err, count) { 
       
-      
-      console.log(count.upvotes);
-      var number = {
-        value: count.upvotes
-      }
-      res.send(number);
     });
+
   });
 
+/* --------------------------------------------- END OF FEATURES --------------------------------------------- */
 
-});
-
-
-module.exports = router;
+// I FORGOT WHAT THIS DOES BASTA THIS IS IMPORTANT
+  module.exports = router;
