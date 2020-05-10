@@ -275,7 +275,7 @@ router.post('/addAccount', function(req, res) {
       photoInput = `${req.body.PROFILEPIC}.png`;
     }
 
-    var theUser = new userModel( {
+    var theUser = {
       email:      req.body.EMAIL,
       firstname:  req.body.FIRSTNAME,
       lastname:   req.body.LASTNAME,
@@ -283,9 +283,9 @@ router.post('/addAccount', function(req, res) {
       password:   req.body.PASSWORD,
       profilepic: photoInput,
       bio:        req.body.BIO
-    });
+    };
 
-    theUser.save(function(err, theUser) {
+    userModel.newUser(theUser, function(err, new_user){
       var result;
 
       if (err) {

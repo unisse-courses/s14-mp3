@@ -82,3 +82,11 @@ exports.usernameCheck = function(user, next){
         next(usernameResult);
     })
 }
+
+exports.newUser = function (user, next){
+    const newuser = new userModel(user);
+
+    newuser.save(function(err, new_user){
+    next(err,new_user);
+  });
+}
