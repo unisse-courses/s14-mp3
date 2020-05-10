@@ -27,4 +27,42 @@ const userSchema = new mongoose.Schema(
     }
     );
 
-module.exports = mongoose.model('User', userSchema);
+const userModel = mongoose.model('User', userSchema);
+
+exports.getOne = function (name, next){
+    var regexInput = "^" + name;
+    userModel.findOne({username: { $regex: regexInput, $options: 'i' }}, function (err, accountResult){
+        next(accountResult);
+    })
+}
+
+exports.getAll = function (name, next){
+    var regexInput = "^" + name;
+    userModel.find({username: { $regex: regexInput, $options: 'i' }}, function (err, accountResult){
+        next(accountResult);
+    })
+}
+
+exports.getOne = function (name, next){
+    var regexInput = "^" + name;
+    userModel.findOne({username: { $regex: regexInput, $options: 'i' }}, function (err, accountResult){
+        next(accountResult);
+    })
+}
+exports.editOne = function (query, update, next){
+    userModel.findOneAndUpdate(query, update, { new: false }, function(err, user) {
+        next(user)
+    })
+}
+
+exports.findSpecific = function(user, next){
+    userModel.findOne({username: user}, function(err, usernameResult){
+        next(usernameResult);
+    })
+}
+
+exports.deleteAccount = function(email, next){
+    userModel.findOneAndRemove({email: email}, function(err){
+        next();
+    })
+}
