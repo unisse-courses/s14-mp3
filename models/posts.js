@@ -76,7 +76,7 @@ exports.updateOnePost = function (query, update, next){
 }
 
 exports.removePost = function(id, next){
-    postModel.findPostAndRemove({_id: id}).exec(function(err){
+    postModel.findOneAndRemove({_id: id}).exec(function(err){
         next();
     })
 }
@@ -98,3 +98,19 @@ exports.findByTitle = function(title, next){
     next(searchResults);
   })
 }
+
+
+exports.newPost = function (post, next){
+    const newpost = new postModel(post);
+
+    newpost.save(function(err, new_post){
+    next(err,new_post);
+  });
+}
+
+exports.numDocuments = function (next){
+    postModel.countDocuments().exec(function(err, count){
+        next(count);
+    })
+}
+

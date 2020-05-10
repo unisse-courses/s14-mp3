@@ -129,7 +129,7 @@ router.get('/edit-recipe/:param', function(req, res) {
   var id = req.params.param;
 
   postModel.getOne(id,function(data){
-    if(err) throw err;
+
 
     if(data){
       if(currUser.username == data.user.username) {
@@ -243,7 +243,7 @@ router.post('/loadLists', function(req, res) {
 router.post('/loadInstructions', function(req, res) {
   
     postModel.getOne(req.body.id,function(data){
-      if(err) throw err;
+      
 
       if(data){
         res.send(data.instructions)
@@ -255,7 +255,7 @@ router.post('/loadInstructions', function(req, res) {
 router.post('/loadIngredients', function(req, res) {
   
     postModel.getOne(req.body.id,function(data){
-      if(err) throw err;
+      
 
       if(data){
         res.send(data.ingredients)
@@ -546,7 +546,7 @@ router.post('/addAccount', function(req, res) {
 //DELETE ACCOUNT
   router.post('/delete-account', function(req, res) {
     userModel.deleteAccount(currUser.email, function(){
-      if (err) throw err;
+
       currUser.email = "";
       currUser.firstname = "";
       currUser.lastname = "";
@@ -585,8 +585,8 @@ router.post('/addAccount', function(req, res) {
       photoInput = `${req.body.recipe_picture}.png`;
     }
     
-    postModel.countDocuments().exec(function(err, count){
-      var new_post = new postModel({
+    postModel.numDocuments(function(count){
+      var new_post = {
         _id: count + 1,
         title: req.body.title,
         user: currUser,
@@ -598,10 +598,10 @@ router.post('/addAccount', function(req, res) {
         ingredients: req.body.ingredients,
         instructions: req.body.instructions
         
-      });
+      };
       console.log(count);
   
-      new_post.save(function(err, new_post) {
+      postModel.newPost(new_post, function(err, newpost) {
         var result;
     
         if (err) {
@@ -678,9 +678,7 @@ router.post('/addAccount', function(req, res) {
 // DELETE RECIPE POST
 
   router.post('/deletePost', function(req, res){
-    postModel.findPostAndRemove(req.body.num, function(){
-      if(err) throw err;
-
+    postModel.removePost(req.body.num, function(){
       res.send(true);
     })
   })

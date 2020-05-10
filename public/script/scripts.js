@@ -1199,7 +1199,7 @@ if (window.location.href.includes("account-profile")){
             success: true
         }
         
-        $.post("delete-account", data,function (data, status) {
+        $.post("../delete-account", data,function (data, status) {
             sessionStorage.clear();
             location.href='/'
         });
