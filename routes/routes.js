@@ -525,7 +525,7 @@ router.post('/addAccount', function(req, res) {
     console.log("username entered: " + usernameInput);
     console.log("checking if this username is unique");
 
-    userModel.findSpecific(usernameInput, function(next){
+    userModel.findSpecific(usernameInput, function(usernameResult){
       if (usernameResult) {
         console.log(usernameInput + " is NOT UNIQUE");
           
