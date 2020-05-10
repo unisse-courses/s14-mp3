@@ -311,9 +311,7 @@ router.post('/addAccount', function(req, res) {
     console.log("email entered: " + emailInput);
     console.log("checking if this email is unique");
 
-    var regexInput = "^" + emailInput;
-
-    userModel.findOne({ "email" : { $regex: regexInput, $options: 'i' } }, function(err, emailResult) {
+    userModel.emailCheck(emailInput, function(emailResult){
       if (emailResult) { // emailInput is taken (and in same capitalization)
         console.log(emailInput + " is NOT UNIQUE");
           
@@ -336,9 +334,7 @@ router.post('/addAccount', function(req, res) {
     console.log("username entered: " + usernameInput);
     console.log("checking if this username is unique");
 
-    var regexInput = "^" + usernameInput;
-
-    userModel.findOne({ "username" : { $regex: regexInput, $options: 'i' } }, function(err, usernameResult) {
+    userModel.usernameCheck(usernameInput, function(usernameResult){
       if (usernameResult) { // usernameInput is taken (and in same capitalization)
         console.log(usernameInput + " is NOT UNIQUE");
           

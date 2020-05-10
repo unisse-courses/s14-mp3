@@ -66,3 +66,19 @@ exports.deleteAccount = function(email, next){
         next();
     })
 }
+
+exports.emailCheck = function (email, next){
+    var regexInput = "^" + email;
+
+    userModel.findOne({ "email" : { $regex: email, $options: 'i' } }, function(err, emailResult) {
+        next(emailResult)
+    })
+}
+
+exports.usernameCheck = function(user, next){
+    var regexInput = "^" + user;
+
+    userModel.findOne({ "username" : { $regex: regexInput, $options: 'i' } }, function(err, usernameResult) {
+        next(usernameResult);
+    })
+}
