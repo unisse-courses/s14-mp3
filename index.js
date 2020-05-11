@@ -4,12 +4,17 @@
   const exphbs = require('express-handlebars');
   const handlebars = require('handlebars');
   const bodyParser = require('body-parser');
-
+  const session = require('express-session');
+  const store = require('connect-mongo')(session);
+  const mongoose = require('mongoose');
+  
 // EXPRESS APP
   const app = express();
   const port = 3000; // sam: bc thats whats in the specs
 
   const router = require('./routes/routes');
+
+  app.set('views', path.join(__dirname, 'views'));
 
 // ENGINE SET-UP
   app.engine( 'hbs', exphbs({
@@ -46,6 +51,15 @@
 
 // STATIC FILES  
   app.use(express.static('public'));
+
+//use 'expres-session' middleware and set its options
+//use 'MongoStore' as server-side session storage
+app.use(session({
+  'secret': 'Foodies-session',
+  'resave': false,
+  'saveUninitialized': false,
+  store: new store({mongooseConnection: mongoose.connection})
+}));
 
 // LISTENER
   app.listen(port, function() {

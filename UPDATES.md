@@ -6,10 +6,10 @@
     - [X] Organize the exports functions naming
   - [ ] Check if all the features still work after the transfer
 
-2. SESSIONS FOR LOGIN
+2. SESSIONS FOR LOGIN - Giann
   - [ ] Cross-site scripting ??
     - [ ] note
-  - [ ] Hashed passwords using crypto
+  - [X] Hashed passwords using crypto
     - [ ] note
 
 3. DUMMY DATA JSON FILES

@@ -1,11 +1,17 @@
 // ROUTER DECLARATION
   const router = require('express').Router();
-
+  
 // IMPORTING MODELS
   const userModel = require('../models/users');
   const postModel = require('../models/posts');
   const ingredientsModel = require('../models/ingredients');
   const commentsModel = require('../models/comments');
+
+// IMPORTING VALIDATION
+  const validation = require('../helpers/validation.js');
+
+//IMPORTING BCRYPT
+  const bcrypt = require('bcrypt');
 
 // GLOBAL VARIABLES
   var rememberMe = false;
@@ -245,44 +251,47 @@
 
         userModel.getCurrAccountInfo(account.username, function(accountResult){
 
-          
           if(accountResult){ // if the username entered exists in the db
               console.log("USERNAME EXISTS IN DB");
 
-              if(account.password == accountResult.password) { // if the password entered matches with the password from the db
-                console.log("PASSWORD IS RIGHT");
-              
-                currUser = {
-                  email:      accountResult.email,
-                  firstname:  accountResult.firstname,
-                  lastname:   accountResult.lastname,
-                  username:   accountResult.username, 
-                  password:   accountResult.password, 
-                  profilepic: accountResult.profilepic,
-                  bio:        accountResult.bio
+              bcrypt.compare(account.password, accountResult.password, function(err, equal){
+                if(equal) {
+                  console.log("PASSWORD IS RIGHT");
                   
+        //          req.session.email = accountResult.email;
+        //          req.session.username = account.username;
+
+                  currUser = {
+                    email:      accountResult.email,
+                    firstname:  accountResult.firstname,
+                    lastname:   accountResult.lastname,
+                    username:   accountResult.username, 
+                    password:   accountResult.password, 
+                    profilepic: accountResult.profilepic,
+                    bio:        accountResult.bio
+                    
+                  }
+
+                  result = {
+                    success:    true,
+                    message:    "Login Successful!",
+                    firstname:  currUser.firstname,
+                    lastname:   currUser.lastname,
+                    username:   currUser.username,
+                    profilepic: currUser.profilepic
+                  }
+
+                  postModel.updateAllPosts(currUser.firstname, currUser.lastname, currUser.username, currUser.password, currUser.bio, currUser.profilepic)
+                  console.log("All Account Information has been updated");
+
+                  console.log(currUser.username + " has logged in!");
+                  console.log("Current user:");
+                  console.log(currUser);
+
+                  res.send(result);
                 }
 
-                result = {
-                  success:    true,
-                  message:    "Login Successful!",
-                  firstname:  currUser.firstname,
-                  lastname:   currUser.lastname,
-                  username:   currUser.username,
-                  profilepic: currUser.profilepic
-                }
-
-                postModel.updateAllPosts(currUser.firstname, currUser.lastname, currUser.username, currUser.password, currUser.bio, currUser.profilepic)
-                console.log("All Account Information has been updated");
-
-                console.log(currUser.username + " has logged in!");
-                console.log("Current user:");
-                console.log(currUser);
-
-                res.send(result);
-
-              }
-              else { // the username exists but the password is wrong
+                else { // the username exists but the password is wrong
                   console.log("PASSWORD IS WRONG");
 
                   result = {
@@ -292,9 +301,10 @@
                   
                   res.send(result);
 
-              }
-              
+                }
+              })              
             }
+
             else{ // if the username doesnt exist
               console.log("USERNAME DOESNT EXIST IN DB");
               
@@ -340,7 +350,7 @@
   });
 
 // [CREATE ACCOUNT] Adding an Account to the DB
-  router.post('/addAccount', function(req, res) {
+  router.post('/addAccount', validation.signupValidation(), function(req, res) {
     console.log("the request:");
     console.log(req.body);
 
@@ -351,34 +361,45 @@
       photoInput = `${req.body.PROFILEPIC}.png`;
     }
 
-    var theUser = {
-      email:      req.body.EMAIL,
-      firstname:  req.body.FIRSTNAME,
-      lastname:   req.body.LASTNAME,
-      username:   req.body.USERNAME,
-      password:   req.body.PASSWORD,
-      profilepic: photoInput,
-      bio:        req.body.BIO
-    };
+    var email =     req.body.EMAIL;
+    var fName =     req.body.FIRSTNAME;
+    var lName =     req.body.LASTNAME;
+    var uName =     req.body.USERNAME;
+    var password =  req.body.PASSWORD;
+    var bio =       req.body.BIO;
 
-    userModel.createNewAccount(theUser, function(err, new_user){
-      var result;
+    bcrypt.hash(password, 2, function(err, hash){
+      var theUser = {
+        email:      email,
+        firstname:  fName,
+        lastname:   lName,
+        username:   uName,
+        password:   hash,
+        profilepic: photoInput,
+        bio:        bio
+      };
+      userModel.createNewAccount(theUser, function(err, new_user){
+        var result;
+  
+        if (err) {
+          console.log(err.errors);
+  
+          result = {success: false, message: "User was not created!"}
+          console.log(result);
+          
+          res.redirect("/create-account");
+        }
+        else {
+          console.log("User was created!");
+          console.log(theUser);
+  
+          res.redirect("/log-in");
+        }
+      })
+    });
+    
 
-      if (err) {
-        console.log(err.errors);
-
-        result = {success: false, message: "User was not created!"}
-        console.log(result);
-        
-        res.redirect("/create-account");
-      }
-      else {
-        console.log("User was created!");
-        console.log(theUser);
-
-        res.redirect("/log-in");
-      }
-    })
+    
   });
 
 // [CREATE ACCOUNT] Unique Email Validation
