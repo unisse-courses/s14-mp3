@@ -281,7 +281,7 @@
                     profilepic: currUser.profilepic
                   }
 
-                  postModel.updateAllPosts(currUser.firstname, currUser.lastname, currUser.username, currUser.password, currUser.bio, currUser.profilepic)
+                  //postModel.updateAllPosts(currUser.firstname, currUser.lastname, currUser.username, currUser.password, currUser.bio, currUser.profilepic)
                   console.log("All Account Information has been updated");
 
                   console.log(currUser.username + " has logged in!");
