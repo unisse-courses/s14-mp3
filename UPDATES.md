@@ -7,10 +7,11 @@
   - [ ] Check if all the features still work after the transfer
 
 2. SESSIONS FOR LOGIN - Giann
-  - [ ] Cross-site scripting ??
-    - [ ] note
+  - [x] Cross-site scripting ??
+    - [ ] note: used req.session to make it work (see index.js for the code)
   - [X] Hashed passwords using crypto
-    - [ ] note
+    - [ ] note: bCrypt is da wei
+  - [X] BACKEND VALIDATION
 
 3. DUMMY DATA JSON FILES
   - [ ] 20 Dummy POSTS

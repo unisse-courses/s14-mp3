@@ -9,7 +9,7 @@
 
 // IMPORTING VALIDATION
   const validation = require('../helpers/validation.js');
-
+  const { validationResult } = require('express-validator');
 //IMPORTING BCRYPT
   const bcrypt = require('bcrypt');
 
@@ -250,6 +250,8 @@
     {
 
         userModel.getCurrAccountInfo(account.username, function(accountResult){
+          console.log(accountResult);
+          console.log(req.session);
 
           if(accountResult){ // if the username entered exists in the db
               console.log("USERNAME EXISTS IN DB");
@@ -258,8 +260,7 @@
                 if(equal) {
                   console.log("PASSWORD IS RIGHT");
                   
-        //          req.session.email = accountResult.email;
-        //          req.session.username = account.username;
+                  req.session.email = accountResult.email;
 
                   currUser = {
                     email:      accountResult.email,
@@ -354,51 +355,80 @@
     console.log("the request:");
     console.log(req.body);
 
-    // DEFAULT PHOTO OPTION
-    var photoInput = '/images/default_profile.png'
+    var errors = validationResult(req);
 
-    if(!(req.body.PROFILEPIC == "")) {
-      photoInput = `${req.body.PROFILEPIC}.png`;
+    if (!errors.isEmpty()){
+      errors = errors.errors;
+
+      var details = {};
+      var i;
+      for (i = 0; i < errors.length; i++)
+      {
+        details[errors[i].param + 'Error'] = errors[i].msg;
+      }
+
+      console.log(details);
+
+      res.render('CreateAccount', {
+        // for main.hbs
+          styles: "../css/styles_outside.css",
+          tab_title: "Create Account",
+          body_class: "outside",
+          navUser: currUser.username,
+          navIcon: currUser.profilepic,
+          EMAILError: details.EMAILError,
+          FIRSTNAMEError: details.FIRSTNAMEError,
+          LASTNAMEError: details.LASTNAMEError,
+          USERNAMEError: details.USERNAMEError,
+          PASSWORDError: details.PASSWORDError
+      });
     }
 
-    var email =     req.body.EMAIL;
-    var fName =     req.body.FIRSTNAME;
-    var lName =     req.body.LASTNAME;
-    var uName =     req.body.USERNAME;
-    var password =  req.body.PASSWORD;
-    var bio =       req.body.BIO;
+    else {
+      // DEFAULT PHOTO OPTION
+      var photoInput = '/images/default_profile.png'
 
-    bcrypt.hash(password, 2, function(err, hash){
-      var theUser = {
-        email:      email,
-        firstname:  fName,
-        lastname:   lName,
-        username:   uName,
-        password:   hash,
-        profilepic: photoInput,
-        bio:        bio
-      };
-      userModel.createNewAccount(theUser, function(err, new_user){
-        var result;
-  
-        if (err) {
-          console.log(err.errors);
-  
-          result = {success: false, message: "User was not created!"}
-          console.log(result);
-          
-          res.redirect("/create-account");
-        }
-        else {
-          console.log("User was created!");
-          console.log(theUser);
-  
-          res.redirect("/log-in");
-        }
-      })
-    });
+      if(!(req.body.PROFILEPIC == "")) {
+        photoInput = `${req.body.PROFILEPIC}.png`;
+      }
+
+      var email =     req.body.EMAIL;
+      var fName =     req.body.FIRSTNAME;
+      var lName =     req.body.LASTNAME;
+      var uName =     req.body.USERNAME;
+      var password =  req.body.PASSWORD;
+      var bio =       req.body.BIO;
+
+      bcrypt.hash(password, 2, function(err, hash){
+        var theUser = {
+          email:      email,
+          firstname:  fName,
+          lastname:   lName,
+          username:   uName,
+          password:   hash,
+          profilepic: photoInput,
+          bio:        bio
+        };
+        userModel.createNewAccount(theUser, function(err, new_user){
+          var result;
     
-
+          if (err) {
+            console.log(err.errors);
+    
+            result = {success: false, message: "User was not created!"}
+            console.log(result);
+            
+            res.redirect("/create-account");
+          }
+          else {
+            console.log("User was created!");
+            console.log(theUser);
+    
+            res.redirect("/log-in");
+          }
+        })
+      });
+    }    
     
   });
 

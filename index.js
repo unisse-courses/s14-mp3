@@ -32,9 +32,27 @@
 
   app.set('view engine', 'hbs');
 
+//use 'expres-session' middleware and set its options
+//use 'MongoStore' as server-side session storage
+app.use(session({
+  'secret': 'Foodies-session',
+  'resave': false,
+  'saveUninitialized': false,
+  store: new store({mongooseConnection: mongoose.connection})
+}));
+
+app.use((req, res, next) => {
+  const{ email } = req.session;
+
+  next();
+})
+
 // Configuration for handling API endpoint data
   app.use(bodyParser.json()); // support json encoded bodies
   app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+// STATIC FILES  
+app.use(express.static('public'));
 
 // HOME ROUTE FOR INDEX PAGE
   app.get('/', function(req, res) {
@@ -48,18 +66,6 @@
 
 // ALL THE OTHER ROUTES
   app.use('/', router);
-
-// STATIC FILES  
-  app.use(express.static('public'));
-
-//use 'expres-session' middleware and set its options
-//use 'MongoStore' as server-side session storage
-app.use(session({
-  'secret': 'Foodies-session',
-  'resave': false,
-  'saveUninitialized': false,
-  store: new store({mongooseConnection: mongoose.connection})
-}));
 
 // LISTENER
   app.listen(port, function() {
