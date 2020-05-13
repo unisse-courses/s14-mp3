@@ -12,6 +12,7 @@
 // EXPRESS APP
   const app = express();
 //  const port = 3000; // sam: bc thats whats in the specs
+  const port = envPort || 3000; // sam: bc thats whats in the specs
 
   const router = require('./routes/routes');
 
