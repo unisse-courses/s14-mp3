@@ -10,6 +10,7 @@ $(document).ready(function() {
 
     $("#noAccount").click(function () { 
         isGuest = 0;
+        console.log(isGuest);
         var account = {
             username: "Guest",
             remember: false
