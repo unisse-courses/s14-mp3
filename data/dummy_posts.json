@@ -1,0 +1,1672 @@
+[{
+  "_id": 1,
+  "upvotes": 11,
+  "ingredients": [
+    {
+      "quantity": "10 ",
+      "unit": "ounces ",
+      "name": "flour "
+    },
+    {
+      "quantity": "3 ",
+      "unit": "Tbsp ",
+      "name": "Sugar "
+    },
+    {
+      "quantity": "4 ",
+      "unit": "Tsp ",
+      "name": "baking powder "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "tsp ",
+      "name": "baking soda "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "tsp ",
+      "name": "salt "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "large ",
+      "name": "eggs "
+    },
+    {
+      "quantity": "1/4 ",
+      "unit": "cup ",
+      "name": "vegetable oil "
+    },
+    {
+      "quantity": "1 and 1/2 ",
+      "unit": "cup ",
+      "name": "whole milk "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "tsp ",
+      "name": "vanilla extract (optional) "
+    }
+  ],
+  "instructions": [
+    "In one bowl, combine dry ingredients: flour, sugar, baking powder, baking soda, and salt. Whisk to combine.",
+    "In another bowl, combine eggs, vegetable oil, and whole milk. Optional: you can also add 1/2 teaspoon of vanilla extract here. Whisk to combine.",
+    "Combine the two bowls and mix together gently with a rubber spatula. The batter should still be lumpy with a few dry streaks of flour. Don't overmix the pancakes!",
+    "Cover the batter and let it rest at room temperature for 10 minutes",
+    "Heat 1 teaspoon of vegetable oil in a nonstick skillet.",
+    "Ladle one scoop of batter into the skillet and cook for a few minutes. Once bubbles appear on the surface and around the edge of the pancake, cook and flip for a few minutes more.",
+    "Stack your pancakes up and serve with syrup and butter if desired. Enjoy!"
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Robin",
+        "lastname": "Scherbatsky",
+        "username": "robin_mnews",
+        "profilepic": "/images/profilepic/robin.jpg"
+      },
+      "content": "nice pancake!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "1"
+    }
+  ],
+  "title": "Pancakes",
+  "user": {
+    "email": "mosby@himym.com",
+    "firstname": "Ted",
+    "lastname": "Mosby",
+    "username": "prof_Brosby",
+    "password": "$2b$04$JXR0jCHPqO/J4DbP2T.eCez5S81bl/on2mLwt1Amn7KpHNPuDlH8S",
+    "profilepic": "/images/profilepic/ted.jpg",
+    "bio": "Somewhere out there, there is a yellow umbrella for everyone. You must be patient."
+  },
+  "dateposted": "5/1/2020",
+  "timeposted": "1:01 PM",
+  "recipe_picture": "/images/recipe/TedPost_01_Pancakes.png",
+  "description": "A pancake is a flat cake, often thin and round, prepared from a starch-based batter that may contain eggs, milk and butter and cooked on a hot surface such as a griddle or frying pan, often frying with oil or butter.",
+  "__v": 0
+},{
+  "_id": 2,
+  "upvotes": 21,
+  "ingredients": [
+    {
+      "quantity": "2 ",
+      "unit": "cups, divided ",
+      "name": "Water "
+    },
+    {
+      "quantity": "3 ",
+      "unit": "Tbsp, separated ",
+      "name": "Rice wine vinegar "
+    },
+    {
+      "quantity": "3 ",
+      "unit": "Tbsp ",
+      "name": "Soy sauce "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "Tbsp ",
+      "name": "Mirin "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "Tbsp ",
+      "name": "Sake "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "cup ",
+      "name": "rice "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "Tbsp, separated ",
+      "name": "Sugar "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "tsp ",
+      "name": "Salt "
+    }
+  ],
+  "instructions": [
+    "Start by adding the kelp to a bowl of water for 15 minutes. Remove and thinly slice into strips. Add to a saute pan along with 1/2 a cup of water, 1 Tbsp rice wine vinegar, 3 Tbsp of soy sauce, 1 Tbsp mirin, and 1 Tbsp sake. Cook over medium heat and bring to a simmer for about 10 minutes before adding 1 Tbsp of sugar. Sprinkle with sesame seeds, and then add kelp to a bowl and set aside.",
+    "Take your sour pickled Japanese plums (also known as umeboshi) and remove the pits. Give them a little chop or mash them with a fork and set aside.",
+    "For the rice, start by rinsing the rice multiple times to remove the starch. The first couple times you wash it, it'll be very cloudy. Continue to wash until it almost runs clear.",
+    "Add rice to a rice cooker or pressure cooker along with 11/2 cups of water. Cook for 7 minutes on high pressure and then release the pressure using the pressure valve.",
+    "Spread the rice onto a sheet pan and drizzle with a mixture of 2 Tbsp of rice wine vinegar, 1 Tbsp sugar, and 1 tsp of salt. Give it a little mix to combine.",
+    "To form the Onigiri, have a small bowl of water ready because you want your hands to be wet or the rice will stick to them.",
+    "For the umeboshi nigiri, form the rice into a disc, add your umeboshi, and then cover the other side with another disc of rice. Form into a disc the size of a hockey puck",
+    "For the kelp, form the rice into a disc, add the kelp along with another disc of rice and then form that into a triangle.",
+    "Add a strip of seaweed to each of your onigiri.",
+    "Serve and enjoy!"
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Lily",
+        "lastname": "Aldrin",
+        "username": "Lilypad",
+        "profilepic": "/images/profilepic/lily.jpg"
+      },
+      "content": "nice onigiri!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "2"
+    }
+  ],
+  "title": "Onigiri",
+  "user": {
+    "email": "scherbatsky@himym.com",
+    "firstname": "Robin",
+    "lastname": "Scherbatsky",
+    "username": "robin_mnews",
+    "password": "$2b$04$C4hfPhrh0E7SDv93.RGNUepBkN/go1Fj4brMkvlvmQZSzYJQjC2ke",
+    "profilepic": "/images/profilepic/robin.jpg",
+    "bio": "If you have chemistry then you only need more thing, timing."
+  },
+  "dateposted": "5/2/2020",
+  "timeposted": "2:01 PM",
+  "recipe_picture": "/images/recipe/RobinPost_01_Onigiri.png",
+  "description": "Onigiri is a rice meal molded into a triangle shape that is wrapped in seaweed",
+  "__v": 0
+},{
+  "_id": 3,
+  "upvotes": 22,
+  "ingredients": [
+    {
+      "quantity": "4 ",
+      "unit": "large ",
+      "name": "potatoes "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "large ",
+      "name": "egg "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "cup ",
+      "name": "flour "
+    }
+  ],
+  "instructions": [
+    "Start by poking the potatoes all over using a fork. Place them in a preheated 375°F oven for about an hour. After this, the skins should be crisp and the interior should easily pierce with a knife. ",
+    "Using a clean dish towel, grab each potato, and remove the skin from the potato. This will allow more steam to escape. Less steam means less moisture, and less moisture means lighter, fluffier gnocchi. Cover with plastic wrap and let cool for a few hours.",
+    "Once they have cooled down, pass them through the fine holes of a cheese grater (for an easier and faster method use a potato ricer). Once the potatoes are grated down to fluffy little bits, place them onto a rimmed baking sheet and measure to 500 grams. Add one beaten egg yolk spread evenly across (1 beaten egg yolk for every 500 grams). Then sift 100 grams of all-purpose flour across the potatoes. ",
+    "Bring the potatoes into a ball of dough using a bench scraper (or the desired tool) to chop and mix everything up to make sure the egg and flour are evenly distributed. Start using your hands to press it into one cohesive mass. ",
+    "Once the mass has formed, start kneading for about 90 seconds for slightly toothsome gnocchi. A phrase to remember, \"The more you knead the tougher they'll bead, but if early on you surrender then they'll be tender\". ",
+    "Once the dough is smooth and no egg or flour streaks remain, roll it out into a fat little log and cut it into four even pieces. Sift some all-purpose flour onto a work surface then roll each piece of dough into a 1\" thick rope. Press down any pudgy spots until it is nice and even. ",
+    "Then using a bench scraper or sharp knife, cut into little dumplings or into the desired size. ",
+    "For different shapes other than the pillow-like shape, roll a piece of dough between your hands until round or simply make a dent in the center using your finger. For a classic gnocchi shape, press down against the tines of a fork using your thumb down and across the fork. ",
+    "Once all of the dough has been cut and shaped into the desired gnocchi shape, place onto a rimmed baking sheet and cover with a dusting of all-purpose flour. For non-immediate cooking, place in a freezer to solidify for 1 hour, then scrape off and place in a bag and back into the freezer. For immediate use, cook with one of the sauces below!"
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Lily",
+        "lastname": "Aldrin",
+        "username": "Lilypad",
+        "profilepic": "/images/profilepic/lily.jpg"
+      },
+      "content": "nice gnocchi!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "3"
+    }
+  ],
+  "title": "Gnocchi",
+  "user": {
+    "email": "scherbatsky@himym.com",
+    "firstname": "Robin",
+    "lastname": "Scherbatsky",
+    "username": "robin_mnews",
+    "password": "$2b$04$C4hfPhrh0E7SDv93.RGNUepBkN/go1Fj4brMkvlvmQZSzYJQjC2ke",
+    "profilepic": "/images/profilepic/robin.jpg",
+    "bio": "If you have chemistry then you only need more thing, timing."
+  },
+  "dateposted": "5/2/2020",
+  "timeposted": "2:02 PM",
+  "recipe_picture": "/images/recipe/RobinPost_02_Gnocchi.png",
+  "description": "Gnocchi is an Italian pasta made of cooked mashed potatoes, flour and eggs.",
+  "__v": 0
+},{
+  "_id": 4,
+  "upvotes": 23,
+  "ingredients": [
+    {
+      "quantity": "1 ",
+      "unit": "Tbsp ",
+      "name": "Unsalted Butter "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "sprigs ",
+      "name": "rosemary "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "cup ",
+      "name": "red wine "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "cup ",
+      "name": "chicken or beef stock "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "cloves ",
+      "name": "garlic "
+    }
+  ],
+  "instructions": [
+    "Start by heating up a stainless steel skillet with 2 tablespoons of vegetable oil. Add the steak to the pan once it's roaring hot. Sear and establish a crust on both sides. ",
+    "Once a crust has developed on both sides of the steak, add 1 tablespoon of butter, rosemary, and a clove of garlic to the pan. Tilt the pan slightly and baste the steak - using a spoon to ladle the liquid over the meat until a beautiful brown crust has developed on both sides and cooked to the desired doneness. Place the steak on a plate and cover it in the brown butter. Rest for 10 minutes.",
+    "Using the leftover fond, place the pan over medium heat and drain off any excess fat. Add 1/2 cup of minced shallots and saute until translucent before adding 1 crushed clove of garlic and continuing to saute for 30 seconds.",
+    "Once fragrant, deglaze with 1 cup of a full-bodied red wine to lift up all the fond and add 1 cup of the gelatin enhanced chicken or beef stock. Scrape all the fond bits off the bottom then let it simmer over medium-high heat, reducing aggressively until it's thick. Add 2 tablespoons of unsalted butter and whisk together until the butter has dissolved and the sauce is a creamy consistency.",
+    "Season to taste with kosher salt and freshly ground pepper.",
+    "Carve the steak after letting it rest for 10 minutes. Plate and cover with the sauce."
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Lily",
+        "lastname": "Aldrin",
+        "username": "Lilypad",
+        "profilepic": "/images/profilepic/lily.jpg"
+      },
+      "content": "nice pan sauce!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "4"
+    }
+  ],
+  "title": "Pan Sauce",
+  "user": {
+    "email": "scherbatsky@himym.com",
+    "firstname": "Robin",
+    "lastname": "Scherbatsky",
+    "username": "robin_mnews",
+    "password": "$2b$04$C4hfPhrh0E7SDv93.RGNUepBkN/go1Fj4brMkvlvmQZSzYJQjC2ke",
+    "profilepic": "/images/profilepic/robin.jpg",
+    "bio": "If you have chemistry then you only need more thing, timing."
+  },
+  "dateposted": "5/2/2020",
+  "timeposted": "2:03 PM",
+  "recipe_picture": "/images/recipe/RobinPost_03_PanSauces.png",
+  "description": "This is a pan sauce made for steak.",
+  "__v": 0
+},{
+  "_id": 5,
+  "upvotes": 24,
+  "ingredients": [
+    {
+      "quantity": "5   ",
+      "unit": "boneless thighs ",
+      "name": "of chicken "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "Tsp ",
+      "name": "Kosher Salt "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "Tsp ",
+      "name": "Freshly Ground Pepper "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "Tbsp ",
+      "name": "Vegetable Oil "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "large can",
+      "name": "of whole tomatoes "
+    }
+  ],
+  "instructions": [
+    "Start by patting dry 5 boneless skinless chicken thighs and seasoning with salt and pepper. Sear over medium-high heat in 2 tablespoons of vegetable oil in a high rimmed saucepan. ",
+    "Once the chicken has a nice color on both sides, add 1 1/2 cups of the taco seasoning sauce, cover with a lid, lower the heat and let it braise for about 30 minutes. During this time feel free to prepare the chimichanga accompaniments.",
+    "After 30 minutes, remove the lid and let the sauce cook down until nice and thick.",
+    "Shred (or chop) the chicken right in the pan and toss in the sauce before setting it to the side to cool. "
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Lily",
+        "lastname": "Aldrin",
+        "username": "Lilypad",
+        "profilepic": "/images/profilepic/lily.jpg"
+      },
+      "content": "nice chimichangas!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "5"
+    }
+  ],
+  "title": "Chimichangas",
+  "user": {
+    "email": "scherbatsky@himym.com",
+    "firstname": "Robin",
+    "lastname": "Scherbatsky",
+    "username": "robin_mnews",
+    "password": "$2b$04$C4hfPhrh0E7SDv93.RGNUepBkN/go1Fj4brMkvlvmQZSzYJQjC2ke",
+    "profilepic": "/images/profilepic/robin.jpg",
+    "bio": "If you have chemistry then you only need more thing, timing."
+  },
+  "dateposted": "5/2/2020",
+  "timeposted": "2:04 PM",
+  "recipe_picture": "/images/recipe/RobinPost_04_Chimichangas.png",
+  "description": "Chimichanga is a deep-fried burrito that is common in Tex-Mex and other Southwestern U.S. cuisine.",
+  "__v": 0
+},{
+  "_id": 6,
+  "upvotes": 25,
+  "ingredients": [
+    {
+      "quantity": "37 ",
+      "unit": "grams ",
+      "name": "of finely ground coffee beans "
+    },
+    {
+      "quantity": "500 ",
+      "unit": "grams ",
+      "name": "of water "
+    }
+  ],
+  "instructions": [
+    "Put the filter into your Chemex, making a cone with 3 layers on one side and 1 layer on the other side. Align the side with 3 layers with the side of the Chemex with the spout.",
+    "Pour hot water onto the filter and into the Chemex to preheat the Chemex and also moisten the filter.",
+    "Grind coffee beans to a fine texture. You want 37 grams of coffee for 500 grams of water.",
+    "Add ground coffee to the filter. Pour the first 250 grams of 200°F water on top of the grounds. Wait until it drains and then add the second 250 grams of water.",
+    "Once the water has gone through the grounds, remove the filter. Pour and serve! "
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Lily",
+        "lastname": "Aldrin",
+        "username": "Lilypad",
+        "profilepic": "/images/profilepic/lily.jpg"
+      },
+      "content": "nice chemex coffee!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "6"
+    }
+  ],
+  "title": "Chemex Coffee",
+  "user": {
+    "email": "scherbatsky@himym.com",
+    "firstname": "Robin",
+    "lastname": "Scherbatsky",
+    "username": "robin_mnews",
+    "password": "$2b$04$C4hfPhrh0E7SDv93.RGNUepBkN/go1Fj4brMkvlvmQZSzYJQjC2ke",
+    "profilepic": "/images/profilepic/robin.jpg",
+    "bio": "If you have chemistry then you only need more thing, timing."
+  },
+  "dateposted": "5/2/2020",
+  "timeposted": "2:05 PM",
+  "recipe_picture": "/images/recipe/RobinPost_05_Coffee.png",
+  "description": "The Chemex brews coffee using the infusion method, which makes it most similar to drip coffee in terms of body and taste. ",
+  "__v": 0
+},{
+  "_id": 7,
+  "upvotes": 31,
+  "ingredients": [
+    {
+      "quantity": "120 ",
+      "unit": "grams ",
+      "name": "all-purpose flour "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "tsp ",
+      "name": "baking powder "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "tsp ",
+      "name": "salt "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "large ",
+      "name": "eggs "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "tbsp ",
+      "name": "low sodium soy sauce "
+    },
+    {
+      "quantity": "1 and 1/2 ",
+      "unit": "cups ",
+      "name": "Dashi broth "
+    }
+  ],
+  "instructions": [
+    "Begin by cutting your plain cooked octopus into bite-sized chunks, and then set aside.",
+    "In a mixing bowl, combine 120 grams of all-purpose flour with 2 tsp of baking powder and 1/2 tsp of salt. Whisk to combine. Add 2 large eggs, 1 Tbsp of low sodium soy sauce, and 1 and 1/2 cups of dashi broth. Mix to combine.",
+    "Heat your Takoyaki pan over a medium high heat with some vegetable oil, making sure that each hole is coated.",
+    "Add your batter and make sure every hole is filled before adding your primary fillings right in the middle. Cover all batter with a sprinkling of bonito flakes, red pickled ginger, and tenkasu.",
+    "Using a pair of chopsticks, get under each takoyaki and rotate about 90°, and then add some more supplemental batter to help them become more spherical.",
+    "Flip the whole thing over being sure to tuck all the batter and bits in. Continue to turn and tuck until they are all round, golden brown, and crispy.",
+    "Add to a plate and top with okonomiyaki sauce, japanese mayo, aonori, and bonito flakes.",
+    "Serve and Enjoy!"
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Barney",
+        "lastname": "Stinson",
+        "username": "the_barnacle",
+        "profilepic": "/images/profilepic/barney.jpg"
+      },
+      "content": "nice takoyaki!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "7"
+    }
+  ],
+  "title": "Takoyaki",
+  "user": {
+    "email": "eriksen@himym.com",
+    "firstname": "Marshall",
+    "lastname": "Eriksen",
+    "username": "bigFudge",
+    "password": "$2b$04$OhRNVk0YJJslAK8bN86bAe4LUFibTFBMDLA1MwyZagWXz3wqMZzMi",
+    "profilepic": "/images/profilepic/marsh.jpg",
+    "bio": "ALL HAIL BEERCULES!"
+  },
+  "dateposted": "5/3/2020",
+  "timeposted": "3:01 PM",
+  "recipe_picture": "/images/recipe/MarshallPost_01_Takoyaki.png",
+  "description": "Takoyaki is usually made with squid.",
+  "__v": 0
+},{
+  "_id": 8,
+  "upvotes": 32,
+  "ingredients": [
+    {
+      "quantity": "1/4 ",
+      "unit": "cup ",
+      "name": "brown sugar "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "tsp ",
+      "name": "vanilla extract "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "tsp ",
+      "name": "kosher salt "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "Unsalted melted butter "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "cup ",
+      "name": "All-purpose flour "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "tsp ",
+      "name": "raw sugar "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "caramel "
+    },
+    {
+      "quantity": "8 ",
+      "unit": "oz ",
+      "name": "dark chocolate "
+    }
+  ],
+  "instructions": [
+    "In a large bowl, add brown sugar, vanilla extract, kosher salt, and melted butter. Give it a whisk until everything is smooth and homogenous. Afterwards, add all-purpose flour and whisk together until the right consistency is reached. The dough should hold its shape when pressed together, but should also be nice and crumbly. ",
+    "Line a lasagna pan with aluminum foil. Trim one sheet widthwise and another lengthwise and lay into the ban (just like you would for brownies). Rub the aluminum foil down with butter so that the shortbread doesn't stick.",
+    "Press the dough into the pan using wet fingers. Use a large spatula to flatten the top and ensure that the dough is evenly spread in the pan. Dock the dough by piercing all over with a fork then sprinkle turbinado sugar across the top. Place into a 350℉ oven for 17-22 minutes.",
+    "Remove from oven and let cool for 2 hours on a wire rack. "
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Barney",
+        "lastname": "Stinson",
+        "username": "the_barnacle",
+        "profilepic": "/images/profilepic/barney.jpg"
+      },
+      "content": "nice millionaire’s shortbread!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "8"
+    }
+  ],
+  "title": "Millionaire's Shortbread",
+  "user": {
+    "email": "eriksen@himym.com",
+    "firstname": "Marshall",
+    "lastname": "Eriksen",
+    "username": "bigFudge",
+    "password": "$2b$04$OhRNVk0YJJslAK8bN86bAe4LUFibTFBMDLA1MwyZagWXz3wqMZzMi",
+    "profilepic": "/images/profilepic/marsh.jpg",
+    "bio": "ALL HAIL BEERCULES!"
+  },
+  "dateposted": "5/3/2020",
+  "timeposted": "3:02 PM",
+  "recipe_picture": "/images/recipe/MarshallPost_02_Shortbread.png",
+  "description": "This Millionaire's Shortbread is the perfect trifecta: Sweet simple, crisp shortbread, rich chewy, homemade caramel, and thick dark chocolate ganache.",
+  "__v": 0
+},{
+  "_id": 9,
+  "upvotes": 33,
+  "ingredients": [
+    {
+      "quantity": "3 ",
+      "unit": "lbs ",
+      "name": "spanish onions "
+    },
+    {
+      "quantity": "6 ",
+      "unit": "cups ",
+      "name": "high quality beef "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "tbsp ",
+      "name": "flour "
+    },
+    {
+      "quantity": "3 ",
+      "unit": "tbsp ",
+      "name": "shredded gruyere cheese "
+    }
+  ],
+  "instructions": [
+    "Start by preparing your onions. Peel them and then cut in half from pole to pole - through the root and stem. Remove the tough root part by cutting it away with your knife. Then thinly slice them pole to pole - like cutting with the grain of the onion. This gives the slices more structural integrity so that they stand up to the slow cooking method.",
+    "Repeat this process with the rest of the onions."
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Barney",
+        "lastname": "Stinson",
+        "username": "the_barnacle",
+        "profilepic": "/images/profilepic/barney.jpg"
+      },
+      "content": "nice french onion soup!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "9"
+    }
+  ],
+  "title": "French Onion Soup",
+  "user": {
+    "email": "eriksen@himym.com",
+    "firstname": "Marshall",
+    "lastname": "Eriksen",
+    "username": "bigFudge",
+    "password": "$2b$04$OhRNVk0YJJslAK8bN86bAe4LUFibTFBMDLA1MwyZagWXz3wqMZzMi",
+    "profilepic": "/images/profilepic/marsh.jpg",
+    "bio": "ALL HAIL BEERCULES!"
+  },
+  "dateposted": "5/3/2020",
+  "timeposted": "3:03 PM",
+  "recipe_picture": "/images/recipe/MarshallPost_03_OnionSoup.png",
+  "description": "French onion soup is usually based on meat stock and onions, and often served with croutons and cheese on top of a large piece of bread.",
+  "__v": 0
+},{
+  "_id": 10,
+  "upvotes": 34,
+  "ingredients": [
+    {
+      "quantity": "1/2 ",
+      "unit": "pound ",
+      "name": "pork belly "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "loaf ",
+      "name": "focaccia bread "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "cup ",
+      "name": "salsa "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "bunch ",
+      "name": "arugula "
+    }
+  ],
+  "instructions": [
+    "Slice porchetta as thinly as you can.",
+    "Stack sliced porchetta on top of a piece of focaccia or another robust bread.",
+    "Spread salsa verde on top. ",
+    "Top with a big handful of arugula.",
+    "Secure with skewers, slice and serve!"
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Barney",
+        "lastname": "Stinson",
+        "username": "the_barnacle",
+        "profilepic": "/images/profilepic/barney.jpg"
+      },
+      "content": "nice porchetta sandwich!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "10"
+    }
+  ],
+  "title": "Porchetta Sandwich",
+  "user": {
+    "email": "eriksen@himym.com",
+    "firstname": "Marshall",
+    "lastname": "Eriksen",
+    "username": "bigFudge",
+    "password": "$2b$04$OhRNVk0YJJslAK8bN86bAe4LUFibTFBMDLA1MwyZagWXz3wqMZzMi",
+    "profilepic": "/images/profilepic/marsh.jpg",
+    "bio": "ALL HAIL BEERCULES!"
+  },
+  "dateposted": "5/3/2020",
+  "timeposted": "3:04 PM",
+  "recipe_picture": "/images/recipe/MarshallPost_04_Porchetta.png",
+  "description": "Porchetta is a savory, fatty, and moist boneless pork roast of Italian culinary tradition.",
+  "__v": 0
+},{
+  "_id": 11,
+  "upvotes": 35,
+  "ingredients": [
+    {
+      "quantity": "2 ",
+      "unit": "cups ",
+      "name": "coursely ground cornmeal "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "tsp ",
+      "name": "kosher salt "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "tsp ",
+      "name": "baking powder "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "tsp ",
+      "name": "baking soda "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "large ",
+      "name": "eggs "
+    },
+    {
+      "quantity": "1 1/2 ",
+      "unit": "cups ",
+      "name": "buttermilk "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "lard "
+    }
+  ],
+  "instructions": [
+    "Start out by pouring 2 cups of coarsely ground cornmeal into a mixing bowl. Then, add 1 teaspoon of kosher salt, 1/2 a teaspoon of baking powder, and 1/2 a teaspoon of baking soda. Whisk together accordingly. ",
+    "In a separate mixing bowl, whisk 2 large eggs and 1 1/2 cups of buttermilk together. Pour your cornmeal mixture into the bowl and whisk everything together. To adjust for texture and consistency, gradually add more cornmeal if needed. Use a spatula to mix together until the batter reaches your desired thickness.",
+    "In a cast iron skillet, melt 1/2 a cup of lard over medium flame. When it is melted, without being too hot, add about half of it to your cornbread batter and whisk to combine. ",
+    "Place the skillet with the remaining lard over medium-high heat until shimmering and very hot for a super crisp crust on the bottom of your cornbread. Carefully dump the batter into the skillet, where it should begin to sizzle. Smooth out the top of the batter and place the skillet into a preheated 425 degree-Fahrenheit oven for about 20 to 25 minutes until set, light brown in the center, and deep golden brown around the edges.",
+    "Carefully remove the cornbread from the skillet and allow it to cool on a wire rack for about 10 to 15 minutes before slicing and serving. "
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Barney",
+        "lastname": "Stinson",
+        "username": "the_barnacle",
+        "profilepic": "/images/profilepic/barney.jpg"
+      },
+      "content": "nice cornbread!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "11"
+    }
+  ],
+  "title": "Cornbread",
+  "user": {
+    "email": "eriksen@himym.com",
+    "firstname": "Marshall",
+    "lastname": "Eriksen",
+    "username": "bigFudge",
+    "password": "$2b$04$OhRNVk0YJJslAK8bN86bAe4LUFibTFBMDLA1MwyZagWXz3wqMZzMi",
+    "profilepic": "/images/profilepic/marsh.jpg",
+    "bio": "ALL HAIL BEERCULES!"
+  },
+  "dateposted": "5/3/2020",
+  "timeposted": "3:05 PM",
+  "recipe_picture": "/images/recipe/MarshallPost_05_Cornbread.png",
+  "description": "Cornbread is any quick bread containing cornmeal, and a Native American cuisine.",
+  "__v": 0
+},{
+  "_id": 12,
+  "upvotes": 41,
+  "ingredients": [
+    {
+      "quantity": "2 ",
+      "unit": "parts ",
+      "name": "whole milk "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "part ",
+      "name": "Heavy cream "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "part ",
+      "name": "Evaporated Milk "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "part ",
+      "name": "Sweetened condensed milk "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "Ghirardelli cocoa powder "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "Dark Chocolate "
+    }
+  ],
+  "instructions": [
+    "Add your 2 parts whole milk, 1 part heavy cream, and 1 part of evaporated milk to a saucepan.",
+    "Heat milk and whisk while heating. Heat to steaming hot  but not boiling - around 190° F.",
+    "Add 1/2 cup of Ghiradelli cocoa powder to the milk. Then add 1/2 cup of 70% dark baking chocolate and whisk together.",
+    "Add 1/2 cup of sugar and continue to whisk until everything is mixed in completely.",
+    "Add 1 pinch of salt and a small pinch of ground cinnamon. Add instant coffee if you would like. Whisk to combine all ingredients.",
+    "Pour hot chocolate into a cup and cover with whipped cream.",
+    "Shave chocolate on top of the whipped cream.",
+    "Add graham cracker to the top of the whipped cream and coat top with whipped cream.",
+    "Stick marshmallow on top of graham cracker. Then toast marshmallow to your liking.",
+    "Serve and enjoy!"
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Marshall",
+        "lastname": "Eriksen",
+        "username": "bigFudge",
+        "profilepic": "/images/profilepic/marsh.jpg"
+      },
+      "content": "nice hot cocoa!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "12"
+    }
+  ],
+  "title": "Hot Cocoa",
+  "user": {
+    "email": "aldrin@himym.com",
+    "firstname": "Lily",
+    "lastname": "Aldrin",
+    "username": "Lilypad",
+    "password": "$2b$04$RtmISAIlsx9Oj41EThbdd.w2QtetToYMCn.OVBNYxzTpMEnFs0TKO",
+    "profilepic": "/images/profilepic/lily.jpg",
+    "bio": "You cant just skip to where you want to be."
+  },
+  "dateposted": "5/4/2020",
+  "timeposted": "4:01 PM",
+  "recipe_picture": "/images/recipe/LilyPost_01_Hot Cocoa.png",
+  "description": "Hot Cocoa is made out of cocoa powder and toasty water",
+  "__v": 0
+},{
+  "_id": 13,
+  "upvotes": 42,
+  "ingredients": [
+    {
+      "quantity": "16 ",
+      "unit": "ounces ",
+      "name": "flour "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "tsp ",
+      "name": "kosher salt "
+    },
+    {
+      "quantity": "2 1/2 ",
+      "unit": "tsp ",
+      "name": "active dry yeast "
+    },
+    {
+      "quantity": "11 ",
+      "unit": "ounces ",
+      "name": "water "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "tbsp ",
+      "name": "olive oil "
+    }
+  ],
+  "instructions": [
+    "Start by making your pizza dough. Combine flour, kosher salt, and active dry yeast in a big bowl.",
+    "Add room temperature water and mix with a wooden spoon until a shaggy dough forms and no dry clumps remain.",
+    "Generously oil a medium bowl with olive oil. Put the ball of dough into the bowl and cover with plastic wrap. Let rest for 18-24 hours.",
+    "Once rested, turn the dough out onto a well-floured work surface. Cut the dough in half, as this will make 2 crusts for the glass pie plate.",
+    "Oil the pie plate with olive oil. Place the dough in the plate and gently coax the it to the edges using your fingers.",
+    "Cover the pan with plastic wrap and let rest for at least one hour or until doubled in size. Now is also the time to preheat your oven - turn it on to its max heat setting and put a pizza stone in the oven as well.",
+    "While your dough rises, make tomato sauce. Combine tomatoes, garlic cloves, oregano, basil, red pepper flakes, salt, and pepper in a food processor or large cup for an immersion blender. Pulse a few times until smooth. Optionally, add a dash of olive oil for extra flavor.",
+    "Prepare your other toppings - I love to use natural casing pepperoni, thinly sliced, as well as low moisture (full fat) mozzarella and fresh basil.",
+    "Now that the dough is ready, top it with sauce edge to edge, then add the shredded mozzarella. Top with pepperoni and basil.",
+    "Bake for about 15 minutes. ",
+    "Top with freshly grated parmesan and let rest for at least 5 minutes so you don't burn your mouth. Serve and enjoy!"
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Marshall",
+        "lastname": "Eriksen",
+        "username": "bigFudge",
+        "profilepic": "/images/profilepic/marsh.jpg"
+      },
+      "content": "nice pan pizza!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "13"
+    }
+  ],
+  "title": "Pan Pizza",
+  "user": {
+    "email": "aldrin@himym.com",
+    "firstname": "Lily",
+    "lastname": "Aldrin",
+    "username": "Lilypad",
+    "password": "$2b$04$RtmISAIlsx9Oj41EThbdd.w2QtetToYMCn.OVBNYxzTpMEnFs0TKO",
+    "profilepic": "/images/profilepic/lily.jpg",
+    "bio": "You cant just skip to where you want to be."
+  },
+  "dateposted": "5/4/2020",
+  "timeposted": "4:02 PM",
+  "recipe_picture": "/images/recipe/LilyPost_02_PanPizza.png",
+  "description": "Pan pizza is a thin or thick pizza baked in a deep dish pan.",
+  "__v": 0
+},{
+  "_id": 14,
+  "upvotes": 43,
+  "ingredients": [
+    {
+      "quantity": "1/2 ",
+      "unit": "pound ",
+      "name": "guanciale "
+    },
+    {
+      "quantity": "3 ",
+      "unit": "large ",
+      "name": "eggs "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "egg ",
+      "name": "yolk "
+    },
+    {
+      "quantity": "4 ",
+      "unit": "ounces ",
+      "name": "cheese "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "pinch ",
+      "name": "ground black pepper "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "pinch ",
+      "name": "kosher salt "
+    },
+    {
+      "quantity": "16 ",
+      "unit": "ounces ",
+      "name": "spaghetti noodles "
+    },
+    {
+      "quantity": "1/4 ",
+      "unit": "cup ",
+      "name": "starchy pasta water "
+    }
+  ],
+  "instructions": [
+    "Start by dicing 1/2 pound guanciale or pancetta. Set aside.",
+    "In a large bowl or measuring cup, combine 3 large eggs and 1 egg yolk.",
+    "Grate and measure out 4 ounces of cheese - I recommend Pecorino Romano or Parmigiano-Reggiano or a blend of the two.",
+    "Combine grated cheese and eggs and beat together with a fork until homogenous. ",
+    "Season the egg and cheese mixture with fresh black pepper. Do not add salt yet, because the guanciale brings a lot of salt to the dish. Beat until well incorporated.",
+    "Add the diced guanciale to a cold pan and then turn the heat to medium. This will allow the fat to render out slowly. Once it is fully cooked but not too crispy, turn off the heat.",
+    "Add your noodles to a large pot of heavily salted water. Cook until they are to your desired texture.",
+    "Add the cooked noodles to the pan with the guanciale. Toss to coat the noodles in the guanciale fat. ",
+    "Work quickly to add the egg and cheese mixture to the pan and mix rigorously. This will help to emulsify the sauce and make it creamy. If it's as smooth as you'd like, you can add a little bit of pasta water (about 1/4 cup). Season with salt if it needs it.",
+    "Plate up and enjoy! "
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Marshall",
+        "lastname": "Eriksen",
+        "username": "bigFudge",
+        "profilepic": "/images/profilepic/marsh.jpg"
+      },
+      "content": "nice carbonara!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "14"
+    }
+  ],
+  "title": "Carbonara",
+  "user": {
+    "email": "aldrin@himym.com",
+    "firstname": "Lily",
+    "lastname": "Aldrin",
+    "username": "Lilypad",
+    "password": "$2b$04$RtmISAIlsx9Oj41EThbdd.w2QtetToYMCn.OVBNYxzTpMEnFs0TKO",
+    "profilepic": "/images/profilepic/lily.jpg",
+    "bio": "You cant just skip to where you want to be."
+  },
+  "dateposted": "5/4/2020",
+  "timeposted": "4:03 PM",
+  "recipe_picture": "/images/recipe/LilyPost_03_Carbonara.png",
+  "description": "Carbonara is an Italian pasta dish from Rome made with egg, hard cheese, cured pork, and black pepper.",
+  "__v": 0
+},{
+  "_id": 15,
+  "upvotes": 44,
+  "ingredients": [
+    {
+      "quantity": "10 ",
+      "unit": "large ",
+      "name": "eggs, separated "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "cups ",
+      "name": "white sugar, divided "
+    },
+    {
+      "quantity": "9.75 ",
+      "unit": "ounces ",
+      "name": "all purpose flour "
+    },
+    {
+      "quantity": "3 ",
+      "unit": "tsp ",
+      "name": "baking powder "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "tsp ",
+      "name": "salt "
+    },
+    {
+      "quantity": "2/3 ",
+      "unit": "cup ",
+      "name": "milk "
+    },
+    {
+      "quantity": "1.5 ",
+      "unit": "tsp ",
+      "name": "vanilla extract "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "drizzle ",
+      "name": "vegetable oil "
+    },
+    {
+      "quantity": "14 ",
+      "unit": "oz. can ",
+      "name": "sweetened condensed milk "
+    },
+    {
+      "quantity": "12 ",
+      "unit": "oz. can ",
+      "name": "evaporated milk "
+    },
+    {
+      "quantity": "4 ",
+      "unit": "ounces ",
+      "name": "whole milk "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "handful of ",
+      "name": "thinly sliced strawberries "
+    }
+  ],
+  "instructions": [
+    "Separate 10 eggs, putting the whites into the bowl of a stand mixer. Set the yolks aside.",
+    "Beat the whites on high speed with the whisk attachment of the stand mixer while slowly adding 1 cup of white sugar. Keep whipping until stiff peaks form.",
+    "In a separate stand mixer bowl, beat the egg yolks with the other cup of sugar, mixing on medium speed with the paddle attachment for about 2 minutes - until pale and smooth.",
+    "In a separate bowl, combine all purpose flour, baking powder, and salt. Whisk to combine.",
+    "Add 2/3 cup milk to the egg yolk mixture along with 1 1/2 tsp vanilla extract. Mix until completely combined. Next, add the bowl of dry ingredients and mix until completely combined.",
+    "Next, add the egg white meringue to the other bowl. Gently stir to combine, being careful not to deflate the egg whites.",
+    "Prepare your baking pans. First, cut your parchment paper into rounds for the bottom of your pan. Watch the video to see how I do it! Then, grease both pans with vegetable oil.",
+    "Pour the batter evenly between the two pans. Spread to smooth out the top.",
+    "Bake at 350°F for 25-35 minutes, or until a cake tester comes out clean.",
+    "While the cake is baking, make the dulce de leche.",
+    "To make the dulce de leche, combine 1 1/4 cup sugar, 4 cups milk, and 1/4 tsp baking soda into a saucepan. Stir gently to combine over a medium heat until it comes to a rolling boil.",
+    "Once boiling, lower the heat and simmer for 90 minutes, whisking frequently to prevent scorching. It should reach a deep golden brown color. Once it is finished, strain through a fine mesh sieve and allow to cool at room temperature for at least one hour. ",
+    "Once the cakes have cooled, remove them from pan and remove parchment paper. Put the cakes back in their respective pans. Poke holes along the top of both cakes with a fork. ",
+    "In a bowl, combine sweetened condensed milk, evaporated milk, and whole milk.",
+    "Ladle the tres leches mixture over top of the cakes. Cover the cakes and refrigerate for at least 6 hours, preferably overnight.",
+    "Make the whipped cream: in the bowl of a stand mixer with the whisk attachment, combine heavy whipping cream, sugar, and vanilla extract. Beat over medium speed until stiff peaks form. ",
+    "Place one later cake onto a cake stand or plate.  Cover with whipped cream all over. Top with a drizzle of dulce de leche, and then garnish with sliced strawberries. Serve and enjoy! "
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Marshall",
+        "lastname": "Eriksen",
+        "username": "bigFudge",
+        "profilepic": "/images/profilepic/marsh.jpg"
+      },
+      "content": "nice tres leches cake!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "15"
+    }
+  ],
+  "title": "Tres Leches Cake",
+  "user": {
+    "email": "aldrin@himym.com",
+    "firstname": "Lily",
+    "lastname": "Aldrin",
+    "username": "Lilypad",
+    "password": "$2b$04$RtmISAIlsx9Oj41EThbdd.w2QtetToYMCn.OVBNYxzTpMEnFs0TKO",
+    "profilepic": "/images/profilepic/lily.jpg",
+    "bio": "You cant just skip to where you want to be."
+  },
+  "dateposted": "5/4/2020",
+  "timeposted": "4:04 PM",
+  "recipe_picture": "/images/recipe/LilyPost_04_TresLechesCake.png",
+  "description": "Tres leches literally means, \"three milks\" and tres leches cake is an ultra light sponge cake soaked in a sweet milk mixture.",
+  "__v": 0
+},{
+  "_id": 16,
+  "upvotes": 45,
+  "ingredients": [
+    {
+      "quantity": "1/3 ",
+      "unit": "cup ",
+      "name": "cocoa powder "
+    },
+    {
+      "quantity": "1 1/2 ",
+      "unit": "tsp ",
+      "name": "espresso powder "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "ounces ",
+      "name": "unsweetened chocolate, chopped "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "boiling water "
+    },
+    {
+      "quantity": "4 ",
+      "unit": "tbsp ",
+      "name": "butter "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "vegetable oil "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "large ",
+      "name": "eggs "
+    },
+    {
+      "quantity": "1 1/2 ",
+      "unit": "tsp  ",
+      "name": "vanilla extract "
+    },
+    {
+      "quantity": "2 1/2 ",
+      "unit": "cups ",
+      "name": "granulated sugar "
+    },
+    {
+      "quantity": "1 3/4 ",
+      "unit": "cup ",
+      "name": "all purpose flour "
+    },
+    {
+      "quantity": "6 ",
+      "unit": "ounces ",
+      "name": "bittersweet chocolate, chopped "
+    }
+  ],
+  "instructions": [
+    "Prepare your baking dish by lining with aluminum foil or parchment paper and greasing with cooking spray.",
+    "In a large bowl, combine cocoa powder, espresso powder, chopped unsweetened chocolate, and boiling water. Stir to combine and get everything melted.",
+    "While still warm, add butter and stir until melted. Add vegetable oil and stir again.",
+    "Once the mixture has cooled, add the eggs and egg yolks and stir to combine.",
+    "Add vanilla extract and whisk, then add granulated sugar and stir to combine.",
+    "Next, add flour. Mix it thoroughly and then add the chopped bittersweet chocolate. Stir to combine one last time.",
+    "Pour batter into prepared pan. Bake at 350°F for 30-35 minutes, until a tester comes out clean-ish.",
+    "Let brownies cool for one hour in the pan. ",
+    "Remove them from pan using parchment or foil. Serve and enjoy! "
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Marshall",
+        "lastname": "Eriksen",
+        "username": "bigFudge",
+        "profilepic": "/images/profilepic/marsh.jpg"
+      },
+      "content": "nice brownies!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "16"
+    }
+  ],
+  "title": "Brownies",
+  "user": {
+    "email": "aldrin@himym.com",
+    "firstname": "Lily",
+    "lastname": "Aldrin",
+    "username": "Lilypad",
+    "password": "$2b$04$RtmISAIlsx9Oj41EThbdd.w2QtetToYMCn.OVBNYxzTpMEnFs0TKO",
+    "profilepic": "/images/profilepic/lily.jpg",
+    "bio": "You cant just skip to where you want to be."
+  },
+  "dateposted": "5/4/2020",
+  "timeposted": "4:05 PM",
+  "recipe_picture": "/images/recipe/LilyPost_05_Brownies.png",
+  "description": "A brownie is a dessert made from flour, butter, eggs, sugar and chocolate (or cocoa powder). ",
+  "__v": 0
+},{
+  "_id": 17,
+  "upvotes": 51,
+  "ingredients": [
+    {
+      "quantity": "3 ",
+      "unit": "tbsp ",
+      "name": "powdered ube "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "water "
+    },
+    {
+      "quantity": "4 ",
+      "unit": "medium ",
+      "name": "eggs "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "granulated sugar "
+    },
+    {
+      "quantity": "40 ",
+      "unit": "grams ",
+      "name": "cake flour "
+    },
+    {
+      "quantity": "1/2",
+      "unit": "tsp ",
+      "name": "ube flavoring "
+    },
+    {
+      "quantity": "1/4 ",
+      "unit": "tsp ",
+      "name": "violet food coloring "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "tbsp ",
+      "name": "vegetable oil "
+    }
+  ],
+  "instructions": [
+    "Preheat oven to 325°F",
+    "Add 3 Tbsp of powdered ube to 1/2 cup boiling water until a thick paste forms to get rehydrated ube. Set aside to cool and cover to keep moist.",
+    "In a stand mixer bowl at medium speed, add in 4 egg whites and slowly mix in 1/2 cup of granulated sugar. Then add egg yolks, one at a time, until incorporated. Sift in 40 grams of cake flour on medium speed. Afterwards, combine 50 grams of rehydrated ube, 1/2 tsp ube flavoring, 1/4 tsp of violet food coloring, and 2 Tbsp vegetable oil. Slowly mix for 30 seconds until just combined.",
+    "Grease a quarter sheet pan, 9 by 13 inches, and place parchment paper on top. Spread out cake batter into a thin layer and tap on counter to remove any bubbles",
+    "Place in 325°F oven for 10-15 minutes until it springs back when touched.",
+    "Place on cooling rack for about 20 minutes until completely cooled",
+    "On a stovetop, place a large pot of water and bring to a simmer",
+    "In a new stand mixer bowl, combine 6- and 1/2 ounces of egg whites, 1 cup sugar, and 2 tsp of vanilla extract. Place bowl over the large pot of simmering water and stir until it reaches 160°F. Then, place in a stand mixer and mix at high speed for 5 minutes until it triples in volume and cools off. Ideally until room temperature.",
+    "Put stand mixer on medium speed and slowly add in 4 softened sticks (room temperature) butter, half a stick at a time, and wait for it to be completely incorporated before adding the next half stick of butter.",
+    "After that is done, place on high speed for another minute until it is smooth and creamy.",
+    "Check cake to see if it is completely cooled and flip over onto parchment paper. Slowly remove parchment paper from bottom. Flip over once again so it is facing up like it did when it came out of the oven.",
+    "Cover with buttercream icing.",
+    "Slowly roll it up lengthwise. Put inside the fridge for at least an hour for it to become firm.",
+    "Take out, add 3 dollops of buttercream icing on top, and enjoy!"
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Ted",
+        "lastname": "Mosby",
+        "username": "prof_Brosby",
+        "profilepic": "/images/profilepic/ted.jpg"
+      },
+      "content": "nice ube roll!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "17"
+    }
+  ],
+  "title": "Ube Roll",
+  "user": {
+    "email": "stinson@himym.com",
+    "firstname": "Barney",
+    "lastname": "Stinson",
+    "username": "the_barnacle",
+    "password": "$2b$04$TJajJeFPep6wDuYbnCJIt.fxUMgtVvHM.QcZJgM5MUKvF.FE6g7Ry",
+    "profilepic": "/images/profilepic/barney.jpg",
+    "bio": "Tonight is the night that we make everything Legen... wait for it... Dary. LEGENDARY!"
+  },
+  "dateposted": "5/5/2020",
+  "timeposted": "5:01 PM",
+  "recipe_picture": "/images/recipe/BarneyPost_01_UbeRoll.png",
+  "description": "Ube Roll is made out of rolled ube.",
+  "__v": 0
+},{
+  "_id": 18,
+  "upvotes": 52,
+  "ingredients": [
+    {
+      "quantity": "1 ",
+      "unit": "whole ",
+      "name": "chicken "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "portion ",
+      "name": "kosher salt "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "portion ",
+      "name": "freshly ground pepper "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "cup ",
+      "name": "whole milk "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "portion ",
+      "name": "Louisiana hot sauce "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "large ",
+      "name": "eggs "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "cups ",
+      "name": "all-purpose flour "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "cup ",
+      "name": "lard "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "cup ",
+      "name": "vegetable oil "
+    },
+    {
+      "quantity": "3 ",
+      "unit": "tbsp ",
+      "name": "cayenne pepper "
+    },
+    {
+      "quantity": " 1 ",
+      "unit": "tbsp ",
+      "name": "light brown sugar "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "tsp ",
+      "name": "garlic powder "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "tsp ",
+      "name": "paprika "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "serving ",
+      "name": "wonder bread "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "serving ",
+      "name": "pickle chips "
+    }
+  ],
+  "instructions": [
+    "Start by cutting out the spine and placing a little snip at the base of the breast bone to easily crack it in half.",
+    "Cut the bird in half, separating into two pieces. Make shallow cuts around the base of the drumette to expose the joint, then crack open and run the knife in between to separate the drumettes.",
+    "There is very little bone between the breast and thigh so separating should be easy. To separate the drumstick, place shallow cuts around where the bones meet, then crack open and run the knife between to separate the drumstick from the thigh.",
+    "Cut the chicken breasts in half. Rinse and repeat the steps on the other half of the chicken. You should have 10 pieces.",
+    "Once the chicken has been cut into pieces, dry brine them by generously coating both sides with kosher salt and freshly ground pepper.  Place into a food-safe container and cover tightly with plastic wrap and put in the fridge for at least 4 hours.",
+    "Make the breading: combine 1 cup of whole milk with a few dashes of Louisiana hot sauce and 2 large eggs. Beat together with a fork until no streaks remain. For the dry ingredients, combine 2 cups of all-purpose flour, 2 teaspoons of kosher salt, and a few tablespoons of the egg/milk mixture. This will create little chunks of breading which will help with crispiness.",
+    "First, the chicken goes into the flour mixture, then into the egg mixture, and then back into the flour mixture. This is commonly known as double-dipped fried chicken. Repeat with the remaining chicken and let it hang out in the flour while you prepare oil for frying.",
+    "In a high walled frying pan or skillet, place a big block of lard (about 1 cup) and 1 cup of vegetable oil. Heat over medium-high heat and bring it to 350°F.",
+    "Gently lay the chicken pieces into the oil -making sure to place them going away from you to ensure no self-splattering. Fry for 5-7 minutes per side, or until deeply golden brown and crisp.",
+    "Place on a wire rack set in a rimmed baking sheet and keep in a 325°F oven until they are thoroughly cooked through.",
+    "To prepare the spice mixture, in a small bowl goes 3 tablespoons of cayenne pepper, 1 tablespoon of light brown sugar, 1 teaspoon of freshly ground pepper, and 1/2 teaspoon each of garlic powder, paprika, and kosher salt. For a tame and less spicy version, you can reduce the cayenne pepper. Whisk to combine. Put the spice mix in a heat-proof bowl.",
+    "Add 1/2 cup of the frying oil then mix completely together.",
+    "Generously brush down both sides of the chicken with the spice oil. If applied while the oil and the chicken are still hot, it's going to absorb into the crust without making it soggy.",
+    "For the proper Nashville style, place on a piece of wonder bread topped with pickle chips. "
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Ted",
+        "lastname": "Mosby",
+        "username": "prof_Brosby",
+        "profilepic": "/images/profilepic/ted.jpg"
+      },
+      "content": "nice nashville chicken!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "18"
+    }
+  ],
+  "title": "Nashville Hot Chicken",
+  "user": {
+    "email": "stinson@himym.com",
+    "firstname": "Barney",
+    "lastname": "Stinson",
+    "username": "the_barnacle",
+    "password": "$2b$04$TJajJeFPep6wDuYbnCJIt.fxUMgtVvHM.QcZJgM5MUKvF.FE6g7Ry",
+    "profilepic": "/images/profilepic/barney.jpg",
+    "bio": "Tonight is the night that we make everything Legen... wait for it... Dary. LEGENDARY!"
+  },
+  "dateposted": "5/5/2020",
+  "timeposted": "5:02 PM",
+  "recipe_picture": "/images/recipe/BarneyPost_02_Chicken.png",
+  "description": "Nashville hot chicken is Southern fried chicken, but with a hot and spicy difference.",
+  "__v": 0
+},{
+  "_id": 19,
+  "upvotes": 53,
+  "ingredients": [
+    {
+      "quantity": "4 ",
+      "unit": "large ",
+      "name": "russet potatoes "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "small ",
+      "name": "onion "
+    },
+    {
+      "quantity": "3-4 ",
+      "unit": "medium ",
+      "name": "eggs "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "cup ",
+      "name": "panko breadcrumbs"
+    },
+    {
+      "quantity": "1 ",
+      "unit": "portion ",
+      "name": "vegetable oil "
+    }
+  ],
+  "instructions": [
+    "Start by peeling 4 large russet potatoes and then grating them using a box grater. Also grate a small onion along with the potatoes.",
+    "Dump the grated potatoes and onion onto a fresh/clean kitchen towel, twist into a tight bundle and wring all the excess water out of the potatoes into a separate bowl. You should end up with about a 1/2 cup of water from 4 potatoes. ",
+    "Once all the water has been wrung out of the potatoes, put the bowl with the potato water aside. Don't throw away any of the potato water!",
+    "After the potato water has sat in the bowl for about 5 minutes, all the starch will set at the bottom. Empty the water into a separate bowl, leaving just the starch in the bowl. ",
+    "At this point, start by adding 3 eggs to the bowl and beat together until eggs and starch are completely mixed.",
+    "Into an extra large bowl, add the grated potatoes and onion. Pour in the egg and starch mixture along with a cup of panko breadcrumbs. Mix together by hand until the mixture holds its shape when pressed together. If not, add another egg.",
+    "Once mixed and pressed, form the potatoes into balls and smoosh them down to get crispy edges when frying them.",
+    "Into a 12\" skillet, add about 1/2 inch of vegetable oil and heat to 375°F.  Add the latkes and fry each side for 4-5 minutes, or until deeply golden brown and crispy.",
+    "Once fully cooked, place the latkes on a wire rack to drain and season with kosher salt immediately after coming out of the oil.",
+    "Top the latkes however you like! I went with smoked salmon with cream cheese and a sprig of dill for one, pastrami with whole grain mustard and a cornichon pickle for another, cream cheese and spicy red pepper jelly, and lastly yogurt with pomegranate seeds, sliced habanero and a drizzle of clover honey."
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Ted",
+        "lastname": "Mosby",
+        "username": "prof_Brosby",
+        "profilepic": "/images/profilepic/ted.jpg"
+      },
+      "content": "nice latkes!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "19"
+    }
+  ],
+  "title": "Latkes",
+  "user": {
+    "email": "stinson@himym.com",
+    "firstname": "Barney",
+    "lastname": "Stinson",
+    "username": "the_barnacle",
+    "password": "$2b$04$TJajJeFPep6wDuYbnCJIt.fxUMgtVvHM.QcZJgM5MUKvF.FE6g7Ry",
+    "profilepic": "/images/profilepic/barney.jpg",
+    "bio": "Tonight is the night that we make everything Legen... wait for it... Dary. LEGENDARY!"
+  },
+  "dateposted": "5/5/2020",
+  "timeposted": "5:03 PM",
+  "recipe_picture": "/images/recipe/BarneyPost_03_Latkes.png",
+  "description": "Latkes are pan-fried potato pancakes made from grated potatoes and onion, an egg, and a binder, such as matzo meal or breadcrumbs",
+  "__v": 0
+},{
+  "_id": 20,
+  "upvotes": 54,
+  "ingredients": [
+    {
+      "quantity": "3 ",
+      "unit": "lbs ",
+      "name": "Yukon gold potatoes "
+    },
+    {
+      "quantity": "3-4 ",
+      "unit": "oz ",
+      "name": "aged white cheddar "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "unsalted butter "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "chives "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "portion ",
+      "name": "kosher salt "
+    },
+    {
+      "quantity": "1 ",
+      "unit": "poriton ",
+      "name": "white pepper "
+    },
+    {
+      "quantity": "1/2 ",
+      "unit": "cup ",
+      "name": "milk "
+    },
+    {
+      "quantity": "2 ",
+      "unit": "medium ",
+      "name": "egg yolks "
+    }
+  ],
+  "instructions": [
+    "Start by peeling and cutting 3 pounds of Yukon Gold potatoes in half. Put them in a large sauce pot and cover with cold water.",
+    "Boil for about 20 minutes, or until a paring knife cuts through with no resistance. Drain and place back in the warm pot. ",
+    "Place over medium-low heat, stir around and cook gently for about 1 minute.",
+    "Kill the heat and add 3-4 ounces (depending on how cheesy you like your potatoes) aged Irish white cheddar, 1/2 cup unsalted butter, and 1/2 cup chives (optional).",
+    "Using a masher, or potato ricer, mash everything together. Add kosher salt and white pepper to season. ",
+    "Add 2 egg yolks to 1/2 cup of milk and beat together. Add to the now-kind-of-cooled-down potatoes and giving it one more mix and mash. "
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Ted",
+        "lastname": "Mosby",
+        "username": "prof_Brosby",
+        "profilepic": "/images/profilepic/ted.jpg"
+      },
+      "content": "nice shepherd’s pie!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "20"
+    }
+  ],
+  "title": "Shepherd's Pie",
+  "user": {
+    "email": "stinson@himym.com",
+    "firstname": "Barney",
+    "lastname": "Stinson",
+    "username": "the_barnacle",
+    "password": "$2b$04$TJajJeFPep6wDuYbnCJIt.fxUMgtVvHM.QcZJgM5MUKvF.FE6g7Ry",
+    "profilepic": "/images/profilepic/barney.jpg",
+    "bio": "Tonight is the night that we make everything Legen... wait for it... Dary. LEGENDARY!"
+  },
+  "dateposted": "5/5/2020",
+  "timeposted": "5:04 PM",
+  "recipe_picture": "/images/recipe/BarneyPost_04_ShepherdsPie.png",
+  "description": "Shepherd's pie is a ground meat pie with a crust or topping of mashed potato.",
+  "__v": 0
+},{
+  "_id": 21,
+  "upvotes": 55,
+  "ingredients": [
+    {
+      "quantity": "35 ",
+      "unit": "grams ",
+      "name": "all purpose flour "
+    },
+    {
+      "quantity": "35 ",
+      "unit": "grams ",
+      "name": "whole wheat flour "
+    },
+    {
+      "quantity": "35 ",
+      "unit": "grams ",
+      "name": "mature starter "
+    },
+    {
+      "quantity": "810 ",
+      "unit": "grams ",
+      "name": "bread flour "
+    },
+    {
+      "quantity": "90 ",
+      "unit": "grams ",
+      "name": "whole wheat flour "
+    },
+    {
+      "quantity": "70 ",
+      "unit": "grams ",
+      "name": "filtered water "
+    },
+    {
+      "quantity": "18 ",
+      "unit": "grams ",
+      "name": "fine sea salt "
+    },
+    {
+      "quantity": "680 ",
+      "unit": "grams ",
+      "name": "filtered water "
+    }
+  ],
+  "instructions": [
+    "Mix levain ingredients and rest in a warm area (70-80℉) for 5 hours.",
+    "One hour before your levain is done, mix together your bread flour and whole wheat flour. Add 580g of your water to the flour mixture (keeping 100g to the side for mixing later).",
+    "Mix just until your dough comes together. Cover with plastic wrap and let it rest in a warm area (same as your starter) for 1 hour.",
+    "Mix your dough and levain together using a little of your separated water to help incorporate. Rest 20 minutes.",
+    "Add your sea salt and the rest of your separated water and mix until incorporated. Slap and fold for 2-4 minutes or until your dough is smooth and begins to catch some air. Rest 15 minutes in the same warm area you placed your starter.",
+    "Perform 6 sets of stretch and folds spaced out by 15 minutes for the first 3, then 30 minutes for the next 3. Make sure to place your dough back in the warm area for each rest. ",
+    "Let your dough rest for a remainder of 1.5 hours, for a grand total of 4 hours.",
+    "Dump out and divide your dough into 2 even pieces. Preshape each piece into a light boule and rest 5-10 minutes.",
+    "Shape your dough into 2 batards and place into bannetons dusted with either rice flour or all purpose flour.",
+    "Chill in the fridge overnight.",
+    "Preheat a cast iron combo cooker in your oven from cold to 500℉ for 1 hour.",
+    "Carefully place a dusted loaf into the hot pan, score the top, place the larger lid on top, and bake for 20 minutes.",
+    "Remove the top from the combo cooker and lower the oven temperature to 450℉. Bake for an additional 20-30 minutes, or until the loaf is deep brown.",
+    "Remove and cool on a wire rack until room temperature. Repeat with the other loaf."
+  ],
+  "comments": [
+    {
+      "user": {
+        "firstname": "Ted",
+        "lastname": "Mosby",
+        "username": "prof_Brosby",
+        "profilepic": "/images/profilepic/ted.jpg"
+      },
+      "content": "nice sourdough bread!",
+      "date": "5/10/2020",
+      "time": "7:00 PM",
+      "recipe_id": "21"
+    }
+  ],
+  "title": "Sourdough Bread",
+  "user": {
+    "email": "stinson@himym.com",
+    "firstname": "Barney",
+    "lastname": "Stinson",
+    "username": "the_barnacle",
+    "password": "$2b$04$TJajJeFPep6wDuYbnCJIt.fxUMgtVvHM.QcZJgM5MUKvF.FE6g7Ry",
+    "profilepic": "/images/profilepic/barney.jpg",
+    "bio": "Tonight is the night that we make everything Legen... wait for it... Dary. LEGENDARY!"
+  },
+  "dateposted": "5/5/2020",
+  "timeposted": "5:05 PM",
+  "recipe_picture": "/images/recipe/BarneyPost_05_SourdoughBread.png",
+  "description": "Sourdough bread is made by the fermentation of dough using naturally occurring lactobacilli and yeast.",
+  "__v": 0
+}]
