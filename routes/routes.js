@@ -29,15 +29,15 @@
   const multer = require('multer');
   var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-      cb(null, '/public/images');
+      cb(null, 'public/images');
     },
     filename: function(req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-      cb(null, file.fieldname + '-' + uniqueSuffix);
+      cb(null, file.fieldname + '-' + uniqueSuffix + '.png');
     }
   });
 
-  var upload = multer({diskStorage: storage});
+  var upload = multer({storage: storage});
 
 // GLOBAL VARIABLES
   var rememberMe = false;
@@ -98,6 +98,7 @@
         console.log(posts);
 
         if(data){
+          console.log(data);
           res.render('AccountProfile', {
             styles:     "../css/styles_inside.css",
             tab_title:  "Account Profile",
@@ -383,6 +384,9 @@
     console.log("the picture");
     console.log(req.file);
 
+    console.log("the destination of the pic");
+    console.log(req.file.path);
+
     var errors = validationResult(req.body);
 
     if (!errors.isEmpty()){
@@ -417,7 +421,7 @@
       var photoInput = '/images/default_profile.png'
 
       if(!(req.body.PROFILEPIC == "")) {
-        photoInput = req.file.originalname;
+        photoInput = '/images/' + req.file.filename;
       }
 
       var email =     req.body.EMAIL;
@@ -691,7 +695,7 @@
     var photoInput = '/images/default_post.jpg'
 
     if(!(req.body.recipe_picture == "")) {
-      photoInput = req.file.originalname;
+      photoInput = '/images/' + req.file.filename;
     }
     
     postModel.numDocuments(function(count){
