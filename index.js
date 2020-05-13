@@ -7,7 +7,7 @@
   const session = require('express-session');
   const store = require('connect-mongo')(session);
   const mongoose = require('mongoose');
-  
+
 // EXPRESS APP
   const app = express();
   const port = 3000; // sam: bc thats whats in the specs

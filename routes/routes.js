@@ -8,10 +8,36 @@
   const commentsModel = require('../models/comments');
 
 // IMPORTING VALIDATION
-  const validation = require('../helpers/validation.js');
+  const {check} = require('express-validator');
+  const validation = {
+    signupValidation: [
+      //check if EMAIL is not empty
+      check('EMAIL', 'Email is required.').notEmpty(),
+
+      //same thing with the firstname, lastname, etc.
+      check('FIRSTNAME', 'First name is required.').notEmpty(),
+      check('LASTNAME', 'Last name is required.').notEmpty(),
+      check('USERNAME', 'Username is required; must be greater than 6 and less than 15 characters.').isLength({min: 6, max: 15}),
+      check('PASSWORD', 'Password must be greater than 6 characters.').isLength({min: 6})
+    ]
+  };
   const { validationResult } = require('express-validator');
 //IMPORTING BCRYPT
   const bcrypt = require('bcrypt');
+
+//MULTER
+  const multer = require('multer');
+  var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, '/public/images');
+    },
+    filename: function(req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, file.fieldname + '-' + uniqueSuffix);
+    }
+  });
+
+  var upload = multer({diskStorage: storage});
 
 // GLOBAL VARIABLES
   var rememberMe = false;
@@ -251,7 +277,6 @@
 
         userModel.getCurrAccountInfo(account.username, function(accountResult){
           console.log(accountResult);
-          console.log(req.session);
 
           if(accountResult){ // if the username entered exists in the db
               console.log("USERNAME EXISTS IN DB");
@@ -283,7 +308,6 @@
                   }
 
                   //postModel.updateAllPosts(currUser.firstname, currUser.lastname, currUser.username, currUser.password, currUser.bio, currUser.profilepic)
-                  console.log("All Account Information has been updated");
 
                   console.log(currUser.username + " has logged in!");
                   console.log("Current user:");
@@ -351,11 +375,15 @@
   });
 
 // [CREATE ACCOUNT] Adding an Account to the DB
-  router.post('/addAccount', validation.signupValidation(), function(req, res) {
+  router.post('/addAccount', upload.single('PROFILEPIC'), validation.signupValidation, function(req, res) {
+
     console.log("the request:");
     console.log(req.body);
 
-    var errors = validationResult(req);
+    console.log("the picture");
+    console.log(req.file);
+
+    var errors = validationResult(req.body);
 
     if (!errors.isEmpty()){
       errors = errors.errors;
@@ -389,7 +417,7 @@
       var photoInput = '/images/default_profile.png'
 
       if(!(req.body.PROFILEPIC == "")) {
-        photoInput = `${req.body.PROFILEPIC}.png`;
+        photoInput = req.file;
       }
 
       var email =     req.body.EMAIL;
