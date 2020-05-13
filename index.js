@@ -10,7 +10,7 @@
 
 // EXPRESS APP
   const app = express();
-  const port = 3000; // sam: bc thats whats in the specs
+//  const port = 3000; // sam: bc thats whats in the specs
 
   const router = require('./routes/routes');
 
@@ -69,5 +69,5 @@ app.use(express.static('public'));
 
 // LISTENER
   app.listen(port, function() {
-    console.log('App listening at port '  + port)
+    console.log('App listening at port '  + process.env.PORT);
   });
