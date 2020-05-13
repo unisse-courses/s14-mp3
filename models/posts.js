@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
+const { dbURL } = require('../config');
 
-const databaseURL = 'mongodb://localhost:27017/foodiesdb';
 
 const options = { useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -8,7 +8,7 @@ const options = { useNewUrlParser: true,
 };
 
 
-mongoose.connect(databaseURL, options);
+mongoose.connect(dbURL, options);
 
 const postSchema = new mongoose.Schema( // TO BE UPDATED AFTER COMMENTS
     {   _id: {type: Number, required: true},

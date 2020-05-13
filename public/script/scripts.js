@@ -10,6 +10,7 @@ $(document).ready(function() {
 
     $("#noAccount").click(function () { 
         isGuest = 0;
+        console.log(isGuest);
         var account = {
             username: "Guest",
             remember: false
@@ -585,9 +586,9 @@ $(document).ready(function() {
                 var spanArray = listArray[i].getElementsByTagName("span");
                 
                 var temp_ingred = {
-                    name: spanArray[0].getElementsByTagName("span")[0].innerHTML,
-                    quantity: spanArray[0].getElementsByTagName("span")[1].innerHTML,
-                    unit: spanArray[0].getElementsByTagName("span")[2].innerHTML
+                    quantity: spanArray[0].getElementsByTagName("span")[0].innerHTML,
+                    unit: spanArray[0].getElementsByTagName("span")[1].innerHTML,
+                    name: spanArray[0].getElementsByTagName("span")[2].innerHTML
                 }
 
                 arrIngred.push(temp_ingred);
@@ -1561,9 +1562,9 @@ $(document).ready(function() {
                 var spanArray = listArray[i].getElementsByTagName("span");
                 
                 var temp_ingred = {
-                    name: spanArray[0].getElementsByTagName("span")[0].innerHTML,
-                    quantity: spanArray[0].getElementsByTagName("span")[1].innerHTML,
-                    unit: spanArray[0].getElementsByTagName("span")[2].innerHTML
+                    quantity: spanArray[0].getElementsByTagName("span")[0].innerHTML,
+                    unit: spanArray[0].getElementsByTagName("span")[1].innerHTML,
+                    name: spanArray[0].getElementsByTagName("span")[2].innerHTML
                 }
 
                 arrIngred.push(temp_ingred);
@@ -1677,9 +1678,9 @@ $(document).ready(function() {
                 console.log(i)
                 var li = document.createElement("li");
 
-                var inputValue1 = arrIngred[i].name;
-                var inputValue2 = arrIngred[i].quantity;
-                var inputValue3 = arrIngred[i].unit;
+                var inputValue1 = arrIngred[i].quantity;
+                var inputValue2 = arrIngred[i].unit;
+                var inputValue3 = arrIngred[i].name;
 
                 var span1 = document.createElement("SPAN");
                 var span2 = document.createElement("SPAN");

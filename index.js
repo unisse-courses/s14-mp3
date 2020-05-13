@@ -7,6 +7,7 @@
   const session = require('express-session');
   const store = require('connect-mongo')(session);
   const mongoose = require('mongoose');
+  const { envPort, sessionKey } = require('./config');
 
 // EXPRESS APP
   const app = express();
@@ -35,7 +36,7 @@
 //use 'expres-session' middleware and set its options
 //use 'MongoStore' as server-side session storage
 app.use(session({
-  'secret': 'Foodies-session',
+  'secret': sessionKey,
   'resave': false,
   'saveUninitialized': false,
   store: new store({mongooseConnection: mongoose.connection})
