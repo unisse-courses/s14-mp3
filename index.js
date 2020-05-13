@@ -68,6 +68,6 @@ app.use(express.static('public'));
   app.use('/', router);
 
 // LISTENER
-  app.listen(function() {
+  app.listen(process.env.PORT, function() {
     console.log('App listening at port '  + process.env.PORT);
   });
