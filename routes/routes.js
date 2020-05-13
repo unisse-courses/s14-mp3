@@ -417,7 +417,7 @@
       var photoInput = '/images/default_profile.png'
 
       if(!(req.body.PROFILEPIC == "")) {
-        photoInput = req.file;
+        photoInput = req.file.originalname;
       }
 
       var email =     req.body.EMAIL;
@@ -425,6 +425,7 @@
       var lName =     req.body.LASTNAME;
       var uName =     req.body.USERNAME;
       var password =  req.body.PASSWORD;
+      var photo =     photoInput;
       var bio =       req.body.BIO;
 
       bcrypt.hash(password, 2, function(err, hash){
@@ -434,12 +435,14 @@
           lastname:   lName,
           username:   uName,
           password:   hash,
-          profilepic: photoInput,
+          profilepic: photo,
           bio:        bio
         };
+
+        console.log(theUser);
         userModel.createNewAccount(theUser, function(err, new_user){
           var result;
-    
+          
           if (err) {
             console.log(err.errors);
     
@@ -450,7 +453,7 @@
           }
           else {
             console.log("User was created!");
-            console.log(theUser);
+            console.log(new_user);
     
             res.redirect("/log-in");
           }
@@ -666,7 +669,7 @@
   });
 
 // [CREATE RECIPE POST] Creates the Post in the DB
-  router.post('/addPost', function(req, res) {
+  router.post('/addPost', upload.single('THUMBNAIL'), function(req, res) {
 
     console.log(req.body);
 
@@ -688,7 +691,7 @@
     var photoInput = '/images/default_post.jpg'
 
     if(!(req.body.recipe_picture == "")) {
-      photoInput = `${req.body.recipe_picture}.png`;
+      photoInput = req.file.originalname;
     }
     
     postModel.numDocuments(function(count){
