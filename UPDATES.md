@@ -14,15 +14,14 @@
   - [X] BACKEND VALIDATION
 
 3. DUMMY DATA JSON FILES
-  - [ ] 20 Dummy POSTS
-    - [ ] 5 posts from Ted
+  - [ ] 21 Dummy POSTS
+    - [ ] 1 post from Ted
     - [ ] 5 posts from Lily
     - [ ] 5 posts from Marshall
     - [ ] 5 posts from Barney
     - [ ] 5 posts from Robin
   - [ ] 20 Dummy COMMENTS
-    - [ ] siguro 1 comment per post na lang siguro HAHA
-
+    - [ ] 1 comment per post
 4. DEPLOYMENT VIA HEROKU
   - [ ] Fully functional deployed app
     - [ ] note 
