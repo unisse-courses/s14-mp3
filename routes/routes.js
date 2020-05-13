@@ -8,10 +8,36 @@
   const commentsModel = require('../models/comments');
 
 // IMPORTING VALIDATION
-  const validation = require('../helpers/validation.js');
+  const {check} = require('express-validator');
+  const validation = {
+    signupValidation: [
+      //check if EMAIL is not empty
+      check('EMAIL', 'Email is required.').notEmpty(),
+
+      //same thing with the firstname, lastname, etc.
+      check('FIRSTNAME', 'First name is required.').notEmpty(),
+      check('LASTNAME', 'Last name is required.').notEmpty(),
+      check('USERNAME', 'Username is required; must be greater than 6 and less than 15 characters.').isLength({min: 6, max: 15}),
+      check('PASSWORD', 'Password must be greater than 6 characters.').isLength({min: 6})
+    ]
+  };
   const { validationResult } = require('express-validator');
 //IMPORTING BCRYPT
   const bcrypt = require('bcrypt');
+
+//MULTER
+  const multer = require('multer');
+  var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, 'public/images');
+    },
+    filename: function(req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, file.fieldname + '-' + uniqueSuffix + '.png');
+    }
+  });
+
+  var upload = multer({storage: storage});
 
 // GLOBAL VARIABLES
   var rememberMe = false;
@@ -72,6 +98,7 @@
         console.log(posts);
 
         if(data){
+          console.log(data);
           res.render('AccountProfile', {
             styles:     "../css/styles_inside.css",
             tab_title:  "Account Profile",
@@ -251,7 +278,6 @@
 
         userModel.getCurrAccountInfo(account.username, function(accountResult){
           console.log(accountResult);
-          console.log(req.session);
 
           if(accountResult){ // if the username entered exists in the db
               console.log("USERNAME EXISTS IN DB");
@@ -283,7 +309,6 @@
                   }
 
                   //postModel.updateAllPosts(currUser.firstname, currUser.lastname, currUser.username, currUser.password, currUser.bio, currUser.profilepic)
-                  console.log("All Account Information has been updated");
 
                   console.log(currUser.username + " has logged in!");
                   console.log("Current user:");
@@ -351,11 +376,18 @@
   });
 
 // [CREATE ACCOUNT] Adding an Account to the DB
-  router.post('/addAccount', validation.signupValidation(), function(req, res) {
+  router.post('/addAccount', upload.single('PROFILEPIC'), validation.signupValidation, function(req, res) {
+
     console.log("the request:");
     console.log(req.body);
 
-    var errors = validationResult(req);
+    console.log("the picture");
+    console.log(req.file);
+
+    console.log("the destination of the pic");
+    console.log(req.file.path);
+
+    var errors = validationResult(req.body);
 
     if (!errors.isEmpty()){
       errors = errors.errors;
@@ -389,7 +421,7 @@
       var photoInput = '/images/default_profile.png'
 
       if(!(req.body.PROFILEPIC == "")) {
-        photoInput = `${req.body.PROFILEPIC}.png`;
+        photoInput = '/images/' + req.file.filename;
       }
 
       var email =     req.body.EMAIL;
@@ -397,6 +429,7 @@
       var lName =     req.body.LASTNAME;
       var uName =     req.body.USERNAME;
       var password =  req.body.PASSWORD;
+      var photo =     photoInput;
       var bio =       req.body.BIO;
 
       bcrypt.hash(password, 2, function(err, hash){
@@ -406,12 +439,14 @@
           lastname:   lName,
           username:   uName,
           password:   hash,
-          profilepic: photoInput,
+          profilepic: photo,
           bio:        bio
         };
+
+        console.log(theUser);
         userModel.createNewAccount(theUser, function(err, new_user){
           var result;
-    
+          
           if (err) {
             console.log(err.errors);
     
@@ -422,7 +457,7 @@
           }
           else {
             console.log("User was created!");
-            console.log(theUser);
+            console.log(new_user);
     
             res.redirect("/log-in");
           }
@@ -638,7 +673,7 @@
   });
 
 // [CREATE RECIPE POST] Creates the Post in the DB
-  router.post('/addPost', function(req, res) {
+  router.post('/addPost', upload.single('THUMBNAIL'), function(req, res) {
 
     console.log(req.body);
 
@@ -660,7 +695,7 @@
     var photoInput = '/images/default_post.jpg'
 
     if(!(req.body.recipe_picture == "")) {
-      photoInput = `${req.body.recipe_picture}.png`;
+      photoInput = '/images/' + req.file.filename;
     }
     
     postModel.numDocuments(function(count){

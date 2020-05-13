@@ -5,10 +5,11 @@ $(document).ready(function() {
         sessionStorage.clear();
     });
 
+    var isGuest;
 /* -------------------------------------------------- index.hbs -------------------------------------------------- */
 
     $("#noAccount").click(function () { 
-        localStorage.setItem('isGuest', 0);
+        isGuest = 0;
         var account = {
             username: "Guest",
             remember: false
@@ -69,7 +70,7 @@ $(document).ready(function() {
                 return false;
             }
                 
-            localStorage.setItem('isGuest', 1);
+            isGuest = 1;
       
         var account = {
             username: user,
@@ -88,10 +89,10 @@ $(document).ready(function() {
             else {
                 console.log(data.message);
                 console.log(data.username);
-                localStorage.setItem("activeUser", data.username);
-                localStorage.setItem("userFirstname", data.firstname);
-                localStorage.setItem("userLastname", data.lastname);
-                localStorage.setItem("userProfpic", data.profilepic);
+                sessionStorage.setItem("activeUser", data.username);
+                sessionStorage.setItem("userFirstname", data.firstname);
+                sessionStorage.setItem("userLastname", data.lastname);
+                sessionStorage.setItem("userProfpic", data.profilepic);
                 window.location.href = "/home";
             }
         });
@@ -347,8 +348,8 @@ $(document).ready(function() {
 
 /* -------------------------------------------------- Homepage.hbs -------------------------------------------------- */
     if(window.location.href.includes('home')){
-        console.log(localStorage.getItem('isGuest'))
-        if (localStorage.getItem('isGuest') == 0){
+        console.log(isGuest)
+        if (isGuest == 0){
             $('#accProfile').addClass("disabled")
             $('#create').hide()
         }
@@ -715,7 +716,7 @@ $(document).ready(function() {
         
         var str = document.getElementById("unameb").innerText;
 
-        if (localStorage.getItem('isGuest') == 0){
+        if (isGuest == 0){
             $('#accProfile').addClass("disabled")
             $('#create').hide()
             $('#upvote-icon').hide()
@@ -727,7 +728,7 @@ $(document).ready(function() {
         }
         else{
             
-            if(localStorage.getItem("activeUser") != str) { // viewing another person's profile
+            if(sessionStorage.getItem("activeUser") != str) { // viewing another person's profile
                 $('#accProfile').addClass("enabled")
                 $('#create').show()
                 $('#upvote-icon').show()
@@ -863,23 +864,7 @@ $(document).ready(function() {
                 var laman = document.createElement('span');
 
                 var smallDiv = document.createElement('div');
-                //var replyButton = document.createElement('button');
-                /*
-                if (localStorage.getItem("activeUser")== user.username){
-                    var deleteButton = document.createElement('button');
-                    $(deleteButton).addClass("btn btn-outline-secondary");
-                    $(deleteButton).attr("type", "button");
-                    $(deleteButton).attr("id", "DELETION");
-                    $(deleteButton).attr("data-toggle", "modal");
-                    $(deleteButton).attr("data-target", "#delete-comment");
-                    $(deleteButton).text("Delete");
-                    console.log("same user");
-                    smallDiv.append(deleteButton);
-                }
-                else {
-                    console.log("wrong sht men");
-                }
-                */
+
             // STEP 2: Add the attributes and classes in each tag (we did it by order rin so its not confusing)
                 $(list).addClass("media post-comment-thread");
 
@@ -1038,10 +1023,10 @@ $(document).ready(function() {
                 var comment = {
 
                     user: {
-                      firstname:    localStorage.getItem("userFirstname"),
-                      lastname:     localStorage.getItem("userLastname"),
-                      username:     localStorage.getItem("activeUser"),
-                      profilepic:   localStorage.getItem("userProfpic")
+                      firstname:    sessionStorage.getItem("userFirstname"),
+                      lastname:     sessionStorage.getItem("userLastname"),
+                      username:     sessionStorage.getItem("activeUser"),
+                      profilepic:   sessionStorage.getItem("userProfpic")
                     },
                     content:         content,
                     date:            DATE,
@@ -1078,10 +1063,10 @@ $(document).ready(function() {
             if (content!="") {
                 var reply = {
                     user: {
-                        firstname:    localStorage.getItem("userFirstname"),
-                        lastname:     localStorage.getItem("userLastname"),
-                        username:     localStorage.getItem("activeUser"),
-                        profilepic:   localStorage.getItem("userProfpic")
+                        firstname:    sessionStorage.getItem("userFirstname"),
+                        lastname:     sessionStorage.getItem("userLastname"),
+                        username:     sessionStorage.getItem("activeUser"),
+                        profilepic:   sessionStorage.getItem("userProfpic")
                     },
                 content:              content,
                 date:                 DATE,
@@ -1132,7 +1117,7 @@ $(document).ready(function() {
         
         str = path.substring(x+1, path.length+1);
 
-        if (localStorage.getItem('isGuest') == 0){
+        if (isGuest == 0){
             $('#accProfile').addClass("disabled")
             $('#create').hide()
             $('#edit_account-btn').hide()
@@ -1140,7 +1125,7 @@ $(document).ready(function() {
         }
         else{
 
-            if(localStorage.getItem("activeUser") != str) { // viewing another person's profile
+            if(sessionStorage.getItem("activeUser") != str) { // viewing another person's profile
                 $('#accProfile').addClass("enabled")
                 $('#create').show()
                 $('#delete_account-btn').hide()
@@ -1883,7 +1868,7 @@ $(document).ready(function() {
         $('.post_preview-container').hide();
         $('.profile-container').hide();
 
-        if (localStorage.getItem('isGuest') == 0){
+        if (isGuest == 0){
             $('#accProfile').addClass("disabled")
             $('#create').hide()
         }
