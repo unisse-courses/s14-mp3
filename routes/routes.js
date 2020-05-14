@@ -352,7 +352,7 @@
   if(rememberMe == "true"){
     var stuff = {
       username: currUser.username,
-      password: "checked",
+      password: "",
       remember: rememberMe
     }
     res.send(stuff)

@@ -47,18 +47,12 @@ $(document).ready(function() {
             console.log(data);
             $("#user").val(data.username);
 
-            if(data.password == "checked") {
-                $("#pass").val(sessionStorage.getItem("rememberPassword"));
-            }
-            else {
-                $("#pass").val(data.password);
-            }
-            
-
             if(data.remember == "true"){
+                $("#pass").val(sessionStorage.getItem("rememberPassword"));
                 $("#remember_me").attr("checked", true);
             }
             else{
+                $("#pass").val(data.password);
                 $("#remember_me").removeAttr("checked");
             }
             
@@ -373,13 +367,10 @@ $(document).ready(function() {
         if (getUserType() == 0){
             $('#accProfile').addClass("disabled");
             $('#create').hide();
-            console.log("this means isguest is 0 so it gucci");
         }
         else{
             $('#accProfile').addClass("enabled")
             $('#create').show()
-            console.log("this means isguest is 1 which is bad");
-
         }
     
         $('#logout').click(function(){
