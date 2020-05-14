@@ -71,11 +71,11 @@ $(document).ready(function() {
         // if the person clicked the "remember me" box then their pass will be saved in sessionStorage
         if(account.remember) {
             sessionStorage.setItem("rememberPassword", pass)
-            console.log(sessionStorage.getItem("rememberPassword"));
+            console.log("stored pass = " + sessionStorage.getItem("rememberPassword"));
         }
         else {
             sessionStorage.setItem("rememberPassword", "");
-            console.log(sessionStorage.getItem("rememberPassword") + " - tis empty");
+            console.log("stored pass =" + sessionStorage.getItem("rememberPassword") + " - tis empty");
         }
 
         $.post('loginACTION', account, function(data,status) {
