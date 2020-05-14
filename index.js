@@ -7,6 +7,7 @@
   const session = require('express-session');
   const store = require('connect-mongo')(session);
   const mongoose = require('mongoose');
+  require("dotenv").config();
   const { envPort, sessionKey } = require('./config');
 
 // EXPRESS APP
