@@ -368,20 +368,20 @@ $(document).ready(function() {
         event.preventDefault();
 
         // checking if they have errors
-        var emailColor = document.getElementById("user").style.color;
-        var fnameColor = document.getElementById("pass").style.color;
-        var lnameColor = document.getElementById("pass").style.color;
-        var unameColor = document.getElementById("pass").style.color;
-        var passColor = document.getElementById("pass").style.color;
+        var emailColor = document.getElementById("email").style.color;
+        var fnameColor = document.getElementById("firstname").style.color;
+        var lnameColor = document.getElementById("lastname").style.color;
+        var unameColor = document.getElementById("username").style.color;
+        var passColor = document.getElementById("password").style.color;
     
         // values
-        var emailVal = document.getElementById("user").value;
-        var fnameVal = document.getElementById("pass").value;
-        var lnameVal = document.getElementById("pass").value;
-        var unameVal = document.getElementById("pass").value;
-        var passVal = document.getElementById("pass").value;
-        var photoVal = document.getElementById("pass").value;
-        var bioVal = document.getElementById("pass").value;
+        var emailVal = document.getElementById("email").value;
+        var fnameVal = document.getElementById("firstname").value;
+        var lnameVal = document.getElementById("lastname").value;
+        var unameVal = document.getElementById("username").value;
+        var passVal = document.getElementById("password").value;
+        var photoVal = document.getElementById("profilepic").value;
+        var bioVal = document.getElementById("bio").value;
 
         if(emailColor == "red") {
             return false; 
