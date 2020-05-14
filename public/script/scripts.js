@@ -934,7 +934,7 @@ $(document).ready(function() {
             window.location.href = "/edit-recipe/" + str;
         });
 
-        function appendComment(item, parentDiv, randomN) {
+        function appendComment(item, parentDiv) {
             // We declared a different variable since the object 'user' was NESTED
             // the variable 'post' from the dummy data is represented by 'item'
             var user = item.user;
@@ -947,6 +947,10 @@ $(document).ready(function() {
                 var person = document.createElement('span');
                 var time = document.createElement('small');
                 var anchor = document.createElement('a');
+                var sp1 = document.createElement('span');
+                var sp2 = document.createElement('span');
+                var sp3 = document.createElement('span');
+
                 var horizontal = document.createElement('br');
                 var laman = document.createElement('span');
 
@@ -960,32 +964,32 @@ $(document).ready(function() {
 
                 $(bigDiv).addClass("media-body comment-body");
 
-                $(anchor).attr("href", "account-profile");
-                $(anchor).addClass("badge badge-light");
-                $(anchor).attr("id", "profile" + randomN);
-                randomN++;
+                $(anchor).attr("href", "account-profile/"+item.user.username);
+                $(anchor).attr("id", "profile");
+
+                $(sp1).addClass("badge badge-light");
+                $(sp2).attr("id", "fullname1");
+                $(sp3).attr("id", "uname1");
 
                 $(time).addClass("text-muted");
 
                 $(smallDiv).addClass("d-flex flex-row justify-content-end");
-                //$(replyButton).addClass("btn btn-outline-secondary");
-                //$(replyButton).attr("type", "button");
-                //$(replyButton).attr("id", "REPLYIN");
-                //$(replyButton).attr("data-toggle", "modal");
-               // $(replyButton).attr("data-target", "#reply");
 
             // STEP 3: We went through each tag that has TEXT inside the tag
-                $(anchor).text("By " + item.user.firstname + " " + item.user.lastname + " | " + item.user.username);
+                $(sp1).text("By");
+                $(sp2).text(item.user.firstname + " " + item.user.lastname + " | ");
+                $(sp3).text(item.user.username);
+
+                $(sp1).append(sp2);
+                $(sp1).append(sp3);
+                $(anchor).append(sp1);
+//                $(anchor).text("By " + item.user.firstname + " " + item.user.lastname + " | " + item.user.username);
 
                 $(time).text(' ' + item.date + " " + item.time);
 
                 $(laman).text(item.content);
 
-                //$(replyButton).text("Reply");
-
             // STEP 4: We append from the INNERMOST to the OUTERMOST container 
-                //smallDiv.append(replyButton);
-                
                 person.append(anchor);
 
                 bigDiv.append(person);
@@ -1001,74 +1005,7 @@ $(document).ready(function() {
                 
             // STEP 5: Append the BIGGEST div to the PARENT DIV (which is the parameter of this function)
                 parentDiv.append(list);
-
-                if ('replies' in item)
-                {
-                    for ( i = 0 ; i < item.replies.length ; i++)
-                    {
-                        var rand = item.length + 
-                        appendReply(item.replies[i], parentDiv)
-                    }
-                }
         }
-        
-        function appendReply(item, parentDiv) {
-            // We declared a different variable since the object 'user' was NESTED
-            // the variable 'post' from the dummy data is represented by 'item'
-            var reply = item;
-            var user = item.user;
-            console.log(user);
-            // STEP 1: Create a variable for each tag used (we did ours in order of the original html code)
-                var bigUL = document.createElement('ul');
-                var list = document.createElement('li');
-                var profileImg = document.createElement('img');
-                var bigDiv = document.createElement('div');
-                    
-                var person = document.createElement('span');
-                var time = document.createElement('small');
-                var anchor = document.createElement('a');
-                var horizontal = document.createElement('br');
-                var laman = document.createElement('span');
-
-            // STEP 2: Add the attributes and classes in each tag (we did it by order rin so its not confusing)
-                $(bigUL).attr("id","post-replies-list");
-                $(list).addClass("media post-reply-thread");
-
-                $(profileImg).addClass("align-self-start mr-3 comment-icon");
-                $(profileImg).attr("src", user.profilepic);
-
-                $(bigDiv).addClass("media-body comment-body");
-
-                $(anchor).attr("href", "account-profile");
-                $(anchor).addClass("badge badge-light");
-
-                $(time).addClass("text-muted");
-
-            // STEP 3: We went through each tag that has TEXT inside the tag
-                $(anchor).text("By " + user.firstname + " " + user.lastname + " | " + user.username);
-
-                $(time).text(' ' + reply.date + " " + reply.time);
-
-                $(laman).text(reply.content);
-
-            // STEP 4: We append from the INNERMOST to the OUTERMOST container 
-                person.append(anchor);
-
-                bigDiv.append(person);
-                bigDiv.append(time);
-                bigDiv.append(horizontal);
-                bigDiv.append(laman);
-
-                list.append(profileImg);
-                list.append(bigDiv);
-
-                // bigUL is the BIGGEST div
-                bigUL.append(list);
-
-            // STEP 5: Append the BIGGEST div to the PARENT DIV (which is the parameter of this function)
-                parentDiv.append(bigUL);
-        }
-
 
         var url = window.location.href;
         url = url.slice(34)
@@ -1078,28 +1015,18 @@ $(document).ready(function() {
             _id: url
         }
 
-        var random = 0;
-
-        $.post("../getComments", stuff, function (data, status) { // This function GETS the existing comments from the DUMMY DATA
+        $.post("/getComments", stuff, function (data, status) { // This function GETS the existing comments from the DUMMY DATA
             // We just place these in console to make sure there are no errors
 
             // This variable is the DIV that we want to populate
                 var commentsContainer = $("#commentList");
             if (data.comments.length >= 1){
-                var rand = random;
                 console.log(data.comments); 
                 data.comments.forEach((item, i) => {
-                    appendComment(item, commentsContainer, rand);
-                    rand++;
+                    appendComment(item, commentsContainer);
                 });   
-
-                random += rand;
             }
         });
-
-        console.log(random);
-        
-        
 
         $('#addComment-btn').click(function() {  
             var content = $("#olinput").val();
@@ -1136,7 +1063,7 @@ $(document).ready(function() {
                 }
                 console.log(comment);
 
-                $.post('/addCommentRow', comment, function(data,status) {
+                $.post('../addCommentRow', comment, function(data,status) {
                     console.log(data);
                     var commentsContainer = $("#commentList");
                     appendComment(comment, commentsContainer);
@@ -1146,57 +1073,6 @@ $(document).ready(function() {
                 window.alert("Please fill up the comment box, or cancel comment!");
             }
         });
-
-        $('#reply-btn').click(function() {
-            var content = $('#reply-input').val();
-            console.log(content);
-            var replies = [{}];
-
-            var url = window.location.href;
-            url = url.slice(34);
-            
-            var today = new Date();
-            var DATE = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
-            var TIME = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-
-            if (content!="") {
-                var reply = {
-                    user: {
-                        firstname:    sessionStorage.getItem("userFirstname"),
-                        lastname:     sessionStorage.getItem("userLastname"),
-                        username:     sessionStorage.getItem("activeUser"),
-                        profilepic:   sessionStorage.getItem("userProfpic")
-                    },
-                content:              content,
-                date:                 DATE,
-                time:                 TIME,
-                replies:              replies,
-                recipe_id:            url
-                }
-
-                $.post('/addReplyRow', reply, function(data, status) {
-                    var commentsContainer = $("#commentList");
-                    appendReply(reply, commentsContainer);
-                })
-            }
-        });
-
-        $('#delete-COMMENT').click(function(){
-            var url = window.location.href;
-            url = url.slice(34)
-            url = url.replace(/\D/g,'');
-
-            var stuff = {
-                num: url,
-            }
-
-            console.log(stuff.num)
-
-            $.post("../deleteCommentRow", stuff ,function (data) {
-                
-            });
-        });
-
     };
 
 /* -------------------------------------------------- AccountProfile.hbs -------------------------------------------------- */

@@ -591,7 +591,7 @@
           bio:        update.bio, 
           profilepic: update.profilepic
         }
-      };
+      });
       
     }
     
@@ -638,6 +638,7 @@
 
       
     });
+  });
 
 
 // [EDIT ACCOUNT] Username Username Validation Part 2
