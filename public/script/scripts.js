@@ -105,7 +105,14 @@ $(document).ready(function() {
             $("#user").val(data.username);
 
             var passwordStr = localStorage.getItem("rememberPassword");
-            $("#pass").val(passwordStr);
+            
+            if( $("#user").val(data.username) == "") {
+                $("#pass").val(passwordStr);
+            }
+            else {
+                $("#pass").val("");
+            }
+            
 
             if(data.remember == "true"){
                 $("#remember_me").attr("checked", true);
