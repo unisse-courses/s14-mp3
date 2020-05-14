@@ -157,7 +157,7 @@
         firstname:  currUser.firstname,
         lastname:   currUser.lastname,
         username:   currUser.username,
-        password:   currUser.password,
+        password:   "",
         profilepic: currUser.profilepic,
         bio:        currUser.bio
       });
