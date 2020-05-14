@@ -364,6 +364,69 @@ $(document).ready(function() {
         showPreview(this);
     });
 
+    $("#createAccount").click(function (event) { 
+        event.preventDefault();
+
+        // checking if they have errors
+        var emailColor = document.getElementById("user").style.color;
+        var fnameColor = document.getElementById("pass").style.color;
+        var lnameColor = document.getElementById("pass").style.color;
+        var unameColor = document.getElementById("pass").style.color;
+        var passColor = document.getElementById("pass").style.color;
+    
+        // values
+        var emailVal = document.getElementById("user").value;
+        var fnameVal = document.getElementById("pass").value;
+        var lnameVal = document.getElementById("pass").value;
+        var unameVal = document.getElementById("pass").value;
+        var passVal = document.getElementById("pass").value;
+        var photoVal = document.getElementById("pass").value;
+        var bioVal = document.getElementById("pass").value;
+
+        if(emailColor == "red") {
+            return false; 
+        }
+
+        if(fnameColor == "red") {
+            return false; 
+        }
+
+        if(lnameColor == "red") {
+            return false; 
+        }
+
+        if(unameColor == "red") {
+            return false; 
+        }
+
+        if(passColor == "red") {
+            return false; 
+        }
+
+        var newAcc = {
+            email: emailVal,
+            firstname: fnameVal,
+            lastname: lnameVal,
+            username: unameVal,
+            password: passVal,
+            profilepic: photoVal,
+            bio: bioVal
+        }
+
+        $.post('addAccount', newAcc, function(data,status) {
+            console.log(data);
+
+            if(!data.success) {
+                console.log(data.message);
+            }
+            else {
+                console.log(data.message);
+                window.location.href = "/log-in";
+            }
+
+        });
+    };
+
 /* -------------------------------------------------- Homepage.hbs -------------------------------------------------- */
     if(window.location.href.includes('home')){
         checkIfGuest();

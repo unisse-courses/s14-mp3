@@ -463,12 +463,15 @@
             result = {success: false, message: "User was not created!"}
             console.log(result);
             
+            res.send(result);
           }
           else {
             console.log("User was created!");
             console.log(new_user);
     
-            res.redirect("/log-in");
+            result = {success: true, message: "User was created!"}
+
+            res.send(result);
           }
         })
       });
