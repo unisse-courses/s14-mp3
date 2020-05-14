@@ -1,8 +1,12 @@
-var isGuest;
+var isGuest = 2;
+
+function checkGuest() {
+    console.log("user is = " + isGuest);
+}
 
 $(document).ready(function() {
     console.log("ready test")
-
+    
     $('#logout').click(function(){
         sessionStorage.clear();
     });
@@ -10,7 +14,9 @@ $(document).ready(function() {
 
     $("#noAccount").click(function () { 
         isGuest = 0;
-        console.log(isGuest);
+        
+        checkGuest();
+
         var account = {
             username: "Guest",
             remember: false
@@ -31,7 +37,7 @@ $(document).ready(function() {
     $("#yesAccount").click(function () { 
         
         window.location.href = "log-in";
-        
+        isGuest = 1;
     });
 
     
@@ -350,14 +356,16 @@ $(document).ready(function() {
 
 /* -------------------------------------------------- Homepage.hbs -------------------------------------------------- */
     if(window.location.href.includes('home')){
-        console.log(isGuest)
+        checkGuest();
         if (isGuest == 0){
-            $('#accProfile').addClass("disabled")
-            $('#create').hide()
+            $('#accProfile').addClass("disabled");
+            $('#create').hide();
+            console.log("this means isguest is 0 so it gucci");
         }
         else{
             $('#accProfile').addClass("enabled")
             $('#create').show()
+            console.log("this means isguest is 1 which is bad");
 
         }
     
