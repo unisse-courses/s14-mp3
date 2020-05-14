@@ -7,21 +7,23 @@
   const ingredientsModel = require('../models/ingredients');
   const commentsModel = require('../models/comments');
 
-// IMPORTING VALIDATION
-  const {check} = require('express-validator');
-  const validation = {
-    signupValidation: [
-      //check if EMAIL is not empty
-      check('EMAIL', 'Email is required.').notEmpty(),
+// // IMPORTING VALIDATION
+//   const {check} = require('express-validator');
+//   const validation = {
+//     signupValidation: [
+//       //check if EMAIL is not empty
+//       check('EMAIL', 'Email is required.').notEmpty(),
 
-      //same thing with the firstname, lastname, etc.
-      check('FIRSTNAME', 'First name is required.').notEmpty(),
-      check('LASTNAME', 'Last name is required.').notEmpty(),
-      check('USERNAME', 'Username is required; must be greater than 6 and less than 15 characters.').isLength({min: 6, max: 15}),
-      check('PASSWORD', 'Password must be greater than 6 characters.').isLength({min: 6})
-    ]
-  };
-  const { validationResult } = require('express-validator');
+//       //same thing with the firstname, lastname, etc.
+//       check('FIRSTNAME', 'First name is required.').notEmpty(),
+//       check('LASTNAME', 'Last name is required.').notEmpty(),
+//       check('USERNAME', 'Username is required; must be greater than 6 and less than 15 characters.').isLength({min: 6, max: 15}),
+//       check('PASSWORD', 'Password must be greater than 6 characters.').isLength({min: 6})
+//     ]
+//   };
+//   const { validationResult } = require('express-validator');
+
+
 //IMPORTING BCRYPT
   const bcrypt = require('bcrypt');
 
@@ -376,47 +378,55 @@
   });
 
 // [CREATE ACCOUNT] Adding an Account to the DB
-  router.post('/addAccount', upload.single('PROFILEPIC'), validation.signupValidation, function(req, res) {
+  router.post('/addAccount', (req, res) => {
 
     console.log("the request:");
     console.log(req.body);
 
-    console.log("the picture");
-    console.log(req.file);
+    if(req.file) {
+      upload.single('PROFILEPIC');
 
-    console.log("the destination of the pic");
-    console.log(req.file.path);
+      console.log("the picture");
+      console.log(req.file);
+
+      console.log("the destination of the pic");
+      console.log(req.file.path);
+    }
+    else {
+      console.log("the picture");
+      console.log("- default account icon -")
+    }
 
     var errors = validationResult(req.body);
 
-    if (!errors.isEmpty()){
-      errors = errors.errors;
+    // if (!errors.isEmpty()){
+    //   errors = errors.errors;
 
-      var details = {};
-      var i;
-      for (i = 0; i < errors.length; i++)
-      {
-        details[errors[i].param + 'Error'] = errors[i].msg;
-      }
+    //   var details = {};
+    //   var i;
+    //   for (i = 0; i < errors.length; i++)
+    //   {
+    //     details[errors[i].param + 'Error'] = errors[i].msg;
+    //   }
 
-      console.log(details);
+    //   console.log(details);
 
-      res.render('CreateAccount', {
-        // for main.hbs
-          styles: "../css/styles_outside.css",
-          tab_title: "Create Account",
-          body_class: "outside",
-          navUser: currUser.username,
-          navIcon: currUser.profilepic,
-          EMAILError: details.EMAILError,
-          FIRSTNAMEError: details.FIRSTNAMEError,
-          LASTNAMEError: details.LASTNAMEError,
-          USERNAMEError: details.USERNAMEError,
-          PASSWORDError: details.PASSWORDError
-      });
-    }
+    //   res.render('CreateAccount', {
+    //     // for main.hbs
+    //       styles: "../css/styles_outside.css",
+    //       tab_title: "Create Account",
+    //       body_class: "outside",
+    //       navUser: currUser.username,
+    //       navIcon: currUser.profilepic,
+    //       EMAILError: details.EMAILError,
+    //       FIRSTNAMEError: details.FIRSTNAMEError,
+    //       LASTNAMEError: details.LASTNAMEError,
+    //       USERNAMEError: details.USERNAMEError,
+    //       PASSWORDError: details.PASSWORDError
+    //   });
+    // }
 
-    else {
+    // else {
       // DEFAULT PHOTO OPTION
       var photoInput = '/images/default_profile.png'
 
@@ -453,7 +463,6 @@
             result = {success: false, message: "User was not created!"}
             console.log(result);
             
-            res.redirect("/create-account");
           }
           else {
             console.log("User was created!");
@@ -463,7 +472,7 @@
           }
         })
       });
-    }    
+    //}    
     
   });
 
