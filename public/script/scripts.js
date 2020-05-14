@@ -413,7 +413,7 @@ $(document).ready(function() {
             bio: bioVal
         }
 
-        $.post('addAccount', newAcc, function(data,status) {
+        $.post('../addAccount', newAcc, function(data,status) {
             console.log(data);
 
             if(!data.success) {
@@ -421,7 +421,7 @@ $(document).ready(function() {
             }
             else {
                 console.log(data.message);
-                window.location.href = "/log-in";
+                window.location.href = "../log-in";
             }
 
         });
