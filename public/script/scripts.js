@@ -1,11 +1,11 @@
+var isGuest;
+
 $(document).ready(function() {
     console.log("ready test")
 
     $('#logout').click(function(){
         sessionStorage.clear();
     });
-
-    var isGuest;
 /* -------------------------------------------------- index.hbs -------------------------------------------------- */
 
     $("#noAccount").click(function () { 
@@ -21,6 +21,7 @@ $(document).ready(function() {
             if(data.success){
                 
                 window.location.href = "home";
+                isGuest = 0;
 
             }
         });

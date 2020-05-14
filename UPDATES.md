@@ -4,36 +4,32 @@
     - [X] Moved all the routes to "routes.js"
   - [X] MODELS
     - [X] Organize the exports functions naming
-  - [ ] Check if all the features still work after the transfer
+  - [X] Check if all the features still work after the transfer
 
 2. SESSIONS FOR LOGIN - Giann
   - [x] Cross-site scripting ??
-    - [ ] note: used req.session to make it work (see index.js for the code)
+    - note: used req.session to make it work (see index.js for the code)
   - [X] Hashed passwords using crypto
-    - [ ] note: bCrypt is da wei
+    - note: bCrypt is da wei
   - [X] BACKEND VALIDATION
 
 3. DUMMY DATA JSON FILES
-  - [ ] 21 Dummy POSTS
-    - [ ] 1 post from Ted
-    - [ ] 5 posts from Lily
-    - [ ] 5 posts from Marshall
-    - [ ] 5 posts from Barney
-    - [ ] 5 posts from Robin
-  - [ ] 20 Dummy COMMENTS
-    - [ ] 1 comment per post
+  - [X] 21 Dummy POSTS
+    - [X] 1 post from Ted
+    - [X] 5 posts from Lily
+    - [X] 5 posts from Marshall
+    - [X] 5 posts from Barney
+    - [X] 5 posts from Robin
+  - [X] 20 Dummy COMMENTS
+    - [X] 1 comment per post
+
 4. DEPLOYMENT VIA HEROKU
-  - [ ] Fully functional deployed app
-    - [ ] note 
+  - [X] Functional deployed app
+    - [ ] Finished fixing errors after big testing
 
 5. OTHER IMPORTANT THINGS
   - [ ] Update the README.md
     - [ ] About page should include all NPM Packages used 
 
 5. CSS THINGS (ako na ditoo -sam)
-  - [ ] fix logos
-    - [ ] logos in index.hbs (guest icon & registered user account icon)
-    - [ ] brand logo in navbar (fixed size so its not stretched)
-  - [ ] look for default icon for account?
-  - [ ] color scheme
-    - [ ] change colors of buttons accdg to color schemes (¿)
+  - [ ] updated css files
