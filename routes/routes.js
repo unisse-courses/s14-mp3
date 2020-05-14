@@ -435,7 +435,7 @@
       }
 
       var email =     req.body.email;
-      var fName =     req.body.firsname;
+      var fName =     req.body.firstname;
       var lName =     req.body.lastname;
       var uName =     req.body.username;
       var password =  req.body.password;
