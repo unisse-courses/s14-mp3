@@ -430,8 +430,8 @@
       // DEFAULT PHOTO OPTION
       var photoInput = '/images/default_profile.png'
 
-      if(!(req.body.PROFILEPIC == "")) {
-        photoInput = '/images/' + req.file.filename;
+      if(!(req.body.profilepic == "")) {
+        photoInput = '/images/' + req.body.profilepic.;
       }
 
       var email =     req.body.EMAIL;
