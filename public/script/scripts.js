@@ -355,7 +355,7 @@ $(document).ready(function() {
 
 /* -------------------------------------------------- Homepage.hbs -------------------------------------------------- */
     if(window.location.href.includes('home')){
-        checkGuest();
+        checkIfGuest();
         if (getUserType() == 0){
             $('#accProfile').addClass("disabled");
             $('#create').hide();
