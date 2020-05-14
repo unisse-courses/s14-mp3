@@ -70,12 +70,12 @@ $(document).ready(function() {
 
         // if the person clicked the "remember me" box then their pass will be saved in sessionStorage
         if(account.remember) {
-            sessionStorage.setItem("rememberPassword", pass)
-            console.log("stored pass = " + sessionStorage.getItem("rememberPassword"));
+            localStorage.setItem("rememberPassword", pass)
+            console.log("stored pass = " + localStorage.getItem("rememberPassword"));
         }
         else {
-            sessionStorage.setItem("rememberPassword", "");
-            console.log("stored pass =" + sessionStorage.getItem("rememberPassword") + " - tis empty");
+            localStorage.setItem("rememberPassword", "");
+            console.log("stored pass =" + localStorage.getItem("rememberPassword") + " - tis empty");
         }
 
         $.post('loginACTION', account, function(data,status) {
@@ -104,7 +104,7 @@ $(document).ready(function() {
             console.log(data);
             $("#user").val(data.username);
 
-            var passwordStr = sessionStorage.getItem("rememberPassword");
+            var passwordStr = localStorage.getItem("rememberPassword");
             $("#pass").val(passwordStr);
 
             if(data.remember == "true"){
