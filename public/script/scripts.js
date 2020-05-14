@@ -866,6 +866,7 @@ $(document).ready(function() {
             $.post("../changeVote", stuff ,function (data, status) {
                   
                 $("#voteCount").text(data.value);
+                window.alert("Upvote changed! please refresh page");
 
             });
             
@@ -888,9 +889,8 @@ $(document).ready(function() {
                 val: newValue
             }
             $.post("../changeVote", stuff ,function (data, status) {
-                  
                 $("#voteCount").text(data.value);
- 
+                window.alert("Upvote changed! please refresh page");
             });
             
         });
@@ -1067,6 +1067,7 @@ $(document).ready(function() {
                     console.log(data);
                     var commentsContainer = $("#commentList");
                     appendComment(comment, commentsContainer);
+                    window.alert("Comment successfully created! please refresh page.");
                 });
             }
             else{

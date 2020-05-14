@@ -723,9 +723,9 @@
 
 // [RECIPE POST] Upvoting / Downvoting a Post
   router.post('/changeVote', function(req, res) {
+    console.log("the request:");
+    console.log(req.body.val);
 
-
-    console.log(req.body.num);
     var query = {
       _id: req.body.num
     }
@@ -735,11 +735,12 @@
     }
 
     postModel.updateOnePost(query, update, function(count) {  
-      console.log(count.upvotes);
       var number = {
         value: count.upvotes
       }
-      res.send(number);
+      console.log("new upvotes:");
+      console.log(number.value);
+      return res.send(number);
 
     });
 
