@@ -397,7 +397,7 @@
       console.log("- default account icon -")
     }
 
-    var errors = validationResult(req.body);
+    //var errors = validationResult(req.body);
 
     // if (!errors.isEmpty()){
     //   errors = errors.errors;
