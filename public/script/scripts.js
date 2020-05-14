@@ -1,11 +1,7 @@
-var isGuest = 2;
-
-function checkGuest() {
-    console.log("user is = " + isGuest);
-}
+var isGuest;
 
 $(document).ready(function() {
-    console.log("ready test")
+    console.log("ready test");
     
     $('#logout').click(function(){
         sessionStorage.clear();
@@ -40,6 +36,9 @@ $(document).ready(function() {
         isGuest = 1;
     });
 
+    function checkGuest() {
+        console.log("user is = " + isGuest);
+    }
     
 /* -------------------------------------------------- UserLogin.hbs -------------------------------------------------- */
 
