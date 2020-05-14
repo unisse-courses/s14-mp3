@@ -431,7 +431,7 @@
       var photoInput = '/images/default_profile.png'
 
       if(!(req.body.profilepic == "")) {
-        photoInput = '/images/' + req.body.profilepic.filename;
+        photoInput = '/images/' + req.body.profilepic.substring(15);
       }
 
       var email =     req.body.email;
