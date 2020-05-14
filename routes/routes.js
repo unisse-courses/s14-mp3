@@ -434,13 +434,13 @@
         photoInput = '/images/' + req.body.profilepic;
       }
 
-      var email =     req.body.EMAIL;
-      var fName =     req.body.FIRSTNAME;
-      var lName =     req.body.LASTNAME;
-      var uName =     req.body.USERNAME;
-      var password =  req.body.PASSWORD;
+      var email =     req.body.email;
+      var fName =     req.body.firsname;
+      var lName =     req.body.lastname;
+      var uName =     req.body.username;
+      var password =  req.body.password;
       var photo =     photoInput;
-      var bio =       req.body.BIO;
+      var bio =       req.body.bio;
 
       bcrypt.hash(password, 2, function(err, hash){
         var theUser = {
