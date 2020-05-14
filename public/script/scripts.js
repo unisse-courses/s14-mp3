@@ -2,6 +2,8 @@ var isGuest;
 
 $(document).ready(function() {
     console.log("ready test");
+
+    checkGuest();
     
     $('#logout').click(function(){
         sessionStorage.clear();
@@ -9,7 +11,7 @@ $(document).ready(function() {
 /* -------------------------------------------------- index.hbs -------------------------------------------------- */
 
     $("#noAccount").click(function () { 
-        isGuest = 0;
+        setUserType(0);
         
         checkGuest();
 
@@ -23,7 +25,7 @@ $(document).ready(function() {
             if(data.success){
                 
                 window.location.href = "home";
-                isGuest = 0;
+                setUserType(0);
 
             }
         });
@@ -33,13 +35,16 @@ $(document).ready(function() {
     $("#yesAccount").click(function () { 
         
         window.location.href = "log-in";
-        isGuest = 1;
+        setUserType(1);
     });
 
     function checkGuest() {
         console.log("user is = " + isGuest);
     }
-    
+
+    function setUserType(x) {
+        isGuest = x;
+    }    
 /* -------------------------------------------------- UserLogin.hbs -------------------------------------------------- */
 
     if(window.location.href.includes("log-in")){
@@ -77,7 +82,7 @@ $(document).ready(function() {
                 return false;
             }
                 
-            isGuest = 1;
+            setUserType(1);
       
         var account = {
             username: user,
