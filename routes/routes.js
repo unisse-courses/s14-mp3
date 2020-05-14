@@ -352,7 +352,6 @@
   if(rememberMe == "true"){
     var stuff = {
       username: currUser.username,
-      password: "",
       remember: rememberMe
     }
     res.send(stuff)
@@ -360,7 +359,6 @@
   else{
     var stuff = {
       username: "",
-      password: "",
       remember: rememberMe
     }
     res.send(stuff)

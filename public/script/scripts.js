@@ -70,7 +70,7 @@ $(document).ready(function() {
 
         // if the person clicked the "remember me" box then their pass will be saved in sessionStorage
         if(account.remember) {
-            sessionStorage.setItem("rememberPassword", account.pass)
+            sessionStorage.setItem("rememberPassword", pass)
         }
         else {
             sessionStorage.setItem("rememberPassword", "")
@@ -109,7 +109,6 @@ $(document).ready(function() {
                 $("#remember_me").attr("checked", true);
             }
             else{
-                passwordStr = data.password;
                 $("#remember_me").removeAttr("checked");
             }
 
