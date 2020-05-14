@@ -46,7 +46,14 @@ $(document).ready(function() {
         $.post("remember", function (data, status) {
             console.log(data);
             $("#user").val(data.username);
-            $("#pass").val(data.password);
+
+            if(data.password == "checked") {
+                $("#pass").val(sessionStorage.getItem("rememberPassword"));
+            }
+            else {
+                $("#pass").val(data.password);
+            }
+            
 
             if(data.remember == "true"){
                 $("#remember_me").attr("checked", true);
@@ -83,6 +90,15 @@ $(document).ready(function() {
             remember: $('#remember_me').is(":checked")
         }
         console.log(account.remember)
+
+        // if the person clicked the "remember me" box then their pass will be saved in sessionStorage
+        if(account.remember) {
+            sessionStorage.setItem("rememberPassword", account.pass)
+        }
+        else {
+            sessionStorage.setItem("rememberPassword", "")
+        }
+
         $.post('loginACTION', account, function(data,status) {
             console.log(data);
             if(!data.success){
