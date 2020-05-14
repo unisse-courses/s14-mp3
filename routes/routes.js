@@ -378,7 +378,7 @@
   });
 
 // [CREATE ACCOUNT] Adding an Account to the DB
-  router.post('/addAccount', (req, res) => {
+  router.post("/addAccount", function (req, res) {
 
     console.log("the request:");
     console.log(req.body);

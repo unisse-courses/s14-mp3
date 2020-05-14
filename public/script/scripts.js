@@ -383,23 +383,23 @@ $(document).ready(function() {
         var photoVal = document.getElementById("profilepic").value;
         var bioVal = document.getElementById("bio").value;
 
-        if(emailColor == "red") {
+        if(emailColor == "red" || emailVal == "") {
             return false; 
         }
 
-        if(fnameColor == "red") {
+        if(fnameColor == "red" || fnameVal == "") {
             return false; 
         }
 
-        if(lnameColor == "red") {
+        if(lnameColor == "red" || lnameVal == "") {
             return false; 
         }
 
-        if(unameColor == "red") {
+        if(unameColor == "red" || unameVal == "") {
             return false; 
         }
 
-        if(passColor == "red") {
+        if(passColor == "red" || passVal == "") {
             return false; 
         }
 
