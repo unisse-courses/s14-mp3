@@ -934,10 +934,10 @@ $(document).ready(function() {
             window.location.href = "/edit-recipe/" + str;
         });
 
-        function appendComment(item, parentDiv) {
+        function appendComment(item, parentDiv, randomN) {
             // We declared a different variable since the object 'user' was NESTED
             // the variable 'post' from the dummy data is represented by 'item'
-            var user = item.user; 
+            var user = item.user;
 
             // STEP 1: Create a variable for each tag used (we did ours in order of the original html code)
                 var list = document.createElement('li');
@@ -962,6 +962,8 @@ $(document).ready(function() {
 
                 $(anchor).attr("href", "account-profile");
                 $(anchor).addClass("badge badge-light");
+                $(anchor).attr("id", "profile" + randomN);
+                randomN++;
 
                 $(time).addClass("text-muted");
 
@@ -1004,6 +1006,7 @@ $(document).ready(function() {
                 {
                     for ( i = 0 ; i < item.replies.length ; i++)
                     {
+                        var rand = item.length + 
                         appendReply(item.replies[i], parentDiv)
                     }
                 }
@@ -1075,20 +1078,29 @@ $(document).ready(function() {
             _id: url
         }
 
+        var random = 0;
+
         $.post("../getComments", stuff, function (data, status) { // This function GETS the existing comments from the DUMMY DATA
             // We just place these in console to make sure there are no errors
 
             // This variable is the DIV that we want to populate
                 var commentsContainer = $("#commentList");
             if (data.comments.length >= 1){
-                console.log(data.comments)
-                data.comments.forEach((item, i) => { 
-                    appendComment(item, commentsContainer);
+                var rand = random;
+                console.log(data.comments); 
+                data.comments.forEach((item, i) => {
+                    appendComment(item, commentsContainer, rand);
+                    rand++;
                 });   
 
+                random += rand;
             }
         });
-    
+
+        console.log(random);
+        
+        
+
         $('#addComment-btn').click(function() {  
             var content = $("#olinput").val();
             console.log(content);
