@@ -42,23 +42,6 @@ $(document).ready(function() {
     }    
 /* -------------------------------------------------- UserLogin.hbs -------------------------------------------------- */
 
-    if(window.location.href.includes("log-in")){
-        $.post("remember", function (data, status) {
-            console.log(data);
-            $("#user").val(data.username);
-
-            if(data.remember == "true"){
-                $("#pass").val(sessionStorage.getItem("rememberPassword"));
-                $("#remember_me").attr("checked", true);
-            }
-            else{
-                $("#pass").val(data.password);
-                $("#remember_me").removeAttr("checked");
-            }
-            
-        });
-    }
-
     $("#loginButton").click(function (event) { 
         event.preventDefault();
 
@@ -114,6 +97,26 @@ $(document).ready(function() {
 
     });
 
+    if(window.location.href.includes("log-in")){
+        $.post("remember", function (data, status) {
+            console.log(data);
+            $("#user").val(data.username);
+
+            var passwordStr;
+
+            if(data.remember == "true"){
+               passwordStr = sessionStorage.getItem("rememberPassword");
+                $("#remember_me").attr("checked", true);
+            }
+            else{
+                passwordStr = data.password;
+                $("#remember_me").removeAttr("checked");
+            }
+
+            $("#pass").val(passwordStr);
+            
+        });
+    }
 
 /* -------------------------------------------------- CreateAccount.hbs -------------------------------------------------- */
     
