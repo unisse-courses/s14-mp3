@@ -71,9 +71,11 @@ $(document).ready(function() {
         // if the person clicked the "remember me" box then their pass will be saved in sessionStorage
         if(account.remember) {
             sessionStorage.setItem("rememberPassword", pass)
+            console.log(sessionStorage.getItem("rememberPassword"));
         }
         else {
-            sessionStorage.setItem("rememberPassword", "")
+            sessionStorage.setItem("rememberPassword", "");
+            console.log(sessionStorage.getItem("rememberPassword") + " - tis empty");
         }
 
         $.post('loginACTION', account, function(data,status) {
@@ -102,17 +104,16 @@ $(document).ready(function() {
             console.log(data);
             $("#user").val(data.username);
 
-            var passwordStr;
+            var passwordStr = sessionStorage.getItem("rememberPassword");
+            $("#pass").val(passwordStr);
 
             if(data.remember == "true"){
-               passwordStr = sessionStorage.getItem("rememberPassword");
                 $("#remember_me").attr("checked", true);
             }
             else{
                 $("#remember_me").removeAttr("checked");
             }
 
-            $("#pass").val(passwordStr);
             
         });
     }
