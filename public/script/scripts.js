@@ -1,5 +1,3 @@
-var isGuest = null;
-
 $(document).ready(function() {
     console.log("ready test");
 
@@ -20,8 +18,8 @@ $(document).ready(function() {
             if(data.success){
                 
                 window.location.href = "home";
-                setUserType(0);
-                checkGuest();
+                sessionStorage.setItem("isGuest", 0);
+                checkIfGuest();
 
             }
         });
@@ -31,16 +29,16 @@ $(document).ready(function() {
     $("#yesAccount").click(function () { 
         
         window.location.href = "log-in";
-        setUserType(1);
-        checkGuest();
+        sessionStorage.setItem("isGuest", 1);
+        checkIfGuest();
     });
 
-    function checkGuest() {
-        console.log("user is = " + isGuest);
+    function checkIfGuest() {
+        console.log("user is = " + sessionStorage.getItem("isGuest"));
     }
 
-    function setUserType(x) {
-        isGuest = x;
+    function getUserType() {
+        return sessionStorage.getItem("isGuest");
     }    
 /* -------------------------------------------------- UserLogin.hbs -------------------------------------------------- */
 
@@ -358,7 +356,7 @@ $(document).ready(function() {
 /* -------------------------------------------------- Homepage.hbs -------------------------------------------------- */
     if(window.location.href.includes('home')){
         checkGuest();
-        if (isGuest == 0){
+        if (getUserType() == 0){
             $('#accProfile').addClass("disabled");
             $('#create').hide();
             console.log("this means isguest is 0 so it gucci");
@@ -727,7 +725,7 @@ $(document).ready(function() {
         
         var str = document.getElementById("unameb").innerText;
 
-        if (isGuest == 0){
+        if (getUserType() == 0){
             $('#accProfile').addClass("disabled")
             $('#create').hide()
             $('#upvote-icon').hide()
@@ -1128,7 +1126,7 @@ $(document).ready(function() {
         
         str = path.substring(x+1, path.length+1);
 
-        if (isGuest == 0){
+        if (getUserType() == 0){
             $('#accProfile').addClass("disabled")
             $('#create').hide()
             $('#edit_account-btn').hide()
@@ -1879,7 +1877,7 @@ $(document).ready(function() {
         $('.post_preview-container').hide();
         $('.profile-container').hide();
 
-        if (isGuest == 0){
+        if (getUserType() == 0){
             $('#accProfile').addClass("disabled")
             $('#create').hide()
         }
