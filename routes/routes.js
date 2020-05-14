@@ -624,12 +624,21 @@
       console.log("UPDATE OBJECT = " + JSON.stringify(nextThing));
       console.log("curruser OBJECT = " + JSON.stringify(currUser));
       
-      postModel.updateAllPosts(currUser.firstname, currUser.lastname, currUser.username, currUser.password, currUser.bio, currUser.profilepic)
-        // i think this is the root of the error for UPDATE all posts
+      postModel.updateAllPosts(currUser, function(err, updatedAcc){
+          var result;
+          
+          if(err) {
+    
+          }
+          else {
+    
+          }
+    
+      });
+
+      
     });
 
-    res.send(currUser);
-  });
 
 // [EDIT ACCOUNT] Username Username Validation Part 2
   router.post('/uniqueUsernameCheckEDIT', function(req, res) {
