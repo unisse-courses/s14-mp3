@@ -413,7 +413,7 @@ $(document).ready(function() {
             bio: bioVal
         }
 
-        $.post('../addAccount', newAcc, function(data,status) {
+        $.post("addAccount", newAcc, function(data,status) {
             console.log(data);
 
             if(!data.success) {
