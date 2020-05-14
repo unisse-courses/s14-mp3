@@ -76,8 +76,6 @@ $(document).ready(function() {
                 document.getElementById("warning1").style.color = "red";
                 return false;
             }
-                
-            setUserType(1);
       
         var account = {
             username: user,
