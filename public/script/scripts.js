@@ -1,20 +1,15 @@
-var isGuest;
+var isGuest = null;
 
 $(document).ready(function() {
     console.log("ready test");
 
-    checkGuest();
     
     $('#logout').click(function(){
         sessionStorage.clear();
     });
 /* -------------------------------------------------- index.hbs -------------------------------------------------- */
 
-    $("#noAccount").click(function () { 
-        setUserType(0);
-        
-        checkGuest();
-
+    $("#noAccount").click(function () {
         var account = {
             username: "Guest",
             remember: false
@@ -26,6 +21,7 @@ $(document).ready(function() {
                 
                 window.location.href = "home";
                 setUserType(0);
+                checkGuest();
 
             }
         });
@@ -36,6 +32,7 @@ $(document).ready(function() {
         
         window.location.href = "log-in";
         setUserType(1);
+        checkGuest();
     });
 
     function checkGuest() {
