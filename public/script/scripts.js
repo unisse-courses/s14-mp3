@@ -964,7 +964,7 @@ $(document).ready(function() {
 
                 $(bigDiv).addClass("media-body comment-body");
 
-                $(anchor).attr("href", "account-profile/"+item.user.username);
+                $(anchor).attr("href", "/account-profile/"+item.user.username);
                 $(anchor).attr("id", "profile");
 
                 $(sp1).addClass("badge badge-light");
@@ -1015,7 +1015,7 @@ $(document).ready(function() {
             _id: url
         }
 
-        $.post("/getComments", stuff, function (data, status) { // This function GETS the existing comments from the DUMMY DATA
+        $.post("../getComments", stuff, function (data, status) { // This function GETS the existing comments from the DUMMY DATA
             // We just place these in console to make sure there are no errors
 
             // This variable is the DIV that we want to populate
@@ -1063,7 +1063,7 @@ $(document).ready(function() {
                 }
                 console.log(comment);
 
-                $.post('../addCommentRow', comment, function(data,status) {
+                $.post('/addCommentRow', comment, function(data,status) {
                     console.log(data);
                     var commentsContainer = $("#commentList");
                     appendComment(comment, commentsContainer);
