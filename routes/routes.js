@@ -532,34 +532,57 @@
     var query = {
       email: currUser.email
     };
-    var update
+    var update;
+    var nextThing;
     console.log("something")
     console.log(req.body)
-    if (req.body.editprofilepic == "")
-    {
-      update = {
-        firstname:  req.body.editfirstname,
-        lastname:   req.body.editlastname,
-        username:   req.body.editusername,
-        password:   req.body.editpassword,
-        profilepic: '/images/default_profile.png', 
-        bio:        req.body.editbio
-      };
-    }
-    else{
-      update = {
-        firstname: req.body.editfirstname,
-        lastname: req.body.editlastname,
-        username: req.body.editusername,
-        password: req.body.editpassword,
-        profilepic: req.body.editprofilepic,
-        bio: req.body.editbio
-      };
-    }
-    
-    userModel.editCurrAccountInfo(query, update, function(user) {
 
-        currUser = {
+    var photoInput = '/images/default_profile.png'
+
+    if(!(req.body.profilepic == "")) {
+      photoInput = '/images/' + req.body.editprofilepic.substring(15); // [JOHANN TODO - copy paste the working code here for edit]
+    }
+
+    var fName =     req.body.editfirstname;
+    var lName =     req.body.editlastname;
+    var uName =     req.body.editusername;
+    var password =  req.body.editpassword;
+    var photo =     photoInput;
+    var bio =       req.body.editbio;
+
+
+    if (password == "") {
+      // changes to user info
+      update = {
+        firstname:  fName,
+        lastname:   lName,
+        username:   uName,
+        profilepic: photo, 
+        bio:        bio
+      };
+
+      nextThing = {
+        email:      currUser.email,
+        firstname:  update.firstname,
+        lastname:   update.lastname,
+        username:   update.username,
+        bio:        update.bio, 
+        profilepic: update.profilepic
+      }
+
+    }
+    else { // PASSWORD HASHING THING
+      bcrypt.hash(password, 2, function(err, hashed){
+        update = {
+          firstname:  fName,
+          lastname:   lName,
+          username:   uName,
+          password:   hashed,
+          profilepic: photo, 
+          bio:        bio
+        };
+
+        nextThing = {
           email:      currUser.email,
           firstname:  update.firstname,
           lastname:   update.lastname,
@@ -568,12 +591,41 @@
           bio:        update.bio, 
           profilepic: update.profilepic
         }
-
-      console.log("UPDATE OBJECT = " + JSON.stringify(update));
+      };
+      
+    }
+    
+    userModel.editCurrAccountInfo(query, nextThing, function(user) {
+      
+      if(password == "") {
+        currUser = {
+          email:      currUser.email,
+          firstname:  nextThing.firstname,
+          lastname:   nextThing.lastname,
+          username:   nextThing.username, 
+          password:   currUser.password, 
+          bio:        nextThing.bio, 
+          profilepic: nextThing.profilepic
+        }
+      }
+      else {
+        currUser = {
+          email:      currUser.email,
+          firstname:  nextThing.firstname,
+          lastname:   nextThing.lastname,
+          username:   nextThing.username, 
+          password:   nextThing.password, 
+          bio:        nextThing.bio, 
+          profilepic: nextThing.profilepic
+        }
+  
+      }
+      
+      console.log("UPDATE OBJECT = " + JSON.stringify(nextThing));
       console.log("curruser OBJECT = " + JSON.stringify(currUser));
       
       postModel.updateAllPosts(currUser.firstname, currUser.lastname, currUser.username, currUser.password, currUser.bio, currUser.profilepic)
-  
+        // i think this is the root of the error for UPDATE all posts
     });
 
     res.send(currUser);

@@ -43,7 +43,7 @@ exports.getAllAccounts = function (name, next){
 }
 
 exports.editCurrAccountInfo = function (query, update, next){
-    userModel.findOneAndUpdate(query, update, { new: false }, function(err, user) {
+    userModel.findOneAndUpdate(query, {$set: update }, { new: false }, function(err, user) {
         next(user)
     })
 }

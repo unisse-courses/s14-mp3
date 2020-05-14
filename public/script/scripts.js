@@ -1491,14 +1491,12 @@ $(document).ready(function() {
 
     $("#EDITpassword").blur(() => {
         if ($("#EDITpassword").val() == ""){
-
-            $("#EDITpassword").removeClass("is-valid")
-            $("#EDITpassword").addClass("is-invalid")
-
-            $("#validPass").show()
-            $("#validPass").addClass("invalid-feedback")
-            $("#validPass").removeClass("valid-feedback")
-            $("#validPass").html("Please input your password").css("color", "black")
+            $("#EDITpassword").addClass("is-valid")
+            $("#EDITpassword").removeClass("is-invalid")
+            
+            $("#validPass").addClass("valid-feedback")
+            $("#validPass").removeClass("invalid-feedback")
+            $("#validPass").html("Password is unchanged!").css("color", "black")
         }
 
         else if($("#EDITpassword").val().length < 6){
