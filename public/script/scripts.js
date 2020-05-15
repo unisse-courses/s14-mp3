@@ -1480,6 +1480,8 @@ $(document).ready(function() {
             _id: url
         };
 
+        window.alert("Recipe successfully updated! go to account profile to see your recipe posts.");
+
         $.post('../updatePost', new_post, function(data,status) {
             window.location.href="../recipe-post/" + url
         });

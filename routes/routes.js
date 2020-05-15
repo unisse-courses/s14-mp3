@@ -886,7 +886,7 @@ router.post('/addAccount', upload.single('PROFILEPIC'), validation.signupValidat
     }
     console.log(update)
     postModel.updateOnePost(query, update, function(new_post){
-      res.send(new_post)
+      res.send(new_post);
     })
 
     });
