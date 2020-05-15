@@ -566,12 +566,12 @@ router.post('/addAccount', upload.single('PROFILEPIC'), validation.signupValidat
 
     }
     else { // PASSWORD HASHING THING
-      bcrypt.hashed(password, 2, function(err, hashed){
+      bcrypt.hash(password, 2, function(err, hash){
         update = {
           firstname:  fName,
           lastname:   lName,
           username:   uName,
-          password:   hashed,
+          password:   hash,
           profilepic: photo, 
           bio:        bio
         };

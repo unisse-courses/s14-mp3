@@ -83,7 +83,7 @@ exports.checkUniqueUsername = function(user, next){
 }
 
 exports.checkUniqueUsernameEDIT = function(user, next){
-    var regexInput = "^" + user + "$";
+    var regexInput = "^" + user;
 
     userModel.findOne({ "username" : { $regex: regexInput, $options: 'i' } }, function(err, usernameResult) {
         next(usernameResult);
