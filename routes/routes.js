@@ -793,8 +793,8 @@ router.post('/addAccount', upload.single('PROFILEPIC'), validation.signupValidat
         else {
           console.log("Successfully created a recipe post!");
           //console.log(new_post);
-          result = { success: true, message: "Recipe post successfully created!" }
-          res.send(result);
+          console.log("Recipe post successfully created!");
+          res.redirect('/recipe-post/'+newpost._id)
         }
     
       });

@@ -614,10 +614,9 @@ $(document).ready(function() {
             instructions: arrInstruct,
         };
         console.log(new_post);
-
-        $.post('addPost', new_post, function(data,status) {
-            console.log(data);
-            window.location.href="../recipe-post/" + data._id;
+        window.alert("Recipe successfully created! go to your account profile to see your recipe posts.");
+        $.post('/addPost', new_post, function(data,status) {
+          //  console.log(data);
         });
         
     });
