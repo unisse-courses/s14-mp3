@@ -513,7 +513,7 @@ router.post('/addAccount', upload.single('PROFILEPIC'), validation.signupValidat
   });
 
 // [EDIT ACCOUNT] Updates the Account in the DB
-  router.post('/edit-account', upload.single('editprofpic'), function(req, res) {
+  router.post('/editing-account', upload.single('editprofpic'), function(req, res) {
     var query = {
       email: currUser.email
     };
