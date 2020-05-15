@@ -7,21 +7,21 @@
   const ingredientsModel = require('../models/ingredients');
   const commentsModel = require('../models/comments');
 
-// // IMPORTING VALIDATION
-//   const {check} = require('express-validator');
-//   const validation = {
-//     signupValidation: [
-//       //check if EMAIL is not empty
-//       check('EMAIL', 'Email is required.').notEmpty(),
+// IMPORTING VALIDATION
+   const {check} = require('express-validator');
+   const validation = {
+     signupValidation: [
+       //check if EMAIL is not empty
+       check('EMAIL', 'Email is required.').notEmpty(),
 
-//       //same thing with the firstname, lastname, etc.
-//       check('FIRSTNAME', 'First name is required.').notEmpty(),
-//       check('LASTNAME', 'Last name is required.').notEmpty(),
-//       check('USERNAME', 'Username is required; must be greater than 6 and less than 15 characters.').isLength({min: 6, max: 15}),
-//       check('PASSWORD', 'Password must be greater than 6 characters.').isLength({min: 6})
-//     ]
-//   };
-//   const { validationResult } = require('express-validator');
+       //same thing with the firstname, lastname, etc.
+       check('FIRSTNAME', 'First name is required.').notEmpty(),
+       check('LASTNAME', 'Last name is required.').notEmpty(),
+       check('USERNAME', 'Username is required; must be greater than 6 and less than 15 characters.').isLength({min: 6, max: 15}),
+       check('PASSWORD', 'Password must be greater than 6 characters.').isLength({min: 6})
+     ]
+   };
+   const { validationResult } = require('express-validator');
 
 
 //IMPORTING BCRYPT
@@ -372,112 +372,97 @@
 // [ACCOUNT PROFILE] SKIPPED
   router.post("/userposts", function (req, res){
       postModel.getOwnPosts(currUser.email, function(data){
-        console.log(data);
+      //  console.log(data);
         res.send(data);
       })
   });
 
 // [CREATE ACCOUNT] Adding an Account to the DB
-  router.post("/addAccount", function (req, res) {
+router.post('/addAccount', upload.single('PROFILEPIC'), validation.signupValidation, function(req, res) {
+  console.log("the request:");
+  console.log(req.body.EMAIL);
 
-    console.log("the request:");
-    console.log(req.body);
+  if (!(req.file == undefined)){
+    console.log("the picture");
+    console.log(req.file);
 
-    if(req.file) {
-      upload.single('PROFILEPIC');
+    console.log("the destination of the pic");
+    console.log(req.file.path);
+  }
 
-      console.log("the picture");
-      console.log(req.file);
+  var errors = validationResult(req.body);
 
-      console.log("the destination of the pic");
-      console.log(req.file.path);
+  if (!errors.isEmpty()){
+    errors = errors.errors;
+    var details = {};
+    var i;
+    for (i = 0; i < errors.length; i++)
+    {
+      details[errors[i].param + 'Error'] = errors[i].msg;
     }
-    else {
-      console.log("the picture");
-      console.log("- default account icon -")
+    console.log(details);
+    res.render('CreateAccount', {
+      // for main.hbs
+        styles: "../css/styles_outside.css",
+        tab_title: "Create Account",
+        body_class: "outside",
+        navUser: currUser.username,
+        navIcon: currUser.profilepic,
+        EMAILError: details.EMAILError,
+        FIRSTNAMEError: details.FIRSTNAMEError,
+        LASTNAMEError: details.LASTNAMEError,
+        USERNAMEError: details.USERNAMEError,
+        PASSWORDError: details.PASSWORDError
+    });
+  }
+  else {
+    // DEFAULT PHOTO OPTION
+    var photoInput = '/images/default_profile.png';
+
+    if(!(req.file == undefined)) {
+      photoInput = '/images/' + req.file.filename;
     }
 
-    //var errors = validationResult(req.body);
-
-    // if (!errors.isEmpty()){
-    //   errors = errors.errors;
-
-    //   var details = {};
-    //   var i;
-    //   for (i = 0; i < errors.length; i++)
-    //   {
-    //     details[errors[i].param + 'Error'] = errors[i].msg;
-    //   }
-
-    //   console.log(details);
-
-    //   res.render('CreateAccount', {
-    //     // for main.hbs
-    //       styles: "../css/styles_outside.css",
-    //       tab_title: "Create Account",
-    //       body_class: "outside",
-    //       navUser: currUser.username,
-    //       navIcon: currUser.profilepic,
-    //       EMAILError: details.EMAILError,
-    //       FIRSTNAMEError: details.FIRSTNAMEError,
-    //       LASTNAMEError: details.LASTNAMEError,
-    //       USERNAMEError: details.USERNAMEError,
-    //       PASSWORDError: details.PASSWORDError
-    //   });
-    // }
-
-    // else {
-      // DEFAULT PHOTO OPTION
-      var photoInput = '/images/default_profile.png'
-
-      if(!(req.body.profilepic == "")) {
-        photoInput = '/images/' + req.body.profilepic.substring(12);
-      }
-
-      var email =     req.body.email;
-      var fName =     req.body.firstname;
-      var lName =     req.body.lastname;
-      var uName =     req.body.username;
-      var password =  req.body.password;
-      var photo =     photoInput;
-      var bio =       req.body.bio;
-
-      bcrypt.hash(password, 2, function(err, hash){
-        var theUser = {
-          email:      email,
-          firstname:  fName,
-          lastname:   lName,
-          username:   uName,
-          password:   hash,
-          profilepic: photo,
-          bio:        bio
-        };
-
-        console.log(theUser);
-        userModel.createNewAccount(theUser, function(err, new_user){
-          var result;
+    var email =     req.body.EMAIL;
+    var fName =     req.body.FIRSTNAME;
+    var lName =     req.body.LASTNAME;
+    var uName =     req.body.USERNAME;
+    var password =  req.body.PASSWORD;
+    var photo =     photoInput;
+    var bio =       req.body.BIO;
+    bcrypt.hash(password, 2, function(err, hash){
+      var theUser = {
+        email:      email,
+        firstname:  fName,
+        lastname:   lName,
+        username:   uName,
+        password:   hash,
+        profilepic: photo,
+        bio:        bio
+      };
+      console.log(theUser);
+      userModel.createNewAccount(theUser, function(err, new_user){
+        var result;
+        
+        if (err) {
+          console.log(err.errors);
+  
+          result = {success: false, message: "User was not created!"}
+          console.log(result);
           
-          if (err) {
-            console.log(err.errors);
-    
-            result = {success: false, message: "User was not created!"}
-            console.log(result);
-            
-            res.send(result);
-          }
-          else {
-            console.log("User was created!");
-            console.log(new_user);
-    
-            result = {success: true, message: "User was created!"}
-
-            res.send(result);
-          }
-        })
-      });
-    //}    
-    
-  });
+          res.redirect("/create-account");
+        }
+        else {
+          console.log("User was created!");
+          console.log(new_user);
+  
+          res.redirect("/log-in");
+        }
+      })
+    });
+  }    
+  
+});
 
 // [CREATE ACCOUNT] Unique Email Validation
   router.post('/uniqueEmailCheck', function(req, res) {
@@ -528,19 +513,25 @@
   });
 
 // [EDIT ACCOUNT] Updates the Account in the DB
-  router.post('/edit-account/', function(req, res) {
+  router.post('/edit-account', upload.single('editprofpic'), function(req, res) {
     var query = {
       email: currUser.email
     };
     var update;
     var nextThing;
-    console.log("something")
-    console.log(req.body)
+    console.log("the request:");
+    console.log(req.body);
+
+    if (!(req.file == undefined))
+    {
+      console.log("the picture:");
+      console.log(req.file);
+    }
 
     var photoInput = '/images/default_profile.png'
 
-    if(!(req.body.profilepic == "")) {
-      photoInput = '/images/' + req.body.editprofilepic.substring(15); // [JOHANN TODO - copy paste the working code here for edit]
+    if(!(req.file == undefined)) {
+      photoInput = '/images/' + req.file.filename;
     }
 
     var fName =     req.body.editfirstname;
@@ -595,8 +586,10 @@
       
     }
     
-    userModel.editCurrAccountInfo(query, nextThing, function(user) {
-      
+    userModel.editCurrAccountInfo(query, nextThing, function(err, user) {
+      if (err) throw err;
+
+      console.log(user);
       if(password == "") {
         currUser = {
           email:      currUser.email,
@@ -626,13 +619,10 @@
       
       postModel.updateAllPosts(currUser, function(err, updatedAcc){
           var result;
+          console.log(updatedAcc);
+          if(err) throw err;
           
-          if(err) {
-    
-          }
-          else {
-    
-          }
+          res.redirect('/account-profile/'+nextThing.username);
     
       });
 
@@ -749,27 +739,29 @@
 
 // [CREATE RECIPE POST] Creates the Post in the DB
   router.post('/addPost', upload.single('THUMBNAIL'), function(req, res) {
-
+    console.log("the request:");
     console.log(req.body);
-
+    
+    console.log("the picture:");
+    console.log(req.file);
     // making ingredient objects
-      var bigContainer = [];
-      var i = 0;
+    var bigContainer = [];
+    var i = 0;
 
-      for (i = 0 ; i < req.body.ingredients.length; i++){
-        var smthg = {
-          name: req.body.ingredients[i].name,
-          quantitiy: req.body.ingredients[i].quantity,
-          amount: req.body.ingredients[i].amount,
-        };
-
-        bigContainer.push(smthg)
+    for (i = 0 ; i < req.body.ingredients.length; i++){
+      var smthg = {
+        name: req.body.ingredients[i].name,
+        quantitiy: req.body.ingredients[i].quantity,
+        amount: req.body.ingredients[i].amount,
       };
+
+      bigContainer.push(smthg)
+    };
 
     // DEFAULT PHOTO OPTION
     var photoInput = '/images/default_post.jpg'
 
-    if(!(req.body.recipe_picture == "")) {
+    if(!(req.file == undefined)) {
       photoInput = '/images/' + req.file.filename;
     }
     
@@ -801,9 +793,7 @@
         else {
           console.log("Successfully created a recipe post!");
           //console.log(new_post);
-          
-          result = { success: true, message: "Recipe post created!", _id: new_post._id}
-    
+          result = { success: true, message: "Recipe post successfully created!" }
           res.send(result);
         }
     

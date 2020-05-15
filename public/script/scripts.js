@@ -132,7 +132,6 @@ $(document).ready(function() {
         if ($("#email").val() == ""){
             $("#email").removeClass("is-valid")
             $("#email").addClass("is-invalid")
-
             $("#validEmail").show()
             $("#validEmail").addClass("invalid-feedback")
             $("#validEmail").removeClass("valid-feedback")
@@ -141,7 +140,6 @@ $(document).ready(function() {
         else {
             // gets the email inputted
             var emailInput = $("#email").val();
-
             // copy paste i found to match the email format
             var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             
@@ -167,28 +165,24 @@ $(document).ready(function() {
                         $("#validEmail").html("Email entered is already taken").css("color", "black")
                     }
                 });
-
             }
             else { // if it doesnt match the format
                 $("#email").removeClass("is-valid")
                 $("#email").addClass("is-invalid")
-    
+
                 $("#validEmail").show()
                 $("#validEmail").addClass("invalid-feedback")
                 $("#validEmail").removeClass("valid-feedback")
                 $("#validEmail").html("Email entered is invalid").css("color", "black")
                     
             }
-      
+    
         }
     });
-
     $("#firstname").blur(() => {
         if ($("#firstname").val() == ""){
-
             $("#firstname").removeClass("is-valid")
             $("#firstname").addClass("is-invalid")
-
             $("#validFirst").show()
             $("#validFirst").addClass("invalid-feedback")
             $("#validFirst").removeClass("valid-feedback")
@@ -205,13 +199,10 @@ $(document).ready(function() {
         }
         
     });
-
     $("#lastname").blur(() => {
         if ($("#lastname").val() == ""){
-
             $("#lastname").removeClass("is-valid")
             $("#lastname").addClass("is-invalid")
-
             $("#validLast").show()
             $("#validLast").addClass("invalid-feedback")
             $("#validLast").removeClass("valid-feedback")
@@ -227,13 +218,10 @@ $(document).ready(function() {
             $("#validLast").html("Looks good!").css("color", "black")
         }
     })
-
     $("#username").blur(() => {
         if ($("#username").val() == ""){
-
             $("#username").removeClass("is-valid")
             $("#username").addClass("is-invalid")
-
             $("#validUser").show()
             $("#validUser").addClass("invalid-feedback")
             $("#validUser").removeClass("valid-feedback")
@@ -244,28 +232,25 @@ $(document).ready(function() {
         else if($("#username").val().length < 6) {
             $("#username").removeClass("is-valid")
             $("#username").addClass("is-invalid")
-
             $("#validUser").show()
             $("#validUser").addClass("invalid-feedback")
             $("#validUser").removeClass("valid-feedback")
             $("#validUser").html("Username must have at least 6 characters").css("color", "black")
         }
-
         // if the username is greater than 15 characters
         else if($("#username").val().length > 15) {
             $("#username").removeClass("is-valid")
             $("#username").addClass("is-invalid")
-    
+
             $("#validUser").show()
             $("#validUser").addClass("invalid-feedback")
             $("#validUser").removeClass("valid-feedback")
             $("#validUser").html("Username must have at most 15 characters").css("color", "black")
         }    
- 
+
         else {
             // gets the username inputted
             var usernameInput = $("#username").val();
-
             // copy paste i found to match the username format
             var usernameFormat = /^[a-zA-Z0-9_]*$/;	
         
@@ -295,33 +280,27 @@ $(document).ready(function() {
             else{ // if it doesnt match the format
                 $("#username").removeClass("is-valid")
                 $("#username").addClass("is-invalid")
-    
+
                 $("#validUser").show()
                 $("#validUser").addClass("invalid-feedback")
                 $("#validUser").removeClass("valid-feedback")
                 $("#validUser").html("Username entered is invalid").css("color", "black")
             }
             
-
-
         }
     });
-
     $("#password").blur(() => {
         if ($("#password").val() == ""){
             $("#password").removeClass("is-valid")
             $("#password").addClass("is-invalid")
-
             $("#validPass").show()
             $("#validPass").addClass("invalid-feedback")
             $("#validPass").removeClass("valid-feedback")
             $("#validPass").html("Please input your password").css("color", "black")
         }
-
         else if($("#password").val().length < 6){
             $("#password").removeClass("is-valid")
             $("#password").addClass("is-invalid")
-
             $("#validPass").show()
             $("#validPass").addClass("invalid-feedback")
             $("#validPass").removeClass("valid-feedback")
@@ -331,10 +310,8 @@ $(document).ready(function() {
         else {
             // gets the password inputted
             var passwordInput = $("#password").val();
-
             // copy paste i found to match the password format
             var passwordFormat = /^[a-zA-Z0-9_]*$/;	
-
             if(passwordInput.match(passwordFormat)) { // if it matches the format
                 $("#password").addClass("is-valid")
                 $("#password").removeClass("is-invalid")
@@ -346,16 +323,13 @@ $(document).ready(function() {
             else { // if it doesnt match the format
                 $("#password").removeClass("is-valid")
                 $("#password").addClass("is-invalid")
-
                 $("#validPass").show()
                 $("#validPass").addClass("invalid-feedback")
                 $("#validPass").removeClass("valid-feedback")
                 $("#validPass").html("Password entered is invalid").css("color", "black")
             }
-
         }
     });
-
     function showPreview(file) {
         if (file.files && file.files[0]) {
             var reader = new FileReader();
@@ -366,72 +340,9 @@ $(document).ready(function() {
         console.log("preview shown")
         }
     }
-      
+    
     $("#profilepic").change(function() {
         showPreview(this);
-    });
-
-    $("#createAccount").click(function (event) { 
-        event.preventDefault();
-
-        // checking if they have errors
-        var emailColor = document.getElementById("email").style.color;
-        var fnameColor = document.getElementById("firstname").style.color;
-        var lnameColor = document.getElementById("lastname").style.color;
-        var unameColor = document.getElementById("username").style.color;
-        var passColor = document.getElementById("password").style.color;
-    
-        // values
-        var emailVal = document.getElementById("email").value;
-        var fnameVal = document.getElementById("firstname").value;
-        var lnameVal = document.getElementById("lastname").value;
-        var unameVal = document.getElementById("username").value;
-        var passVal = document.getElementById("password").value;
-        var photoVal = document.getElementById("profilepic").value;
-        var bioVal = document.getElementById("bio").value;
-
-        if(emailColor == "red" || emailVal == "") {
-            return false; 
-        }
-
-        if(fnameColor == "red" || fnameVal == "") {
-            return false; 
-        }
-
-        if(lnameColor == "red" || lnameVal == "") {
-            return false; 
-        }
-
-        if(unameColor == "red" || unameVal == "") {
-            return false; 
-        }
-
-        if(passColor == "red" || passVal == "") {
-            return false; 
-        }
-
-        var newAcc = {
-            email: emailVal,
-            firstname: fnameVal,
-            lastname: lnameVal,
-            username: unameVal,
-            password: passVal,
-            profilepic: photoVal,
-            bio: bioVal
-        }
-
-        $.post("addAccount", newAcc, function(data,status) {
-            console.log(data);
-
-            if(!data.success) {
-                console.log(data.message);
-            }
-            else {
-                console.log(data.message);
-                window.location.href = "../log-in";
-            }
-
-        });
     });
 
 /* -------------------------------------------------- Homepage.hbs -------------------------------------------------- */
@@ -702,9 +613,10 @@ $(document).ready(function() {
             ingredients: arrIngred,
             instructions: arrInstruct,
         };
+        console.log(new_post);
 
         $.post('addPost', new_post, function(data,status) {
-            //console.log(data);
+            console.log(data);
             window.location.href="../recipe-post/" + data._id;
         });
         
@@ -1440,41 +1352,41 @@ $(document).ready(function() {
     });
 
 
-    $("#updateAccount").click(function () { 
-        var first = document.getElementById("EDITfirstName").value;
-        var last = document.getElementById("EDITlastName").value;
-        var user = document.getElementById("EDITuserName").value;
-        var pass = document.getElementById("EDITpassword").value;
-        var pic = document.getElementById("EDITprofilePic").value;
-        var bio = document.getElementById("EDITbio").value;
+    // $("#updateAccount").click(function () { 
+    //     var first = document.getElementById("EDITfirstName").value;
+    //     var last = document.getElementById("EDITlastName").value;
+    //     var user = document.getElementById("EDITuserName").value;
+    //     var pass = document.getElementById("EDITpassword").value;
+    //     var pic = document.getElementById("EDITprofilePic").value;
+    //     var bio = document.getElementById("EDITbio").value;
         
-        console.log("VALUE INSIDE = " + pic);
+    //     console.log("VALUE INSIDE = " + pic);
 
-        var user = {
-            editfirstname: first,
-            editlastname: last,
-            editusername: user,
-            editpassword: pass,
-            editprofilepic: pic,
-            editbio: bio
-        }
+    //     var user = {
+    //         editfirstname: first,
+    //         editlastname: last,
+    //         editusername: user,
+    //         editpassword: pass,
+    //         editprofilepic: pic,
+    //         editbio: bio
+    //     }
         
-        $.post("edit-account", user, function (data, status) {
-                $(document).ready(function () {
-                    $("#account-profile-picture").attr("src", data.profilepic);
-                    $("#accountname").text(data.firstname + " " + data.lastname);
-                    $("#accountusername").text(data.username);
-                    $("#accountbio").text(data.bio);
+    //     $.post("edit-account", user, function (data, status) {
+    //             $(document).ready(function () {
+    //                 $("#account-profile-picture").attr("src", data.profilepic);
+    //                 $("#accountname").text(data.firstname + " " + data.lastname);
+    //                 $("#accountusername").text(data.username);
+    //                 $("#accountbio").text(data.bio);
 
 
-                    //$("#fullnameb").innertext(data.firstname + " " + data.lastname);
-                    //$("#unameb").innertext(data.username);
-                });
+    //                 //$("#fullnameb").innertext(data.firstname + " " + data.lastname);
+    //                 //$("#unameb").innertext(data.username);
+    //             });
                 
 
-                window.location.href = "../account-profile/" + data.username;
-        });
-    });
+    //             window.location.href = "../account-profile/" + data.username;
+    //     });
+    // });
 
 /* -------------------------------------------------- EditRecipePost.hbs -------------------------------------------------- */
 
