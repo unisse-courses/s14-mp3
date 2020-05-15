@@ -61,7 +61,6 @@ exports.deleteAccount = function(email, next){
 }
 
 exports.checkUniqueEmail = function (email, next){
-    var regexInput = "^" + email;
 
     userModel.findOne({ "email" : { $regex: email, $options: 'i' } }, function(err, emailResult) {
         next(emailResult)
@@ -69,9 +68,24 @@ exports.checkUniqueEmail = function (email, next){
 }
 
 exports.checkUniqueUsername = function(user, next){
-    var regexInput = "^" + user;
-
+    var regexInput = "^" + user + "$";
+    
     userModel.findOne({ "username" : { $regex: regexInput, $options: 'i' } }, function(err, usernameResult) {
+        // if(usernameresult) {
+        //     userModel.findOne({ "username" : user }, function(err, usernameResult) {
+        //         next(usernameResult);
+        //     }
+        // }
+        // else { 
+            next(usernameResult);
+    //     }
+    // })
+}
+
+exports.checkUniqueUsernameEDIT = function(userZ, next){
+    var regexInput = "^" + userZ + "$";
+
+    userModel.findOne({ "username" : { $regex: userZ, $options: 'i' } }, function(err, usernameResult) {
         next(usernameResult);
     })
 }

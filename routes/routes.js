@@ -496,7 +496,10 @@ router.post('/addAccount', upload.single('PROFILEPIC'), validation.signupValidat
     console.log("checking if this username is unique");
 
     userModel.checkUniqueUsername(usernameInput, function(usernameResult){
+      var uniqueR  = usernameResult;
+
       if (usernameResult) { // usernameInput is taken (and in same capitalization)
+        
         console.log(usernameInput + " is NOT UNIQUE");
           
         result = { success: false }
@@ -638,10 +641,9 @@ router.post('/addAccount', upload.single('PROFILEPIC'), validation.signupValidat
     console.log("username entered: " + usernameInput);
     console.log("checking if this username is unique");
 
-    userModel.findSpecificEmail(usernameInput, function(usernameResult){
+    userModel.checkUniqueUsernameEDIT(usernameInput, function(usernameResult){
       if (usernameResult) {
         console.log(usernameInput + " is NOT UNIQUE");
-          
         result = { success: false, current: currUser.username }
         res.send(result);
 

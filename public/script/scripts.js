@@ -1246,15 +1246,11 @@ $(document).ready(function() {
                 $.post('uniqueUsernameCheckEDIT', {username: usernameInput}, function(data, status) {
                     console.log(usernameInput + " = " + data.success);
 
-                    if(data.current == usernameInput) {
-                        $("#EDITuserName").addClass("is-valid")
-                        $("#EDITuserName").removeClass("is-invalid")
-                        
-                        $("#validUser").addClass("valid-feedback")
-                        $("#validUser").removeClass("invalid-feedback")
-                        $("#validUser").html("Looks good!").css("color", "black")
-                    }
-                    else {
+                    var capsCurrent = (data.current).toLowerCase();
+                    var capsInput = usernameInput.toLowerCase();
+                    console.log(capsCurrent + "==" + capsInput);
+
+        
                         if (data.success) { // if the username inputted is UNIQUE  
                             $("#EDITuserName").addClass("is-valid")
                             $("#EDITuserName").removeClass("is-invalid")
@@ -1264,15 +1260,26 @@ $(document).ready(function() {
                             $("#validUser").html("Looks good!").css("color", "black")
                         }
                         else { // if the email username is NOT UNIQUE
-                            $("#EDITuserName").removeClass("is-valid")
-                            $("#EDITuserName").addClass("is-invalid")
-                
-                            $("#validUser").show()
-                            $("#validUser").addClass("invalid-feedback")
-                            $("#validUser").removeClass("valid-feedback")
-                            $("#validUser").html("Username entered is already taken").css("color", "black")
-                        }
-                    }
+
+                            if( capsCurrent == capsInput ) { // SAME USERNAME
+                                $("#EDITuserName").addClass("is-valid")
+                                $("#EDITuserName").removeClass("is-invalid")
+                                
+                                $("#validUser").addClass("valid-feedback")
+                                $("#validUser").removeClass("invalid-feedback")
+                                $("#validUser").html("Same Username!").css("color", "black")
+                            }
+
+                            else { // TAKEN USERNAME
+                                $("#EDITuserName").removeClass("is-valid")
+                                $("#EDITuserName").addClass("is-invalid")
+                    
+                                $("#validUser").show()
+                                $("#validUser").addClass("invalid-feedback")
+                                $("#validUser").removeClass("valid-feedback")
+                                $("#validUser").html("Username entered is already taken").css("color", "black")
+                                }
+                            }
                 });
             }
             else{ // if it doesnt match the format
