@@ -79,7 +79,7 @@ exports.checkUniqueUsername = function(user, next){
         // else { 
             next(usernameResult);
     //     }
-    // })
+    })
 }
 
 exports.checkUniqueUsernameEDIT = function(userZ, next){
