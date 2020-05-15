@@ -1,0 +1,71 @@
+[
+{
+  "_id": {
+    "$oid": "5eba627b9ed491691f42e1d9"
+  },
+  "email": "stinson@himym.com",
+  "firstname": "Barney",
+  "lastname": "Stinson",
+  "username": "the_barnacle",
+  "password": "$2b$04$TJajJeFPep6wDuYbnCJIt.fxUMgtVvHM.QcZJgM5MUKvF.FE6g7Ry",
+  "profilepic": "/images/profilepic/barney.jpg",
+  "bio": "Tonight is the night that we make everything Legen... wait for it... Dary. LEGENDARY!",
+  "__v": 0
+},
+
+{
+  "_id": {
+    "$oid": "5eba63859ed491691f42e1da"
+  },
+  "email": "mosby@himym.com",
+  "firstname": "Ted",
+  "lastname": "Mosby",
+  "username": "prof_Brosby",
+  "password": "$2b$04$JXR0jCHPqO/J4DbP2T.eCez5S81bl/on2mLwt1Amn7KpHNPuDlH8S",
+  "profilepic": "/images/profilepic/ted.jpg",
+  "bio": "Somewhere out there, there is a yellow umbrella for everyone. You must be patient.",
+  "__v": 0
+},
+
+{
+  "_id": {
+    "$oid": "5eba63dc9ed491691f42e1db"
+  },
+  "email": "scherbatsky@himym.com",
+  "firstname": "Robin",
+  "lastname": "Scherbatsky",
+  "username": "robin_mnews",
+  "password": "$2b$04$C4hfPhrh0E7SDv93.RGNUepBkN/go1Fj4brMkvlvmQZSzYJQjC2ke",
+  "profilepic": "/images/profilepic/robin.jpg",
+  "bio": "If you have chemistry then you only need more thing, timing.",
+  "__v": 0
+},
+
+{
+  "_id": {
+    "$oid": "5eba647c9ed491691f42e1dc"
+  },
+  "email": "aldrin@himym.com",
+  "firstname": "Lily",
+  "lastname": "Aldrin",
+  "username": "Lilypad",
+  "password": "$2b$04$RtmISAIlsx9Oj41EThbdd.w2QtetToYMCn.OVBNYxzTpMEnFs0TKO",
+  "profilepic": "/images/profilepic/lily.jpg",
+  "bio": "You cant just skip to where you want to be.",
+  "__v": 0
+},
+
+{
+  "_id": {
+    "$oid": "5eba655d9ed491691f42e1dd"
+  },
+  "email": "eriksen@himym.com",
+  "firstname": "Marshall",
+  "lastname": "Eriksen",
+  "username": "bigFudge",
+  "password": "$2b$04$OhRNVk0YJJslAK8bN86bAe4LUFibTFBMDLA1MwyZagWXz3wqMZzMi",
+  "profilepic": "/images/profilepic/marsh.jpg",
+  "bio": "ALL HAIL BEERCULES!",
+  "__v": 0
+}
+]

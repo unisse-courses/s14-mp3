@@ -10,19 +10,19 @@
 
                      <div class="form-row">
                         <label>Title of Recipe</label>
-                        <input type="text" class="form-control" id="post_title">
+                        <input type="text" class="form-control" name="POST_TITLE" id="post_title">
                         <label id="ltitle" class="warning"></label>
                     </div>
 
                     <div class="form-row">
                         <label for="recipePic">Choose a Thumbnail for your Post</label>
-                        <input type="file" class="form-control-file" accept="image/*" id="thumbnail">  
+                        <input type="file" class="form-control-file" accept="image/*" name="THUMBNAIL" id="thumbnail">  
                         <label id="lThumb" class="warning"></label>
                     </div>
                             
                     <div class="form-row">
                         <label>Description</label>
-                        <textarea class="form-control" id="description"></textarea>
+                        <textarea class="form-control" name="DESCRIPTION" id="description"></textarea>
                         <label id="lDesc" class="warning"></label>
                     </div>
                             
@@ -30,9 +30,9 @@
                         <div class="form-col ingdiv">
                             <label>Ingredients</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="ulinput1" placeholder="Quantity" aria-label="Quantity">
-                                <input type="text" class="form-control" id="ulinput2" placeholder="Unit" aria-label="Unit">
-                                <input type="text" class="form-control" id="ulinput3" placeholder="Ingredient Name" aria-label="Ingredient Name">
+                                <input type="text" class="form-control" id="ulinput1" name="ULINPUT1" placeholder="Quantity" aria-label="Quantity">
+                                <input type="text" class="form-control" id="ulinput2" name="ULINPUT2" placeholder="Unit" aria-label="Unit">
+                                <input type="text" class="form-control" id="ulinput3" name="ULINPUT3" placeholder="Ingredient Name" aria-label="Ingredient Name">
 
 
                                 <div class="input-group-append">
@@ -53,7 +53,7 @@
                             <div class="form-row">
                                 <label>Instructions</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="olinput">
+                                    <input type="text" class="form-control" id="olinput" name="OLINPUT">
         
                                     <div class="input-group-append">
                                         <button id="addInstruction" class="btn btn-outline-secondary btn-sm add-btn" type="button">
@@ -72,6 +72,6 @@
 
                     </div>
                     <br>
-                    <button id="postRecipe" class="btn btn-primary">Post</button>
+                    <button type="submit" id="postRecipe" class="btn btn-primary">Post</button>
                 </form>
         </div>
