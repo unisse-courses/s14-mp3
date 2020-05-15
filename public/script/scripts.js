@@ -1358,41 +1358,41 @@ $(document).ready(function() {
     });
 
 
-    // $("#updateAccount").click(function () { 
-    //     var first = document.getElementById("EDITfirstName").value;
-    //     var last = document.getElementById("EDITlastName").value;
-    //     var user = document.getElementById("EDITuserName").value;
-    //     var pass = document.getElementById("EDITpassword").value;
-    //     var pic = document.getElementById("EDITprofilePic").value;
-    //     var bio = document.getElementById("EDITbio").value;
+     $("#updateAccount").click(function () { 
+         var first = document.getElementById("EDITfirstName").value;
+         var last = document.getElementById("EDITlastName").value;
+         var user = document.getElementById("EDITuserName").value;
+         var pass = document.getElementById("EDITpassword").value;
+         var pic = document.getElementById("EDITprofilePic").value;
+         var bio = document.getElementById("EDITbio").value;
         
-    //     console.log("VALUE INSIDE = " + pic);
+         console.log("VALUE INSIDE = " + pic);
 
-    //     var user = {
-    //         editfirstname: first,
-    //         editlastname: last,
-    //         editusername: user,
-    //         editpassword: pass,
-    //         editprofilepic: pic,
-    //         editbio: bio
-    //     }
+         var user = {
+             editfirstname: first,
+             editlastname: last,
+             editusername: user,
+             editpassword: pass,
+             editprofilepic: pic,
+             editbio: bio
+         }
         
-    //     $.post("edit-account", user, function (data, status) {
-    //             $(document).ready(function () {
-    //                 $("#account-profile-picture").attr("src", data.profilepic);
-    //                 $("#accountname").text(data.firstname + " " + data.lastname);
-    //                 $("#accountusername").text(data.username);
-    //                 $("#accountbio").text(data.bio);
+         $.post("editing-account", user, function (data, status) {
+                 $(document).ready(function () {
+                     $("#account-profile-picture").attr("src", data.profilepic);
+                     $("#accountname").text(data.firstname + " " + data.lastname);
+                     $("#accountusername").text(data.username);
+                     $("#accountbio").text(data.bio);
 
 
-    //                 //$("#fullnameb").innertext(data.firstname + " " + data.lastname);
-    //                 //$("#unameb").innertext(data.username);
-    //             });
+                     $("#fullnameb").innertext(data.firstname + " " + data.lastname);
+                     $("#unameb").innertext(data.username);
+                 });
                 
 
-    //             window.location.href = "../account-profile/" + data.username;
-    //     });
-    // });
+                 window.location.href = "../account-profile/" + data.username;
+         });
+     });
 
 /* -------------------------------------------------- EditRecipePost.hbs -------------------------------------------------- */
 
@@ -1487,10 +1487,10 @@ $(document).ready(function() {
             _id: url
         };
 
-        window.alert("Recipe successfully updated! go to account profile to see your recipe posts.");
+        
 
         $.post('../updatePost', new_post, function(data,status) {
-            window.location.href="../recipe-post/" + url
+            window.location.href="../recipe-post/" + data._id
         });
 
     });
